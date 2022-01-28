@@ -1,0 +1,11 @@
+type ServiceMetadata {
+  description: String!
+}
+
+type DatasetMetadata {
+  description: String!
+}
+
+type VariableMetadata {
+  description: String!
+}
