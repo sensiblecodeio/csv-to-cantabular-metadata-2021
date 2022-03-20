@@ -1,0 +1,5 @@
+Classification_Mnemonic,Dataset_Mnemonic,Id,Processing_Priority,Version
+CLASS2,DS1,1,2,1
+CLASS3,DS1,3,3,1
+CLASS1,DS1,2,1,1
+CLASS_PRIV,DS_PRIV,4,1,1

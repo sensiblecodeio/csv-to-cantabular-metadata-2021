@@ -1,0 +1,288 @@
+[
+    {
+        "lang": "en",
+        "meta": {
+            "tables": [
+                {
+                    "name": "DS1",
+                    "label": "DS1 Title",
+                    "description": "DS1 Description",
+                    "datasetName": "DB1",
+                    "vars": [
+                        "GEO1",
+                        "CLASS1",
+                        "CLASS2",
+                        "CLASS3"
+                    ],
+                    "meta": {
+                        "Dataset_Mnemonic_2011": "DS1 2011",
+                        "Dissemination_Source": "DS1 Dissemination Source",
+                        "Release_Frequency": "Every day",
+                        "Last_Updated": "Today",
+                        "Unique_Url": "DS1 Unique URL",
+                        "Geographic_Variable_Mnemonic": "GEO1",
+                        "Version": "1",
+                        "Geographic_Coverage": "Everywhere",
+                        "Dataset_Population": "Everyone",
+                        "Statistical_Unit": {
+                            "Statistical_Unit": "People",
+                            "Statistical_Unit_Description": "People Description"
+                        },
+                        "Contact": {
+                            "Contact_Id": "2",
+                            "Contact_Name": "Bill",
+                            "Contact_Email": "bill@bill.com",
+                            "Contact_Phone": null,
+                            "Contact_Website": null
+                        },
+                        "Keywords": [
+                            "DS1 Keyword",
+                            "DS1 Other Keyword"
+                        ],
+                        "Related_Datasets": [
+                            "DS2",
+                            "DS3"
+                        ],
+                        "Census_Releases": [
+                            {
+                                "Census_Release_Number": "CR1",
+                                "Census_Release_Description": "CR1 Description",
+                                "Release_Date": "1/1/2022"
+                            },
+                            {
+                                "Census_Release_Number": "CR2",
+                                "Census_Release_Description": "CR2 Description",
+                                "Release_Date": "2/2/2022"
+                            }
+                        ],
+                        "Publications": [
+                            {
+                                "Publication_Mnemonic": "P1",
+                                "Publication_Title": "P1 Title",
+                                "Publisher_Name": "P1 Publisher Name",
+                                "Publisher_Website": "P1 Publisher Website"
+                            },
+                            {
+                                "Publication_Mnemonic": "P2",
+                                "Publication_Title": null,
+                                "Publisher_Name": null,
+                                "Publisher_Website": null
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "DS2",
+                    "label": "DS2 Title",
+                    "description": "DS2 Description",
+                    "datasetName": "DB2",
+                    "vars": [],
+                    "meta": {
+                        "Dataset_Mnemonic_2011": null,
+                        "Dissemination_Source": null,
+                        "Release_Frequency": null,
+                        "Last_Updated": null,
+                        "Unique_Url": null,
+                        "Geographic_Variable_Mnemonic": null,
+                        "Version": "1",
+                        "Geographic_Coverage": "Everywhere",
+                        "Dataset_Population": "Everyone",
+                        "Statistical_Unit": {
+                            "Statistical_Unit": "Houses",
+                            "Statistical_Unit_Description": "House Description"
+                        },
+                        "Contact": null,
+                        "Keywords": [],
+                        "Related_Datasets": [],
+                        "Census_Releases": [
+                            {
+                                "Census_Release_Number": "CR1",
+                                "Census_Release_Description": "CR1 Description",
+                                "Release_Date": "1/1/2022"
+                            }
+                        ],
+                        "Publications": []
+                    }
+                },
+                {
+                    "name": "DS3",
+                    "label": "DS3 Title",
+                    "description": "DS3 Description",
+                    "datasetName": "DB2",
+                    "vars": [
+                        "GEO2"
+                    ],
+                    "meta": {
+                        "Dataset_Mnemonic_2011": "DS3 2011",
+                        "Dissemination_Source": "DS3 Dissemination Source",
+                        "Release_Frequency": "Every day",
+                        "Last_Updated": "Today",
+                        "Unique_Url": "DS3 Unique URL",
+                        "Geographic_Variable_Mnemonic": "GEO2",
+                        "Version": "1",
+                        "Geographic_Coverage": "Everywhere",
+                        "Dataset_Population": "Everyone",
+                        "Statistical_Unit": {
+                            "Statistical_Unit": "People",
+                            "Statistical_Unit_Description": "People Description"
+                        },
+                        "Contact": {
+                            "Contact_Id": "1",
+                            "Contact_Name": "Bob",
+                            "Contact_Email": "bob@bob.com",
+                            "Contact_Phone": "12345",
+                            "Contact_Website": "www.bob.com"
+                        },
+                        "Keywords": [],
+                        "Related_Datasets": [],
+                        "Census_Releases": [],
+                        "Publications": []
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "lang": "cy",
+        "meta": {
+            "tables": [
+                {
+                    "name": "DS1",
+                    "label": "DS1 Title (Welsh)",
+                    "description": "DS1 Description (Welsh)",
+                    "datasetName": "DB1",
+                    "vars": [
+                        "GEO1",
+                        "CLASS1",
+                        "CLASS2",
+                        "CLASS3"
+                    ],
+                    "meta": {
+                        "Dataset_Mnemonic_2011": "DS1 2011",
+                        "Dissemination_Source": "DS1 Dissemination Source",
+                        "Release_Frequency": "Every day",
+                        "Last_Updated": "Today",
+                        "Unique_Url": "DS1 Unique URL",
+                        "Geographic_Variable_Mnemonic": "GEO1",
+                        "Version": "1",
+                        "Geographic_Coverage": "Everywhere (Welsh)",
+                        "Dataset_Population": "Everyone (Welsh)",
+                        "Statistical_Unit": {
+                            "Statistical_Unit": "People",
+                            "Statistical_Unit_Description": "People Description (Welsh)"
+                        },
+                        "Contact": {
+                            "Contact_Id": "2",
+                            "Contact_Name": "Bill",
+                            "Contact_Email": "bill@bill.com",
+                            "Contact_Phone": null,
+                            "Contact_Website": null
+                        },
+                        "Keywords": [
+                            "DS1 Keyword (Welsh)",
+                            "DS1 Other Keyword"
+                        ],
+                        "Related_Datasets": [
+                            "DS2",
+                            "DS3"
+                        ],
+                        "Census_Releases": [
+                            {
+                                "Census_Release_Number": "CR1",
+                                "Census_Release_Description": "CR1 Description",
+                                "Release_Date": "1/1/2022"
+                            },
+                            {
+                                "Census_Release_Number": "CR2",
+                                "Census_Release_Description": "CR2 Description",
+                                "Release_Date": "2/2/2022"
+                            }
+                        ],
+                        "Publications": [
+                            {
+                                "Publication_Mnemonic": "P1",
+                                "Publication_Title": "P1 Title",
+                                "Publisher_Name": "P1 Publisher Name",
+                                "Publisher_Website": "P1 Publisher Website"
+                            },
+                            {
+                                "Publication_Mnemonic": "P2",
+                                "Publication_Title": null,
+                                "Publisher_Name": null,
+                                "Publisher_Website": null
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "DS2",
+                    "label": "DS2 Title",
+                    "description": "DS2 Description",
+                    "datasetName": "DB2",
+                    "vars": [],
+                    "meta": {
+                        "Dataset_Mnemonic_2011": null,
+                        "Dissemination_Source": null,
+                        "Release_Frequency": null,
+                        "Last_Updated": null,
+                        "Unique_Url": null,
+                        "Geographic_Variable_Mnemonic": null,
+                        "Version": "1",
+                        "Geographic_Coverage": "Everywhere",
+                        "Dataset_Population": "Everyone",
+                        "Statistical_Unit": {
+                            "Statistical_Unit": "Houses",
+                            "Statistical_Unit_Description": "House Description"
+                        },
+                        "Contact": null,
+                        "Keywords": [],
+                        "Related_Datasets": [],
+                        "Census_Releases": [
+                            {
+                                "Census_Release_Number": "CR1",
+                                "Census_Release_Description": "CR1 Description",
+                                "Release_Date": "1/1/2022"
+                            }
+                        ],
+                        "Publications": []
+                    }
+                },
+                {
+                    "name": "DS3",
+                    "label": "DS3 Title (Welsh)",
+                    "description": "DS3 Description (Welsh)",
+                    "datasetName": "DB2",
+                    "vars": [
+                        "GEO2"
+                    ],
+                    "meta": {
+                        "Dataset_Mnemonic_2011": "DS3 2011",
+                        "Dissemination_Source": "DS3 Dissemination Source",
+                        "Release_Frequency": "Every day",
+                        "Last_Updated": "Today",
+                        "Unique_Url": "DS3 Unique URL",
+                        "Geographic_Variable_Mnemonic": "GEO2",
+                        "Version": "1",
+                        "Geographic_Coverage": "Everywhere (Welsh)",
+                        "Dataset_Population": "Everyone (Welsh)",
+                        "Statistical_Unit": {
+                            "Statistical_Unit": "People",
+                            "Statistical_Unit_Description": "People Description (Welsh)"
+                        },
+                        "Contact": {
+                            "Contact_Id": "1",
+                            "Contact_Name": "Bob",
+                            "Contact_Email": "bob@bob.com",
+                            "Contact_Phone": "12345",
+                            "Contact_Website": "www.bob.com"
+                        },
+                        "Keywords": [],
+                        "Related_Datasets": [],
+                        "Census_Releases": [],
+                        "Publications": []
+                    }
+                }
+            ]
+        }
+    }
+]

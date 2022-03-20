@@ -1,0 +1,38 @@
+name: Python package
+
+on:
+  push:
+    branches:
+      master
+  pull_request:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6.8, 3.7, 3.8, 3.9]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        sudo apt-get update -y
+        sudo apt-get install -y pylint pydocstyle pycodestyle
+    - name: Run pycodestyle
+      run: |
+        pycodestyle --max-line-length=99 --ignore=None bin/*.py
+    - name: Run pydocstyle
+      run: |
+        pydocstyle bin/*.py
+    - name: Run pylint
+      run: |
+        pylint --max-locals=20 --max-public-methods=25 --disable=W1202 bin/*.py
+    - name: Run tests
+      run: |
+        PYTHONPATH=test:bin python3 -m unittest -v

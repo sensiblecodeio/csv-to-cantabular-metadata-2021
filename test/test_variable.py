@@ -1,0 +1,70 @@
+import unittest.mock
+import unittest
+import os
+import pathlib
+from ons_csv_to_ctb_json_load import Loader
+from helper_funcs import conditional_mock_open, build_test_file
+
+HEADERS = ['Variable_Mnemonic', 'Id', 'Variable_Title', 'Variable_Title_Welsh',
+           'Variable_Description', 'Variable_Description_Welsh', 'Variable_Type_Code',
+           'Statistical_Unit', 'Topic_Mnemonic', 'Variable_Mnemonic_2011',
+           'Comparability_Comments', 'Comparability_Comments_Welsh', 'Uk_Comparison_Comments',
+           'Uk_Comparison_Comments_Welsh', 'Security_Mnemonic', 'Signed_Off_Flag',
+           'Number_Of_Classifications', 'Geographic_Abbreviation', 'Geographic_Abbreviation_Welsh',
+           'Geographic_Theme', 'Geographic_Theme_Welsh', 'Geographic_Coverage',
+           'Geographic_Coverage_Welsh', 'Version']
+
+COMMON_FIELDS = {'Security_Mnemonic': 'PUB',
+                 'Variable_Title': 'title',
+                 'Variable_Description': 'description',
+                 'Id': '1',
+                 'Version': '1'}
+
+REQUIRED_FIELDS = {'Variable_Mnemonic': 'VAR1',
+                   'Variable_Type_Code': 'DVO',
+                   **COMMON_FIELDS}
+
+INPUT_DIR = os.path.join(pathlib.Path(__file__).parent.resolve(), 'testdata')
+
+FILENAME = os.path.join(INPUT_DIR, 'Variable.csv')
+
+class TestVariable(unittest.TestCase):
+    def run_test(self, rows, expected_error):
+        with unittest.mock.patch('builtins.open', conditional_mock_open('Variable.csv',
+                read_data = build_test_file(HEADERS, rows))):
+            with self.assertRaisesRegex(ValueError, expected_error):
+                Loader(INPUT_DIR).variables
+
+    def test_required_fields(self):
+        for field in REQUIRED_FIELDS:
+            with self.subTest(field=field):
+                row = REQUIRED_FIELDS.copy()
+                row[field] = ''
+                self.run_test([row], f'^Reading {FILENAME}:2 no value supplied for required field {field}$')
+
+    def test_invalid_values(self):
+        for field in ['Security_Mnemonic', 'Variable_Type_Code', 'Statistical_Unit', 'Topic_Mnemonic']:
+            with self.subTest(field=field):
+                row = REQUIRED_FIELDS.copy()
+                row[field] = 'X'
+                self.run_test([row], f'^Reading {FILENAME}:2 invalid value X for {field}$')
+
+    def test_duplicate_variable_mnemonic(self):
+        self.run_test(
+            [REQUIRED_FIELDS, REQUIRED_FIELDS],
+            f'^Reading {FILENAME}:3 duplicate value VAR1 for Variable_Mnemonic$')
+
+    def test_non_geo_with_geographic_value(self):
+        for field in ['Geographic_Abbreviation', 'Geographic_Abbreviation_Welsh',
+                      'Geographic_Theme', 'Geographic_Theme_Welsh',
+                      'Geographic_Coverage', 'Geographic_Coverage_Welsh']:
+            with self.subTest(field=field):
+                rows = [{'Variable_Mnemonic': 'GEO1', 'Variable_Type_Code': 'GEOG', **COMMON_FIELDS},
+                        {'Variable_Mnemonic': 'VAR2', 'Variable_Type_Code': 'DVO', **COMMON_FIELDS},
+                        {'Variable_Mnemonic': 'VAR1', 'Variable_Type_Code': 'DVO', **COMMON_FIELDS,
+                         field: 'X'}]
+                self.run_test(rows, f'^Reading {FILENAME}:4 {field} specified for non geographic variable: VAR1$')
+
+
+if __name__ == '__main__':
+    unittest.main()
