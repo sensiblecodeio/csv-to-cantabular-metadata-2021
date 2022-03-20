@@ -1,0 +1,125 @@
+type ServiceMetadata {
+  tables: [Table]!
+}
+
+type Table {
+  name: String!
+  label: String!
+  description: String
+  datasetName: String!
+  vars: [String]!
+  meta: TableMetadata!
+}
+
+type DatasetMetadata {
+  Database_Description: String!
+  Cantabular_DB_Flag: String
+  Source: Source!
+  Version: String!
+}
+
+type VariableMetadata {
+  Mnemonic_2011: String
+  Flat_Classification_Flag: String
+  Parent_Classification_Mnemonic: String
+  Default_Classification_Flag: String
+  Version: String!
+  ONS_Variable: ONS_Variable!
+  Topics: [Topic]!
+}
+
+type ONS_Variable {
+  Variable_Mnemonic: String!
+  Variable_Title: String!
+  Variable_Description: String!
+  Variable_Mnemonic_2011: String
+  Comparability_Comments: String
+  Uk_Comparison_Comments: String
+  Geographic_Abbreviation: String
+  Geographic_Theme: String
+  Geographic_Coverage: String
+  Version: String!
+  Statistical_Unit: Statistical_Unit
+  Keywords: [String]!
+  Topic: Topic
+  Questions: [Question]!
+  Variable_Type: Variable_Type!
+}
+
+type Variable_Type {
+  Variable_Type_Code: String!
+  Variable_Type_Description: String!
+}
+
+type Topic {
+  Topic_Mnemonic: String!
+  Topic_Description: String!
+  Topic_Title: String!
+}
+
+type Question {
+  Question_Code: String!
+  Question_Label: String!
+  Reason_For_Asking_Question: String
+  Question_First_Asked_In_Year: String
+  Version: String!
+}
+
+type Source {
+  Source_Mnemonic: String!
+  Source_Description: String!
+  Copyright_Statement: String
+  Licence: String
+  Nationals_Statistic_Certified: String
+  Methodology_Link: String
+  Methodology_Statement: String
+  SDC_Link: String
+  SDC_Statement: String
+  Version: String
+  Contact: Contact
+}
+
+type Contact {
+  Contact_Id: String!
+  Contact_Name: String!
+  Contact_Email: String!
+  Contact_Phone: String
+  Contact_Website: String
+}
+
+type TableMetadata {
+  Dataset_Mnemonic_2011: String
+  Geographic_Coverage: String!
+  Dataset_Population: String!
+  Dissemination_Source: String
+  Release_Frequency: String
+  Last_Updated: String
+  Unique_Url: String
+  Contact: Contact
+  Geographic_Variable_Mnemonic: String
+  Version: String!
+  Related_Datasets: [String]!
+  Keywords: [String]!
+  Publications: [Publication]!
+  Census_Releases: [Census_Release]!
+  Statistical_Unit: Statistical_Unit!
+}
+
+type Publication {
+  Publication_Mnemonic: String!
+  Publication_Title: String
+  Publisher_Name: String
+  Publisher_Website: String
+}
+
+type Census_Release {
+  Census_Release_Number: String!
+  Census_Release_Description: String!
+  Release_Date: String!
+}
+
+type Statistical_Unit {
+  Statistical_Unit: String!
+  Statistical_Unit_Description: String!
+}
+ 
