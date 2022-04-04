@@ -36,6 +36,9 @@ def main():
                         help='Log level (default: %(default)s)')
 
     args = parser.parse_args()
+    for directory in (args.input_dir, args.output_dir):
+        if not os.path.isdir(directory):
+            raise ValueError(f'{directory} does not exist or is not a directory')
 
     logging.basicConfig(format='t=%(asctime)s lvl=%(levelname)s msg=%(message)s',
                         level=args.log_level)
