@@ -1,14 +1,5 @@
 type ServiceMetadata {
-  tables: [Table]!
-}
-
-type Table {
-  name: String!
-  label: String!
-  description: String
-  datasetName: String!
-  vars: [String]!
-  meta: TableMetadata!
+  description: String!
 }
 
 type DatasetMetadata {

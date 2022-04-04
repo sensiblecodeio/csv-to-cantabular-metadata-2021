@@ -6,7 +6,7 @@ from argparse import ArgumentParser
 from ons_csv_to_ctb_json_load import Loader, PUBLIC_SECURITY_MNEMONIC
 from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 
-VERSION = '1.0.alpha'
+VERSION = '1.0.beta'
 
 
 def main():
@@ -36,6 +36,9 @@ def main():
                         help='Log level (default: %(default)s)')
 
     args = parser.parse_args()
+    for directory in (args.input_dir, args.output_dir):
+        if not os.path.isdir(directory):
+            raise ValueError(f'{directory} does not exist or is not a directory')
 
     logging.basicConfig(format='t=%(asctime)s lvl=%(levelname)s msg=%(message)s',
                         level=args.log_level)
@@ -53,9 +56,15 @@ def main():
         json.dump(ctb_datasets, jsonfile, indent=4)
     logging.info(f'Written dataset metadata file to: {filename}')
 
-    # Build Cantabular table objects, embed them within the service metadata and write to JSON.
+    # Build Cantabular table objects and write to JSON.
     ctb_tables = build_ctb_tables(loader.datasets)
-    service_metadata = build_ctb_service_metadata(ctb_tables)
+    filename = os.path.join(args.output_dir, 'table-metadata.json')
+    with open(filename, 'w') as jsonfile:
+        json.dump(ctb_tables, jsonfile, indent=4)
+    logging.info(f'Written table metadata file to: {filename}')
+
+    # Build Cantabular service metadata objects and write to JSON.
+    service_metadata = build_ctb_service_metadata()
     filename = os.path.join(args.output_dir, 'service-metadata.json')
     with open(filename, 'w') as jsonfile:
         json.dump(service_metadata, jsonfile, indent=4)
@@ -154,14 +163,20 @@ def build_ctb_tables(datasets):
             logging.info(f'Dropped non public ONS Dataset: {mnemonic}')
             continue
 
-        table = BilingualDict({
-            'name': mnemonic,
+        ref = BilingualDict({
+            'lang': Bilingual('en', 'cy'),
             'label': dataset.private['Dataset_Title'],
             'description': dataset.private['Dataset_Description'],
-            'datasetName': dataset.private['Database_Mnemonic'],
-            'vars': dataset.private['Classifications'],
             'meta': dataset,
         })
+
+        table = {
+            'name': mnemonic,
+            'datasetName': dataset.private['Database_Mnemonic'],
+            'vars': dataset.private['Classifications'],
+            'ref': [ref.english(), ref.welsh()],
+        }
+
         ctb_tables.append(table)
         logging.debug(f'Loaded metadata for Cantabular table: {mnemonic}')
 
@@ -170,12 +185,14 @@ def build_ctb_tables(datasets):
     return ctb_tables
 
 
-def build_ctb_service_metadata(ctb_tables):
-    """Build the service metadata which embeds the tables."""
+def build_ctb_service_metadata():
+    """Build the service metadata."""
     service_metadata = BilingualDict({
         'lang': Bilingual('en', 'cy'),
         'meta': {
-            'tables': ctb_tables,
+            'description': Bilingual(
+                'Census 2021 metadata',
+                'Census 2021 metadata in Welsh'),
         },
     })
     logging.info(f'Loaded service metadata')
