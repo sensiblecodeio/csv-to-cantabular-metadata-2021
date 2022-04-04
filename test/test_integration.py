@@ -49,3 +49,9 @@ class TestIntegration(unittest.TestCase):
             with open(os.path.join(file_dir, 'expected/dataset-metadata.json')) as f:
                 expected_dataset_metadata = json.load(f)
             self.assertEqual(dataset_metadata, expected_dataset_metadata)
+
+            with open(os.path.join(output_dir, 'table-metadata.json')) as f:
+                table_metadata = json.load(f)
+            with open(os.path.join(file_dir, 'expected/table-metadata.json')) as f:
+                expected_table_metadata = json.load(f)
+            self.assertEqual(table_metadata, expected_table_metadata)

@@ -62,7 +62,8 @@ class TestDataset(unittest.TestCase):
             [{'Dataset_Mnemonic': 'DS_PRIV', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS1', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS2', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
-             {'Dataset_Mnemonic': 'DS3', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
+             {'Dataset_Mnemonic': 'DS3', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS4', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
             f'^Reading {FILENAME}:2 Public ONS dataset DS_PRIV has non-public classification CLASS_PRIV$')
 
     def test_variable_not_in_database(self):
@@ -70,8 +71,18 @@ class TestDataset(unittest.TestCase):
             [{'Dataset_Mnemonic': 'DS1', 'Database_Mnemonic': 'DB2', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS_PRIV', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'CLASS', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS2', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
-             {'Dataset_Mnemonic': 'DS3', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
+             {'Dataset_Mnemonic': 'DS3', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS4', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
             f'^Reading {FILENAME}:2 DS1 has classification CLASS1 that is not in database DB2$')
+
+    def test_no_variables(self):
+        self.run_test(
+            [{'Dataset_Mnemonic': 'DS1', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS_PRIV', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'CLASS', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS2', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS3', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS4', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
+            f'^Reading {FILENAME}:4 DS2 has no associated classifications or geographic variable$')
 
     def test_non_geographic_variable_mnemonic(self):
         row = REQUIRED_FIELDS.copy()
