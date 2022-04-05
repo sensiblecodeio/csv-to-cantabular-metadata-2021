@@ -273,8 +273,14 @@ class Loader:
                 dataset_classifications = [
                     dataset['Geographic_Variable_Mnemonic'], *dataset_classifications]
 
-            # If the dataset is public then ensure that all the classifications are also public.
+            # If the dataset is public then ensure that there is at least one classification and
+            # that all the classifications are also public.
             if dataset['Security_Mnemonic'] == PUBLIC_SECURITY_MNEMONIC:
+                if not dataset_classifications:
+                    raise ValueError(
+                        f'Reading {self.full_filename(filename)}:{line_num} {dataset_mnemonic} '
+                        'has no associated classifications or geographic variable')
+
                 for classification in dataset_classifications:
                     if self.classifications[classification].private['Security_Mnemonic'] != \
                             PUBLIC_SECURITY_MNEMONIC:

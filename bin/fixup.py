@@ -10,7 +10,7 @@ import glob
 import os
 from argparse import ArgumentParser
 
-VERSION = '1.0.alpha'
+VERSION = '1.0.beta'
 
 
 def main():
@@ -29,6 +29,9 @@ def main():
                         help='Output directory to write fixed-up files')
 
     args = parser.parse_args()
+    for directory in (args.input_dir, args.output_dir):
+        if not os.path.isdir(directory):
+            raise ValueError(f'{directory} does not exist or is not a directory')
 
     for filename in glob.glob(os.path.join(args.input_dir, '*.csv')):
         basename = os.path.basename(filename)

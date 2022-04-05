@@ -4,3 +4,4 @@ Id,Database_Mnemonic,Variable_Mnemonic,Version
 3,DB1,GEO1,1
 4,DB2,GEO2,1
 5,DB1,VAR3,1
+6,DB2,VAR3,1
