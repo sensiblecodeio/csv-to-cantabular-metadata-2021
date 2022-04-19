@@ -49,10 +49,6 @@ def main():
                     outfile.write('5,test_variable_2,Test Var 2,,Test,,,,,,,,PUB,SV,,'
                                   'Person,,,,,,,,1,,,,,,,')
 
-                # A classification is required for GEO variables.
-                if basename == 'Classification.csv':
-                    outfile.write('3,OA,0,,N,OA,PUB,N,OA,,OA,,1\n')
-
                 # Add OA to the UR database.
                 if basename == 'Database_Variable.csv':
                     outfile.write('3,UR,OA,1,,,,,,,,\n')

@@ -53,11 +53,6 @@ class TestClassification(unittest.TestCase):
         row['Variable_Mnemonic'] = 'VAR_PRIV'
         self.run_test([row], f'^Reading {FILENAME}:2 Public classification CLASS1 has non-public variable VAR_PRIV$')
 
-    def test_no_geo_classification(self):
-        self.run_test(
-            [REQUIRED_FIELDS],
-            '^Geographic variable GEO1 does not have a corresponding classification with the same mnemonic$')
-
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,5 +1,6 @@
 """Load metadata from CSV files and export in JSON format."""
 import os
+import logging
 from functools import lru_cache
 from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 from ons_csv_to_ctb_json_read import Reader, required, optional
@@ -545,10 +546,11 @@ class Loader:
                         raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
                                          f'{geo_field} specified for non geographic variable: '
                                          f'{variable["Variable_Mnemonic"]}')
-
-            variable['Variable_Title'] = Bilingual(
+            variable_title = Bilingual(
                 variable.pop('Variable_Title'),
                 variable.pop('Variable_Title_Welsh'))
+
+            variable['Variable_Title'] = variable_title
             variable['Variable_Description'] = Bilingual(
                 variable.pop('Variable_Description'),
                 variable.pop('Variable_Description_Welsh'))
@@ -587,8 +589,12 @@ class Loader:
                 variable,
                 # A check is performed elsewhere to ensure that public classifications have public
                 # variables. Is_Geographic is used to check whether variables are geographic.
+                # Variable_Title and Version are used when creating classifications for geographic
+                # variables.
                 private={'Security_Mnemonic': variable.pop('Security_Mnemonic'),
-                         'Is_Geographic': is_geographic})
+                         'Is_Geographic': is_geographic,
+                         'Variable_Title': variable_title,
+                         'Version': variable['Version']})
         return variables
 
     @property
@@ -657,11 +663,26 @@ class Loader:
 
         # Every geographic variable must have a corresponding classification with the same
         # mnemonic. This is due to the fact that the dataset specifies a geographic variable
-        # rather than a classification.
+        # rather than a classification. Automatically create an entry if it does not already
+        # exist.
         for variable_mnemonic, variable in self.variables.items():
             if variable.private['Is_Geographic'] and variable_mnemonic not in classifications:
-                raise ValueError(f'Geographic variable {variable_mnemonic} does not have a '
-                                 'corresponding classification with the same mnemonic')
+                logging.debug('Creating classification for geographic variable: '
+                              f'{variable_mnemonic}')
+                classifications[variable_mnemonic] = BilingualDict(
+                    {
+                        'Mnemonic_2011': None,
+                        'Parent_Classification_Mnemonic': variable_mnemonic,
+                        'Default_Classification_Flag': None,
+                        'Version': variable.private['Version'],
+                        'ONS_Variable': variable,
+                        'Topics': [],
+                    },
+                    private={
+                        'Number_Of_Category_Items': 0,
+                        'Security_Mnemonic': variable.private['Security_Mnemonic'],
+                        'Classification_Label': variable.private['Variable_Title'],
+                        'Variable_Mnemonic': variable_mnemonic})
 
         return classifications
 

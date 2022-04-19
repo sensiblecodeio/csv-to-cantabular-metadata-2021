@@ -195,11 +195,11 @@
             },
             {
                 "name": "GEO2",
-                "label": "GEO2 Var Label",
+                "label": "GEO2 Title",
                 "meta": {
-                    "Mnemonic_2011": "GEO2 2011",
-                    "Parent_Classification_Mnemonic": "GEO2 Parent",
-                    "Default_Classification_Flag": "Y",
+                    "Mnemonic_2011": null,
+                    "Parent_Classification_Mnemonic": "GEO2",
+                    "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
                         "Variable_Mnemonic": "GEO2",
@@ -428,11 +428,11 @@
             },
             {
                 "name": "GEO2",
-                "label": "GEO2 Var Label Welsh",
+                "label": "GEO2 Title",
                 "meta": {
-                    "Mnemonic_2011": "GEO2 2011",
-                    "Parent_Classification_Mnemonic": "GEO2 Parent",
-                    "Default_Classification_Flag": "Y",
+                    "Mnemonic_2011": null,
+                    "Parent_Classification_Mnemonic": "GEO2",
+                    "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
                         "Variable_Mnemonic": "GEO2",
