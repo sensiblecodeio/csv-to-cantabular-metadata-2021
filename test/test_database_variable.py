@@ -22,8 +22,7 @@ class TestDatabaseVariable(unittest.TestCase):
         with unittest.mock.patch('builtins.open', conditional_mock_open('Database_Variable.csv',
                 read_data = build_test_file(HEADERS, rows))):
             with self.assertRaisesRegex(ValueError, expected_error):
-                input_dir = os.path.join(pathlib.Path(__file__).parent.resolve(), 'testdata')
-                Loader(input_dir).database_to_classifications
+                Loader(INPUT_DIR, None).database_to_classifications
 
     def test_required_fields(self):
         for field in REQUIRED_FIELDS:

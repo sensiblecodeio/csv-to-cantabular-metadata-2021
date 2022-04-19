@@ -2,5 +2,4 @@ Classification_Mnemonic,Variable_Mnemonic,Id,Classification_Label,Classification
 CLASS1,VAR1,1,CLASS1 Label,CLASS1 Label Welsh,6,CLASS1 2011,N,CLASS1 Parent,PUB,Y,Y,1
 CLASS2,VAR2,2,CLASS2 Label,,5,,,,PUB,N,,1
 CLASS3,VAR3,3,CLASS3 Label,,5,,,,PUB,,N,1
-GEO1,GEO1,4,GEO1 Var Label,GEO1 Var Label Welsh,0,GEO1 2011,Y,GEO1 Parent,PUB,Y,Y,1
 CLASS_PRIV,VAR_PRIV,5,CLASS_PRIV Label,CLASS_PRIV Label Welsh,0,CLASS_PRIV 2011,Y,CLASS_PRIV,CLASS,Y,Y,1

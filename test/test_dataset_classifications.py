@@ -22,7 +22,7 @@ class TestDatasetClassification(unittest.TestCase):
         with unittest.mock.patch('builtins.open', conditional_mock_open('Dataset_Classification.csv',
                 read_data = build_test_file(HEADERS, rows))):
             with self.assertRaisesRegex(ValueError, expected_error):
-                Loader(INPUT_DIR).load_dataset_to_classifications(['DS1', 'DS2', 'DS3'])
+                Loader(INPUT_DIR, None).load_dataset_to_classifications(['DS1', 'DS2', 'DS3'])
 
     def test_required_fields(self):
         for field in REQUIRED_FIELDS:

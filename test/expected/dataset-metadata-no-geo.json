@@ -456,11 +456,7 @@
                     },
                     "Topics": []
                 },
-                "catLabels": {
-                    "CD1": "NM1 (Welsh)",
-                    "CD2": "NM2 (Welsh)",
-                    "CD4": "NM4 (Welsh)"
-                }
+                "catLabels": null
             }
         ]
     },

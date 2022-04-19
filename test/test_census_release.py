@@ -21,7 +21,7 @@ class TestCensusRelease(unittest.TestCase):
         with unittest.mock.patch('builtins.open', conditional_mock_open('Census_Release.csv',
                 read_data = build_test_file(HEADERS, rows))):
             with self.assertRaisesRegex(ValueError, expected_error):
-                Loader(INPUT_DIR).census_releases
+                Loader(INPUT_DIR, None).census_releases
 
     def test_required_fields(self):
         for field in REQUIRED_FIELDS:

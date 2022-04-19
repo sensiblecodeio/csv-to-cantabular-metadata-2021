@@ -20,7 +20,7 @@ class TestVariableSourceQuestion(unittest.TestCase):
         with unittest.mock.patch('builtins.open', conditional_mock_open('Variable_Source_Question.csv',
                 read_data = build_test_file(HEADERS, rows))):
             with self.assertRaisesRegex(ValueError, expected_error):
-                Loader(INPUT_DIR).load_variable_to_questions(['VAR1', 'VAR2'])
+                Loader(INPUT_DIR, None).load_variable_to_questions(['VAR1', 'VAR2'])
 
     def test_required_fields(self):
         for field in REQUIRED_FIELDS:

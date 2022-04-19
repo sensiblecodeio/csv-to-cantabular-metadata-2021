@@ -6,65 +6,73 @@ and converts them to hierarchical JSON that can be loaded into `cantabular-metad
 
 It is compatible with version `1.0` of the metadata schema and version `9.3.0` of `cantabular-metadata`.
 
-This is version `1.0.beta` of the CSV to JSON processing software and is subject to change.
+This is version `1.0.gamma` of the CSV to JSON processing software and is subject to change.
 
 The applications only use packages in the Python standard library.
 
 Converting CSV to JSON
 ======================
 
+Most of the source metadata are contained in a set of CSV files based on the metadata schema.
+However, category codes, names and Welsh names for geographic variables are supplied in a separate
+lookup file. The main CSV file set must not contain categories for geographic variables.
+
 Using test data
 ---------------
 
 The `test/testdata` directory contains some sample CSV files that are used as part of continuous
 integration testing. They contain dummy data that are intended to exercise the capabilities of the
-software. The data can be used to verify the operation of `ons_csv_to_ctb_json_main.py`.
+software. Category information for geographic variables is supplied in `test/testdata/geography/geography.csv`.
+The data can be used to verify the operation of `ons_csv_to_ctb_json_main.py`.
 
-To convert the test CSV files in `test/testdata` to JSON files in `ctb_metadata_files/` run:
+To convert the source CSV files to JSON files in `ctb_metadata_files/` run:
 ```
-python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -o ctb_metadata_files/
+> python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/
 ```
 
 Basic logging will be displayed by default, including the number of high-level Cantabular metadata
 objects loaded and the name of the output files.
 ```
-> python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -o ctb_metadata_files/
-t=2022-04-06 14:46:15,321 lvl=INFO msg=Dropped non public classification: CLASS_PRIV
-t=2022-04-06 14:46:15,321 lvl=INFO msg=Loaded metadata for 5 Cantabular variables
-t=2022-04-06 14:46:15,321 lvl=INFO msg=Loaded metadata for 3 Cantabular datasets
-t=2022-04-06 14:46:15,322 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/dataset-metadata.json
-t=2022-04-06 14:46:15,323 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
-t=2022-04-06 14:46:15,323 lvl=INFO msg=Loaded metadata for 4 Cantabular tables
-t=2022-04-06 14:46:15,323 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/table-metadata.json
-t=2022-04-06 14:46:15,324 lvl=INFO msg=Loaded service metadata
-t=2022-04-06 14:46:15,324 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/service-metadata.json
-
+> python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/
+t=2022-04-11 11:38:12,478 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
+t=2022-04-11 11:38:12,478 lvl=INFO msg=Dropped non public classification: CLASS_PRIV
+t=2022-04-11 11:38:12,478 lvl=INFO msg=Loaded metadata for 5 Cantabular variables
+t=2022-04-11 11:38:12,478 lvl=INFO msg=Loaded metadata for 3 Cantabular datasets
+t=2022-04-11 11:38:12,479 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/dataset-metadata.json
+t=2022-04-11 11:38:12,480 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
+t=2022-04-11 11:38:12,480 lvl=INFO msg=Loaded metadata for 4 Cantabular tables
+t=2022-04-11 11:38:12,480 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/table-metadata.json
+t=2022-04-11 11:38:12,481 lvl=INFO msg=Loaded service metadata
+t=2022-04-11 11:38:12,481 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/service-metadata.json
 ```
 
 More detailed information can be obtained by running with a `-l DEBUG` flag e.g.:
 ```
-> python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -o ctb_metadata_files/ -l DEBUG
-t=2022-04-06 14:47:02,939 lvl=DEBUG msg=Creating classification for geographic variable: GEO2
-t=2022-04-06 14:47:02,939 lvl=DEBUG msg=Loaded metadata for Cantabular variable: CLASS1
-t=2022-04-06 14:47:02,939 lvl=DEBUG msg=Loaded metadata for Cantabular variable: CLASS2
-t=2022-04-06 14:47:02,939 lvl=DEBUG msg=Loaded metadata for Cantabular variable: CLASS3
-t=2022-04-06 14:47:02,939 lvl=DEBUG msg=Loaded metadata for Cantabular variable: GEO1
-t=2022-04-06 14:47:02,939 lvl=INFO msg=Dropped non public classification: CLASS_PRIV
-t=2022-04-06 14:47:02,939 lvl=DEBUG msg=Loaded metadata for Cantabular variable: GEO2
-t=2022-04-06 14:47:02,939 lvl=INFO msg=Loaded metadata for 5 Cantabular variables
-t=2022-04-06 14:47:02,939 lvl=DEBUG msg=Loaded metadata for Cantabular dataset: DB1
-t=2022-04-06 14:47:02,939 lvl=DEBUG msg=Loaded metadata for Cantabular dataset: DB2
-t=2022-04-06 14:47:02,940 lvl=DEBUG msg=Loaded metadata for Cantabular dataset: DB3
-t=2022-04-06 14:47:02,940 lvl=INFO msg=Loaded metadata for 3 Cantabular datasets
-t=2022-04-06 14:47:02,941 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/dataset-metadata.json
-t=2022-04-06 14:47:02,941 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS1
-t=2022-04-06 14:47:02,941 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS2
-t=2022-04-06 14:47:02,941 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS3
-t=2022-04-06 14:47:02,941 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
-t=2022-04-06 14:47:02,941 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS4
-t=2022-04-06 14:47:02,941 lvl=INFO msg=Loaded metadata for 4 Cantabular tables
-t=2022-04-06 14:47:02,942 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/table-metadata.json
-t=2022-04-06 14:47:02,942 lvl=INFO msg=Loaded service metadata
+> python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -l DEBUG
+t=2022-04-11 11:38:52,452 lvl=DEBUG msg=Creating classification for geographic variable: GEO1
+t=2022-04-11 11:38:52,452 lvl=DEBUG msg=Creating classification for geographic variable: GEO2
+t=2022-04-11 11:38:52,453 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
+t=2022-04-11 11:38:52,453 lvl=DEBUG msg=Loaded metadata for Cantabular variable: CLASS1
+t=2022-04-11 11:38:52,453 lvl=DEBUG msg=Loaded metadata for Cantabular variable: CLASS2
+t=2022-04-11 11:38:52,453 lvl=DEBUG msg=Loaded metadata for Cantabular variable: CLASS3
+t=2022-04-11 11:38:52,453 lvl=INFO msg=Dropped non public classification: CLASS_PRIV
+t=2022-04-11 11:38:52,453 lvl=DEBUG msg=Loaded metadata for Cantabular variable: GEO1
+t=2022-04-11 11:38:52,453 lvl=DEBUG msg=Loaded metadata for Cantabular variable: GEO2
+t=2022-04-11 11:38:52,453 lvl=INFO msg=Loaded metadata for 5 Cantabular variables
+t=2022-04-11 11:38:52,453 lvl=DEBUG msg=Loaded metadata for Cantabular dataset: DB1
+t=2022-04-11 11:38:52,453 lvl=DEBUG msg=Loaded metadata for Cantabular dataset: DB2
+t=2022-04-11 11:38:52,453 lvl=DEBUG msg=Loaded metadata for Cantabular dataset: DB3
+t=2022-04-11 11:38:52,453 lvl=INFO msg=Loaded metadata for 3 Cantabular datasets
+t=2022-04-11 11:38:52,454 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/dataset-metadata.json
+t=2022-04-11 11:38:52,455 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS1
+t=2022-04-11 11:38:52,455 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS2
+t=2022-04-11 11:38:52,455 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS3
+t=2022-04-11 11:38:52,455 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
+t=2022-04-11 11:38:52,455 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS4
+t=2022-04-11 11:38:52,455 lvl=INFO msg=Loaded metadata for 4 Cantabular tables
+t=2022-04-11 11:38:52,456 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/table-metadata.json
+t=2022-04-11 11:38:52,456 lvl=INFO msg=Loaded service metadata
+t=2022-04-11 11:38:52,456 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/service-metadata.json
 ```
 
 Using externally sourced files
@@ -72,14 +80,17 @@ Using externally sourced files
 
 To convert the externally sourced metadata CSV files currently being used for testing, first fixup the source files:
 ```
-python3 bin/fixup.py -i <SOURCE_DIRECTORY> -o modified/
+python3 bin/fixup.py -i <SOURCE_DIRECTORY> --g <GEOGRAPHY_FILENAME> -o modified/
 ```
 
-This will load the sample files and modify them slightly so that they can be processed by `ons_csv_to_ctb_json_main.py`. This step will not be needed for production.
+The geography file will be placed in the `modified/` directory and will have the same base name as the original file.
+
+This will load the sample files and modify them slightly so that they can be processed by `ons_csv_to_ctb_json_main.py`.
+This step will not be needed for production.
 
 Then convert the files to JSON:
 ```
-python3 bin/ons_csv_to_ctb_json_main.py -i modified/ -o ctb_metadata_files/
+python3 bin/ons_csv_to_ctb_json_main.py -i modified/ -g modified/<GEOGRAPHY_FILENAME> -o ctb_metadata_files/
 ```
 
 Load the JSON files with cantabular-metadata

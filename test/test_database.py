@@ -25,7 +25,7 @@ class TestDatabase(unittest.TestCase):
         with unittest.mock.patch('builtins.open', conditional_mock_open('Database.csv',
                 read_data = build_test_file(HEADERS, rows))):
             with self.assertRaisesRegex(ValueError, expected_error):
-                Loader(INPUT_DIR).databases
+                Loader(INPUT_DIR, None).databases
 
     def test_required_fields(self):
         for field in REQUIRED_FIELDS:

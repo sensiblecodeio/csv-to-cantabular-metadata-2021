@@ -29,6 +29,12 @@ def main():
                         required=True,
                         help='Output directory to write JSON files')
 
+    parser.add_argument('-g', '--geography-file',
+                        type=str,
+                        required=False,
+                        help='Name of CSV file containing category codes and names for geographic '
+                             'variables')
+
     parser.add_argument('-l', '--log_level',
                         type=str,
                         default='INFO',
@@ -44,7 +50,7 @@ def main():
                         level=args.log_level)
 
     # loader is used to load the metadata from CSV files and convert it to JSON.
-    loader = Loader(args.input_dir)
+    loader = Loader(args.input_dir, args.geography_file)
 
     # Build Cantabular variable and dataset objects and write them to a JSON file.
     # A Cantabular variable is equivalent to an ONS classification.
