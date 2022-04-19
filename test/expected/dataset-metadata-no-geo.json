@@ -3,8 +3,8 @@
         "name": "base",
         "label": "Base dataset with metadata for all variables",
         "lang": "en",
+        "description": "This is a base dataset containing metadata for all variables used across all other datasets. Other datasets include it to avoid duplicating metadata.",
         "meta": {
-            "Database_Description": "This is a base dataset containing metadata for all variables used across all other datasets. Other datasets include it to avoid duplicating metadata.",
             "Source": {
                 "Source_Mnemonic": "Census2021",
                 "Source_Description": "The 2021 England and Wales Census"
@@ -15,6 +15,7 @@
             {
                 "name": "CLASS1",
                 "label": "CLASS1 Label",
+                "description": "VAR1 Description",
                 "meta": {
                     "Mnemonic_2011": "CLASS1 2011",
                     "Parent_Classification_Mnemonic": "CLASS1 Parent",
@@ -25,7 +26,6 @@
                         "Variable_Mnemonic_2011": "VAR1 2011",
                         "Version": "1",
                         "Variable_Title": "VAR1 Title",
-                        "Variable_Description": "VAR1 Description",
                         "Comparability_Comments": "VAR1 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
                         "Geographic_Abbreviation": null,
@@ -83,6 +83,7 @@
             {
                 "name": "CLASS2",
                 "label": "CLASS2 Label",
+                "description": "VAR2 Description",
                 "meta": {
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": null,
@@ -93,7 +94,6 @@
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
                         "Variable_Title": "VAR2 Title",
-                        "Variable_Description": "VAR2 Description",
                         "Comparability_Comments": "VAR2 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
                         "Geographic_Abbreviation": null,
@@ -115,6 +115,7 @@
             {
                 "name": "CLASS3",
                 "label": "CLASS3 Label",
+                "description": "VAR3 Description",
                 "meta": {
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": null,
@@ -125,7 +126,6 @@
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
                         "Variable_Title": "VAR3 Title",
-                        "Variable_Description": "VAR3 Description",
                         "Comparability_Comments": null,
                         "Uk_Comparison_Comments": null,
                         "Geographic_Abbreviation": null,
@@ -147,6 +147,7 @@
             {
                 "name": "GEO1",
                 "label": "GEO1 Title",
+                "description": "GEO1 Description",
                 "meta": {
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": "GEO1",
@@ -157,7 +158,6 @@
                         "Variable_Mnemonic_2011": "GEO1 2011",
                         "Version": "1",
                         "Variable_Title": "GEO1 Title",
-                        "Variable_Description": "GEO1 Description",
                         "Comparability_Comments": "GEO1 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO1 UK Comparison Comments",
                         "Geographic_Abbreviation": "G1",
@@ -196,6 +196,7 @@
             {
                 "name": "GEO2",
                 "label": "GEO2 Title",
+                "description": "GEO2 Description",
                 "meta": {
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": "GEO2",
@@ -206,7 +207,6 @@
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
                         "Variable_Title": "GEO2 Title",
-                        "Variable_Description": "GEO2 Description",
                         "Comparability_Comments": "GEO2 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments",
                         "Geographic_Abbreviation": "G2",
@@ -231,8 +231,8 @@
         "name": "base",
         "label": "Base dataset with metadata for all variables in Welsh",
         "lang": "cy",
+        "description": "This is the Welsh version of the base dataset containing metadata for all variables.",
         "meta": {
-            "Database_Description": "This is the Welsh version of the base dataset containing metadata for all variables.",
             "Source": {
                 "Source_Mnemonic": "Census2021",
                 "Source_Description": "The 2021 England and Wales Census"
@@ -243,6 +243,7 @@
             {
                 "name": "CLASS1",
                 "label": "CLASS1 Label Welsh",
+                "description": "VAR1 Description (Welsh)",
                 "meta": {
                     "Mnemonic_2011": "CLASS1 2011",
                     "Parent_Classification_Mnemonic": "CLASS1 Parent",
@@ -253,7 +254,6 @@
                         "Variable_Mnemonic_2011": "VAR1 2011",
                         "Version": "1",
                         "Variable_Title": "VAR1 Title (Welsh)",
-                        "Variable_Description": "VAR1 Description (Welsh)",
                         "Comparability_Comments": "VAR1 Comparability Comments (Welsh)",
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments (Welsh)",
                         "Geographic_Abbreviation": null,
@@ -316,6 +316,7 @@
             {
                 "name": "CLASS2",
                 "label": "CLASS2 Label",
+                "description": "VAR2 Description",
                 "meta": {
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": null,
@@ -326,7 +327,6 @@
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
                         "Variable_Title": "VAR2 Title",
-                        "Variable_Description": "VAR2 Description",
                         "Comparability_Comments": "VAR2 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
                         "Geographic_Abbreviation": null,
@@ -348,6 +348,7 @@
             {
                 "name": "CLASS3",
                 "label": "CLASS3 Label",
+                "description": "VAR3 Description",
                 "meta": {
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": null,
@@ -358,7 +359,6 @@
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
                         "Variable_Title": "VAR3 Title",
-                        "Variable_Description": "VAR3 Description",
                         "Comparability_Comments": null,
                         "Uk_Comparison_Comments": null,
                         "Geographic_Abbreviation": null,
@@ -380,6 +380,7 @@
             {
                 "name": "GEO1",
                 "label": "GEO1 Title (Welsh)",
+                "description": "GEO1 Description (Welsh)",
                 "meta": {
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": "GEO1",
@@ -390,7 +391,6 @@
                         "Variable_Mnemonic_2011": "GEO1 2011",
                         "Version": "1",
                         "Variable_Title": "GEO1 Title (Welsh)",
-                        "Variable_Description": "GEO1 Description (Welsh)",
                         "Comparability_Comments": "GEO1 Comparability Comments (Welsh)",
                         "Uk_Comparison_Comments": "GEO1 UK Comparison Comments (Welsh)",
                         "Geographic_Abbreviation": "G1 (Welsh)",
@@ -429,6 +429,7 @@
             {
                 "name": "GEO2",
                 "label": "GEO2 Title",
+                "description": "GEO2 Description",
                 "meta": {
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": "GEO2",
@@ -439,7 +440,6 @@
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
                         "Variable_Title": "GEO2 Title",
-                        "Variable_Description": "GEO2 Description",
                         "Comparability_Comments": "GEO2 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments",
                         "Geographic_Abbreviation": "G2",
@@ -469,11 +469,11 @@
             }
         ],
         "label": "DB1 Title",
+        "description": "DB1 Description",
         "lang": "en",
         "meta": {
             "Cantabular_DB_Flag": "Y",
             "Version": "1",
-            "Database_Description": "DB1 Description",
             "Source": {
                 "Source_Mnemonic": "SRC1",
                 "Copyright_Statement": "SRC1 Copyright",
@@ -505,11 +505,11 @@
             }
         ],
         "label": "DB1 Title (Welsh)",
+        "description": "DB1 Description (Welsh)",
         "lang": "cy",
         "meta": {
             "Cantabular_DB_Flag": "Y",
             "Version": "1",
-            "Database_Description": "DB1 Description (Welsh)",
             "Source": {
                 "Source_Mnemonic": "SRC1",
                 "Copyright_Statement": "SRC1 Copyright",
@@ -541,11 +541,11 @@
             }
         ],
         "label": "DB2 Title",
+        "description": "DB2 Description",
         "lang": "en",
         "meta": {
             "Cantabular_DB_Flag": null,
             "Version": "1",
-            "Database_Description": "DB2 Description",
             "Source": {
                 "Source_Mnemonic": "SRC2",
                 "Copyright_Statement": null,
@@ -571,11 +571,11 @@
             }
         ],
         "label": "DB2 Title",
+        "description": "DB2 Description",
         "lang": "cy",
         "meta": {
             "Cantabular_DB_Flag": null,
             "Version": "1",
-            "Database_Description": "DB2 Description",
             "Source": {
                 "Source_Mnemonic": "SRC2",
                 "Copyright_Statement": null,
@@ -601,11 +601,11 @@
             }
         ],
         "label": "DB3 Title",
+        "description": "DB3 Description",
         "lang": "en",
         "meta": {
             "Cantabular_DB_Flag": null,
             "Version": "1",
-            "Database_Description": "DB3 Description",
             "Source": {
                 "Source_Mnemonic": "SRC3",
                 "Copyright_Statement": null,
@@ -631,11 +631,11 @@
             }
         ],
         "label": "DB3 Title",
+        "description": "DB3 Description",
         "lang": "cy",
         "meta": {
             "Cantabular_DB_Flag": null,
             "Version": "1",
-            "Database_Description": "DB3 Description",
             "Source": {
                 "Source_Mnemonic": "SRC3",
                 "Copyright_Statement": null,

@@ -12,6 +12,8 @@ Release Notes
   - The classification will have the same name as the variable.
   - The main set of CSV files must not contain classifications for geographic variables.
 - Added logging to fixup.py
+- The built-in descriptions fields for variables and datasets are now populated.
+
 
 1.0.beta
 --------

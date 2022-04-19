@@ -339,9 +339,6 @@ class Loader:
 
         databases = {}
         for database, _ in database_rows:
-            database['Database_Description'] = Bilingual(
-                database.pop('Database_Description'),
-                database.pop('Database_Description_Welsh'))
             database['Source'] = self.sources.get(database.pop('Source_Mnemonic'), None)
 
             del database['Id']
@@ -352,7 +349,10 @@ class Loader:
                 database,
                 # Database_Title is used to populate a Cantabular built-in field.
                 private={'Database_Title': Bilingual(database.pop('Database_Title'),
-                                                     database.pop('Database_Title_Welsh'))})
+                                                     database.pop('Database_Title_Welsh')),
+                         'Database_Description': Bilingual(
+                             database.pop('Database_Description'),
+                             database.pop('Database_Description_Welsh'))})
 
         return databases
 
@@ -579,9 +579,6 @@ class Loader:
                 variable.pop('Variable_Title_Welsh'))
 
             variable['Variable_Title'] = variable_title
-            variable['Variable_Description'] = Bilingual(
-                variable.pop('Variable_Description'),
-                variable.pop('Variable_Description_Welsh'))
             variable['Comparability_Comments'] = Bilingual(
                 variable.pop('Comparability_Comments'),
                 variable.pop('Comparability_Comments_Welsh'))
@@ -622,7 +619,10 @@ class Loader:
                 private={'Security_Mnemonic': variable.pop('Security_Mnemonic'),
                          'Is_Geographic': is_geographic,
                          'Variable_Title': variable_title,
-                         'Version': variable['Version']})
+                         'Version': variable['Version'],
+                         'Variable_Description': Bilingual(
+                             variable.pop('Variable_Description'),
+                             variable.pop('Variable_Description_Welsh'))})
         return variables
 
     @property
@@ -660,7 +660,8 @@ class Loader:
                                  f'{classification_mnemonic} has a geographic variable '
                                  f'{variable_mnemonic} which is not allowed')
 
-            classification['ONS_Variable'] = self.variables[variable_mnemonic]
+            ons_variable = self.variables[variable_mnemonic]
+            classification['ONS_Variable'] = ons_variable
             classification['Topics'] = classification_to_topics.get(classification_mnemonic, [])
 
             # Ensure that if a classification is public that the associated variable is public.
@@ -689,6 +690,7 @@ class Loader:
                         classification.pop('Classification_Label'),
                         classification.pop('Classification_Label_Welsh')),
                     'Variable_Mnemonic': variable_mnemonic,
+                    'Variable_Description': ons_variable.private['Variable_Description'],
                     'Is_Geographic': False})
 
         # Every geographic variable must have a corresponding classification with the same
@@ -713,6 +715,7 @@ class Loader:
                         'Security_Mnemonic': variable.private['Security_Mnemonic'],
                         'Classification_Label': variable.private['Variable_Title'],
                         'Variable_Mnemonic': variable_mnemonic,
+                        'Variable_Description': variable.private['Variable_Description'],
                         'Is_Geographic': True})
 
         return classifications

@@ -94,6 +94,7 @@ def build_ctb_variables(classifications, cat_labels):
         ctb_class = {
             'name': mnemonic,
             'label': classification.private['Classification_Label'],
+            'description': classification.private['Variable_Description'],
             'meta': classification,
             'catLabels': cat_labels.get(mnemonic, None)
         }
@@ -123,12 +124,12 @@ def build_ctb_datasets(databases, ctb_variables):
             'Base dataset with metadata for all variables in Welsh',
         ),
         'lang': Bilingual('en', 'cy'),
+        'description': Bilingual(
+            'This is a base dataset containing metadata for all variables used across all '
+            'other datasets. Other datasets include it to avoid duplicating metadata.',
+            'This is the Welsh version of the base dataset containing metadata for all '
+            'variables.'),
         'meta': {
-            'Database_Description': Bilingual(
-                'This is a base dataset containing metadata for all variables used across all '
-                'other datasets. Other datasets include it to avoid duplicating metadata.',
-                'This is the Welsh version of the base dataset containing metadata for all '
-                'variables.'),
             'Source': {
                 'Source_Mnemonic': 'Census2021',
                 'Source_Description': 'The 2021 England and Wales Census',
@@ -144,6 +145,7 @@ def build_ctb_datasets(databases, ctb_variables):
             'name': database_mnemonic,
             'incl': [{'name': 'base', 'lang': Bilingual('en', 'cy')}],
             'label': database.private['Database_Title'],
+            'description': database.private['Database_Description'],
             'lang': Bilingual('en', 'cy'),
             'meta': database,
             'vars': None,
