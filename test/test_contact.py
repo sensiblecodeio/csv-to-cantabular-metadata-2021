@@ -20,7 +20,7 @@ class TestContact(unittest.TestCase):
         with unittest.mock.patch('builtins.open', conditional_mock_open('Contact.csv',
                 read_data = build_test_file(HEADERS, rows))):
             with self.assertRaisesRegex(ValueError, expected_error):
-                Loader(INPUT_DIR).contacts
+                Loader(INPUT_DIR, None).contacts
 
     def test_required_fields(self):
         for field in REQUIRED_FIELDS:

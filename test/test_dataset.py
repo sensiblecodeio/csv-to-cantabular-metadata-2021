@@ -34,7 +34,7 @@ class TestDataset(unittest.TestCase):
         with unittest.mock.patch('builtins.open', conditional_mock_open('Dataset.csv',
                 read_data = build_test_file(HEADERS,rows))):
             with self.assertRaisesRegex(ValueError, expected_error):
-                Loader(INPUT_DIR).datasets
+                Loader(INPUT_DIR, None).datasets
 
     def test_required_fields(self):
         for field in REQUIRED_FIELDS:

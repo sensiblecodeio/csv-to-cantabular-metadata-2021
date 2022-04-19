@@ -19,7 +19,7 @@ class TestSecurityClassification(unittest.TestCase):
         with unittest.mock.patch('builtins.open', conditional_mock_open('Security_Classification.csv',
                 read_data = build_test_file(HEADERS, rows))):
             with self.assertRaisesRegex(ValueError, expected_error):
-                Loader(INPUT_DIR).security_classifications
+                Loader(INPUT_DIR, None).security_classifications
 
     def test_required_fields(self):
         for field in REQUIRED_FIELDS:

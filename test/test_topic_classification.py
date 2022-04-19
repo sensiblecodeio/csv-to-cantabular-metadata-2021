@@ -20,7 +20,7 @@ class TestTopicClassification(unittest.TestCase):
         with unittest.mock.patch('builtins.open', conditional_mock_open('Topic_Classification.csv',
                 read_data = build_test_file(HEADERS, rows))):
             with self.assertRaisesRegex(ValueError, expected_error):
-                Loader(INPUT_DIR).load_classification_to_topics(['CLASS1', 'CLASS2'])
+                Loader(INPUT_DIR, None).load_classification_to_topics(['CLASS1', 'CLASS2'])
 
     def test_required_fields(self):
         for field in REQUIRED_FIELDS:

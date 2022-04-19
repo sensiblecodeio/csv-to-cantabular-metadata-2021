@@ -1,6 +1,20 @@
 Release Notes
 =============
 
+1.0.gamma
+---------
+- Categories for geographic variables are read from a separate lookup file which is specified
+  using the `-g` flag.
+  - No categories for geographic variables will be loaded if a geography lookup file is not
+    specified.
+  - Categories for geographic variables must not be specified in the main set of CSV files.
+- Classifications are automatically created for geographic variables.
+  - The classification will have the same name as the variable.
+  - The main set of CSV files must not contain classifications for geographic variables.
+- Added logging to fixup.py
+- The built-in descriptions fields for variables and datasets are now populated.
+
+
 1.0.beta
 --------
 - Supports Cantabular version 9.3.0

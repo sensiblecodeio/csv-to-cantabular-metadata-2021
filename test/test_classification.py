@@ -27,7 +27,7 @@ class TestClassification(unittest.TestCase):
         with unittest.mock.patch('builtins.open', conditional_mock_open('Classification.csv',
                 read_data = build_test_file(HEADERS, rows))):
             with self.assertRaisesRegex(ValueError, expected_error):
-                Loader(INPUT_DIR).classifications
+                Loader(INPUT_DIR, None).classifications
 
     def test_required_fields(self):
         for field in REQUIRED_FIELDS:
@@ -53,10 +53,10 @@ class TestClassification(unittest.TestCase):
         row['Variable_Mnemonic'] = 'VAR_PRIV'
         self.run_test([row], f'^Reading {FILENAME}:2 Public classification CLASS1 has non-public variable VAR_PRIV$')
 
-    def test_no_geo_classification(self):
-        self.run_test(
-            [REQUIRED_FIELDS],
-            '^Geographic variable GEO1 does not have a corresponding classification with the same mnemonic$')
+    def test_geo_variable(self):
+        row = REQUIRED_FIELDS.copy()
+        row['Variable_Mnemonic'] = 'GEO1'
+        self.run_test([row], f'^Reading {FILENAME}:2 CLASS1 has a geographic variable GEO1 which is not allowed$')
 
 
 if __name__ == '__main__':

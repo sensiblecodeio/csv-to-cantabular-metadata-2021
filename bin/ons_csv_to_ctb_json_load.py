@@ -1,8 +1,10 @@
 """Load metadata from CSV files and export in JSON format."""
 import os
+import logging
 from functools import lru_cache
 from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 from ons_csv_to_ctb_json_read import Reader, required, optional
+from ons_csv_to_ctb_json_geo import read_geo_cats
 
 PUBLIC_SECURITY_MNEMONIC = 'PUB'
 GEOGRAPHIC_VARIABLE_TYPE = 'GEOG'
@@ -49,9 +51,10 @@ class Loader:
     Many of the fields in this class are cached properties, with the data loaded on first access.
     """
 
-    def __init__(self, input_directory):
+    def __init__(self, input_directory, geography_file):
         """Initialise MetadataLoader object."""
         self.input_directory = input_directory
+        self.geography_file = geography_file
 
     def read_file(self, filename, columns, unique_combo_fields=None):
         """
@@ -336,9 +339,6 @@ class Loader:
 
         databases = {}
         for database, _ in database_rows:
-            database['Database_Description'] = Bilingual(
-                database.pop('Database_Description'),
-                database.pop('Database_Description_Welsh'))
             database['Source'] = self.sources.get(database.pop('Source_Mnemonic'), None)
 
             del database['Id']
@@ -349,7 +349,10 @@ class Loader:
                 database,
                 # Database_Title is used to populate a Cantabular built-in field.
                 private={'Database_Title': Bilingual(database.pop('Database_Title'),
-                                                     database.pop('Database_Title_Welsh'))})
+                                                     database.pop('Database_Title_Welsh')),
+                         'Database_Description': Bilingual(
+                             database.pop('Database_Description'),
+                             database.pop('Database_Description_Welsh'))})
 
         return databases
 
@@ -387,14 +390,21 @@ class Loader:
             unique_combo_fields=['Category_Code', 'Classification_Mnemonic'])
 
         classification_to_cats = {}
-        for cat, _ in category_rows:
-            append_to_list_in_dict(classification_to_cats, cat['Classification_Mnemonic'], cat)
+        for cat, line_num in category_rows:
+            classification_mnemonic = cat['Classification_Mnemonic']
+            if self.classifications[classification_mnemonic].private['Is_Geographic']:
+                raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
+                                 'found category for geographic classification '
+                                 f'{classification_mnemonic}: all categories for geographic '
+                                 'classifications must be in a separate lookup file')
+
+            append_to_list_in_dict(classification_to_cats, classification_mnemonic, cat)
 
         categories = {}
         for classification_mnemonic, one_var_categories in classification_to_cats.items():
             num_cat_items = \
                 self.classifications[classification_mnemonic].private['Number_Of_Category_Items']
-            if len(one_var_categories) != num_cat_items:
+            if num_cat_items and len(one_var_categories) != num_cat_items:
                 raise ValueError(f'Reading {self.full_filename(filename)} '
                                  f'Unexpected number of categories for {classification_mnemonic}: '
                                  f'expected {num_cat_items} but found {len(one_var_categories)}')
@@ -403,6 +413,25 @@ class Loader:
                           if cat['Label_Welsh']}
             if welsh_cats:
                 categories[classification_mnemonic] = Bilingual(None, welsh_cats)
+
+        # Categories for geographic variables are supplied in a separate file.
+        if not self.geography_file:
+            logging.info('No geography file specified')
+            return categories
+
+        for class_name, geo_cats in read_geo_cats(self.geography_file).items():
+            if class_name not in self.classifications:
+                logging.info(f'Reading {self.geography_file}: found Welsh labels for unknown '
+                             f'classification: {class_name}')
+                continue
+
+            if not self.classifications[class_name].private['Is_Geographic']:
+                raise ValueError(f'Reading {self.geography_file}: found Welsh labels for non '
+                                 f'geographic classification: {class_name}')
+
+            welsh_names = {cd: nm.welsh_name for cd, nm in geo_cats.items() if nm.welsh_name}
+            if geo_cats:
+                categories[class_name] = Bilingual(None, welsh_names if welsh_names else None)
 
         return categories
 
@@ -545,13 +574,11 @@ class Loader:
                         raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
                                          f'{geo_field} specified for non geographic variable: '
                                          f'{variable["Variable_Mnemonic"]}')
-
-            variable['Variable_Title'] = Bilingual(
+            variable_title = Bilingual(
                 variable.pop('Variable_Title'),
                 variable.pop('Variable_Title_Welsh'))
-            variable['Variable_Description'] = Bilingual(
-                variable.pop('Variable_Description'),
-                variable.pop('Variable_Description_Welsh'))
+
+            variable['Variable_Title'] = variable_title
             variable['Comparability_Comments'] = Bilingual(
                 variable.pop('Comparability_Comments'),
                 variable.pop('Comparability_Comments_Welsh'))
@@ -587,8 +614,15 @@ class Loader:
                 variable,
                 # A check is performed elsewhere to ensure that public classifications have public
                 # variables. Is_Geographic is used to check whether variables are geographic.
+                # Variable_Title and Version are used when creating classifications for geographic
+                # variables.
                 private={'Security_Mnemonic': variable.pop('Security_Mnemonic'),
-                         'Is_Geographic': is_geographic})
+                         'Is_Geographic': is_geographic,
+                         'Variable_Title': variable_title,
+                         'Version': variable['Version'],
+                         'Variable_Description': Bilingual(
+                             variable.pop('Variable_Description'),
+                             variable.pop('Variable_Description_Welsh'))})
         return variables
 
     @property
@@ -621,7 +655,13 @@ class Loader:
         for classification, line_num in classification_rows:
             variable_mnemonic = classification.pop('Variable_Mnemonic')
             classification_mnemonic = classification.pop('Classification_Mnemonic')
-            classification['ONS_Variable'] = self.variables[variable_mnemonic]
+            if self.variables[variable_mnemonic].private['Is_Geographic']:
+                raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
+                                 f'{classification_mnemonic} has a geographic variable '
+                                 f'{variable_mnemonic} which is not allowed')
+
+            ons_variable = self.variables[variable_mnemonic]
+            classification['ONS_Variable'] = ons_variable
             classification['Topics'] = classification_to_topics.get(classification_mnemonic, [])
 
             # Ensure that if a classification is public that the associated variable is public.
@@ -636,11 +676,7 @@ class Loader:
             del classification['Flat_Classification_Flag']
             del classification['Id']
 
-            num_cat_items = classification.pop('Number_Of_Category_Items')
-            if not num_cat_items:
-                num_cat_items = 0
-            else:
-                num_cat_items = int(num_cat_items)
+            num_cat_items = int(classification.pop('Number_Of_Category_Items'))
 
             classifications[classification_mnemonic] = BilingualDict(
                 classification,
@@ -653,15 +689,34 @@ class Loader:
                     'Classification_Label': Bilingual(
                         classification.pop('Classification_Label'),
                         classification.pop('Classification_Label_Welsh')),
-                    'Variable_Mnemonic': variable_mnemonic})
+                    'Variable_Mnemonic': variable_mnemonic,
+                    'Variable_Description': ons_variable.private['Variable_Description'],
+                    'Is_Geographic': False})
 
         # Every geographic variable must have a corresponding classification with the same
         # mnemonic. This is due to the fact that the dataset specifies a geographic variable
-        # rather than a classification.
+        # rather than a classification. Automatically create a classification for each geographic
+        # variable.
         for variable_mnemonic, variable in self.variables.items():
-            if variable.private['Is_Geographic'] and variable_mnemonic not in classifications:
-                raise ValueError(f'Geographic variable {variable_mnemonic} does not have a '
-                                 'corresponding classification with the same mnemonic')
+            if variable.private['Is_Geographic']:
+                logging.debug('Creating classification for geographic variable: '
+                              f'{variable_mnemonic}')
+                classifications[variable_mnemonic] = BilingualDict(
+                    {
+                        'Mnemonic_2011': None,
+                        'Parent_Classification_Mnemonic': variable_mnemonic,
+                        'Default_Classification_Flag': None,
+                        'Version': variable.private['Version'],
+                        'ONS_Variable': variable,
+                        'Topics': [],
+                    },
+                    private={
+                        'Number_Of_Category_Items': 0,
+                        'Security_Mnemonic': variable.private['Security_Mnemonic'],
+                        'Classification_Label': variable.private['Variable_Title'],
+                        'Variable_Mnemonic': variable_mnemonic,
+                        'Variable_Description': variable.private['Variable_Description'],
+                        'Is_Geographic': True})
 
         return classifications
 

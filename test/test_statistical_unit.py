@@ -21,7 +21,7 @@ class TestStatisticalUnit(unittest.TestCase):
         with unittest.mock.patch('builtins.open', conditional_mock_open('Statistical_Unit.csv',
                 read_data = build_test_file(HEADERS, rows))):
             with self.assertRaisesRegex(ValueError, expected_error):
-                Loader(INPUT_DIR).statistical_units
+                Loader(INPUT_DIR, None).statistical_units
 
     def test_required_fields(self):
         for field in REQUIRED_FIELDS:
