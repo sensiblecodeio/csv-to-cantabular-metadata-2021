@@ -1,7 +1,7 @@
-Source_Variable_Mnemonic,Classification_Mnemonic,Target_Variable_Mnemonic,Id,Category_Code,Label,Label_Welsh,Sort_Order,Version
-SOURCE,CLASS1,TARGET,3,CODE3,LABEL3,LABEL3 (Welsh),3,1
-SOURCE,CLASS1,TARGET,5,CODE5,LABEL5,LABEL5 (Welsh),5,1
-SOURCE,CLASS1,TARGET,6,CODE6,LABEL6,LABEL6 (Welsh),6,1
-SOURCE,CLASS1,TARGET,2,CODE2,LABEL2,LABEL2 (Welsh),2,1
-SOURCE,CLASS1,,4,CODE4,LABEL4,,,1
-SOURCE,CLASS1,,1,CODE1,LABEL1,,,1
+Variable_Mnemonic,Classification_Mnemonic,Id,Category_Code,External_Category_Label_English,External_Category_Label_Welsh,Sort_Order,Version,Internal_Category_Label_English
+SOURCE,CLASS1,3,CODE3,LABEL3,LABEL3 (Welsh),3,1,LABEL3 Internal
+SOURCE,CLASS1,5,CODE5,,LABEL5 (Welsh),5,1,LABEL5 Internal
+SOURCE,CLASS1,6,CODE6,,LABEL6 (Welsh),6,1,LABEL6 Internal
+SOURCE,CLASS1,2,CODE2,,LABEL2 (Welsh),2,1,LABEL2 Internal
+SOURCE,CLASS1,4,CODE4,,,,1,LABEL4 Internal
+SOURCE,CLASS1,1,CODE1,LABEL1,,,1,LABEL1 Internal

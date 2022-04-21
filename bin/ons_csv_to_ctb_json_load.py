@@ -372,17 +372,15 @@ class Loader:
         columns = [
             required('Category_Code'),
             required('Classification_Mnemonic', validate_fn=isoneof(self.classifications.keys())),
-            required('Label'),
+            required('Internal_Category_Label_English'),
             required('Id'),
-            # Source_Variable_Mnemonic values are not validated as they are not required by
-            # metadata server.
-            required('Source_Variable_Mnemonic'),
+            required('Variable_Mnemonic'),
             required('Version'),
 
             # Sort_Order values are not validated as this is an optional field.
             optional('Sort_Order'),
-            optional('Label_Welsh'),
-            optional('Target_Variable_Mnemonic'),
+            optional('External_Category_Label_English'),
+            optional('External_Category_Label_Welsh'),
         ]
         category_rows = self.read_file(
             filename, columns,
@@ -409,8 +407,9 @@ class Loader:
                                  f'Unexpected number of categories for {classification_mnemonic}: '
                                  f'expected {num_cat_items} but found {len(one_var_categories)}')
 
-            welsh_cats = {cat['Category_Code']: cat['Label_Welsh'] for cat in one_var_categories
-                          if cat['Label_Welsh']}
+            welsh_cats = {cat['Category_Code']: cat['External_Category_Label_Welsh']
+                          for cat in one_var_categories if cat['External_Category_Label_Welsh']}
+
             if welsh_cats:
                 categories[classification_mnemonic] = Bilingual(None, welsh_cats)
 
