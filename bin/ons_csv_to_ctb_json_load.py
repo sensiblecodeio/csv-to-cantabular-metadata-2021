@@ -634,11 +634,12 @@ class Loader:
             required('Classification_Mnemonic', unique=True),
             required('Number_Of_Category_Items', validate_fn=isnumeric),
             required('Variable_Mnemonic', validate_fn=isoneof(self.variables.keys())),
-            required('Classification_Label'),
+            required('Internal_Classification_Label_English'),
             required('Security_Mnemonic', validate_fn=isoneof(self.security_classifications)),
             required('Version'),
 
-            optional('Classification_Label_Welsh'),
+            optional('External_Classification_Label_English'),
+            optional('External_Classification_Label_Welsh'),
             optional('Mnemonic_2011'),
             optional('Parent_Classification_Mnemonic'),
             optional('Default_Classification_Flag'),
@@ -663,6 +664,11 @@ class Loader:
             classification['ONS_Variable'] = ons_variable
             classification['Topics'] = classification_to_topics.get(classification_mnemonic, [])
 
+            internal_label = classification.pop('Internal_Classification_Label_English')
+            external_label = classification.pop('External_Classification_Label_English')
+            if not external_label:
+                external_label = internal_label
+
             # Ensure that if a classification is public that the associated variable is public.
             if classification['Security_Mnemonic'] == PUBLIC_SECURITY_MNEMONIC:
                 variable = classification['ONS_Variable']
@@ -686,8 +692,8 @@ class Loader:
                     'Number_Of_Category_Items': num_cat_items,
                     'Security_Mnemonic': classification.pop('Security_Mnemonic'),
                     'Classification_Label': Bilingual(
-                        classification.pop('Classification_Label'),
-                        classification.pop('Classification_Label_Welsh')),
+                        external_label,
+                        classification.pop('External_Classification_Label_Welsh')),
                     'Variable_Mnemonic': variable_mnemonic,
                     'Variable_Description': ons_variable.private['Variable_Description'],
                     'Is_Geographic': False})

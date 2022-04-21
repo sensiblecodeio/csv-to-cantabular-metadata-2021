@@ -82,7 +82,7 @@
             },
             {
                 "name": "CLASS2",
-                "label": "CLASS2 Label",
+                "label": "CLASS2 Label Internal",
                 "description": "VAR2 Description",
                 "meta": {
                     "Mnemonic_2011": null,
@@ -114,7 +114,7 @@
             },
             {
                 "name": "CLASS3",
-                "label": "CLASS3 Label",
+                "label": "CLASS3 Label Internal",
                 "description": "VAR3 Description",
                 "meta": {
                     "Mnemonic_2011": null,
@@ -315,7 +315,7 @@
             },
             {
                 "name": "CLASS2",
-                "label": "CLASS2 Label",
+                "label": "CLASS2 Label Internal",
                 "description": "VAR2 Description",
                 "meta": {
                     "Mnemonic_2011": null,
@@ -347,7 +347,7 @@
             },
             {
                 "name": "CLASS3",
-                "label": "CLASS3 Label",
+                "label": "CLASS3 Label Welsh",
                 "description": "VAR3 Description",
                 "meta": {
                     "Mnemonic_2011": null,
