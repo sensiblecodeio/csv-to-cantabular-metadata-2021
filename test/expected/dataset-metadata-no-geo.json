@@ -512,7 +512,8 @@
                     "Contact_Phone": "12345",
                     "Contact_Website": "www.bob.com"
                 }
-            }
+            },
+            "Lowest_Geog_Variable": "GEO1"
         },
         "vars": null
     },
@@ -548,7 +549,8 @@
                     "Contact_Phone": "12345",
                     "Contact_Website": "www.bob.com"
                 }
-            }
+            },
+            "Lowest_Geog_Variable": "GEO1"
         },
         "vars": null
     },
@@ -578,7 +580,8 @@
                 "Methodology_Statement": null,
                 "SDC_Statement": null,
                 "Contact": null
-            }
+            },
+            "Lowest_Geog_Variable": "GEO2"
         },
         "vars": null
     },
@@ -608,7 +611,8 @@
                 "Methodology_Statement": null,
                 "SDC_Statement": null,
                 "Contact": null
-            }
+            },
+            "Lowest_Geog_Variable": "GEO2"
         },
         "vars": null
     },
@@ -638,7 +642,8 @@
                 "Methodology_Statement": "SRC3 Methodology Statement",
                 "SDC_Statement": "SRC3",
                 "Contact": null
-            }
+            },
+            "Lowest_Geog_Variable": null
         },
         "vars": null
     },
@@ -668,7 +673,8 @@
                 "Methodology_Statement": "SRC3 Methodology Statement",
                 "SDC_Statement": "SRC3",
                 "Contact": null
-            }
+            },
+            "Lowest_Geog_Variable": null
         },
         "vars": null
     }

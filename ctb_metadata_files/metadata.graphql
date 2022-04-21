@@ -6,6 +6,7 @@ type DatasetMetadata {
   Cantabular_DB_Flag: String
   Source: Source!
   Version: String!
+  Lowest_Geog_Variable: String
 }
 
 type VariableMetadata {

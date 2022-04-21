@@ -5,7 +5,7 @@ import pathlib
 from ons_csv_to_ctb_json_load import Loader
 from helper_funcs import conditional_mock_open, build_test_file
 
-HEADERS = ['Id', 'Database_Mnemonic', 'Variable_Mnemonic', 'Version']
+HEADERS = ['Id', 'Database_Mnemonic', 'Variable_Mnemonic', 'Version', 'Lowest_Geog_Variable_Flag']
 
 REQUIRED_FIELDS = {'Variable_Mnemonic': 'VAR1',
                    'Database_Mnemonic': 'DB1',
@@ -22,7 +22,7 @@ class TestDatabaseVariable(unittest.TestCase):
         with unittest.mock.patch('builtins.open', conditional_mock_open('Database_Variable.csv',
                 read_data = build_test_file(HEADERS, rows))):
             with self.assertRaisesRegex(ValueError, expected_error):
-                Loader(INPUT_DIR, None).database_to_classifications
+                Loader(INPUT_DIR, None).load_database_to_variables(['DB1', 'DB2', 'DB3'])
 
     def test_required_fields(self):
         for field in REQUIRED_FIELDS:
@@ -43,6 +43,26 @@ class TestDatabaseVariable(unittest.TestCase):
             [REQUIRED_FIELDS, REQUIRED_FIELDS],
             f'^Reading {FILENAME}:3 duplicate value combo VAR1/DB1 for Variable_Mnemonic/Database_Mnemonic$')
 
+    def test_lowest_geog_on_non_geo_var(self):
+        row = REQUIRED_FIELDS.copy()
+        row['Lowest_Geog_Variable_Flag'] = 'Y'
+        self.run_test(
+            [row],
+            f'^Reading {FILENAME} Lowest_Geog_Variable_Flag set on non-geographic variable VAR1 for database DB1$')
+
+    def test_duplicate_lowest_geog(self):
+        self.run_test([{'Variable_Mnemonic': 'GEO1', 'Database_Mnemonic': 'DB1', 'Id': '1',
+                        'Version': '1', 'Lowest_Geog_Variable_Flag': 'Y'},
+                       {'Variable_Mnemonic': 'GEO2', 'Database_Mnemonic': 'DB1', 'Id': '1',
+                        'Version': '1', 'Lowest_Geog_Variable_Flag': 'Y'}],
+            f'^Reading {FILENAME} Lowest_Geog_Variable_Flag set on GEO2 and GEO1 for database DB1$')
+
+    def test_no_lowest_geog_var(self):
+        row = REQUIRED_FIELDS.copy()
+        row['Variable_Mnemonic'] = 'GEO1'
+        self.run_test(
+            [row],
+            f'^Reading {FILENAME} Lowest_Geog_Variable_Flag not set on any geographic variable for database DB1$')
 
 if __name__ == '__main__':
     unittest.main()

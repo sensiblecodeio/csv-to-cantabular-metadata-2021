@@ -1,6 +1,7 @@
 """Load metadata from CSV files and export in JSON format."""
 import os
 import logging
+from collections import namedtuple
 from functools import lru_cache
 from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 from ons_csv_to_ctb_json_read import Reader, required, optional
@@ -8,6 +9,8 @@ from ons_csv_to_ctb_json_geo import read_geo_cats
 
 PUBLIC_SECURITY_MNEMONIC = 'PUB'
 GEOGRAPHIC_VARIABLE_TYPE = 'GEOG'
+
+DatabaseVariables = namedtuple('DatabaseVariables', 'variables lowest_geog_variable')
 
 
 def isnumeric(string):
@@ -291,8 +294,8 @@ class Loader:
                             f'Reading {self.full_filename(filename)}:{line_num} Public ONS '
                             f'dataset {dataset_mnemonic} has non-public classification '
                             f'{classification}')
-                    if classification not in self.database_to_classifications.get(
-                            database_mnemonic, []):
+                    if classification not in \
+                            self.databases[database_mnemonic].private['Classifications']:
                         raise ValueError(
                             f'Reading {self.full_filename(filename)}:{line_num} '
                             f'{dataset_mnemonic} has classification {classification} '
@@ -337,6 +340,9 @@ class Loader:
         ]
         database_rows = self.read_file('Database.csv', columns)
 
+        database_mnemonics = [d.data['Database_Mnemonic'] for d in database_rows]
+        database_to_variables = self.load_database_to_variables(database_mnemonics)
+
         databases = {}
         for database, _ in database_rows:
             database['Source'] = self.sources.get(database.pop('Source_Mnemonic'), None)
@@ -345,6 +351,12 @@ class Loader:
             del database['IAR_Asset_Id']
 
             database_mnemonic = database.pop('Database_Mnemonic')
+
+            db_vars = database_to_variables.get(database_mnemonic, DatabaseVariables([], None))
+            classifications = [k for k, v in self.classifications.items() if
+                               v.private['Variable_Mnemonic'] in db_vars.variables]
+            database['Lowest_Geog_Variable'] = db_vars.lowest_geog_variable
+
             databases[database_mnemonic] = BilingualDict(
                 database,
                 # Database_Title is used to populate a Cantabular built-in field.
@@ -352,7 +364,8 @@ class Loader:
                                                      database.pop('Database_Title_Welsh')),
                          'Database_Description': Bilingual(
                              database.pop('Database_Description'),
-                             database.pop('Database_Description_Welsh'))})
+                             database.pop('Database_Description_Welsh')),
+                         'Classifications': classifications})
 
         return databases
 
@@ -727,39 +740,66 @@ class Loader:
 
         return classifications
 
-    @property
-    @lru_cache(maxsize=1)
-    def database_to_classifications(self):
+    def load_database_to_variables(self, database_mnemonics):
         """
-        Load the classifications associated with each database.
+        Load the variables associated with each database.
 
         This involves reading the Database_Variable.csv file which identifies the variables
-        associated with each database, and then identifying the classifications associated with
-        each variable.
+        associated with each database, identifying the classifications associated with
+        each variable and identifying the geographic variable with Lowest_Geog_Variable_Flag set
+        to Y.
         """
+        filename = 'Database_Variable.csv'
         columns = [
             required('Variable_Mnemonic', validate_fn=isoneof(self.variables.keys())),
-            required('Database_Mnemonic', validate_fn=isoneof(self.databases.keys())),
+            required('Database_Mnemonic', validate_fn=isoneof(database_mnemonics)),
             required('Id'),
             required('Version'),
+
+            optional('Lowest_Geog_Variable_Flag', validate_fn=isoneof(['Y', 'N'])),
         ]
         database_variable_rows = self.read_file(
-            'Database_Variable.csv', columns,
+            filename, columns,
             # There can only be one row for each Variable_Mnemonic/Database_Mnemonic combination.
             unique_combo_fields=['Variable_Mnemonic', 'Database_Mnemonic'])
 
-        db_to_var_mnemonics = {}
+        db_to_raw_vars = {}
         for db_var, _ in database_variable_rows:
-            append_to_list_in_dict(db_to_var_mnemonics, db_var['Database_Mnemonic'],
-                                   db_var['Variable_Mnemonic'])
+            append_to_list_in_dict(db_to_raw_vars, db_var['Database_Mnemonic'], db_var)
 
-        database_to_classifications = {}
-        for database_mnemonic, db_vars in db_to_var_mnemonics.items():
-            database_to_classifications[database_mnemonic] = [
-                k for k, v in self.classifications.items() if
-                v.private['Variable_Mnemonic'] in db_vars]
+        database_to_variables = {}
+        for database_mnemonic, db_vars in db_to_raw_vars.items():
+            lowest_geog_var = None
+            variables = []
+            contains_geo_vars = False
+            for db_var in db_vars:
+                database_mnemonic = db_var['Database_Mnemonic']
+                variable_mnemonic = db_var['Variable_Mnemonic']
+                is_geographic = self.variables[variable_mnemonic].private['Is_Geographic']
+                if is_geographic:
+                    contains_geo_vars = True
 
-        return database_to_classifications
+                if db_var['Lowest_Geog_Variable_Flag'] == 'Y':
+                    if not is_geographic:
+                        raise ValueError(f'Reading {self.full_filename(filename)} '
+                                         'Lowest_Geog_Variable_Flag set on non-geographic variable'
+                                         f' {variable_mnemonic} for database {database_mnemonic}')
+                    if lowest_geog_var:
+                        raise ValueError(f'Reading {self.full_filename(filename)} '
+                                         f'Lowest_Geog_Variable_Flag set on {variable_mnemonic} '
+                                         f'and {lowest_geog_var} for database {database_mnemonic}')
+                    lowest_geog_var = variable_mnemonic
+                variables.append(variable_mnemonic)
+
+            if not lowest_geog_var and contains_geo_vars:
+                raise ValueError(f'Reading {self.full_filename(filename)} '
+                                 'Lowest_Geog_Variable_Flag not set on any geographic variable '
+                                 f'for database {database_mnemonic}')
+
+            database_to_variables[database_mnemonic] = DatabaseVariables(
+                variables=variables, lowest_geog_variable=lowest_geog_var)
+
+        return database_to_variables
 
     def load_dataset_to_related(self, dataset_mnemonics):
         """Load the related datasets relationships."""
