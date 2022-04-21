@@ -816,12 +816,7 @@ class Loader:
             unique_combo_fields=['Related_Dataset_Mnemonic', 'Dataset_Mnemonic'])
 
         ds_to_related_ds_mnemonics = {}
-        for rel_ds, line_num in related_dataset_rows:
-            if rel_ds['Dataset_Mnemonic'] == rel_ds['Related_Dataset_Mnemonic']:
-                raise ValueError(f'Reading {self.full_filename(filename)}:{line_num}'
-                                 ' Dataset_Mnemonic is the same as Related_Dataset_Mnemonic: '
-                                 f'{rel_ds["Dataset_Mnemonic"]}')
-
+        for rel_ds, _ in related_dataset_rows:
             append_to_list_in_dict(ds_to_related_ds_mnemonics, rel_ds['Dataset_Mnemonic'],
                                    rel_ds['Related_Dataset_Mnemonic'])
 

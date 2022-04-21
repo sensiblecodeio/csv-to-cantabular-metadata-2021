@@ -36,6 +36,7 @@ class TestRelatedDataset(unittest.TestCase):
                 row[field] = 'X'
                 self.run_test([row], f'^Reading {FILENAME}:2 invalid value X for {field}$')
 
+    @unittest.skip('at present Related_Dataset_Mnemonic can match Dataset_Mnemonic')
     def test_related_same_as_dataset(self):
         self.run_test(
             [{'Dataset_Mnemonic': 'DS1', 'Related_Dataset_Mnemonic': 'DS1', 'Id': '1'}],
