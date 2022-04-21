@@ -1,6 +1,11 @@
 Release Notes
 =============
 
+1.1.alpha
+---------
+- Updated code to work with metadata schema version 1.1.
+- Updated fixup.py script to work with latest drop of CSV source files.
+
 1.0.gamma
 ---------
 - Categories for geographic variables are read from a separate lookup file which is specified
@@ -13,7 +18,6 @@ Release Notes
   - The main set of CSV files must not contain classifications for geographic variables.
 - Added logging to fixup.py
 - The built-in descriptions fields for variables and datasets are now populated.
-
 
 1.0.beta
 --------

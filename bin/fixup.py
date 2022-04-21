@@ -12,7 +12,7 @@ import logging
 import csv
 from argparse import ArgumentParser
 
-VERSION = '1.0.beta'
+VERSION = '1.1.alpha'
 
 
 def main():

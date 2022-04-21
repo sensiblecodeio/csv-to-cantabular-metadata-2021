@@ -6,7 +6,7 @@ from argparse import ArgumentParser
 from ons_csv_to_ctb_json_load import Loader, PUBLIC_SECURITY_MNEMONIC
 from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 
-VERSION = '1.0.beta'
+VERSION = '1.1.alpha'
 
 
 def main():
