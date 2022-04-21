@@ -15,8 +15,6 @@
                 "description": "DS1 Description",
                 "meta": {
                     "Dataset_Mnemonic_2011": "DS1 2011",
-                    "Dissemination_Source": "DS1 Dissemination Source",
-                    "Release_Frequency": "Every day",
                     "Last_Updated": "Today",
                     "Unique_Url": "DS1 Unique URL",
                     "Version": "1",
@@ -75,8 +73,6 @@
                 "description": "DS1 Description (Welsh)",
                 "meta": {
                     "Dataset_Mnemonic_2011": "DS1 2011",
-                    "Dissemination_Source": "DS1 Dissemination Source",
-                    "Release_Frequency": "Every day",
                     "Last_Updated": "Today",
                     "Unique_Url": "DS1 Unique URL",
                     "Version": "1",
@@ -144,8 +140,6 @@
                 "description": "DS2 Description",
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
-                    "Dissemination_Source": null,
-                    "Release_Frequency": null,
                     "Last_Updated": null,
                     "Unique_Url": null,
                     "Version": "1",
@@ -174,8 +168,6 @@
                 "description": "DS2 Description",
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
-                    "Dissemination_Source": null,
-                    "Release_Frequency": null,
                     "Last_Updated": null,
                     "Unique_Url": null,
                     "Version": "1",
@@ -213,8 +205,6 @@
                 "description": "DS3 Description",
                 "meta": {
                     "Dataset_Mnemonic_2011": "DS3 2011",
-                    "Dissemination_Source": "DS3 Dissemination Source",
-                    "Release_Frequency": "Every day",
                     "Last_Updated": "Today",
                     "Unique_Url": "DS3 Unique URL",
                     "Version": "1",
@@ -243,8 +233,6 @@
                 "description": "DS3 Description (Welsh)",
                 "meta": {
                     "Dataset_Mnemonic_2011": "DS3 2011",
-                    "Dissemination_Source": "DS3 Dissemination Source",
-                    "Release_Frequency": "Every day",
                     "Last_Updated": "Today",
                     "Unique_Url": "DS3 Unique URL",
                     "Version": "1",
@@ -282,8 +270,6 @@
                 "description": "DS4 Description",
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
-                    "Dissemination_Source": null,
-                    "Release_Frequency": null,
                     "Last_Updated": null,
                     "Unique_Url": null,
                     "Version": "1",
@@ -306,8 +292,6 @@
                 "description": "DS4 Description",
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
-                    "Dissemination_Source": null,
-                    "Release_Frequency": null,
                     "Last_Updated": null,
                     "Unique_Url": null,
                     "Version": "1",

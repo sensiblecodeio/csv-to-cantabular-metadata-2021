@@ -83,12 +83,9 @@ type TableMetadata {
   Dataset_Mnemonic_2011: String
   Geographic_Coverage: String!
   Dataset_Population: String!
-  Dissemination_Source: String
-  Release_Frequency: String
   Last_Updated: String
   Unique_Url: String
   Contact: Contact
-  Geographic_Variable_Mnemonic: String
   Version: String!
   Related_Datasets: [String]!
   Keywords: [String]!

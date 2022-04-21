@@ -8,7 +8,7 @@ from helper_funcs import conditional_mock_open, build_test_file
 HEADERS = ['Dataset_Mnemonic', 'Id', 'Dataset_Title', 'Dataset_Title_Welsh', 'Dataset_Description',
            'Dataset_Description_Welsh', 'Statistical_Unit', 'Dataset_Mnemonic_2011',
            'Geographic_Coverage', 'Geographic_Coverage_Welsh', 'Dataset_Population',
-           'Dataset_Population_Welsh', 'Dissemination_Source', 'Release_Frequency', 'Last_Updated',
+           'Dataset_Population_Welsh', 'Last_Updated',
            'Unique_Url', 'Security_Mnemonic', 'Signed_Off_Flag', 'Database_Mnemonic', 'Contact_Id',
            'Version']
 

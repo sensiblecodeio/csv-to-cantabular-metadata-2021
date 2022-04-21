@@ -235,8 +235,6 @@ class Loader:
             optional('Dataset_Mnemonic_2011'),
             optional('Geographic_Coverage_Welsh'),
             optional('Dataset_Population_Welsh'),
-            optional('Dissemination_Source'),
-            optional('Release_Frequency'),
             optional('Last_Updated'),
             optional('Unique_Url'),
             optional('Signed_Off_Flag'),
