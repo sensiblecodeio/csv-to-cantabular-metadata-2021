@@ -6,6 +6,7 @@ from functools import lru_cache
 from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 from ons_csv_to_ctb_json_read import Reader, required, optional
 from ons_csv_to_ctb_json_geo import read_geo_cats
+from ons_csv_to_ctb_json_ds_vars import DatasetVarsBuilder, DatasetVariables
 
 PUBLIC_SECURITY_MNEMONIC = 'PUB'
 GEOGRAPHIC_VARIABLE_TYPE = 'GEOG'
@@ -217,9 +218,6 @@ class Loader:
     def datasets(self):
         """Load datasets."""
         filename = 'Dataset.csv'
-        geographic_variable_mnemonics = {k for k in self.variables if
-                                         self.variables[k].private['Is_Geographic']}
-
         columns = [
             required('Dataset_Mnemonic', unique=True),
             required('Security_Mnemonic', validate_fn=isoneof(self.security_classifications)),
@@ -243,8 +241,6 @@ class Loader:
             optional('Unique_Url'),
             optional('Signed_Off_Flag'),
             optional('Contact_Id', validate_fn=isoneof(self.contacts.keys())),
-            optional('Geographic_Variable_Mnemonic',
-                     validate_fn=isoneof(geographic_variable_mnemonics)),
         ]
         dataset_rows = self.read_file(filename, columns)
 
@@ -254,7 +250,7 @@ class Loader:
         dataset_to_keywords = self.load_dataset_to_keywords(dataset_mnemonics)
         dataset_to_publications = self.load_dataset_to_publications(dataset_mnemonics)
         dataset_to_releases = self.load_dataset_to_releases(dataset_mnemonics)
-        dataset_to_classifications = self.load_dataset_to_classifications(dataset_mnemonics)
+        dataset_to_variables = self.load_dataset_to_variables(dataset_mnemonics)
 
         datasets = {}
         for dataset, line_num in dataset_rows:
@@ -273,21 +269,18 @@ class Loader:
             dataset['Related_Datasets'] = dataset_to_related_datasets.get(dataset_mnemonic, [])
             dataset['Census_Releases'] = dataset_to_releases.get(dataset_mnemonic, [])
             dataset['Publications'] = dataset_to_publications.get(dataset_mnemonic, [])
-            dataset_classifications = dataset_to_classifications.get(dataset_mnemonic, [])
-
-            if dataset['Geographic_Variable_Mnemonic']:
-                dataset_classifications = [
-                    dataset['Geographic_Variable_Mnemonic'], *dataset_classifications]
+            dataset_variables = dataset_to_variables.get(
+                dataset_mnemonic, DatasetVariables([], []))
 
             # If the dataset is public then ensure that there is at least one classification and
             # that all the classifications are also public.
             if dataset['Security_Mnemonic'] == PUBLIC_SECURITY_MNEMONIC:
-                if not dataset_classifications:
+                if not dataset_variables.classifications:
                     raise ValueError(
                         f'Reading {self.full_filename(filename)}:{line_num} {dataset_mnemonic} '
                         'has no associated classifications or geographic variable')
 
-                for classification in dataset_classifications:
+                for classification in dataset_variables.classifications:
                     if self.classifications[classification].private['Security_Mnemonic'] != \
                             PUBLIC_SECURITY_MNEMONIC:
                         raise ValueError(
@@ -316,7 +309,7 @@ class Loader:
                     'Dataset_Description': Bilingual(dataset.pop('Dataset_Description'),
                                                      dataset.pop('Dataset_Description_Welsh')),
                     'Database_Mnemonic': database_mnemonic,
-                    'Classifications': dataset_classifications,
+                    'Classifications': dataset_variables.classifications,
                 })
 
         return datasets
@@ -927,46 +920,58 @@ class Loader:
 
         return var_to_src_questions
 
-    def load_dataset_to_classifications(self, dataset_mnemonics):
+    def load_dataset_to_variables(self, dataset_mnemonics):
         """
-        Load classifications associated with each dataset.
+        Load variables associated with each dataset.
 
-        Each classification associated with a dataset has a Processing_Priority. These priorities
-        indicate the order of the classifications. The priorities for each dataset must be unique
-        and sequential, starting from 1. The classifications are ordered based on the priorities.
+        Variables can be geographic or non-geographic. Geographic variables will not have
+        Classification_Mnemonic or Processin_Priority set. If there are geographic variables then
+        one of them will have Lowest_Geog_Variable_Flag set to Y.
+
+        Each non-geographic variable will also have Classification_Mnemonic and Processing_Priority
+        set. The processing priorities indicate the order of the classifications. The priorities
+        for each dataset must be unique and sequential, starting from 1. The classifications are
+        ordered based on the priorities.
+
+        The geographic variable with Lowest_Geog_Variable_Flag set to Y (if present) is placed
+        at the start of the classifications list. There will be a classification with the same
+        mnemonic as each geographic variable.
         """
-        filename = 'Dataset_Classification.csv'
+        filename = 'Dataset_Variable.csv'
         columns = [
-            required('Classification_Mnemonic', validate_fn=isoneof(self.classifications.keys())),
             required('Dataset_Mnemonic', validate_fn=isoneof(dataset_mnemonics)),
-            required('Processing_Priority', validate_fn=isnumeric),
             required('Id'),
-            required('Version'),
+            required('Variable_Mnemonic', validate_fn=isoneof(self.variables.keys())),
+
+            optional('Classification_Mnemonic', validate_fn=isoneof(self.classifications.keys())),
+            optional('Processing_Priority', validate_fn=isnumeric),
+            optional('Lowest_Geog_Variable_Flag', validate_fn=isoneof({'Y', 'N'})),
         ]
-        dataset_classification_rows = self.read_file(
+        dataset_variable_rows = self.read_file(
             filename, columns,
-            # There can only be one row for each Dataset_Mnemonic/Classification_Mnemonic
+            # There can only be one row for each Dataset_Mnemonic/Variable_Mnemonic
             # combination.
-            unique_combo_fields=['Dataset_Mnemonic', 'Classification_Mnemonic'])
+            unique_combo_fields=['Dataset_Mnemonic', 'Variable_Mnemonic'])
 
-        ds_to_classifications = {}
-        for ds_class, _ in dataset_classification_rows:
-            append_to_list_in_dict(ds_to_classifications, ds_class['Dataset_Mnemonic'], ds_class)
+        ds_to_vars_builder = {}
+        for ds_variable, _ in dataset_variable_rows:
+            dataset_mnemonic = ds_variable['Dataset_Mnemonic']
+            variable_mnemonic = ds_variable['Variable_Mnemonic']
+            if dataset_mnemonic not in ds_to_vars_builder:
+                ds_to_vars_builder[dataset_mnemonic] = DatasetVarsBuilder(
+                    dataset_mnemonic, self.full_filename(filename), self.classifications)
+            vars_builder = ds_to_vars_builder[dataset_mnemonic]
 
-        ds_to_classification_mnemonics = {}
-        for dataset_mnemonic, classifications_for_dataset in ds_to_classifications.items():
-            processing_priorities = [int(c['Processing_Priority']) for c in
-                                     classifications_for_dataset]
-            if set(processing_priorities) != set(range(1, len(processing_priorities) + 1)):
-                raise ValueError(f'Reading {self.full_filename(filename)} '
-                                 f'Invalid processing_priorities {processing_priorities} '
-                                 f'for dataset {dataset_mnemonic}')
-            ds_to_classification_mnemonics[dataset_mnemonic] = [None] * len(processing_priorities)
-            for i, priority in enumerate(processing_priorities):
-                ds_to_classification_mnemonics[dataset_mnemonic][priority - 1] = \
-                    classifications_for_dataset[i]['Classification_Mnemonic']
+            if self.variables[variable_mnemonic].private['Is_Geographic']:
+                vars_builder.add_geographic_variable(ds_variable)
+            else:
+                vars_builder.add_non_geographic_variable(ds_variable)
 
-        return ds_to_classification_mnemonics
+        ds_to_variables = {}
+        for dataset_mnemonic, vars_builder in ds_to_vars_builder.items():
+            ds_to_variables[dataset_mnemonic] = vars_builder.dataset_variables()
+
+        return ds_to_variables
 
     def load_classification_to_topics(self, classification_mnemonics):
         """Load topics associated with each classification."""
