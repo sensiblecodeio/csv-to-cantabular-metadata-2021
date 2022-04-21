@@ -33,6 +33,8 @@ type ONS_Variable {
   Topic: Topic
   Questions: [Question]!
   Variable_Type: Variable_Type!
+  Quality_Statement_Text: String
+  Quality_Summary_URL: String
 }
 
 type Variable_Type {

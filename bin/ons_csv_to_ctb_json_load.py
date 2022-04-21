@@ -553,6 +553,8 @@ class Loader:
             optional('Topic_Mnemonic', validate_fn=isoneof(self.topics.keys())),
             optional('Signed_Off_Flag'),
             optional('Number_Of_Classifications'),
+            optional('Quality_Statement_Text'),
+            optional('Quality_Summary_URL'),
         ]
         variable_rows = self.read_file(filename, columns)
 
