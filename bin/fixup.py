@@ -36,11 +36,12 @@ def main():
                         help='Name of geography CSV file')
 
     args = parser.parse_args()
+
+    logging.basicConfig(format='t=%(asctime)s lvl=%(levelname)s msg=%(message)s', level='INFO')
+
     for directory in (args.input_dir, args.output_dir):
         if not os.path.isdir(directory):
             raise ValueError(f'{directory} does not exist or is not a directory')
-
-    logging.basicConfig(format='t=%(asctime)s lvl=%(levelname)s msg=%(message)s', level='INFO')
 
     for filename in glob.glob(os.path.join(args.input_dir, '*.csv')):
         if args.geography_file and \
@@ -168,4 +169,8 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except Exception as exception:
+        logging.error(exception)
+        raise exception
