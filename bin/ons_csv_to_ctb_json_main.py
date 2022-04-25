@@ -3,10 +3,17 @@ import json
 import os
 import logging
 from argparse import ArgumentParser
+from datetime import date
 from ons_csv_to_ctb_json_load import Loader, PUBLIC_SECURITY_MNEMONIC
 from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 
 VERSION = '1.1.alpha'
+
+SYSTEM = 'cantabm'
+SYSTEM_SOFTWARE_VERSION = 'v9-3-0'
+FILE_CONTENT_TYPE_DATASET = 'dataset-md'
+FILE_CONTENT_TYPE_TABLES = 'tables-md'
+FILE_CONTENT_TYPE_SERVICE = 'service-md'
 
 
 def main():
@@ -41,6 +48,24 @@ def main():
                         choices=['CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG'],
                         help='Log level (default: %(default)s)')
 
+    parser.add_argument('-p', '--file_prefix',
+                        type=str,
+                        choices=['d', 't', 'tu'],
+                        help='Prefix to use in output filenames: d=dev, t=test, tu=tuning '
+                             '(default: no prefix i.e. operational)')
+
+    parser.add_argument('-m', '--metadata_master_version',
+                        type=str,
+                        default='unknown-metadata-version',
+                        help='Metadata master version to use in output filenames '
+                             '(default: %(default)s)')
+
+    parser.add_argument('-b', '--build_number',
+                        type=int,
+                        default=1,
+                        help='Build number to use in output filenames '
+                             '(default: %(default)s)')
+
     args = parser.parse_args()
 
     logging.basicConfig(format='t=%(asctime)s lvl=%(levelname)s msg=%(message)s',
@@ -50,6 +75,8 @@ def main():
         if not os.path.isdir(directory):
             raise ValueError(f'{directory} does not exist or is not a directory')
 
+    todays_date = date.today().strftime('%Y%m%d')
+
     # loader is used to load the metadata from CSV files and convert it to JSON.
     loader = Loader(args.input_dir, args.geography_file)
 
@@ -58,24 +85,45 @@ def main():
     # A Cantabular dataset is equivalent to an ONS database.
     ctb_variables = build_ctb_variables(loader.classifications, loader.categories)
     ctb_datasets = build_ctb_datasets(loader.databases, ctb_variables)
-    filename = os.path.join(args.output_dir, 'dataset-metadata.json')
+
+    base_filename = output_filename(args.file_prefix, args.metadata_master_version,
+                                    FILE_CONTENT_TYPE_DATASET, todays_date,
+                                    args.build_number)
+    filename = os.path.join(args.output_dir, base_filename)
     with open(filename, 'w') as jsonfile:
         json.dump(ctb_datasets, jsonfile, indent=4)
     logging.info(f'Written dataset metadata file to: {filename}')
 
     # Build Cantabular table objects and write to JSON.
     ctb_tables = build_ctb_tables(loader.datasets)
-    filename = os.path.join(args.output_dir, 'table-metadata.json')
+
+    base_filename = output_filename(args.file_prefix, args.metadata_master_version,
+                                    FILE_CONTENT_TYPE_TABLES, todays_date, args.build_number)
+    filename = os.path.join(args.output_dir, base_filename)
     with open(filename, 'w') as jsonfile:
         json.dump(ctb_tables, jsonfile, indent=4)
     logging.info(f'Written table metadata file to: {filename}')
 
     # Build Cantabular service metadata objects and write to JSON.
     service_metadata = build_ctb_service_metadata()
-    filename = os.path.join(args.output_dir, 'service-metadata.json')
+
+    base_filename = output_filename(args.file_prefix, args.metadata_master_version,
+                                    FILE_CONTENT_TYPE_SERVICE, todays_date,
+                                    args.build_number)
+    filename = os.path.join(args.output_dir, base_filename)
     with open(filename, 'w') as jsonfile:
         json.dump(service_metadata, jsonfile, indent=4)
     logging.info(f'Written service metadata file to: {filename}')
+
+
+def output_filename(prefix, metadata_master_version, content_type, todays_date, build_number):
+    """Generate output filename."""
+    filename = (f'{SYSTEM}_{SYSTEM_SOFTWARE_VERSION}_{metadata_master_version}_{content_type}_'
+                f'{todays_date}-{build_number}.json')
+    if prefix:
+        filename = f'{prefix}_{filename}'
+
+    return filename
 
 
 def build_ctb_variables(classifications, cat_labels):

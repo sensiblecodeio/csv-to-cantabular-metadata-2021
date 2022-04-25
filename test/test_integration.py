@@ -3,7 +3,16 @@ import unittest.mock
 import unittest
 import pathlib
 import os
+from datetime import date
 import ons_csv_to_ctb_json_main
+
+FILENAME_TABLES = 'cantabm_v9-3-0_unknown-metadata-version_tables-md_19700101-1.json'
+FILENAME_DATASET = 'cantabm_v9-3-0_unknown-metadata-version_dataset-md_19700101-1.json'
+FILENAME_SERVICE = 'cantabm_v9-3-0_unknown-metadata-version_service-md_19700101-1.json'
+
+FILENAME_TABLES_NO_GEO = 't_cantabm_v9-3-0_no-geo_tables-md_19700101-2.json'
+FILENAME_DATASET_NO_GEO = 't_cantabm_v9-3-0_no-geo_dataset-md_19700101-2.json'
+FILENAME_SERVICE_NO_GEO = 't_cantabm_v9-3-0_no-geo_service-md_19700101-2.json'
 
 class TestIntegration(unittest.TestCase):
     def test_directory_validity(self):
@@ -31,52 +40,61 @@ class TestIntegration(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, expected_error):
                 ons_csv_to_ctb_json_main.main()
 
-    def test_generated_json(self):
+    @unittest.mock.patch('ons_csv_to_ctb_json_main.date')
+    def test_generated_json(self, mock_date):
         """Generate JSON from source CSV and compare it with expected values."""
+        mock_date.today.return_value = date(1970, 1, 1)
+        mock_date.side_effect = lambda *args, **kw: date(*args, **kw)
+
         file_dir = pathlib.Path(__file__).parent.resolve()
         input_dir = os.path.join(file_dir, 'testdata')
         output_dir = os.path.join(file_dir, 'out')
         geo_dir = os.path.join(input_dir, 'geography/geography.csv')
         with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir, '-g', geo_dir]):
             ons_csv_to_ctb_json_main.main()
-            with open(os.path.join(output_dir, 'service-metadata.json')) as f:
+            with open(os.path.join(output_dir, FILENAME_SERVICE)) as f:
                 service_metadata = json.load(f)
             with open(os.path.join(file_dir, 'expected/service-metadata.json')) as f:
                 expected_service_metadata = json.load(f)
             self.assertEqual(service_metadata, expected_service_metadata)
 
-            with open(os.path.join(output_dir, 'dataset-metadata.json')) as f:
+            with open(os.path.join(output_dir, FILENAME_DATASET)) as f:
                 dataset_metadata = json.load(f)
             with open(os.path.join(file_dir, 'expected/dataset-metadata.json')) as f:
                 expected_dataset_metadata = json.load(f)
             self.assertEqual(dataset_metadata, expected_dataset_metadata)
 
-            with open(os.path.join(output_dir, 'table-metadata.json')) as f:
+            with open(os.path.join(output_dir, FILENAME_TABLES)) as f:
                 table_metadata = json.load(f)
             with open(os.path.join(file_dir, 'expected/table-metadata.json')) as f:
                 expected_table_metadata = json.load(f)
             self.assertEqual(table_metadata, expected_table_metadata)
 
-    def test_no_geography_file(self):
+    @unittest.mock.patch('ons_csv_to_ctb_json_main.date')
+    def test_no_geography_file(self, mock_date):
         """Generate JSON from source CSV and compare it with expected values."""
+        mock_date.today.return_value = date(1970, 1, 1)
+        mock_date.side_effect = lambda *args, **kw: date(*args, **kw)
+
         file_dir = pathlib.Path(__file__).parent.resolve()
         input_dir = os.path.join(file_dir, 'testdata')
         output_dir = os.path.join(file_dir, 'out')
-        with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir]):
+        with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir,
+            '-m', 'no-geo', '-b', '2', '-p', 't']):
             ons_csv_to_ctb_json_main.main()
-            with open(os.path.join(output_dir, 'service-metadata.json')) as f:
+            with open(os.path.join(output_dir, FILENAME_SERVICE_NO_GEO)) as f:
                 service_metadata = json.load(f)
             with open(os.path.join(file_dir, 'expected/service-metadata.json')) as f:
                 expected_service_metadata = json.load(f)
             self.assertEqual(service_metadata, expected_service_metadata)
 
-            with open(os.path.join(output_dir, 'dataset-metadata.json')) as f:
+            with open(os.path.join(output_dir, FILENAME_DATASET_NO_GEO)) as f:
                 dataset_metadata = json.load(f)
             with open(os.path.join(file_dir, 'expected/dataset-metadata-no-geo.json')) as f:
                 expected_dataset_metadata = json.load(f)
             self.assertEqual(dataset_metadata, expected_dataset_metadata)
 
-            with open(os.path.join(output_dir, 'table-metadata.json')) as f:
+            with open(os.path.join(output_dir, FILENAME_TABLES_NO_GEO)) as f:
                 table_metadata = json.load(f)
             with open(os.path.join(file_dir, 'expected/table-metadata.json')) as f:
                 expected_table_metadata = json.load(f)
