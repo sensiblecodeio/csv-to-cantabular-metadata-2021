@@ -923,7 +923,7 @@ class Loader:
         Load variables associated with each dataset.
 
         Variables can be geographic or non-geographic. Geographic variables will not have
-        Classification_Mnemonic or Processin_Priority set. If there are geographic variables then
+        Classification_Mnemonic or Processing_Priority set. If there are geographic variables then
         one of them will have Lowest_Geog_Variable_Flag set to Y.
 
         Each non-geographic variable will also have Classification_Mnemonic and Processing_Priority
