@@ -70,7 +70,7 @@ def main():
                         if not line['Variable_Type_Code']:
                             line['Variable_Type_Code'] = 'DVO'
 
-                    if basename == 'Classification.csv':
+                    elif basename == 'Classification.csv':
                         if not line['Number_Of_Category_Items']:
                             line['Number_Of_Category_Items'] = '0'
 
@@ -92,7 +92,7 @@ def main():
                         if line['Classification_Mnemonic'] == 'hh_multi_ethnic_combination_23B':
                             line['Classification_Mnemonic'] = 'hh_multi_ethnic_combination_23b'
 
-                    if basename == 'Topic_Classification.csv':
+                    elif basename == 'Topic_Classification.csv':
                         if line['Classification_Mnemonic'] == 'hh_multi_ethnic_combination_23B':
                             line['Classification_Mnemonic'] = 'hh_multi_ethnic_combination_23b'
 
@@ -116,7 +116,7 @@ def main():
                                 'ethnic_group', 'travel_destination_wz']:
                             continue
 
-                    if basename == 'Category.csv':
+                    elif basename == 'Category.csv':
                         if line['Classification_Mnemonic'] == 'armed_forces_dependent_ind_5a':
                             continue
 
@@ -126,17 +126,17 @@ def main():
                         if '_pop' in line['Classification_Mnemonic']:
                             continue
 
-                    if basename == 'Dataset.csv':
+                    elif basename == 'Dataset.csv':
                         line['Security_Mnemonic'] = 'PUB'
 
-                    if basename == 'Release_Dataset.csv':
+                    elif basename == 'Release_Dataset.csv':
                         line['Census_Release_Number'] = '1'
 
-                    if basename == 'Dataset_Variable.csv':
+                    elif basename == 'Dataset_Variable.csv':
                         if line['Classification_Mnemonic'] == 'sex':
                             line['Classification_Mnemonic'] = 'sex_2a'
 
-                    if basename == 'Database_Variable.csv':
+                    elif basename == 'Database_Variable.csv':
                         if line['Variable_Mnemonic'] in ['dwelling_number', 'ethnic_group',
                                                          'travel_destination_wz']:
                             continue
