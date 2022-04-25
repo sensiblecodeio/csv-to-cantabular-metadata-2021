@@ -6,6 +6,7 @@ type DatasetMetadata {
   Cantabular_DB_Flag: String
   Source: Source!
   Version: String!
+  Lowest_Geog_Variable: String
 }
 
 type VariableMetadata {
@@ -33,6 +34,8 @@ type ONS_Variable {
   Topic: Topic
   Questions: [Question]!
   Variable_Type: Variable_Type!
+  Quality_Statement_Text: String
+  Quality_Summary_URL: String
 }
 
 type Variable_Type {
@@ -80,12 +83,9 @@ type TableMetadata {
   Dataset_Mnemonic_2011: String
   Geographic_Coverage: String!
   Dataset_Population: String!
-  Dissemination_Source: String
-  Release_Frequency: String
   Last_Updated: String
   Unique_Url: String
   Contact: Contact
-  Geographic_Variable_Mnemonic: String
   Version: String!
   Related_Datasets: [String]!
   Keywords: [String]!

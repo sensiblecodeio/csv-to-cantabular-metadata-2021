@@ -25,6 +25,8 @@
                         "Variable_Mnemonic": "VAR1",
                         "Variable_Mnemonic_2011": "VAR1 2011",
                         "Version": "1",
+                        "Quality_Statement_Text": "VAR1 Quality Statement Text",
+                        "Quality_Summary_URL": "VAR1 Quality Statement URL",
                         "Variable_Title": "VAR1 Title",
                         "Comparability_Comments": "VAR1 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
@@ -82,7 +84,7 @@
             },
             {
                 "name": "CLASS2",
-                "label": "CLASS2 Label",
+                "label": "CLASS2 Label Internal",
                 "description": "VAR2 Description",
                 "meta": {
                     "Mnemonic_2011": null,
@@ -93,6 +95,8 @@
                         "Variable_Mnemonic": "VAR2",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
                         "Variable_Title": "VAR2 Title",
                         "Comparability_Comments": "VAR2 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
@@ -114,7 +118,7 @@
             },
             {
                 "name": "CLASS3",
-                "label": "CLASS3 Label",
+                "label": "CLASS3 Label Internal",
                 "description": "VAR3 Description",
                 "meta": {
                     "Mnemonic_2011": null,
@@ -125,6 +129,8 @@
                         "Variable_Mnemonic": "VAR3",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
                         "Variable_Title": "VAR3 Title",
                         "Comparability_Comments": null,
                         "Uk_Comparison_Comments": null,
@@ -157,6 +163,8 @@
                         "Variable_Mnemonic": "GEO1",
                         "Variable_Mnemonic_2011": "GEO1 2011",
                         "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
                         "Variable_Title": "GEO1 Title",
                         "Comparability_Comments": "GEO1 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO1 UK Comparison Comments",
@@ -206,6 +214,8 @@
                         "Variable_Mnemonic": "GEO2",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
                         "Variable_Title": "GEO2 Title",
                         "Comparability_Comments": "GEO2 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments",
@@ -253,6 +263,8 @@
                         "Variable_Mnemonic": "VAR1",
                         "Variable_Mnemonic_2011": "VAR1 2011",
                         "Version": "1",
+                        "Quality_Statement_Text": "VAR1 Quality Statement Text",
+                        "Quality_Summary_URL": "VAR1 Quality Statement URL",
                         "Variable_Title": "VAR1 Title (Welsh)",
                         "Comparability_Comments": "VAR1 Comparability Comments (Welsh)",
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments (Welsh)",
@@ -315,7 +327,7 @@
             },
             {
                 "name": "CLASS2",
-                "label": "CLASS2 Label",
+                "label": "CLASS2 Label Internal",
                 "description": "VAR2 Description",
                 "meta": {
                     "Mnemonic_2011": null,
@@ -326,6 +338,8 @@
                         "Variable_Mnemonic": "VAR2",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
                         "Variable_Title": "VAR2 Title",
                         "Comparability_Comments": "VAR2 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
@@ -347,7 +361,7 @@
             },
             {
                 "name": "CLASS3",
-                "label": "CLASS3 Label",
+                "label": "CLASS3 Label Welsh",
                 "description": "VAR3 Description",
                 "meta": {
                     "Mnemonic_2011": null,
@@ -358,6 +372,8 @@
                         "Variable_Mnemonic": "VAR3",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
                         "Variable_Title": "VAR3 Title",
                         "Comparability_Comments": null,
                         "Uk_Comparison_Comments": null,
@@ -390,6 +406,8 @@
                         "Variable_Mnemonic": "GEO1",
                         "Variable_Mnemonic_2011": "GEO1 2011",
                         "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
                         "Variable_Title": "GEO1 Title (Welsh)",
                         "Comparability_Comments": "GEO1 Comparability Comments (Welsh)",
                         "Uk_Comparison_Comments": "GEO1 UK Comparison Comments (Welsh)",
@@ -439,6 +457,8 @@
                         "Variable_Mnemonic": "GEO2",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
                         "Variable_Title": "GEO2 Title",
                         "Comparability_Comments": "GEO2 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments",
@@ -496,7 +516,8 @@
                     "Contact_Phone": "12345",
                     "Contact_Website": "www.bob.com"
                 }
-            }
+            },
+            "Lowest_Geog_Variable": "GEO1"
         },
         "vars": null
     },
@@ -532,7 +553,8 @@
                     "Contact_Phone": "12345",
                     "Contact_Website": "www.bob.com"
                 }
-            }
+            },
+            "Lowest_Geog_Variable": "GEO1"
         },
         "vars": null
     },
@@ -562,7 +584,8 @@
                 "Methodology_Statement": null,
                 "SDC_Statement": null,
                 "Contact": null
-            }
+            },
+            "Lowest_Geog_Variable": "GEO2"
         },
         "vars": null
     },
@@ -592,7 +615,8 @@
                 "Methodology_Statement": null,
                 "SDC_Statement": null,
                 "Contact": null
-            }
+            },
+            "Lowest_Geog_Variable": "GEO2"
         },
         "vars": null
     },
@@ -622,7 +646,8 @@
                 "Methodology_Statement": "SRC3 Methodology Statement",
                 "SDC_Statement": "SRC3",
                 "Contact": null
-            }
+            },
+            "Lowest_Geog_Variable": null
         },
         "vars": null
     },
@@ -652,7 +677,8 @@
                 "Methodology_Statement": "SRC3 Methodology Statement",
                 "SDC_Statement": "SRC3",
                 "Contact": null
-            }
+            },
+            "Lowest_Geog_Variable": null
         },
         "vars": null
     }

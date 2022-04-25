@@ -6,7 +6,7 @@ from argparse import ArgumentParser
 from ons_csv_to_ctb_json_load import Loader, PUBLIC_SECURITY_MNEMONIC
 from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 
-VERSION = '1.0.beta'
+VERSION = '1.1.alpha'
 
 
 def main():
@@ -42,12 +42,13 @@ def main():
                         help='Log level (default: %(default)s)')
 
     args = parser.parse_args()
-    for directory in (args.input_dir, args.output_dir):
-        if not os.path.isdir(directory):
-            raise ValueError(f'{directory} does not exist or is not a directory')
 
     logging.basicConfig(format='t=%(asctime)s lvl=%(levelname)s msg=%(message)s',
                         level=args.log_level)
+
+    for directory in (args.input_dir, args.output_dir):
+        if not os.path.isdir(directory):
+            raise ValueError(f'{directory} does not exist or is not a directory')
 
     # loader is used to load the metadata from CSV files and convert it to JSON.
     loader = Loader(args.input_dir, args.geography_file)
@@ -209,4 +210,8 @@ def build_ctb_service_metadata():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except Exception as exception:
+        logging.error(exception)
+        raise exception

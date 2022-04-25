@@ -8,9 +8,9 @@ from helper_funcs import conditional_mock_open, build_test_file
 HEADERS = ['Dataset_Mnemonic', 'Id', 'Dataset_Title', 'Dataset_Title_Welsh', 'Dataset_Description',
            'Dataset_Description_Welsh', 'Statistical_Unit', 'Dataset_Mnemonic_2011',
            'Geographic_Coverage', 'Geographic_Coverage_Welsh', 'Dataset_Population',
-           'Dataset_Population_Welsh', 'Dissemination_Source', 'Release_Frequency', 'Last_Updated',
+           'Dataset_Population_Welsh', 'Last_Updated',
            'Unique_Url', 'Security_Mnemonic', 'Signed_Off_Flag', 'Database_Mnemonic', 'Contact_Id',
-           'Geographic_Variable_Mnemonic', 'Version']
+           'Version']
 
 COMMON_FIELDS = {'Dataset_Title': 'title',
                  'Dataset_Description': 'description',
@@ -44,8 +44,7 @@ class TestDataset(unittest.TestCase):
                 self.run_test([row], f'^Reading {FILENAME}:2 no value supplied for required field {field}$')
 
     def test_invalid_values(self):
-        for field in ['Security_Mnemonic', 'Database_Mnemonic', 'Contact_Id',
-                      'Geographic_Variable_Mnemonic', 'Statistical_Unit']:
+        for field in ['Security_Mnemonic', 'Database_Mnemonic', 'Contact_Id', 'Statistical_Unit']:
             with self.subTest(field=field):
                 row = REQUIRED_FIELDS.copy()
                 row[field] = 'X'
@@ -73,7 +72,7 @@ class TestDataset(unittest.TestCase):
              {'Dataset_Mnemonic': 'DS2', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS3', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS4', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
-            f'^Reading {FILENAME}:2 DS1 has classification CLASS1 that is not in database DB2$')
+            f'^Reading {FILENAME}:2 DS1 has classification GEO1 that is not in database DB2$')
 
     def test_no_variables(self):
         self.run_test(
@@ -81,13 +80,9 @@ class TestDataset(unittest.TestCase):
              {'Dataset_Mnemonic': 'DS_PRIV', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'CLASS', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS2', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS3', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
-             {'Dataset_Mnemonic': 'DS4', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
-            f'^Reading {FILENAME}:4 DS2 has no associated classifications or geographic variable$')
-
-    def test_non_geographic_variable_mnemonic(self):
-        row = REQUIRED_FIELDS.copy()
-        row['Geographic_Variable_Mnemonic'] = 'VAR1'
-        self.run_test([row], f'^Reading {FILENAME}:2 invalid value VAR1 for Geographic_Variable_Mnemonic$')
+             {'Dataset_Mnemonic': 'DS4', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS5', 'Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
+            f'^Reading {FILENAME}:7 DS5 has no associated classifications or geographic variable$')
 
 
 if __name__ == '__main__':

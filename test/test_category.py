@@ -5,14 +5,15 @@ import pathlib
 from ons_csv_to_ctb_json_load import Loader
 from helper_funcs import conditional_mock_open, build_test_file
 
-HEADERS = ['Source_Variable_Mnemonic', 'Classification_Mnemonic', 'Target_Variable_Mnemonic',
-           'Id', 'Category_Code', 'Label', 'Label_Welsh', 'Sort_Order', 'Version']
+HEADERS = ['Variable_Mnemonic', 'Classification_Mnemonic',
+           'Id', 'Category_Code', 'External_Category_Label_English', 'External_Category_Label_Welsh',
+           'Sort_Order', 'Version', 'Internal_Category_Label_English']
 
 REQUIRED_FIELDS = {'Category_Code': 'CODE1',
                    'Classification_Mnemonic': 'CLASS1',
-                   'Label': 'label 1',
+                   'Internal_Category_Label_English': 'label 1',
                    'Id': '1',
-                   'Source_Variable_Mnemonic': 'source',
+                   'Variable_Mnemonic': 'source',
                    'Version': '1'}
 
 INPUT_DIR = os.path.join(pathlib.Path(__file__).parent.resolve(), 'testdata')
