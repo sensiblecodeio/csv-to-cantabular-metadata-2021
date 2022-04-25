@@ -31,7 +31,8 @@ class TestDatasetClassification(unittest.TestCase):
                 self.run_test([row], f'^Reading {FILENAME}:2 no value supplied for required field {field}$')
 
     def test_invalid_values(self):
-        for field in ['Dataset_Mnemonic', 'Classification_Mnemonic', 'Processing_Priority']:
+        for field in ['Dataset_Mnemonic', 'Classification_Mnemonic', 'Processing_Priority',
+                      'Lowest_Geog_Variable_Flag']:
             with self.subTest(field=field):
                 row = REQUIRED_FIELDS.copy()
                 row[field] = 'X'
