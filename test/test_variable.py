@@ -18,7 +18,8 @@ COMMON_FIELDS = {'Security_Mnemonic': 'PUB',
                  'Variable_Title': 'title',
                  'Variable_Description': 'description',
                  'Id': '1',
-                 'Version': '1'}
+                 'Version': '1',
+                 'Signed_Off_Flag': 'N'}
 
 REQUIRED_FIELDS = {'Variable_Mnemonic': 'VAR1',
                    'Variable_Type_Code': 'DVO',
@@ -43,7 +44,8 @@ class TestVariable(unittest.TestCase):
                 self.run_test([row], f'^Reading {FILENAME}:2 no value supplied for required field {field}$')
 
     def test_invalid_values(self):
-        for field in ['Security_Mnemonic', 'Variable_Type_Code', 'Statistical_Unit', 'Topic_Mnemonic']:
+        for field in ['Security_Mnemonic', 'Variable_Type_Code', 'Statistical_Unit', 'Topic_Mnemonic',
+                      'Signed_Off_Flag']:
             with self.subTest(field=field):
                 row = REQUIRED_FIELDS.copy()
                 row[field] = 'X'

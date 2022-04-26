@@ -19,6 +19,11 @@ def isnumeric(string):
     return string.isnumeric()
 
 
+def is_y_or_n(string):
+    """Return true if the string is either 'Y' or 'N'."""
+    return string in ['Y', 'N']
+
+
 def isoneof(valid_values):
     """Return a function that checks whether the value is in the specified set of values."""
     valid_values_set = set(valid_values)
@@ -102,6 +107,7 @@ class Loader:
             required('Source_Mnemonic', unique=True),
             required('Source_Description'),
             required('Id'),
+            required('Version'),
 
             optional('Source_Description_Welsh'),
             optional('Copyright_Statement'),
@@ -113,7 +119,6 @@ class Loader:
             optional('SDC_Link'),
             optional('SDC_Statement'),
             optional('SDC_Statement_Welsh'),
-            optional('Version'),
             optional('Contact_Id', validate_fn=isoneof(self.contacts.keys())),
         ]
         source_rows = self.read_file('Source.csv', columns)
@@ -170,9 +175,9 @@ class Loader:
         columns = [
             required('Security_Mnemonic', unique=True),
             required('Id'),
+            required('Security_Description'),
 
             optional('Security_Description_Welsh'),
-            optional('Security_Description'),
         ]
         security_classification_rows = self.read_file(filename, columns)
 
@@ -229,6 +234,7 @@ class Loader:
             required('Statistical_Unit', validate_fn=isoneof(self.statistical_units.keys())),
             required('Version'),
             required('Dataset_Description'),
+            required('Signed_Off_Flag', validate_fn=is_y_or_n),
 
             optional('Dataset_Title_Welsh'),
             optional('Dataset_Description_Welsh'),
@@ -237,7 +243,6 @@ class Loader:
             optional('Dataset_Population_Welsh'),
             optional('Last_Updated'),
             optional('Unique_Url'),
-            optional('Signed_Off_Flag'),
             optional('Contact_Id', validate_fn=isoneof(self.contacts.keys())),
         ]
         dataset_rows = self.read_file(filename, columns)
@@ -328,10 +333,11 @@ class Loader:
             required('Id'),
             required('Database_Description'),
             required('Version'),
+            # This should be mandatory but is not yet populated
+            optional('Cantabular_DB_Flag', validate_fn=is_y_or_n),
 
             optional('Database_Title_Welsh'),
             optional('Database_Description_Welsh'),
-            optional('Cantabular_DB_Flag'),
             optional('IAR_Asset_Id'),
         ]
         database_rows = self.read_file('Database.csv', columns)
@@ -542,9 +548,17 @@ class Loader:
             required('Variable_Type_Code', validate_fn=isoneof(self.variable_types.keys())),
             required('Variable_Title'),
             required('Variable_Description'),
-            optional('Statistical_Unit', validate_fn=isoneof(self.statistical_units.keys())),
             required('Id'),
             required('Version'),
+            required('Signed_Off_Flag', validate_fn=is_y_or_n),
+
+            # Required for non-geographic variables but not always populated in source files
+            optional('Statistical_Unit', validate_fn=isoneof(self.statistical_units.keys())),
+
+            # Required for geographic variables but not yet populated
+            optional('Geographic_Abbreviation'),
+            optional('Geographic_Theme'),
+            optional('Geographic_Coverage'),
 
             optional('Variable_Title_Welsh'),
             optional('Variable_Description_Welsh'),
@@ -553,14 +567,10 @@ class Loader:
             optional('Comparability_Comments_Welsh'),
             optional('Uk_Comparison_Comments'),
             optional('Uk_Comparison_Comments_Welsh'),
-            optional('Geographic_Abbreviation'),
             optional('Geographic_Abbreviation_Welsh'),
-            optional('Geographic_Theme'),
             optional('Geographic_Theme_Welsh'),
-            optional('Geographic_Coverage'),
             optional('Geographic_Coverage_Welsh'),
             optional('Topic_Mnemonic', validate_fn=isoneof(self.topics.keys())),
-            optional('Signed_Off_Flag'),
             optional('Number_Of_Classifications'),
             optional('Quality_Statement_Text'),
             optional('Quality_Summary_URL'),
@@ -571,19 +581,34 @@ class Loader:
         variable_to_keywords = self.load_variable_to_keywords(variable_mnemonics)
         variable_to_source_questions = self.load_variable_to_questions(variable_mnemonics)
 
-        geo_fields = {'Geographic_Abbreviation', 'Geographic_Abbreviation_Welsh',
-                      'Geographic_Theme', 'Geographic_Theme_Welsh', 'Geographic_Coverage',
-                      'Geographic_Coverage_Welsh'}
+        en_geo_fields = {'Geographic_Abbreviation', 'Geographic_Theme', 'Geographic_Coverage'}
+        all_geo_fields = en_geo_fields | {'Geographic_Abbreviation_Welsh',
+                                          'Geographic_Theme_Welsh',
+                                          'Geographic_Coverage_Welsh'}
         variables = {}
         for variable, line_num in variable_rows:
             # Ensure that non-geographic variables do not have geographic values set.
             is_geographic = variable['Variable_Type_Code'] == GEOGRAPHIC_VARIABLE_TYPE
             if not is_geographic:
-                for geo_field in geo_fields:
+                # This value is not always populated in source files
+                # if not variable['Statistical_Unit']:
+                #     raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
+                #                    f'no Statistical_Unit specified for non geographic variable: '
+                #                    f'{variable["Variable_Mnemonic"]}')
+                for geo_field in all_geo_fields:
                     if variable[geo_field]:
                         raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
                                          f'{geo_field} specified for non geographic variable: '
                                          f'{variable["Variable_Mnemonic"]}')
+
+            # These values are not yet populated in source files
+            # else:
+            #    for geo_field in en_geo_fields:
+            #        if not variable[geo_field]:
+            #            raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
+            #                             f'no {geo_field} specified for geographic variable: '
+            #                             f'{variable["Variable_Mnemonic"]}')
+
             variable_title = Bilingual(
                 variable.pop('Variable_Title'),
                 variable.pop('Variable_Title_Welsh'))
@@ -643,18 +668,18 @@ class Loader:
         columns = [
             required('Id'),
             required('Classification_Mnemonic', unique=True),
-            required('Number_Of_Category_Items', validate_fn=isnumeric),
             required('Variable_Mnemonic', validate_fn=isoneof(self.variables.keys())),
             required('Internal_Classification_Label_English'),
             required('Security_Mnemonic', validate_fn=isoneof(self.security_classifications)),
             required('Version'),
+            required('Signed_Off_Flag', validate_fn=is_y_or_n),
 
+            optional('Number_Of_Category_Items', validate_fn=isnumeric),
             optional('External_Classification_Label_English'),
             optional('External_Classification_Label_Welsh'),
             optional('Mnemonic_2011'),
             optional('Parent_Classification_Mnemonic'),
             optional('Default_Classification_Flag'),
-            optional('Signed_Off_Flag'),
             optional('Flat_Classification_Flag'),
         ]
         classification_rows = self.read_file(filename, columns)
@@ -692,7 +717,8 @@ class Loader:
             del classification['Flat_Classification_Flag']
             del classification['Id']
 
-            num_cat_items = int(classification.pop('Number_Of_Category_Items'))
+            num_cat_items = classification.pop('Number_Of_Category_Items')
+            num_cat_items = int(num_cat_items) if num_cat_items else 0
 
             classifications[classification_mnemonic] = BilingualDict(
                 classification,

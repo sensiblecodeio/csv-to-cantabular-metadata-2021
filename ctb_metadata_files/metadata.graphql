@@ -67,7 +67,7 @@ type Source {
   Methodology_Statement: String
   SDC_Link: String
   SDC_Statement: String
-  Version: String
+  Version: String!
   Contact: Contact
 }
 

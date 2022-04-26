@@ -1,8 +1,8 @@
 Variable_Mnemonic,Id,Variable_Title,Variable_Title_Welsh,Variable_Description,Variable_Description_Welsh,Variable_Type_Code,Statistical_Unit,Topic_Mnemonic,Variable_Mnemonic_2011,Comparability_Comments,Comparability_Comments_Welsh,Uk_Comparison_Comments,Uk_Comparison_Comments_Welsh,Security_Mnemonic,Signed_Off_Flag,Number_Of_Classifications,Geographic_Abbreviation,Geographic_Abbreviation_Welsh,Geographic_Theme,Geographic_Theme_Welsh,Geographic_Coverage,Geographic_Coverage_Welsh,Version,Quality_Statement_Text,Quality_Summary_URL
 VAR1,1,VAR1 Title,VAR1 Title (Welsh),VAR1 Description,VAR1 Description (Welsh),DVO,People,TOPIC1,VAR1 2011,VAR1 Comparability Comments,VAR1 Comparability Comments (Welsh),VAR1 UK Comparison Comments,VAR1 UK Comparison Comments (Welsh),PUB,Y,3,,,,,,,1,VAR1 Quality Statement Text,VAR1 Quality Statement URL
 GEO1,2,GEO1 Title,GEO1 Title (Welsh),GEO1 Description,GEO1 Description (Welsh),GEOG,People,TOPIC1,GEO1 2011,GEO1 Comparability Comments,GEO1 Comparability Comments (Welsh),GEO1 UK Comparison Comments,GEO1 UK Comparison Comments (Welsh),PUB,Y,3,G1,G1 (Welsh),GEO1 Theme,GEO1 Theme (Welsh),GEO1 Coverage,GEO1 Coverage (Welsh),1,,
-VAR2,3,VAR2 Title,,VAR2 Description,,DVO,,,,VAR2 Comparability Comments,,VAR2 UK Comparison Comments,,PUB,,,,,,,,,1,,
-VAR3,4,VAR3 Title,,VAR3 Description,,DVO,,,,,,,,PUB,,,,,,,,,1,,
+VAR2,3,VAR2 Title,,VAR2 Description,,DVO,,,,VAR2 Comparability Comments,,VAR2 UK Comparison Comments,,PUB,N,,,,,,,,1,,
+VAR3,4,VAR3 Title,,VAR3 Description,,DVO,,,,,,,,PUB,N,,,,,,,,1,,
 VAR_PRIV,5,VAR_PRIV Title,VAR_PRIV Title (Welsh),VAR_PRIV Description,VAR_PRIV Description (Welsh),DVO,People,TOPIC1,VAR_PRIV 2011,VAR_PRIV Comparability Comments,VAR_PRIV Comparability Comments (Welsh),VAR_PRIV UK Comparison Comments,VAR_PRIV Comparison Comments (Welsh),CLASS,Y,1,,,,,,,1,,
 GEO2,6,GEO2 Title,,GEO2 Description,,GEOG,,,,GEO2 Comparability Comments,,GEO2 UK Comparison Comments,,PUB,Y,3,G2,,GEO1 Theme,,GEO2 Coverage,,1,,
 GEO_PRIV,7,GEO_PRIV Title,,GEO_PRIV Description,,GEOG,,,,GEO_PRIV Comparability Comments,,GEO_PRIV UK Comparison Comments,,CLASS,Y,3,G_PRIV,,GEO_PRIV Theme,,GEO_PRIV Coverage,,1,,

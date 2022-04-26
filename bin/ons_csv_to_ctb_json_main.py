@@ -199,6 +199,7 @@ def build_ctb_datasets(databases, ctb_variables):
             'Source': {
                 'Source_Mnemonic': 'Census2021',
                 'Source_Description': 'The 2021 England and Wales Census',
+                'Version': '1',
             },
             'Version': '1'
         },
