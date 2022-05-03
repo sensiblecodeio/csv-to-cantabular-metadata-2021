@@ -1,0 +1,24 @@
+Variable_Mnemonic,Id,Variable_Keyword,Variable_Keyword_Welsh
+Family Composition,1,family,nheuluoedd
+Sex,2,sex,rhyw
+Sex,3,gender,rhyw
+Age,4,age,oedran
+Age,5,date of birth,Dyddiad Geni
+Marital Status,6,marital status,statws priodasol
+Student,7,student,myfyriwr
+Country of Birth,8,country of birth,Gwlad Geni
+Health,9,health,iechyd
+Ethnic Group,10,ethnic group,Grŵp Ethnig
+Ethnic Group,11,ethnicity,ethnigrwydd
+Religion,12,religion,crefydd
+Economic Activity,13,economy,economi
+Economic Activity,14,economic activity,Gweithgaredd economaidd
+Economic Activity,15,employed,gyflogedig
+Economic Activity,16,employee,cyflogai
+Economic Activity,17,unemployed,ddi-waith
+Occupation,18,occupation,ngalwedigaeth
+Occupation,19,job,swydd
+Industry,20,industry,ddiwydiant
+Hours worked per week,21,hours worked,oriau a weithiwyd
+Hours worked per week,22,full-time,llawn amser
+Hours worked per week,23,part-time,rhan amser

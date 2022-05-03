@@ -1,0 +1,17 @@
+Classification_Mnemonic,Variable_Mnemonic,Id,Classification_Label,Classification_Label_Welsh,Number_Of_Category_Items,Mnemonic_2011,Flat_Classification_Flag,Parent_Classification_Mnemonic,Security_Mnemonic,Signed_Off_Flag,Default_Classification_Flag,Version
+Residence Type,Residence Type,3,Residence Type,Math Preswyl,2,Residence Type,Y,,PUB,Y,Y,1
+Family Composition,Family Composition,4,Family Composition,Cyfansoddiad teuluol,7,Family Composition,Y,,PUB,Y,Y,1
+Population Base,Population Base,5,Population Base,Sylfaen Poblogaeth,3,Population Base,Y,,PUB,Y,Y,1
+Sex,Sex,6,Sex,Rhyw,2,Sex,Y,,PUB,Y,Y,1
+Age,Age,7,Age,Oedran,8,Age,Y,,PUB,Y,Y,1
+Marital Status,Marital Status,8,Marital Status,Statws priodasol,5,Marital Status,Y,,PUB,Y,Y,1
+Student,Student,9,Student,Myfyriwr,2,Student,Y,,PUB,Y,Y,1
+Country of Birth,Country of Birth,10,Country of Birth,Gwlad Geni,3,Country of Birth,Y,,PUB,Y,Y,1
+Health,Health,11,Health,Iechyd,6,Health,Y,,PUB,Y,Y,1
+Ethnic Group,Ethnic Group,12,Ethnic Group,Grŵp Ethnig,6,Ethnic Group,Y,,PUB,Y,Y,1
+Religion,Religion,13,Religion,Crefydd,10,Religion,Y,,PUB,Y,Y,1
+Economic Activity,Economic Activity,14,Economic Activity,Gweithgaredd economaidd,10,Economic Activity,Y,,PUB,Y,Y,1
+Occupation,Occupation,15,Occupation,Ngalwedigaeth,10,Occupation,Y,,PUB,Y,Y,1
+Industry,Industry,16,Industry,Ddiwydiant,13,Industry,Y,,PUB,Y,Y,1
+Hours worked per week,Hours worked per week,17,Hours worked per week,Oriau a weithir yr wythnos,5,Hours worked per week,Y,,PUB,Y,Y,1
+Approximated Social Grade,Approximated Social Grade,18,Approximated Social Grade,Gradd gymdeithasol amcangyfrifedig,5,Approximated Social Grade,Y,,PUB,Y,Y,1

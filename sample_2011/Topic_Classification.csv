@@ -1,0 +1,16 @@
+Classification_Mnemonic,Topic_Mnemonic,Id
+Residence Type,LHQ,1
+Family Composition,MAD,2
+Sex,MAD,3
+Age,MAD,4
+Marital Status,MAD,5
+Student,LHQ,6
+Country of Birth,MAD,7
+Health,HSC,8
+Ethnic Group,EILR,9
+Religion,EILR,10
+Economic Activity,LHQ,11
+Occupation,LHQ,12
+Industry,LHQ,13
+Hours worked per week,LHQ,14
+Approximated Social Grade,LHQ,15

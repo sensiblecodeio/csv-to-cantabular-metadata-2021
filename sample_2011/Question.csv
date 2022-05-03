@@ -1,0 +1,86 @@
+Question_Code,Id,Question_Label,Question_Label_Welsh,Reason_For_Asking_Question,Reason_For_Asking_Question_Welsh,Question_First_Asked_In_Year,Version
+QA1,1,A1: What type of accommodation is this?,A1: Pa fath o lety yw hwn?,This question was used as a filter to differentiate those people living in a household or in a communal establishment.,Defnyddiwyd y cwestiwn hwn fel hidlydd i wahaniaethu pobl sy'n byw mewn cartref neu mewn sefydliad cymunedol.,,1
+Q2,2,2: What is your sex?,2: Beth yw eich rhyw?,This important information is required to produce statistical breakdowns of the population by sex. It is also used for equality monitoring.,Mae angen y wybodaeth bwysig hon i gynhyrchu dadansoddiadau ystadegol o'r boblogaeth yn ôl rhyw. Fe'i defnyddir hefyd ar gyfer monitro cydraddoldeb.,1801,1
+Q3,3,3: What is your date of birth?,3: Beth yw eich dyddiad geni?,"This important information is needed to help analyse/interpret all other data.
+
+Age profiles and trends play an important part in influencing the resourcing and provision of services for particular groups of residents, for example children and older people.","Mae angen y wybodaeth bwysig hon i helpu i ddadansoddi / dehongli'r holl ddata arall.
+
+Mae proffiliau oedran a thueddiadau yn chwarae rhan bwysig wrth ddylanwadu ar adnoddau a darparu gwasanaethau i grwpiau penodol o drigolion, er enghraifft plant a phobl hŷn.",1801,1
+Q4,4,"4: On the 27 March 2011, what is your legal marital or same-sex civil partnership status?","4: Ar 27 Mawrth 2011, beth yw eich statws priodasol neu bartneriaeth sifil o'r un rhyw?","This information helps us to understand changing patterns of marriage, cohabitation and partnerships within households. It allows for the production of population estimates by marital/civil partnership status at national and local level. Along with other census data, this information also helps to classify households according to family type.
+
+Information about trends in marriage, separation and divorce is used for planning and resource allocation for housing and services. Together with information on relationships and housing, it helps assess levels of overcrowding.
+
+Since December 2005, same-sex couples in the UK have been able to form civil partnerships, a legal status that gives rights and responsibilities similar to that of marriage.","Mae'r wybodaeth hon yn ein helpu i ddeall patrymau newidiol priodas, cyd-fyw a phartneriaethau o fewn aelwydydd. Mae'n caniatáu ar gyfer cynhyrchu amcangyfrifon poblogaeth yn ôl statws priodasol / partneriaeth sifil ar lefel genedlaethol a lleol. Ynghyd â data cyfrifiad arall, mae'r wybodaeth hon hefyd yn helpu i ddosbarthu aelwydydd yn ôl y math o deulu.
+
+Defnyddir gwybodaeth am dueddiadau mewn priodas, gwahanu ac ysgariad ar gyfer cynllunio a dyrannu adnoddau ar gyfer tai a gwasanaethau. Ynghyd â gwybodaeth am berthnasoedd a thai, mae'n helpu i asesu lefelau gorlenwi.
+
+Ers mis Rhagfyr 2005, mae cyplau o'r un rhyw yn y DU wedi gallu ffurfio partneriaethau sifil, statws cyfreithiol sy'n rhoi hawliau a chyfrifoldebau tebyg i briodas.",1851,1
+Q7,5,7: Are you a schoolchild or student in full-time education?,7: Ydych chi'n ysgol ysgol neu'n fyfyriwr mewn addysg amser llawn?,"This information helps to identify students and schoolchildren in order to ensure they are counted as resident at their term-time addresses. Counting people at their term-time address is important because it helps to provide an accurate measure of the usually resident population. This is the basis used by central and local government for planning.
+
+The information on term-time addresses of students is also used to plan services and allocate resources, for example to analyse the demand for student accommodation (such as halls of residence and household accommodation) which has an impact on the overall demand for housing.","Mae'r wybodaeth hon yn helpu i nodi myfyrwyr a phlant ysgol er mwyn sicrhau eu bod yn cael eu cyfrif fel preswylydd yn eu cyfeiriadau yn ystod y tymor. Mae cyfrif pobl yn eu cyfeiriad yn ystod y tymor yn bwysig oherwydd ei fod yn helpu i ddarparu mesur cywir o'r boblogaeth breswyl fel arfer. Dyma'r sail a ddefnyddir gan lywodraeth ganolog a lleol ar gyfer cynllunio.
+
+Defnyddir y wybodaeth am gyfeiriadau yn ystod y tymor o fyfyrwyr hefyd i gynllunio gwasanaethau a dyrannu adnoddau, er enghraifft i ddadansoddi'r galw am lety myfyrwyr (megis neuaddau preswyl a llety cartref) sy'n cael effaith ar y galw cyffredinol am dai.",1851,1
+Q9,6,9: What is your country of birth?,9: Beth yw eich gwlad enedigol?,"This information identifies all long-term international migrants not identified by their response to question 21 (your address one year ago). Combined with other statistics, this information is used to produce international and national migration statistics, which are then used to produce population projections.
+
+These statistics are used to allocate resources and to develop and monitor policy, to assess the needs of particular groups in the population, for example those migrating from outside the EU; to analyse trends in migration; to forecast future migration patterns, and for the planning and provision of facilities and services.
+
+Also, when used in combination with information on ethnic group and religion, these statistics give a more detailed level of information about the cultural background of people at a local level. Additionally, answers to this question can help to identify groups not identified by the question on ethnic group.
+
+This information is also used in population estimates to make adjustments for fertility rates
+according to country of birth.","Mae'r wybodaeth hon yn nodi'r holl ymfudwyr rhyngwladol hirdymor na nodwyd eu hymateb i gwestiwn 21 (eich cyfeiriad flwyddyn yn ôl). Wedi'i gyfuno ag ystadegau eraill, defnyddir y wybodaeth hon i gynhyrchu ystadegau mudo rhyngwladol a chenedlaethol, a ddefnyddir wedyn i gynhyrchu rhagamcanion poblogaeth.
+
+Defnyddir yr ystadegau hyn i ddyrannu adnoddau ac i ddatblygu a monitro polisi, i asesu anghenion grwpiau penodol yn y boblogaeth, er enghraifft y rhai sy'n mudo o'r tu allan i'r UE; i ddadansoddi tueddiadau mewn mudo; Rhagweld patrymau mudo yn y dyfodol, ac ar gyfer cynllunio a darparu cyfleusterau a gwasanaethau.
+
+Hefyd, pan gaiff ei ddefnyddio ar y cyd â gwybodaeth am grŵp ethnig a chrefydd, mae'r ystadegau hyn yn rhoi lefel fanylach o wybodaeth am gefndir diwylliannol pobl ar lefel leol. Yn ogystal, gall atebion i'r cwestiwn hwn helpu i nodi grwpiau nad ydynt wedi'u nodi gan y cwestiwn ar grŵp ethnig.
+
+Defnyddir y wybodaeth hon hefyd mewn amcangyfrifon poblogaeth i wneud addasiadau ar gyfer cyfraddau ffrwythlondeb
+yn ôl gwlad enedigol.",1841,1
+Q13,7,13: How is your health in general?,13: Sut mae eich iechyd yn gyffredinol?,"On the basis that self-perceived poor health is a strong indicator of future use of the health service, analysis of this information aids government health resource allocation and service provision.
+
+This information also helps to develop and monitor policy on the delivery of health care, the reduction of health inequalities and the assessment of progress towards improving the general health of the population.","Ar y sail bod iechyd gwael hunan-ganfyddedig yn ddangosydd cryf o ddefnydd y gwasanaeth iechyd yn y dyfodol, dadansoddiad o'r wybodaeth hon yn cymhorthion gwybodaeth iechyd a darpariaeth gwasanaeth.
+
+Mae'r wybodaeth hon hefyd yn helpu i ddatblygu a monitro polisi ar ddarparu gofal iechyd, lleihau anghydraddoldebau iechyd ac asesu cynnydd tuag at wella iechyd cyffredinol y boblogaeth.",2001,1
+Q16,8,16: What is your ethnic group?,16: Beth yw eich grŵp ethnig?,"This information helps public bodies meet statutory obligations relating to race equality. It is also used for resource allocation and to develop and monitor policy on improving the life-chances for disadvantaged groups, including many ethnic minority groups.
+
+The statistics provide a better understanding of communities and are used for the government-wide race equality and community cohesion strategy, which seeks to improve race equality outcomes in areas such as housing, education, health and criminal justice for all groups across society.
+
+Additionally, the Ministry of Defence uses the information to provide a benchmark against which to measure ethnic minority recruitment and representation in the armed forces.","Mae'r wybodaeth hon yn helpu cyrff cyhoeddus i fodloni rhwymedigaethau statudol sy'n ymwneud â chydraddoldeb hiliol. Fe'i defnyddir hefyd ar gyfer dyrannu adnoddau ac i ddatblygu a monitro polisi ar wella cyfleoedd bywyd i grwpiau dan anfantais, gan gynnwys llawer o grwpiau lleiafrifoedd ethnig.
+
+Mae'r ystadegau yn darparu gwell dealltwriaeth o gymunedau ac fe'u defnyddir ar gyfer y strategaeth cydraddoldeb hiliol a chydlyniant cymunedol ledled y Llywodraeth, sy'n ceisio gwella canlyniadau cydraddoldeb hiliol mewn meysydd fel tai, addysg, iechyd a chyfiawnder troseddol ar gyfer pob grŵp ar draws cymdeithas.
+
+Yn ogystal, mae'r Weinyddiaeth Amddiffyn yn defnyddio'r wybodaeth i ddarparu meincnod i fesur recriwtio a chynrychiolaeth lleiafrifoedd ethnig yn y Lluoedd Arfog.",1991,1
+Q20,9,20: What is your religion?,20: Beth yw eich crefydd?,"This information reveals minority groups not identified by other census questions.
+
+The statistics help in developing and monitoring policy aimed at assessing the needs of population groups whose experiences of public services and social interaction, for example employment and education, may be different to those in other groups. This information is used to plan services and target resources, and allows public authorities to assess and tackle discrimination and social exclusion associated with religion.
+
+This information is also used by the NHS and local authorities to plan services for people from a wide range of religious backgrounds and to monitor their access to services, for example to inform policies on hospital chaplains or public literature and broadcasting.","Mae'r wybodaeth hon yn datgelu grwpiau lleiafrifol nad ydynt wedi'u nodi gan gwestiynau cyfrifiad eraill.
+
+Mae'r ystadegau yn helpu i ddatblygu a monitro polisi sydd â'r nod o asesu anghenion grwpiau poblogaeth y mae eu profiadau o wasanaethau cyhoeddus a rhyngweithio cymdeithasol, er enghraifft cyflogaeth ac addysg, yn wahanol i'r rhai mewn grwpiau eraill. Defnyddir y wybodaeth hon i gynllunio gwasanaethau a thargedu adnoddau, ac mae'n caniatáu i awdurdodau cyhoeddus asesu a mynd i'r afael â gwahaniaethu ac allgáu cymdeithasol sy'n gysylltiedig â chrefydd.
+
+Defnyddir y wybodaeth hon hefyd gan y GIG ac awdurdodau lleol i gynllunio gwasanaethau i bobl o ystod eang o gefndiroedd crefyddol ac i fonitro eu mynediad at wasanaethau, er enghraifft i lywio polisïau ar gaplaniaid ysbyty neu lenyddiaeth gyhoeddus a darlledu.",1851 and then 150 years later in 2001,1
+Q37,10,"37: At your workpace, what is (was) the main activity of your employer or business?","37: Yn eich gofod gwaith, beth yw (oedd) prif weithgaredd eich cyflogwr neu fusnes?","This information is used to assign a code to the industry an individual works in using the UK Standard Industrial Classification of Economic Activities (UKSIC). This enhances the quality of occupation coding and is required at a local level to understand economic performance and analyse local labour markets. It also provides information for policy development and monitoring land use, transport and housing needs.
+
+The statistics show trends in employment by industry and help planners to develop or revise employment land policies. For instance, there might be an increased demand for land for retail and office usage but decreasing demand for traditional manufacturing industries. In combination with information about occupation, this information will be particularly useful for economic development, regeneration and monitoring labour market trends.
+
+Information supplied by these questions is used as a base for forecasts of employment (by sector, occupation and industry) and for transport planning. It is also used to identify any associations between the characteristics of individuals and industry, for example to highlight a concentration of groups of people in industries associated with low-paid employment.","Defnyddir y wybodaeth hon i neilltuo cod i'r diwydiant mae unigolyn yn gweithio i ddefnyddio dosbarthiad diwydiannol safonol y DU o weithgareddau economaidd (UKSIC). Mae hyn yn gwella ansawdd codio meddiannaeth ac mae ei angen ar lefel leol i ddeall perfformiad economaidd a dadansoddi marchnadoedd llafur lleol. Mae hefyd yn darparu gwybodaeth ar gyfer datblygu polisi a monitro defnydd tir, trafnidiaeth ac anghenion tai.
+
+Mae'r ystadegau'n dangos tueddiadau mewn cyflogaeth gan ddiwydiant ac yn helpu cynllunwyr i ddatblygu neu adolygu polisïau tir cyflogaeth. Er enghraifft, efallai y bydd galw cynyddol am dir ar gyfer defnydd manwerthu a swyddfa ond yn gostwng y galw am ddiwydiannau gweithgynhyrchu traddodiadol. Ar y cyd â gwybodaeth am alwedigaeth, bydd y wybodaeth hon yn arbennig o ddefnyddiol ar gyfer datblygu economaidd, adfywio a monitro tueddiadau'r farchnad lafur.
+
+Defnyddir gwybodaeth a ddarparwyd gan y cwestiynau hyn fel canolfan ar gyfer rhagolygon cyflogaeth (yn ôl sector, galwedigaeth a diwydiant) ac ar gyfer cynllunio trafnidiaeth. Fe'i defnyddir hefyd i nodi unrhyw gymdeithasau rhwng nodweddion unigolion a diwydiant, er enghraifft i dynnu sylw at grynodiad o grwpiau o bobl mewn diwydiannau sy'n gysylltiedig â chyflogaeth â chyflog isel.",1911,1
+Q42,11,"42: In your main job, how many hours a week (including paid and unpaid overtime) do you usually work?","42: Yn eich prif swydd, faint o oriau yr wythnos (gan gynnwys goramser a dalwyd a di-dâl) ydych chi fel arfer yn gweithio?","This information is used to identify working patterns in local areas, to target resources and to identify potential labour supply.
+
+The statistics give an understanding, at a local level, of likely travel patterns and times. They can be used to identify the requirements for public transport, for example in order to reduce reliance on private transport.
+
+The statistics show whether people are employed full-time or part-time. This is used to identify the effectiveness of economic regeneration projects and policy.
+
+Local authorities are responsible for putting in place emergency plans. The evacuation of any geographic area requires a comprehensive understanding of the numbers of people involved at any one time.
+
+The information is used to calculate indicators of quality of life. These indicators are used to analyse the resident workforce by occupation and hours worked. They show whether lower-skilled people are more likely to work longer hours (combined with lower wages) than higher-skilled people, and therefore whether they have a worse quality of life.","Defnyddir y wybodaeth hon i nodi patrymau gwaith mewn ardaloedd lleol, i dargedu adnoddau ac i nodi cyflenwad llafur posibl.
+
+Mae'r ystadegau'n rhoi dealltwriaeth, ar lefel leol, o batrymau ac amserau teithio tebygol. Gellir eu defnyddio i nodi'r gofynion ar gyfer trafnidiaeth gyhoeddus, er enghraifft er mwyn lleihau dibyniaeth ar drafnidiaeth breifat.
+
+Mae'r ystadegau'n dangos a yw pobl yn cael eu cyflogi'n llawn amser neu'n rhan-amser. Defnyddir hwn i nodi effeithiolrwydd prosiectau a pholisi adfywio economaidd.
+
+Mae awdurdodau lleol yn gyfrifol am roi cynlluniau argyfwng ar waith. Mae gwacáu unrhyw ardal ddaearyddol yn gofyn am ddealltwriaeth gynhwysfawr o nifer y bobl sy'n cymryd rhan ar unrhyw un adeg.
+
+Defnyddir y wybodaeth i gyfrifo dangosyddion ansawdd bywyd. Defnyddir y dangosyddion hyn i ddadansoddi'r gweithlu preswyl trwy alwedigaeth ac oriau a weithir. Maent yn dangos a yw pobl sydd â sgiliau is yn fwy tebygol o weithio oriau hirach (ynghyd â chyflogau is) na phobl uwch-fedrus, ac felly a oes ganddynt ansawdd bywyd gwaeth.",1961,1

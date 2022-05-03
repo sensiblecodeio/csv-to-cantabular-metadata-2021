@@ -1,0 +1,531 @@
+Id,Variable_Mnemonic,Variable_Title,Variable_Title_Welsh,Variable_Description,Variable_Description_Welsh,Variable_Mnemonic_2011,Comparability_Comments,Comparability_Comments_Welsh,Uk_Comparison_Comments,Uk_Comparison_Comments_Welsh,Signed_Off_Flag,Security_Mnemonic,Variable_Type_Code,Topic_Mnemonic,Number_Of_Classifications,Statistical_Unit,Geographic_Abbreviation,Geographic_Abbreviation_Welsh,Geographic_Theme,Geographic_Theme_Welsh,Geographic_Coverage,Geographic_Coverage_Welsh,Version
+1,Region,Region,Rhanbarth,"The geographic region in which a person lives, derived from the address of their household or communal establishment.","Y rhanbarth daearyddol y mae person yn byw ynddo, yn deillio o gyfeiriad eu cartref neu sefydliad cymunedol.",Region,,,,,,PUB,GEOG,,1,People,RGN,,Administrative,Gweinyddol,England and Wales,Cymru a Lloegr,1
+2,Country,Country,Ngwlad,"The country - either England or Wales - in which a person lives, derived from the region they live in.","Mae'r wlad - naill ai Cymru neu Loegr - lle mae person yn byw, yn deillio o'r rhanbarth y mae'n byw ynddo.",Country,,,,,,PUB,GEOG,,1,People,CTRY,,Administrative,Gweinyddol,England and Wales,Cymru a Lloegr,1
+3,Residence Type,Residence Type,Math Preswyl,"This defines the type of residence that a person lives in. It categorises people as living in a household or living in a communal establishment. People who filled in the normal household questionnaire were recorded as living in a household.  Those that filled in an individual questionnaire were asked what type of accommodation they lived in, i.e. whether it was a household or a communal establishment.","Mae hyn yn diffinio'r math o breswylfa y mae person yn byw ynddi. Mae'n categoreiddio pobl fel rhai sy'n byw mewn cartref neu'n byw mewn sefydliad cymunedol. Cofnodwyd bod pobl a lenwodd holiadur arferol y cartref yn byw mewn cartref. Gofynnwyd i'r rhai a lenwodd holiadur unigol pa fath o lety yr oeddent yn byw ynddo, h.y. a oedd yn aelwyd neu'n sefydliad cymunedol.",Residence Type,,,,,,PUB,SV,LHQ,1,People,,,,,,,1
+4,Family Composition,Family Composition,Cyfansoddiad teuluol,"Family type is the classification of families into different types distinguished by the presence, absence and type of couple relationship: whether a married couple family, a same-sex civil partnership family, a cohabiting couple family, or a lone parent family.","Math o deulu yw dosbarthiad teuluoedd i wahanol fathau sy'n cael eu gwahaniaethu gan bresenoldeb, absenoldeb a math o berthynas cwpl: boed yn deulu pâr priod, teulu partneriaeth sifil o'r un rhyw, teulu pâr sy'n cyd-fyw, neu deulu rhiant sengl.",Family Composition,,,,,,PUB,DVO,MAD,1,People,,,,,,,1
+5,Population Base,Population Base,Sylfaen Poblogaeth,The main census population base into which a person falls.,Prif sylfaen poblogaeth y cyfrifiad y mae person yn syrthio iddi.,Population Base,,,,,,PUB,DVO,,1,People,,,,,,,1
+6,Sex,Sex,Rhyw,The classification of a person as either male or female.,Dosbarthiad person naill ai'n wryw neu'n fenyw.,Sex,,,"Indicator of comparability: Highly comparable
+
+Data collected
+- Question 2 (on Individual questions) ‘What is your sex?’ (same wording for all countries).
+
+Data output
+- A breakdown of males and females is included in many of the univariate and multivariate outputs.
+
+Are UK outputs available?
+Yes.","Dangosydd cymaroldeb: Yn gymharol iawn
+
+Data a gasglwyd
+- Cwestiwn 2 (ar gwestiynau unigol) 'Beth yw eich rhyw?' (Yr ​​un geiriad ar gyfer pob gwlad).
+
+Allbwn Data
+- Mae dadansoddiad o wrywod a benywod yn cael ei gynnwys mewn llawer o'r allbynnau anarferol ac aml-ddirprwy.
+
+A yw allbynnau'r DU ar gael?
+Ydw.",,PUB,SV,MAD,1,People,,,,,,,1
+7,Age,Age,Oedran,"Age is derived from the date of birth question and is a person's age at their last birthday, at 27 March 2011. Dates of birth that imply an age over 115 are treated as invalid and the person's age is imputed. Infants less than one year old are classified as 0 years of age.","Mae oedran yn deillio o'r cwestiwn dyddiad geni ac mae'n oedran unigolyn ar ei ben-blwydd olaf, ar 27 Mawrth 2011. Mae dyddiadau geni sy'n awgrymu oedran dros 115 yn cael eu trin fel rhai annilys ac mae oedran yr unigolyn yn cael ei osod. Mae babanod llai na blwydd oed yn cael eu dosbarthu fel 0 oed.",Age,,,"Indicator of comparability: Highly comparable
+
+Data collected:
+- Question 3 (on Individual questions) 'What is your date of birth?' (same wording for all countries).
+
+Data output:
+- In all countries, information on date of birth enables age (in years) to be derived.
+- Age, which is derived from date of birth, is used in many of the
+univariate and multivariate outputs.
+
+Are UK outputs available?
+N/A","Dangosydd cymaroldeb: Yn gymharol iawn
+
+Data a gasglwyd:
+- Cwestiwn 3 (ar gwestiynau unigol) 'Beth yw eich dyddiad geni?' (yr un geiriad ar gyfer pob gwlad).
+
+Allbwn data:
+- Ym mhob gwlad, mae gwybodaeth ar ddyddiad geni yn galluogi deillio oedran (mewn blynyddoedd).
+- Oed, sy'n deillio o ddyddiad geni, yn cael ei ddefnyddio mewn llawer o'r
+Allbynnau anwahanadwy ac amlochrog.
+
+A yw allbynnau'r DU ar gael?
+Amherthnasol",,PUB,DVO,MAD,1,People,,,,,,,1
+8,Marital Status,Marital Status,Statws priodasol,"Marital and civil partnership status classifies an individual according to their legal marital or registered same-sex civil partnership status as at census day, 27 March 2011. This topic is the equivalent of the 2001 Census topic “Marital status”, but has undergone significant revision to take account of the Civil Partnership Act which came into force on 5 December 2005.
+
+Marital and civil partnership states include: married/in a registered same-sex civil partnership; separated (but still legally married/in a registered same-sex civil partnership); divorced/formerly in a registered same-sex civil partnership; or widowed/surviving same-sex civil partner.
+
+Although the term “single” is widely used to cover people in a number of states such as divorced or separated it is not a legally recognised status and was not an option on the census questionnaire. In census results the term “single” is used to refer only to someone who has never been married or in a registered same-sex civil partnership, which were options on the census questionnaire.","Mae statws priodasol a phartneriaeth sifil yn dosbarthu unigolyn yn ôl eu statws partneriaeth sifil cyfreithiol priodasol neu gofrestredig o'r un rhyw ar ddiwrnod y cyfrifiad, 27 Mawrth 2011. Mae'r pwnc hwn yn cyfateb i bwnc Cyfrifiad 2001 “Statws priodasol”, ond mae wedi cael ei adolygu'n sylweddol i ystyried y Ddeddf Partneriaeth Sifil a ddaeth i rym ar 5 Rhagfyr 2005.
+
+Mae gwladwriaethau priodasol a phartneriaeth sifil yn cynnwys: priodi/mewn partneriaeth sifil gofrestredig o'r un rhyw; wedi gwahanu (ond yn dal i briodi'n gyfreithiol/mewn partneriaeth sifil gofrestredig o'r un rhyw); wedi ysgaru/gynt mewn partneriaeth sifil gofrestredig o'r un rhyw; neu bartner sifil gwedd/goroesi o'r un rhyw.
+
+Er bod y term “sengl” yn cael ei ddefnyddio'n helaeth i gynnwys pobl mewn nifer o wladwriaethau megis wedi ysgaru neu wahanu, nid yw'n statws a gydnabyddir yn gyfreithiol ac nid oedd yn opsiwn ar holiadur y cyfrifiad. Yng nghanlyniadau'r cyfrifiad, defnyddir y term “sengl” i gyfeirio at rywun nad yw erioed wedi bod yn briod neu mewn partneriaeth sifil gofrestredig o'r un rhyw yn unig, a oedd yn opsiynau ar holiadur y cyfrifiad.",Marital Status,,,"Indicator of comparability: Highly comparable
+
+Data collected:
+- Question 4 (on Individual questions) 'On 27 March 2011, what is your legal marital or same-sex civil partnership status?' (same wording for all countries).
+
+Data output:
+- Univariate and multivariate outputs on marital and civil partnership status are available, at various levels of geography, for all countries.
+- In order to prevent disclosure of individuals’ information, for some outputs, particularly at lower levels of geography, data are provided as aggregated categories.
+
+Are UK outputs available?
+Yes.","Dangosydd cymaroldeb: Yn gymharol iawn
+
+Data a gasglwyd:
+- Cwestiwn 4 (ar gwestiynau unigol) 'Ar 27 Mawrth 2011, beth yw eich statws partneriaeth sifil priodasol neu un rhyw?' (yr un geiriad ar gyfer pob gwlad).
+
+Allbwn data:
+- Mae allbynnau anwahanol ac aml-amrywiol ar statws priodasol a phartneriaeth sifil ar gael, ar wahanol lefelau daearyddiaeth, ar gyfer pob gwlad.
+- Er mwyn atal datgelu gwybodaeth unigolion, ar gyfer rhai allbynnau, yn enwedig ar lefelau is o ddaearyddiaeth, darperir data fel categorïau agregedig.
+
+A yw allbynnau'r DU ar gael?
+Ydw.",,PUB,SV,MAD,1,People,,,,,,,1
+9,Student,Student,Myfyriwr,"Schoolchildren and students in full-time education studying away from their family home are treated as usually resident at their term-time address. Basic demographic information only (name, sex, age, marital status and relationship) is collected at their non term-time address (their “home” or “vacation”address). The information on families, household size and household composition for their non term-time address does not include them.","Mae plant ysgol a myfyrwyr mewn addysg amser llawn sy'n astudio i ffwrdd o'u cartref teuluol yn cael eu trin fel arfer yn byw yn eu cyfeiriad yn ystod y tymor. Cesglir gwybodaeth ddemograffig sylfaenol yn unig (enw, rhyw, oedran, statws priodasol a pherthynas) yn eu cyfeiriad nad yw'n ystod y tymor (eu cyfeiriad “cartref” neu “wyliau”). Nid yw'r wybodaeth am deuluoedd, maint aelwydydd a chyfansoddiad y cartref ar gyfer eu cyfeiriad nad ydynt yn ystod y tymor yn eu cynnwys.",Student,,,"Indicator of comparability: Highly comparable
+
+Data collected:
+- Question 7 (England, Wales), Question 5 (Northern Ireland, Scotland): ‘Are you a schoolchild or student in full-time education?’ (same wording for all countries).
+
+The question was asked for all countries with ‘Yes’ and ‘No’ tick boxes provided. Respondents who answered yes to this question were then asked the term-time address question.
+
+Data output:
+Univariate counts of schoolchildren and students are available for all countries. These have been published for the UK as part of KS501UK.
+
+Multivariate outputs have also been published.
+
+Are UK outputs available?
+Yes.","Dangosydd cymaroldeb: Yn gymharol iawn
+
+Data a gasglwyd:
+- Cwestiwn 7 (Cymru, Lloegr), Cwestiwn 5 (Gogledd Iwerddon, yr Alban): 'Ydych chi'n ysgol ysgol neu'n fyfyriwr mewn addysg amser llawn?' (Yr ​​un geiriad ar gyfer pob gwlad).
+
+Gofynnwyd y cwestiwn i bob gwlad gyda blychau tic 'ie' a 'na' a ddarperir. Yna gofynnwyd i ymatebwyr a atebodd ie i'r cwestiwn hwn y cwestiwn cyfeiriad yn ystod y tymor.
+
+Allbwn data:
+Mae cyfrifiadau anffafriol o blant ysgol a myfyrwyr ar gael i bob gwlad. Mae'r rhain wedi'u cyhoeddi ar gyfer y DU fel rhan o CA51UK.
+
+Cyhoeddwyd allbynnau aml-amrywiol hefyd.
+
+A yw allbynnau'r DU ar gael?
+Ydw.",,PUB,SV,LHQ,1,People,,,,,,,1
+10,Country of Birth,Country of Birth,Gwlad Geni,"Country of birth is the country in which a person was born. The country of birth question included six tick-box responses – one for each of the four parts of the UK, one for the Republic of Ireland, and one for “elsewhere”. Where a person ticked “elsewhere”, they were asked to write in the current name of the country in which they were born. Responses are assigned codes based on the National Statistics Country Classification.
+
+The grouping of countries within the classification is broadly regional, but takes into account the grouping of European Union (EU) countries. Countries in the EU are grouped into those that were EU members in March 2001, and those that became members (accession countries) between April 2001 and March 2011 as part of the EU enlargement process.","Gwlad geni yw'r wlad lle cafodd person ei eni. Roedd y cwestiwn gwlad geni yn cynnwys chwe ymateb blwch ticio - un ar gyfer pob un o bedair rhan y DU, un ar gyfer Gweriniaeth Iwerddon, ac un ar gyfer “mewn mannau eraill”. Pan oedd person yn ticio “mewn mannau eraill”, gofynnwyd iddo ysgrifennu yn enw presennol y wlad y cawsant eu geni ynddi. Neilltuir codau i'r ymatebion yn seiliedig ar y Dosbarthiad Gwlad Ystadegau Gwladol.
+
+Mae grwpio gwledydd o fewn y dosbarthiad yn rhanbarthol yn fras, ond mae'n ystyried grwpio gwledydd yr Undeb Ewropeaidd (UE). Mae gwledydd yn yr UE wedi'u grwpio yn rhai a oedd yn aelodau o'r UE ym mis Mawrth 2001, a'r rhai a ddaeth yn aelodau (gwledydd sy'n derbyn) rhwng Ebrill 2001 a Mawrth 2011 fel rhan o broses ehangu'r UE.",Country of Birth,,,"Indicator of comparability: Highly comparable
+
+Data collected:
+- Question 9 (England, Wales), Question 7 (Northern Ireland,
+Scotland): 'What is your country of birth?' (same wording for all
+countries)
+- Tick-box categories are the same with only the ordering being different between the questionnaires.
+
+Data output:
+Univariate and multivariate outputs on country of birth are available, at various levels of geography, for all countries.
+
+Responses from the country of birth question were assigned codes based on the National Statistics Country Classification.
+
+Outputs for all countries are provided for ‘England’, ‘Wales’, ‘Scotland’, ‘Northern Ireland’ and ‘Republic of Ireland’. Inclusion of other countries of birth is determined by country specific requirements, user needs and statistical disclosure control. As a result, there are differences in outputs and output categories across countries.
+
+For all countries, where possible, outputs are provided to the most detailed classification.
+
+Users should be aware that for some outputs there are differences as to where certain countries of birth are included in the classification:
+- 'United Kingdom not otherwise specified' may appear as its own category for England and Wales and for 'Other EU' for Northern Ireland and Scotland outputs.
+- ‘Ireland (not otherwise specified)’ may be included under 'Ireland' for England and Wales outputs and under 'Other EU' for Northern Ireland and Scotland.
+- ‘Cyprus (part not specified)’ may be included under ‘within the EU’ for England and Wales outputs and ‘Outside the EU’ for Northern Ireland and Scotland.
+- ‘Czechoslovakia (part not specified)’ may be captured under ‘outside the EU’ for Northern Ireland Key Stats (KS) table only, but included under ‘Other EU: Accession countries’ for England, Wales and Scotland.
+- Tables provide metadata to guide the user.
+
+Are UK outputs available?
+Yes.
+
+Table QS203UK Country of Birth has been published. The grouping of countries within the classification used is broadly regional, but takes into account the grouping of European
+Union (EU) countries. The level of detail presented in this table has been determined by the level of country of birth detail available in the three specific tables on country of birth
+QS203EW (England and Wales), QS203SC (Scotland) and QS208NI (Northern Ireland).","Dangosydd cymaroldeb: Yn gymharol iawn
+
+Data a gasglwyd:
+- Cwestiwn 9 (Cymru, Lloegr), Cwestiwn 7 (Gogledd Iwerddon,
+Yr Alban): 'Beth yw eich gwlad enedigol?' (yr un geiriad i bawb
+gwledydd)
+- Mae categorïau ticio-bocs yr un fath â dim ond yr archebu yn wahanol rhwng yr holiaduron.
+
+Allbwn data:
+Mae allbynnau ansicr ac aml-amrywiol ar wlad enedigol ar gael, ar wahanol lefelau o ddaearyddiaeth, ar gyfer pob gwlad.
+
+Cafodd ymatebion o'r Cwestiwn Gwlad Geni eu neilltuo yn seiliedig ar Ddosbarthiad Gwlad Ystadegau Gwladol.
+
+Darperir allbynnau ar gyfer pob gwlad ar gyfer 'Lloegr', 'Cymru', 'Scotland', 'Gogledd Iwerddon' a 'Gweriniaeth Iwerddon'. Pennir cynnwys gwledydd geni eraill yn ôl gofynion penodol gwlad, anghenion defnyddwyr a rheolaeth datgelu ystadegol. O ganlyniad, mae gwahaniaethau mewn allbynnau a chategorïau allbwn ar draws gwledydd.
+
+Ar gyfer pob gwlad, lle bo modd, darperir allbynnau i'r dosbarthiad mwyaf manwl.
+
+Dylai defnyddwyr fod yn ymwybodol, ar gyfer rhai allbynnau mae gwahaniaethau ynghylch lle mae rhai gwledydd geni yn cael eu cynnwys yn y dosbarthiad:
+- Gall 'Y Deyrnas Unedig heb ei nodi fel arall' ymddangos fel ei gategori ei hun ar gyfer Cymru a Lloegr ac ar gyfer 'UE arall' ar gyfer allbynnau Gogledd Iwerddon a'r Alban.
+- Gall 'Iwerddon (heb ei nodi fel arall)' gael ei gynnwys o dan 'Iwerddon' ar gyfer Allbynnau Cymru a Lloegr ac o dan 'UE arall' ar gyfer Gogledd Iwerddon a'r Alban.
+- Gellir cynnwys 'Cyprus (rhan heb ei nodi)' o dan 'o fewn yr UE' ar gyfer allbynnau Cymru a Lloegr a 'thu allan i'r UE' ar gyfer Gogledd Iwerddon a'r Alban.
+- Gellir dal 'Tsiecoslofacia (rhan heb ei nodi)' o dan 'y tu allan i'r UE' ar gyfer tabl Ystadegau Allweddol Gogledd Iwerddon (CA) yn unig, ond a gynhwysir o dan 'Gwledydd eraill yr UE: Gwledydd Derbyn' ar gyfer Cymru, Lloegr a'r Alban.
+- Tablau yn darparu metadata i arwain y defnyddiwr.
+
+A yw allbynnau'r DU ar gael?
+Ydw.
+
+Cyhoeddwyd tabl QS203UK gwlad enedigol. Mae grwpio gwledydd o fewn y dosbarthiad a ddefnyddiwyd yn rhanbarthol yn fras, ond yn ystyried grwpio Ewrop
+Gwledydd yr Undeb (UE). Mae lefel y manylder a gyflwynir yn y tabl hwn wedi cael ei bennu gan lefel y wlad genedigaethau manylion sydd ar gael yn y tri tablau penodol ar wlad geni
+QS203EW (Cymru a Lloegr), QS203SC (Yr Alban) a QS208NI (Gogledd Iwerddon).",,PUB,SV,MAD,1,People,,,,,,,1
+11,Health,Health,Iechyd,"General health is a self-assessment of a person’s general state of health. People were asked to assess whether their health was very good, good, fair, bad or very bad. This assessment is not based on a person's health over any specified period of time.","Mae iechyd cyffredinol yn hunanasesiad o gyflwr iechyd cyffredinol person. Gofynnwyd i bobl asesu a oedd eu hiechyd yn dda iawn, yn dda, yn deg, yn ddrwg neu'n ddrwg iawn. Nid yw'r asesiad hwn yn seiliedig ar iechyd person dros unrhyw gyfnod penodol o amser.",Health,,,"Indicator of comparability: Highly comparable
+
+Data collected:
+- Question 13 (England, Wales), Question 24 (Northern Ireland), Question 19 (Scotland): ‘How is your health in general?’
+(same wording for all countries)
+- This question and tick-box categories are the same for all countries.
+
+Data output:
+- Univariate and multivariate outputs are available on general health, at various levels of geography, for all countries.
+
+Are UK outputs available?
+Yes.","Dangosydd cymaroldeb: Yn gymharol iawn
+
+Data a gasglwyd:
+- Cwestiwn 13 (Cymru, Lloegr), Cwestiwn 24 (Gogledd Iwerddon), Cwestiwn 19 (Yr Alban): 'Sut mae eich iechyd yn gyffredinol?'
+(yr un geiriad ar gyfer pob gwlad)
+- Mae'r categorïau cwestiwn a blwch ticio yr un fath ar gyfer pob gwlad.
+
+Allbwn data:
+- Mae allbynnau anffafriol ac aml-amrywiol ar gael ar iechyd cyffredinol, ar wahanol lefelau daearyddiaeth, ar gyfer pob gwlad.
+
+A yw allbynnau'r DU ar gael?
+Ydw.",,PUB,SV,HSC,1,People,,,,,,,1
+12,Ethnic Group,Ethnic Group,Grŵp Ethnig,Ethnic group classifies people according to their own perceived ethnic group and cultural background.,Mae grŵp ethnig yn dosbarthu pobl yn ôl eu grŵp ethnig canfyddedig eu hunain a'u cefndir diwylliannol.,Ethnic Group,,,"Indicator of comparability: Broadly comparable
+
+Data collected:
+- Question 16 (England, Wales), Question 16 (Northern Ireland), Question 15 (Scotland): ‘What is your ethnic group?’
+(same wording for all countries).
+
+This question collected information on ethnic group, which classifies people according to their own perceived ethnic group and cultural background.
+
+All countries instructed respondents to tick one box only. In addition, for England, Wales and Scotland, respondents were advised to tick one box ‘to best describe your ethnic
+group or background’, and provided with guidance on how to answer the question based on the structure of responses under section headings.
+
+Due to country specific requirements and user needs there are differences in question layout, ethnic group categories and labelling, category allocation and data collected. For
+example:
+- For some ethnic groups, some countries provide a specific tick box, whilst other countries have the option for allowing this ethnic group to be written in. For example, Scotland was the only country to include a ‘Polish’ tick box and Northern Ireland was the only country not to include an ‘Arab’ tick box, but respondents had the option to write in these ethnic groups for all countries.
+- Some response options were more limited, for example, Northern Ireland had a tick box for ‘White’, whilst England, Wales and Scotland had separate tick boxes for ‘White British’, ‘White Irish’ etc.
+- Some responses for some countries had geographical definitions, for example ‘African’ whilst others specify a colour prior to this, for example ‘Black / African / Caribbean / Black British’
+
+Data outputs:
+Univariate and multivariate outputs on ethnic group are available, at various levels of geography, for all countries.
+
+Each country has its own ethnic group classification.
+
+Due to country specific differences in data collected, question layout and response categories for the ethnic group question, along with country specific data processing rules, some responses are not directly comparable.","Dangosydd cymaroldeb: yn gymharol debyg
+
+Data a gasglwyd:
+- Cwestiwn 16 (Cymru, Lloegr), Cwestiwn 16 (Gogledd Iwerddon), Cwestiwn 15 (Yr Alban): 'Beth yw eich grŵp ethnig?'
+(yr un geiriad ar gyfer pob gwlad).
+
+Casglodd y cwestiwn hwn wybodaeth am grŵp ethnig, sy'n dosbarthu pobl yn ôl eu grŵp ethnig canfyddedig eu hunain a chefndir diwylliannol.
+
+Roedd pob gwlad yn cyfarwyddo ymatebwyr i dicio un blwch yn unig. Yn ogystal, ar gyfer Cymru, Lloegr a'r Alban, cynghorwyd ymatebwyr i dicio un blwch 'i ddisgrifio orau eich ethnigrwydd
+grŵp neu gefndir ', ac yn rhoi arweiniad ar sut i ateb y cwestiwn yn seiliedig ar strwythur yr ymatebion o dan benawdau adran.
+
+Oherwydd gofynion penodol y wlad ac anghenion defnyddwyr mae gwahaniaethau yn y cynllun cwestiwn, categorïau grŵp ethnig a labelu, dyrannu categori a data a gasglwyd. Am
+Enghraifft:
+- Ar gyfer rhai grwpiau ethnig, mae rhai gwledydd yn darparu blwch ticio penodol, tra bod gan wledydd eraill yr opsiwn ar gyfer caniatáu i'r grŵp ethnig hwn gael ei ysgrifennu i mewn. Er enghraifft, yr Alban oedd yr unig wlad i gynnwys blwch ticio 'Pwylaidd' a Gogledd Iwerddon oedd Yr unig wlad i beidio â chynnwys blwch ticio 'Arabaidd', ond roedd gan ymatebwyr yr opsiwn i ysgrifennu yn y grwpiau ethnig hyn ar gyfer pob gwlad.
+- Roedd rhai opsiynau ymateb yn fwy cyfyngedig, er enghraifft, roedd gan Ogledd Iwerddon flwch ticio ar gyfer 'gwyn', tra bod gan Gymru, Lloegr a'r Alban flychau ticio ar wahân ar gyfer 'Gwyn Prydeinig', 'Gwyn Gwyddelig' ac ati.
+- Roedd gan rai ymatebion i rai gwledydd ddiffiniadau daearyddol, er enghraifft 'Affricanaidd' tra bod eraill yn nodi lliw cyn hyn, er enghraifft 'Du / Affricanaidd / Caribïaidd / Du Prydeinig'
+
+Allbynnau Data:
+Mae allbynnau anffafriol ac amlochrog ar grŵp ethnig ar gael, ar wahanol lefelau o ddaearyddiaeth, ar gyfer pob gwlad.
+
+Mae gan bob gwlad ei dosbarthiad grŵp ethnig ei hun.
+
+Oherwydd gwahaniaethau penodol i wlad mewn data a gasglwyd, cynllun cwestiwn ac ymateb categorïau ar gyfer y cwestiwn grŵp ethnig, ynghyd â rheolau prosesu data penodol yn benodol, nid yw rhai ymatebion yn cael eu cymharu'n uniongyrchol.",,PUB,DVO,EILR,1,People,,,,,,,1
+13,Religion,Religion,Crefydd,"The voluntary question on religion in the 2011 Census was intended to capture people's religious affiliation and identification at the time of the Census irrespective of whether they practised or believed in that religion or how important it was in their lives.
+
+If a person had no religion then the first of a series of tick boxes could be selected. Care should be taken when using these data not to infer, or allow the inference by others, that the practice of a religion or specific religious activities that are expected of believers has been measured. Unlike other census questions where missing answers are imputed, this question was voluntary, and where no answer was provided the response is categorised as 'not stated'.","Bwriad y cwestiwn gwirfoddol ar grefydd yng Nghyfrifiad 2011 oedd dal cysylltiad crefyddol pobl a'u hadnabod adeg y Cyfrifiad, ni waeth a oeddent yn ymarfer neu'n credu yn y grefydd honno neu pa mor bwysig oedd hi yn eu bywydau.
+
+Os nad oedd gan berson grefydd yna gellid dewis y cyntaf o gyfres o flychau ticio. Dylid bod yn ofalus wrth ddefnyddio'r data hyn i beidio â chasglu, neu ganiatáu i'r casgliad gan eraill, fod arfer crefydd neu weithgareddau crefyddol penodol a ddisgwylir gan gredinwyr wedi'i fesur. Yn wahanol i gwestiynau eraill y cyfrifiad lle mae atebion coll yn cael eu nodi, roedd y cwestiwn hwn yn wirfoddol, a lle na ddarparwyd ateb, caiff yr ymateb ei gategoreiddio fel 'heb ei ddatganu'.",Religion,,,"Indicator of comparability: Not comparable
+
+Data collected:
+- Question 20 (England, Wales) ‘What is your religion?’
+- Question 17 (Northern Ireland) ‘What religion, religious denomination or body do you belong to?’
+- Question 13 (Scotland): Same as Northern Ireland
+
+Whilst all countries asked a question on religion, different concepts were measured due to country specific user requirements and consistency with previous censuses:
+- A question on affiliation, ‘What is your religion?’, was asked for England and Wales.
+- A question on belonging, ‘What religion, religious denomination or body do you belong to?’ was asked for Scotland and Northern Ireland.
+
+Tick-box categories also varied across countries, in order to reflect country-specific user requirements and the largest denominations by population in each country:
+- England and Wales: all Christian denominations were captured under the one ‘Christian’ tick box. Separate tick boxes were available for the remaining main religions, with an option to write in a religion.
+- Scotland: three Christian tick boxes were available. Like England and Wales, there were separate tick boxes available for the remaining main religions in addition to the option to write in a religion.
+- Northern Ireland: tick boxes provided for Christian denominations only, all other religions were captured as write-in responses.
+
+In addition, all countries provided the following options:
+- Tick box to record having no religion.
+- To make the question voluntary, in accordance with the provisions of the Census Acts.
+
+Data outputs:
+Univariate and multivariate outputs are available on religion, at various levels of geography, for all countries.
+
+Outputs differ across countries due to the differing information collected, for example, Northern Ireland and Scotland outputs include more detail for Christian religions, compared to England and Wales.
+
+Where countries did not have a dedicated tick box for a religion and this was written in, counts can still be extracted in order to produce outputs, for example, Hindus in Northern Ireland.
+
+Unlike other census questions where missing answers are imputed, as this question was voluntary, where no answer was provided the response is categorised as “not stated”.
+
+Scotland have published table KS209SCa with the same religion output categories to provide a harmonised version to England and Wales outputs. Northern Ireland also produced a full detail religion table QS218NI which includes all religions with a count of 10 or more responses. However, where users choose to compare information on religion across countries, they must be aware that they are comparing different concepts and do so with caution. As a result, comparability is limited.
+
+Are UK outputs available?
+No.","Dangosydd cymaroldeb: Ddim yn debyg
+
+Data a gasglwyd:
+- Cwestiwn 20 (Cymru, Lloegr) 'Beth yw eich crefydd?'
+- Cwestiwn 17 (Gogledd Iwerddon) 'Pa grefydd, enwad crefyddol neu gorff ydych chi'n perthyn iddo?'
+- Cwestiwn 13 (Yr Alban): Yr un fath â Gogledd Iwerddon
+
+Er bod pob gwlad yn gofyn cwestiwn ar grefydd, mesurwyd gwahanol gysyniadau oherwydd gofynion defnyddwyr penodol a chysondeb â chyfrifiadau blaenorol:
+- Cwestiwn ar ymlyniad, 'Beth yw eich crefydd?', Gofynnwyd i Gymru a Lloegr.
+- Cwestiwn ar Berthyn, 'Pa grefydd, enwad crefyddol neu gorff ydych chi'n perthyn iddo?' Gofynnwyd am yr Alban a Gogledd Iwerddon.
+
+Roedd categorïau ticio-bocs hefyd yn amrywio ar draws gwledydd, er mwyn adlewyrchu gofynion defnyddwyr sy'n benodol i wlad a'r enwadau mwyaf yn ôl poblogaeth ym mhob gwlad:
+- Cymru a Lloegr: Cafodd yr holl enwadau Cristnogol eu dal o dan y blwch ticio 'Cristion'. Roedd blychau ticio ar wahân ar gael ar gyfer y prif grefyddau sy'n weddill, gydag opsiwn i ysgrifennu mewn crefydd.
+- Yr Alban: Roedd tri blychau ticio Cristnogol ar gael. Fel Cymru a Lloegr, roedd blychau ticio ar wahân ar gael ar gyfer y prif grefyddau sy'n weddill yn ogystal â'r opsiwn i ysgrifennu mewn crefydd.
+- Gogledd Iwerddon: Ticiwch flychau a ddarperir ar gyfer enwadau Cristnogol yn unig, cafodd pob crefydd arall eu dal fel ymatebion ysgrifennu i mewn.
+
+Yn ogystal, roedd pob gwlad yn darparu'r opsiynau canlynol:
+- Ticiwch y blwch i gofnodi heb unrhyw grefydd.
+- i wneud y cwestiwn yn wirfoddol, yn unol â darpariaethau Deddfau Cyfrifiad.
+
+Allbynnau Data:
+Mae allbynnau ansicr ac aml-gymysg ar gael ar grefydd, ar wahanol lefelau daearyddiaeth, ar gyfer pob gwlad.
+
+Mae allbynnau yn wahanol ar draws gwledydd oherwydd y wybodaeth wahanol a gasglwyd, er enghraifft, mae allbynnau Gogledd Iwerddon a'r Alban yn cynnwys mwy o fanylion ar gyfer crefyddau Cristnogol, o gymharu â Chymru a Lloegr.
+
+Lle nad oedd gan wledydd flwch ticio pwrpasol ar gyfer crefydd a chafodd hyn ei ysgrifennu i mewn, gall cyfrif yn dal i gael eu tynnu er mwyn cynhyrchu allbynnau, er enghraifft, Hindwiaid yng Ngogledd Iwerddon.
+
+Yn wahanol i gwestiynau cyfrifiad eraill lle mae atebion coll yn cael eu cyfrifo, gan fod y cwestiwn hwn yn wirfoddol, lle na ddarparwyd ateb, caiff yr ymateb ei gategoreiddio fel ""heb ei ddatgan"".
+
+Mae'r Alban wedi cyhoeddi Tabl KS209SCA gyda'r un categorïau allbwn crefydd i ddarparu fersiwn wedi'i chysoni i allbynnau Cymru a Lloegr. Cynhyrchodd Gogledd Iwerddon hefyd fwrdd crefydd manylder llawn QS218NI sy'n cynnwys pob crefydd gyda chyfrif o 10 neu fwy o ymatebion. Fodd bynnag, lle mae defnyddwyr yn dewis cymharu gwybodaeth am grefydd ar draws gwledydd, rhaid iddynt fod yn ymwybodol eu bod yn cymharu gwahanol gysyniadau ac yn gwneud hynny yn ofalus. O ganlyniad, mae cymaroldeb yn gyfyngedig.
+
+A yw allbynnau'r DU ar gael?
+Na.",,PUB,SV,EILR,1,People,,,,,,,1
+14,Economic Activity,Economic Activity,Gweithgaredd economaidd,"Economic activity relates to whether or not a person who was aged 16 and over was working or looking for work in the week before census. Rather than a simple indicator of whether or not someone was currently in employment, it provides a measure of whether or not a person was an active participant in the labour market.
+
+A person's economic activity is derived from their “activity last week”. This is an indicator of their status or availability for employment - whether employed, unemployed, or their status if not employed and not seeking employment. Additional information included in the economic activity classification is also derived from information about the number of hours a person works and their type of employment - whether employed or self-employed.","Mae gweithgarwch economaidd yn ymwneud ag a oedd person a oedd yn 16 oed a throsodd yn gweithio neu'n chwilio am waith yn ystod yr wythnos cyn y cyfrifiad ai peidio. Yn hytrach na dangosydd syml a oedd rhywun mewn cyflogaeth ar hyn o bryd ai peidio, mae'n mesur a oedd person yn cymryd rhan weithredol yn y farchnad lafur ai peidio.
+
+Mae gweithgaredd economaidd unigolyn yn deillio o'u “gweithgaredd yr wythnos diwethaf”. Mae hwn yn ddangosydd o'u statws neu argaeledd cyflogaeth - boed yn gyflogedig, yn ddi-waith, neu eu statws os nad ydynt yn gyflogedig ac nad ydynt yn chwilio am waith. Mae gwybodaeth ychwanegol a gynhwysir yn y dosbarthiad gweithgarwch economaidd hefyd yn deillio o wybodaeth am nifer yr oriau y mae person yn gweithio a'u math o gyflogaeth - boed yn gyflogedig neu'n hunangyflogedig.",Economic Activity,"The census concept of economic activity is compatible with the standard for economic status defined by the International Labour Organisation (ILO). It is one of a number of definitions used internationally to produce accurate and comparable statistics on employment, unemployment and economic status.","Mae cysyniad y cyfrifiad o weithgarwch economaidd yn gydnaws â'r safon ar gyfer statws economaidd a ddiffinnir gan y Sefydliad Llafur Rhyngwladol (ILO). Mae'n un o nifer o ddiffiniadau a ddefnyddir yn rhyngwladol i gynhyrchu ystadegau cywir a chymaradwy ar gyflogaeth, diweithdra a statws economaidd.",,,,PUB,DVO,LHQ,1,People,,,,,,,1
+15,Occupation,Occupation,Ngalwedigaeth,A person's occupation relates to their main job and is derived from either their job title or details of the activities involved in their job. This is used to assign responses to an occupation code based on the Standard Occupational Classification 2010 (SOC2010).,Mae galwedigaeth unigolyn yn ymwneud â'i brif swydd ac mae'n deillio naill ai o deitl ei swydd neu fanylion y gweithgareddau sy'n gysylltiedig â'u swydd. Defnyddir hwn i neilltuo ymatebion i god meddiannaeth yn seiliedig ar Ddosbarthiad Galwedigaethol Safonol 2010 (SOC2010).,Occupation,The census concept of cccupation uses occupation codes from the Standard Occupational Classification 2010 (SOC2010).,Mae cysyniad y Cyfrifiad o CcCupation yn defnyddio codau galwedigaeth o'r Dosbarthiad Galwedigaethol Safonol 2010 (SOC2010).,"Indicator of comparability: Highly comparable
+
+Data collected:
+- Question 34, 35 (England, Wales), Question 37, 38 (Northern Ireland), Question 32, 33 (Scotland) (same wording for all countries)
+- 'What is (was) your full and specific job title?'
+- ‘Briefly describe what you do (did) in your main job’ .
+
+Scotland offered slightly more write-in space, consistent with their 2001 Census questionnaire, but this does not unduly affect comparability of the data with England, Wales and Northern Ireland.
+
+A person's occupation relates to their main job and is derived from either their job title or details of the activities involved in their job. This is used to assign
+responses to an occupation code based on the Standard Occupational Classification 2010 (SOC2010).
+
+Equivalent data were collected by England, Wales, Scotland and Northern Ireland.
+
+Data outputs:
+Univariate and multivariate outputs are available on occupation and NS-SeC, at various
+levels of geography, for all countries.
+
+Occupation outputs are published with either ‘Major group’, ‘Minor group’ or ‘Sub-major
+group’ categories. These refer to the level of categories within the hierarchy of
+occupations, as per the Standard Occupational Classification 2010 (SOC2010). Outputs
+for England, Wales, Scotland and Northern Ireland are all based on this classification.
+
+For some outputs, particularly at lower levels of geography, data are provided as
+combined categories. These aggregations are done, where necessary, in order to prevent
+disclosure of individuals’ information. Where users wish to make comparisons for England,
+Wales, Scotland or Northern Ireland at the same geographic level, they can do so by
+aggregating the more detailed categories to the lower level of detail, as applicable.
+
+For example, by aggregating to the major group occupation classification, as follows:
+1. Managers, directors and senior officials
+2. Professional occupations
+3. Associate professional and technical occupations
+4. Administrative and secretarial occupations
+5. Skilled trades occupations
+6. Caring, leisure and other service occupations
+7. Sales and customer service occupations
+8. Process, plant and machine operatives
+9. Elementary occupations
+
+More information about the Standard Occupational Classification 2010 (SOC2010) can be
+found here:
+http://www.ons.gov.uk/ons/guide-method/classifications/current-standard-classifications/soc2010/index.html
+
+Are UK outputs available?
+Yes. UK outputs on occupation and NS-SeC are available.
+- UK outputs on occupation use the major group classification
+- UK outputs on NS-SeC of usual residents and Household Reference Person (HRP) are available.","Dangosydd cymaroldeb: Yn gymharol iawn
+
+Data a gasglwyd:
+- Cwestiwn 34, 35 (Cymru, Lloegr), Cwestiwn 37, 38 (Gogledd Iwerddon), Cwestiwn 32, 33 (Yr Alban) (yr un geiriad ar gyfer pob gwlad)
+- 'Beth yw (oedd) eich teitl swydd llawn a phenodol?'
+- 'Disgrifiwch yn gryno beth rydych chi'n ei wneud (wnaeth) yn eich prif swydd'.
+
+Cynigiodd yr Alban ychydig yn fwy o ofod ysgrifennu-i-mewn, yn gyson â'u holiadur cyfrifiad 2001, ond nid yw hyn yn effeithio'n ormodol ar gymaroldeb y data gyda Lloegr, Cymru a Gogledd Iwerddon.
+
+Mae galwedigaeth unigolyn yn ymwneud â'u prif swydd ac mae'n deillio o naill ai eu teitl swydd neu fanylion am y gweithgareddau sy'n gysylltiedig â'u swydd. Defnyddir hwn i aseinio
+Ymatebion i god meddiannaeth yn seiliedig ar y Dosbarthiad Galwedigaethol Safonol 2010 (SOC2010).
+
+Casglwyd data cyfwerth gan Gymru, Lloegr, yr Alban a Gogledd Iwerddon.
+
+Allbynnau Data:
+Mae allbynnau unvariate ac aml-amrywiol ar gael ar alwedigaeth a NS-SEC, ar wahanol
+lefelau daearyddiaeth, ar gyfer pob gwlad.
+
+Cyhoeddir allbynnau galwedigaeth gyda naill ai 'grŵp mawr', 'grŵp bach' neu 'is-fawr
+Categorïau grŵp '. Mae'r rhain yn cyfeirio at lefel y categorïau o fewn hierarchaeth
+Galwedigaethau, yn unol â Dosbarthiad Galwedigaethol Safonol 2010 (SOC2010). Allbynnau
+Ar gyfer Cymru, Lloegr, yr Alban a Gogledd Iwerddon i gyd yn seiliedig ar y dosbarthiad hwn.
+
+Ar gyfer rhai allbynnau, yn enwedig ar lefelau is o ddaearyddiaeth, darperir data fel
+categorïau cyfunol. Gwneir y cydgryniadau hyn, lle bo angen, er mwyn atal
+datgelu gwybodaeth unigolion. Lle mae defnyddwyr yn dymuno gwneud cymariaethau ar gyfer Lloegr,
+Cymru, yr Alban neu Ogledd Iwerddon ar yr un lefel ddaearyddol, gallant wneud hynny gan
+Cydgrynhoi'r categorïau manylach i'r lefel is o fanylder, fel sy'n berthnasol.
+
+Er enghraifft, trwy gydgrynhoi i ddosbarthiad galwedigaeth y grŵp mawr, fel a ganlyn:
+1. Rheolwyr, Cyfarwyddwyr ac Uwch Swyddogion
+2. Galwedigaethau Proffesiynol
+3. Galwedigaethau proffesiynol a thechnegol cyswllt
+4. Galwedigaethau gweinyddol ac ysgrifenyddol
+5. Galwedigaethau Crefftau Medrus
+6. Galwedigaethau Gofalu, Hamdden a Gwasanaeth Eraill
+7. Galwedigaethau Gwerthu a Gwasanaeth Cwsmeriaid
+8. Gweithredwyr Proses, Peiriannau a Pheiriannau
+9. Galwedigaethau elfennol
+
+Gall mwy o wybodaeth am y Dosbarthiad Galwedigaethol Safonol 2010 (SOC2010) fod
+Wedi dod o hyd yma:
+http://www.ons.gov.uk/ons/guide-method/classifications/current-standard-classifications/soc2010/index.html
+
+A yw allbynnau'r DU ar gael?
+Ydw. Mae allbynnau'r DU ar alwedigaeth a NS-SEC ar gael.
+- Allbynnau'r DU ar alwedigaeth Defnyddiwch y prif ddosbarthiad grŵp
+- Mae allbynnau'r DU ar NS-SEC preswylwyr arferol a pherson cyfeirio aelwydydd (HRP) ar gael.",,PUB,DVO,LHQ,1,People,,,,,,,1
+16,Industry,Industry,Ddiwydiant,"The industry in which a person aged 16 and over works relates to their main job, and is derived from information provided on the main activity of their employer or business. This is used to assign responses to an industry code based on the Standard Industrial Classification 2007.","Mae'r diwydiant lle mae person 16 oed a throsodd yn gweithio yn ymwneud â'i brif swydd, ac mae'n deillio o wybodaeth a ddarperir am brif weithgaredd eu cyflogwr neu fusnes. Defnyddir hyn i neilltuo ymatebion i god diwydiant yn seiliedig ar y Dosbarthiad Diwydiannol Safonol 2007.",Industry,The census concept of industry uses industry codes from the Standard Industrial Classification 2007.,Mae cysyniad y cyfrifiad o ddiwydiant yn defnyddio codau diwydiant o'r dosbarthiad diwydiannol safonol 2007.,"Indicator of comparability: Highly comparable
+
+Data collected:
+- Question 37, 38 (England, Wales), Question 40, 41 (Northern Ireland), Question 36, 37
+(Scotland)
+- 'At your workplace, what is (was) the main activity of your employer or business?'
+- 'In your main job, what is (was) the name of the organisation you work (worked) for?' (same wording for all countries).
+
+Instructions differed slightly due to country specific requirements, however essentially the same guidance was given. Scotland had a larger write-in area for
+the name of the organisation worked for. These minor differences had no undue effect on the comparability of the data collected.
+
+Equivalent data were collected by England, Wales, Scotland and Northern Ireland.
+
+Data output:
+Univariate and multivariate outputs are available on industry, at various levels of geography, for all countries.
+
+For some outputs, particularly at lower levels of geography, data are provided as combined categories. These aggregations are done, where necessary, in order to prevent disclosure of individuals’ information. Where users wish to make comparisons for England, Wales, Scotland or Northern Ireland at the same geographic level, they can do so by aggregating the more detailed categories to the lower level of detail, as applicable.
+
+For example, categories can be combined as follows to enable comparison:
+- ‘A, B, D, E Agriculture, energy and water’
+- ‘C Manufacturing’
+- ‘F Construction’
+- ‘G, I Distribution, hotels and restaurants’
+- ‘H, J Transport and communication’
+- ‘K, L, M, N Financial, real estate, professional and administrative activities’
+- ‘O, P, Q Public administration, education and health’
+- ‘R, S, T, U Other’
+
+Note that the question on name of employer is used to produce census estimates but data are not collected for direct publication.
+
+Are UK outputs available?
+Yes. UK outputs on industry are available.","Dangosydd cymaroldeb: Yn gymharol iawn
+
+Data a gasglwyd:
+- Cwestiwn 37, 38 (Cymru, Lloegr), Cwestiwn 40, 41 (Gogledd Iwerddon), Cwestiwn 36, 37
+(Yr Alban)
+- 'Yn eich gweithle, beth yw (oedd) prif weithgaredd eich cyflogwr neu fusnes?'
+- 'Yn eich prif swydd, beth yw enw'r sefydliad rydych chi'n gweithio (gweithiodd) amdano?' (yr un geiriad ar gyfer pob gwlad).
+
+Roedd cyfarwyddiadau ychydig yn wahanol oherwydd gofynion penodol y wlad, fodd bynnag, yn ei hanfod rhoddwyd yr un canllawiau. Roedd gan yr Alban ardal ysgrifenedig fwy ar gyfer
+Roedd enw'r sefydliad yn gweithio iddo. Nid oedd y mân wahaniaethau hyn yn cael unrhyw effaith ormodol ar gymaroldeb y data a gasglwyd.
+
+Casglwyd data cyfwerth gan Gymru, Lloegr, yr Alban a Gogledd Iwerddon.
+
+Allbwn data:
+Mae allbynnau ansicr ac aml-amrywiol ar gael ar ddiwydiant, ar wahanol lefelau daearyddiaeth, ar gyfer pob gwlad.
+
+Ar gyfer rhai allbynnau, yn enwedig ar lefelau is o ddaearyddiaeth, darperir data fel categorïau cyfunol. Gwneir y cydgryniadau hyn, lle bo angen, er mwyn atal datgelu gwybodaeth unigolion. Lle mae defnyddwyr yn dymuno gwneud cymariaethau ar gyfer Cymru, Lloegr, yr Alban neu Ogledd Iwerddon ar yr un lefel ddaearyddol, gallant wneud hynny trwy gydgrynhoi'r categorïau manylach i'r lefel is o fanylder, fel sy'n berthnasol.
+
+Er enghraifft, gellir cyfuno'r categorïau fel a ganlyn i alluogi cymhariaeth:
+- 'A, B, D, E Amaethyddiaeth, Ynni a Dŵr'
+- 'C Gweithgynhyrchu'
+- 'F Construction'
+- 'G, I Dosbarthu, Gwestai a Bwytai'
+- 'H, J Trafnidiaeth a Chyfathrebu'
+- 'K, L, M, N Ariannol, Real Estate, Proffesiynol a Gweithgareddau Gweinyddol'
+- 'O, P, q Gweinyddiaeth Gyhoeddus, Addysg ac Iechyd'
+- 'R, S, T, U Arall'
+
+Noder bod y cwestiwn ar enw'r cyflogwr yn cael ei ddefnyddio i gynhyrchu amcangyfrifon cyfrifiad ond ni chaiff data ei gasglu ar gyfer cyhoeddi uniongyrchol.
+
+A yw allbynnau'r DU ar gael?
+Ydw. Mae allbynnau'r DU ar ddiwydiant ar gael.",,PUB,DVO,LHQ,1,People,,,,,,,1
+17,Hours worked per week,Hours worked per week,Oriau a weithir yr wythnos,"The number of hours that a person aged 16 to 74, in employment in the week before the census, worked in their main job. This includes paid and unpaid overtime.","Nifer yr oriau yr oedd person 16 i 74 oed, mewn cyflogaeth yn ystod yr wythnos cyn y cyfrifiad, yn gweithio yn eu prif swydd. Mae hyn yn cynnwys goramser taledig a di-dâl.",Hours worked per week,,,"Indicator of comparability: Broadly comparable
+
+Data collected:
+- Question 42 (England, Wales): ‘In your main job, how many hours a week (including paid and unpaid overtime) do you usually work?’ (only for respondents who were working in the week before census)
+- Question 42 (Northern Ireland): ‘In your main job, how many hours a week do (did) you usually work?’ (for those who are working or have worked in the past)
+- Question 35 (Scotland): ‘How many hours (to the nearest full hour) a week do (did) you usually work in your main job?’ (for those who are working or have worked in the past)
+
+For Scotland and Northern Ireland the respondent population was those who were working or had ever worked, outputs only include those in employment the week before Census. For England and Wales the respondent population was those who were working the week before census.
+
+England, Wales, and Northern Ireland collected data from four tick boxes of hours worked: ’15 or less’, ’16 – 30’, ‘31 – 48’ and ’49 or more’. In contrast, Scotland
+provided a write-in box for ‘Number of hours worked in a typical week’, to maintain continuity with their 2001 Census question.
+
+Data output:
+Univariate and multivariate outputs are available on hours worked, at various levels of geography, for all countries.
+
+For England, Wales and Northern Ireland data are provided as four categories: ‘Part-time: 15 hours or less worked’, ‘Part-time: 16 to 30 hours worked’, ‘Full-time 31 to 48 hours worked’ and ‘Full-time 49 or more hours worked’.
+
+Scotland provide two versions of outputs on hours worked. A country specific output (from
+the write-in, with eight categories of data: ‘Part-time: 1 to 2 hours’, ‘Part-time: 3 to 5 hours’,
+‘Part-time: 6 to 15 hours’, ‘Part-time: 16 to 30 hours’, ‘Full-time: 31 to 37 hours’, ‘Full-time:
+38 to 48 hours’, ‘Full-time: 49 to 59 hours’ and ‘Full-time: 60 hours or more’) and a version
+of four categories for comparison with England, Wales and Northern Ireland.
+
+As a result of differences in populations from which hours worked information was
+collected, data should be compared across countries with caution.
+
+Are UK outputs available?
+Yes. Data for England, Wales, Scotland and Northern Ireland are available as four categories of hours worked:
+- Part-time: 15 hours or less worked
+- Part-time: 16 to 30 hours worked
+- Full-time 31 to 48 hours worked
+- Full-time 49 or more hours worked","Dangosydd cymaroldeb: yn gymharol debyg
+
+Data a gasglwyd:
+- Cwestiwn 42 (Cymru, Lloegr): 'Yn eich prif swydd, faint o oriau yr wythnos (gan gynnwys goramser a dalwyd a di-dâl) ydych chi fel arfer yn gweithio?' (Dim ond i ymatebwyr a oedd yn gweithio yn yr wythnos cyn y cyfrifiad)
+- Cwestiwn 42 (Gogledd Iwerddon): 'Yn eich prif swydd, faint o oriau yr wythnos a wnewch chi fel arfer yn gweithio?' (I'r rhai sy'n gweithio neu sydd wedi gweithio yn y gorffennol)
+- Cwestiwn 35 (Yr Alban): 'Faint o oriau (i'r awr lawn agosaf) yr wythnos a wnewch chi fel arfer yn gweithio yn eich prif swydd?' (I'r rhai sy'n gweithio neu sydd wedi gweithio yn y gorffennol)
+
+Ar gyfer yr Alban a Gogledd Iwerddon, y boblogaeth ymatebydd oedd y rhai a oedd yn gweithio neu erioed wedi gweithio, ond mae allbynnau yn cynnwys y rhai mewn cyflogaeth yr wythnos cyn y cyfrifiad. Ar gyfer Cymru a Lloegr, y boblogaeth ymatebydd oedd y rhai a oedd yn gweithio yr wythnos cyn y cyfrifiad.
+
+Casglodd Cymru, Lloegr, a Gogledd Iwerddon ddata o bedwar blychau tic o oriau a weithiwyd: '15 neu lai ', '16 - 30', '31 - 48 'a '49 neu fwy'. Ar y llaw arall, yr Alban
+darparu blwch ysgrifennu i mewn ar gyfer 'nifer yr oriau a weithir mewn wythnos nodweddiadol', er mwyn cynnal parhad gyda'u cwestiwn cyfrifiad 2001.
+
+Allbwn data:
+Mae allbynnau ansicr ac aml-gymysg ar gael ar oriau a weithiwyd, ar wahanol lefelau daearyddiaeth, ar gyfer pob gwlad.
+
+Ar gyfer Cymru, darperir data Cymru a Gogledd Iwerddon fel pedwar categori: 'Rhan-amser: 15 awr neu lai yn gweithio', 'rhan-amser: 16 i 30 awr yn gweithio', 'amser llawn 31 i 48 awr yn gweithio' a ' Amser llawn 49 neu fwy o oriau yn gweithio '.
+
+Mae'r Alban yn darparu dau fersiwn o allbynnau ar yr oriau a weithiwyd. Allbwn penodol i wlad (o
+Yr ysgrifennu i mewn, gydag wyth categori o ddata: 'rhan-amser: 1 i 2 awr', 'rhan-amser: 3 i 5 awr',
+'Rhan-amser: 6 i 15 awr', 'rhan-amser: 16 i 30 awr', 'llawn amser: 31 i 37 awr', 'llawn amser:
+38 i 48 awr ',' llawn amser: 49 i 59 awr 'ac' llawn amser: 60 awr neu fwy ') a fersiwn
+O bedwar categori ar gyfer cymharu â Chymru, Lloegr a Gogledd Iwerddon.
+
+O ganlyniad i wahaniaethau mewn poblogaethau lle'r oedd yr oriau a weithiwyd yn gweithio
+Wedi'i gasglu, dylid cymharu data ar draws gwledydd yn ofalus.
+
+A yw allbynnau'r DU ar gael?
+Ydw. Mae data ar gyfer Cymru, Lloegr, yr Alban a Gogledd Iwerddon ar gael gan fod pedwar categori o oriau yn gweithio:
+- rhan-amser: 15 awr neu lai yn gweithio
+- rhan-amser: 16 i 30 awr yn gweithio
+- Gweithiodd 31 i 48 awr amser llawn
+- amser llawn 49 neu fwy o oriau yn gweithio",,PUB,SV,LHQ,1,People,,,,,,,1
+18,Approximated Social Grade,Approximated Social Grade,Gradd gymdeithasol amcangyfrifedig,"Social Grade is the socio-economic classification used by the Market Research and Marketing Industries, most often in the analysis of spending habits and consumer attitudes. Although it is not possible to allocate Social Grade precisely from information collected by the 2011 Census, the Market Research Society has developed a method for using Census information to provide a good approximation of Social Grade.","Gradd Gymdeithasol yw'r dosbarthiad economaidd-gymdeithasol a ddefnyddir gan y Diwydiannau Ymchwil i'r Farchnad a Marchnata, gan amlaf wrth ddadansoddi arferion gwario ac agweddau defnyddwyr. Er nad yw'n bosibl dyrannu Gradd Gymdeithasol yn union o wybodaeth a gasglwyd gan Gyfrifiad 2011, mae'r Gymdeithas Ymchwil i'r Farchnad wedi datblygu dull i forddefnyddio gwybodaeth y Cyfrifiad i ddarparu brasamcan da o Radd Gymdeithasol.",Approximated Social Grade,The census concept of approximated social grade  is equivalent to the socio-economic classification used by the Market Research and Marketing Industries.,Mae'r cysyniad cyfrifiad o radd gymdeithasol amcangyfrifedig yn gyfwerth â'r dosbarthiad economaidd-gymdeithasol a ddefnyddir gan y diwydiannau ymchwil a marchnata marchnata.,,,,PUB,DVO,LHQ,1,People,,,,,,,1

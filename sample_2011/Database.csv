@@ -1,0 +1,2 @@
+Database_Mnemonic,Id,Database_Title,Database_Title_Welsh,Database_Description,Database_Description_Welsh,Cantabular_DB_Flag,IAR_Asset_Id,Source_Mnemonic,Version
+Teaching-Dataset,1,ONS 2011 Census 1% Sample Teaching Data,ONS 2011 Cyfrifiad 1% Data Addysgu Enghreifftiol,"An anonymised random sample of 1% of people from the 2011 Census for England and Wales, including both usual residents and short-term residents.","Sampl ddienw ar hap o 1% o bobl o Gyfrifiad 2011 ar gyfer Cymru a Lloegr, gan gynnwys preswylwyr arferol a thrigolion tymor byr.",Y,,Census2011,1
