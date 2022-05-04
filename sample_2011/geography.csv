@@ -1,11 +1,11 @@
-Country11CD,Country11NM,Country11NMW,Region11CD,Region11NM,Region11NMW
-E,England,Lloegr,E12000001,North East,Gogledd Ddwyrain
-E,England,Lloegr,E12000002,North West,Gogledd Orllewin
-E,England,Lloegr,E12000003,Yorkshire and the Humber,Swydd Efrog a'r Humber
-E,England,Lloegr,E12000004,East Midlands,Dwyrain Canolbarth Lloegr
-E,England,Lloegr,E12000005,West Midlands,Gorllewin Canolbarth Lloegr
-E,England,Lloegr,E12000006,East of England,Dwyrain Lloegr
-E,England,Lloegr,E12000007,London,Llundain
-E,England,Lloegr,E12000008,South East,De Ddwyrain
-E,England,Lloegr,E12000009,South West,De Orllewin
-W,Wales,Cymru,W92000004,Wales,Cymru
+Region11CD,Region11NM,Region11NMW,Country11CD,Country11NM,Country11NMW
+E12000001,North East,Gogledd Ddwyrain,E,England,Lloegr
+E12000002,North West,Gogledd Orllewin,E,England,Lloegr
+E12000003,Yorkshire and the Humber,Swydd Efrog a'r Humber,E,England,Lloegr
+E12000004,East Midlands,Dwyrain Canolbarth Lloegr,E,England,Lloegr
+E12000005,West Midlands,Gorllewin Canolbarth Lloegr,E,England,Lloegr
+E12000006,East of England,Dwyrain Lloegr,E,England,Lloegr
+E12000007,London,Llundain,E,England,Lloegr
+E12000008,South East,De Ddwyrain,E,England,Lloegr
+E12000009,South West,De Orllewin,E,England,Lloegr
+W92000004,Wales,Cymru,W,Wales,Cymru
