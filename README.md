@@ -93,6 +93,54 @@ Then convert the files to JSON:
 python3 bin/ons_csv_to_ctb_json_main.py -i modified/ -g modified/<GEOGRAPHY_FILENAME> -o ctb_metadata_files/
 ```
 
+Using 2011 census teaching file metadata
+----------------------------------------
+
+The ONS produced a 1% sample microdata teaching file based on 2011 census data. It can be accessed here:
+
+https://www.ons.gov.uk/census/2011census/2011censusdata/censusmicrodata/microdatateachingfile
+
+We have generated some sample metadata for this dataset using publicly available sources. The CSV source files
+can be found in the `sample_2011` directory.
+
+Use this command to convert the files to JSON (with debugging enabled):
+```
+> python3 bin/ons_csv_to_ctb_json_main.py -i sample_2011/ -g sample_2011/geography.csv -o ctb_metadata_files/ -l DEBUG
+t=2022-05-03 08:58:06,547 lvl=DEBUG msg=Creating classification for geographic variable: Region
+t=2022-05-03 08:58:06,547 lvl=DEBUG msg=Creating classification for geographic variable: Country
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Residence Type
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Family Composition
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Population Base
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Sex
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Age
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Marital Status
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Student
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Country of Birth
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Health
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Ethnic Group
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Religion
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Economic Activity
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Occupation
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Industry
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Hours worked per week
+t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Approximated Social Grade
+t=2022-05-03 08:58:06,549 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Region
+t=2022-05-03 08:58:06,549 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Country
+t=2022-05-03 08:58:06,549 lvl=INFO msg=Loaded metadata for 18 Cantabular variables
+t=2022-05-03 08:58:06,549 lvl=DEBUG msg=Loaded metadata for Cantabular dataset: Teaching-Dataset
+t=2022-05-03 08:58:06,549 lvl=INFO msg=Loaded metadata for 1 Cantabular datasets
+t=2022-05-03 08:58:06,552 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/dataset-metadata.json
+t=2022-05-03 08:58:06,553 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC2101EW
+t=2022-05-03 08:58:06,553 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC1117EW
+t=2022-05-03 08:58:06,553 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC2107EW
+t=2022-05-03 08:58:06,553 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC6107EW
+t=2022-05-03 08:58:06,553 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC6112EW
+t=2022-05-03 08:58:06,553 lvl=INFO msg=Loaded metadata for 5 Cantabular tables
+t=2022-05-03 08:58:06,554 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/table-metadata.json
+t=2022-05-03 08:58:06,554 lvl=INFO msg=Loaded service metadata
+t=2022-05-03 08:58:06,554 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/service-metadata.json
+```
+
 Load the JSON files with cantabular-metadata
 ============================================
 

@@ -1,0 +1,98 @@
+Variable_Mnemonic,Classification_Mnemonic,Id,Category_Code,Internal_Category_Label_English,External_Category_Label_English,External_Category_Label_Welsh,Sort_Order,Version
+Occupation,Occupation,1,1,"Managers, Directors and Senior Officials",,"Rheolwyr, Cyfarwyddwyr ac Uwch Swyddogion",,1
+Occupation,Occupation,2,2,Professional Occupations,,Galwedigaethau Proffesiynol,,1
+Occupation,Occupation,3,3,Associate Professional and Technical Occupations,,Galwedigaethau Proffesiynol a Thechnegol Cysylltiol,,1
+Occupation,Occupation,4,4,Administrative and Secretarial Occupations,,Galwedigaethau Gweinyddol ac Ysgrifenyddol,,1
+Occupation,Occupation,5,5,Skilled Trades Occupations,,Galwedigaethau Crefftau Sgiliau,,1
+Occupation,Occupation,6,6,"Caring, Leisure and Other Service Occupations",,"Galwedigaethau Gofalu, Hamdden a Gwasanaethau Eraill",,1
+Occupation,Occupation,7,7,Sales and Customer Service Occupations,,Galwedigaethau Gwerthu a Gwasanaeth Cwsmeriaid,,1
+Occupation,Occupation,8,8,"Process, Plant and Machine Operatives",,"Gweithredwyr Prosesau, Peiriannau a Pheiriannau",,1
+Occupation,Occupation,9,9,Elementary Occupations,,Galwedigaethau Elfennol,,1
+Occupation,Occupation,10,-9,N/A,,N/A,,1
+Family Composition,Family Composition,11,1,Not in a family,,Ddim mewn teulu,,1
+Family Composition,Family Composition,12,2,Married/same-sex civil partnership couple family,,Teulu pâr partneriaeth sifil priodi/o'r un rhyw,,1
+Family Composition,Family Composition,13,3,Cohabiting couple family,,Teulu cwpl sy'n cyd-fyw,,1
+Family Composition,Family Composition,14,4,Lone parent family (male head),,Teulu un rhiant (pen gwrywaidd),,1
+Family Composition,Family Composition,15,5,Lone parent family (female head),,Teulu un rhiant (pen benywaidd),,1
+Family Composition,Family Composition,16,6,Other related family,,Teulu cysylltiedig eraill,,1
+Family Composition,Family Composition,17,-9,N/A,,N/A,,1
+Economic Activity,Economic Activity,18,1,Economically active: Employee,,Economaidd weithgar: Gweithiwr,,1
+Economic Activity,Economic Activity,19,2,Economically active: Self-employed,,Economaidd weithgar: Hunangyflogedig,,1
+Economic Activity,Economic Activity,20,3,Economically active: Unemployed,,Economaidd weithgar: Di-waith,,1
+Economic Activity,Economic Activity,21,4,Economically active: Full-time student,,Egnïol yn economaidd: Myfyriwr amser llawn,,1
+Economic Activity,Economic Activity,22,5,Economically inactive: Retired,,Economaidd anweithgar: Wedi ymddeol,,1
+Economic Activity,Economic Activity,23,6,Economically inactive: Student,,Economaidd anweithgar: Myfyriwr,,1
+Economic Activity,Economic Activity,24,7,Economically inactive: Looking after home or family,,Economaidd anweithgar: Gofalu am gartref neu deulu,,1
+Economic Activity,Economic Activity,25,8,Economically inactive: Long-term sick or disabled,,Yn economaidd anweithgar: Salwch neu anabl yn y tymor hir,,1
+Economic Activity,Economic Activity,26,9,Economically inactive: Other,,Economaidd anweithgar: Arall,,1
+Economic Activity,Economic Activity,27,-9,N/A,,N/A,,1
+Ethnic Group,Ethnic Group,28,1,White,,Gwyn,,1
+Ethnic Group,Ethnic Group,29,2,Mixed,,Cymysg,,1
+Ethnic Group,Ethnic Group,30,3,Asian and Asian British,,Asiaidd ac Asiaidd Prydeinig,,1
+Ethnic Group,Ethnic Group,31,4,Black or Black British,,Du neu Ddu Prydeinig,,1
+Ethnic Group,Ethnic Group,32,5,Chinese or Other ethnic group,,Grŵp ethnig Tsieineaidd neu grŵp ethnig Arall,,1
+Ethnic Group,Ethnic Group,33,-9,N/A,,N/A,,1
+Hours worked per week,Hours worked per week,34,1,Part-time: 15 or less hours worked,,Rhan-amser: 15 neu lai o oriau a weithiwyd,,1
+Hours worked per week,Hours worked per week,35,2,Part-time: 16 to 30 hours worked,,Rhan-amser: 16 i 30 awr a weithiwyd,,1
+Hours worked per week,Hours worked per week,36,3,Full-time: 31 to 48 hours worked,,Amser llawn: Gweithiwyd 31 i 48 awr,,1
+Hours worked per week,Hours worked per week,37,4,Full-time: 49 or more hours worked,,Amser llawn: 49 neu fwy o oriau a weithiwyd,,1
+Hours worked per week,Hours worked per week,38,-9,N/A,,N/A,,1
+Marital Status,Marital Status,39,1,Single (never married or never registered a same-sex civil partnership),,Sengl (byth yn briod neu erioed wedi cofrestru partneriaeth sifil o'r un rhyw),,1
+Marital Status,Marital Status,40,2,Married or in a registered same-sex civil partnership,,Priod neu mewn partneriaeth sifil gofrestredig o'r un rhyw,,1
+Marital Status,Marital Status,41,3,Separated but still legally married or separated but still legally in a same-sex civil partnership,,Wedi gwahanu ond yn dal i fod yn briod neu'n gwahanu yn gyfreithiol ond yn dal yn gyfreithiol mewn partneriaeth sifil o'r un rhyw,,1
+Marital Status,Marital Status,42,4,Divorced or formerly in a same-sex civil partnership which is now legally dissolved,,Wedi ysgaru neu gynt mewn partneriaeth sifil o'r un rhyw sydd bellach wedi'i diddymu'n gyfreithiol,,1
+Marital Status,Marital Status,43,5,Widowed or surviving partner from a same-sex civil partnership,,Partner gweddw neu bartner sydd wedi goroesi o bartneriaeth sifil o'r un rhyw,,1
+Residence Type,Residence Type,44,C,Resident in a communal establishment,,Preswylydd mewn sefydliad cymunedol,,1
+Residence Type,Residence Type,45,H,Not resident in a communal establishment,,Ddim yn byw mewn sefydliad cymunedol,,1
+Student,Student,46,1,Yes,,Ie,,1
+Student,Student,47,2,No,,Na,,1
+Age,Age,48,1,0 to 15,,0 i 15,,1
+Age,Age,49,2,16 to 24,,16 i 24,,1
+Age,Age,50,3,25 to 34,,25 i 34,,1
+Age,Age,51,4,35 to 44,,35 i 44,,1
+Age,Age,52,5,45 to 54,,45 i 54,,1
+Age,Age,53,6,55 to 64,,55 i 64,,1
+Age,Age,54,7,65 to 74,,65 i 74,,1
+Age,Age,55,8,75 and over,,75 a throsodd,,1
+Country of Birth,Country of Birth,66,1,UK,,UK,,1
+Country of Birth,Country of Birth,67,2,Non UK,,Non UK,,1
+Country of Birth,Country of Birth,68,-9,N/A,,N/A,,1
+Health,Health,69,1,Very good health,,Iechyd da iawn,,1
+Health,Health,70,2,Good health,,Iechyd da,,1
+Health,Health,71,3,Fair health,,Iechyd teg,,1
+Health,Health,72,4,Bad health,,Iechyd gwael,,1
+Health,Health,73,5,Very bad health,,Iechyd gwael iawn,,1
+Health,Health,74,-9,N/A,,N/A,,1
+Sex,Sex,77,1,Male,,Gwryw,,1
+Sex,Sex,78,2,Female,,Benyw,,1
+Approximated Social Grade,Approximated Social Grade,79,1,AB,,AB,,1
+Approximated Social Grade,Approximated Social Grade,80,2,C1,,C1,,1
+Approximated Social Grade,Approximated Social Grade,81,3,C2,,C2,,1
+Approximated Social Grade,Approximated Social Grade,82,4,DE,,DE,,1
+Approximated Social Grade,Approximated Social Grade,83,-9,N/A,,N/A,,1
+Industry,Industry,84,1,"Agriculture, forestry and fishing",,"Amaethyddiaeth, coedwigaeth a physgota",,1
+Industry,Industry,85,2,"Mining and quarrying; Manufacturing; Electricity, gas, steam and air conditioning system; Water supply",,"Mwyngloddio a chwarela; Gweithgynhyrchu; System drydan, nwy, stêm ac aerdymheru; Cyflenwad dŵr",,1
+Industry,Industry,86,3,Construction,,Adeiladu,,1
+Industry,Industry,87,4,Wholesale and retail trade; Repair of motor vehicles and motorcycles,,Masnach cyfanwerthu a manwerthu; Atgyweirio cerbydau modur a beiciau modur,,1
+Industry,Industry,88,5,Accommodation and food service activities,,Gweithgareddau llety a gwasanaeth bwyd,,1
+Industry,Industry,89,6,Transport and storage; Information and communication,,Cludiant a storio; Gwybodaeth a chyfathrebu,,1
+Industry,Industry,90,7,Financial and insurance activities; Intermediation,,Gweithgareddau ariannol ac yswiriant; Canolradd,,1
+Industry,Industry,91,8,"Real estate activities; Professional, scientific and technical activities; Administrative and support service activities",,"Gweithgareddau eiddo tiriog; Gweithgareddau proffesiynol, gwyddonol a thechnegol; Gweithgareddau gwasanaeth gweinyddol a chymorth",,1
+Industry,Industry,92,9,Public administration and defence; compulsory social security,,Gweinyddiaeth gyhoeddus ac amddiffyn; nawdd cymdeithasol gorfodol,,1
+Industry,Industry,93,10,Education,,Addysg,,1
+Industry,Industry,94,11,Human health and social work activities,,Gweithgareddau iechyd dynol a gwaith cymdeithasol,,1
+Industry,Industry,95,12,"Other community, social and personal service activities; Private households employing domestic staff; Extra-territorial organisations and bodies",,"Gweithgareddau cymunedol, gwasanaethau cymdeithasol a phersonol eraill; Aelwydydd preifat sy'n cyflogi staff domestig; cyrff a chyrff all-diriogaethol",,1
+Industry,Industry,96,-9,N/A,,N/A,,1
+Religion,Religion,97,1,No religion,,Dim crefydd,,1
+Religion,Religion,98,2,Christian,,Cristnogol,,1
+Religion,Religion,99,3,Buddhist,,Bwdhaidd,,1
+Religion,Religion,100,4,Hindu,,Hindŵaidd,,1
+Religion,Religion,101,5,Jewish,,Iddewig,,1
+Religion,Religion,102,6,Muslim,,Mwslimaidd,,1
+Religion,Religion,103,7,Sikh,,Sikh,,1
+Religion,Religion,104,8,Other religion,,Crefydd eraill,,1
+Religion,Religion,105,9,Not stated,,Heb ei nodi,,1
+Religion,Religion,106,-9,N/A,,N/A,,1
+Population Base,Population Base,107,1,Usual resident,,Preswylydd arferol,,1
+Population Base,Population Base,108,2,Student living away from home during term-time,,Myfyriwr sy'n byw oddi cartref yn ystod y tymor,,1
+Population Base,Population Base,109,3,Short-term resident,,Preswylydd tymor byr,,1

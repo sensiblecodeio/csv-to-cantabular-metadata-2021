@@ -1,0 +1,4 @@
+Variable_Type_Code,Id,Variable_Type_Description,Variable_Type_Description_Welsh
+GEOG,1,Geographic variable,Newidyn daearyddol
+DVO,2,Derived variable,Newidyn sy'n deillio
+SV,3,Standard variable,Newidyn safonol

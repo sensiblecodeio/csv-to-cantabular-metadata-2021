@@ -1,0 +1,12 @@
+Variable_Mnemonic,Source_Question_Code,Id
+Residence Type,QA1,1
+Sex,Q2,2
+Age,Q3,3
+Marital Status,Q4,4
+Student,Q7,5
+Country of Birth,Q9,6
+Health,Q13,7
+Ethnic Group,Q16,8
+Religion,Q20,9
+Industry,Q37,10
+Hours worked per week,Q42,11
