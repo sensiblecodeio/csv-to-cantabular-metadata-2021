@@ -5,3 +5,4 @@ VAR2,3,VAR2 Title,,VAR2 Description,,DVO,,,,VAR2 Comparability Comments,,VAR2 UK
 VAR3,4,VAR3 Title,,VAR3 Description,,DVO,,,,,,,,PUB,,,,,,,,,1,,
 VAR_PRIV,5,VAR_PRIV Title,VAR_PRIV Title (Welsh),VAR_PRIV Description,VAR_PRIV Description (Welsh),DVO,People,TOPIC1,VAR_PRIV 2011,VAR_PRIV Comparability Comments,VAR_PRIV Comparability Comments (Welsh),VAR_PRIV UK Comparison Comments,VAR_PRIV Comparison Comments (Welsh),CLASS,Y,1,,,,,,,1,,
 GEO2,6,GEO2 Title,,GEO2 Description,,GEOG,,,,GEO2 Comparability Comments,,GEO2 UK Comparison Comments,,PUB,Y,3,G2,,GEO1 Theme,,GEO2 Coverage,,1,,
+GEO_PRIV,7,GEO_PRIV Title,,GEO_PRIV Description,,GEOG,,,,GEO_PRIV Comparability Comments,,GEO_PRIV UK Comparison Comments,,CLASS,Y,3,G_PRIV,,GEO_PRIV Theme,,GEO_PRIV Coverage,,1,,

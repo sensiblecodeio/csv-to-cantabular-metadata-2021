@@ -92,6 +92,7 @@ type TableMetadata {
   Publications: [Publication]!
   Census_Releases: [Census_Release]!
   Statistical_Unit: Statistical_Unit!
+  Alternate_Geographic_Variables: [String]!
 }
 
 type Publication {
