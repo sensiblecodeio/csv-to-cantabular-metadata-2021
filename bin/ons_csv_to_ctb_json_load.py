@@ -270,6 +270,11 @@ class Loader:
             dataset_variables = dataset_to_variables.get(
                 dataset_mnemonic, DatasetVariables([], []))
 
+            alternate_geog_variables = (dataset_variables.alternate_geog_variables if
+                                        dataset_variables.alternate_geog_variables else [])
+            dataset['Alternate_Geographic_Variables'] = alternate_geog_variables
+            all_classifications = dataset_variables.classifications + alternate_geog_variables
+
             # If the dataset is public then ensure that there is at least one classification and
             # that all the classifications are also public.
             if dataset['Security_Mnemonic'] == PUBLIC_SECURITY_MNEMONIC:
@@ -278,7 +283,7 @@ class Loader:
                         f'Reading {self.full_filename(filename)}:{line_num} {dataset_mnemonic} '
                         'has no associated classifications or geographic variable')
 
-                for classification in dataset_variables.classifications:
+                for classification in all_classifications:
                     if self.classifications[classification].private['Security_Mnemonic'] != \
                             PUBLIC_SECURITY_MNEMONIC:
                         raise ValueError(
