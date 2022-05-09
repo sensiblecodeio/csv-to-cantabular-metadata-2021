@@ -50,43 +50,17 @@ def main():
 
         basename = os.path.basename(filename)
         out_filename = os.path.join(args.output_dir, basename)
-        with open(out_filename, 'w') as outfile:
+        with open(out_filename, 'w', encoding='utf-8-sig') as outfile:
             # Main program expects input files in UTF-8 format.
-            with open(filename, newline='', encoding='iso-8859-1') as infile:
+            # with open(filename, newline='', encoding='iso-8859-1') as infile:
+            with open(filename, newline='', encoding='utf-8-sig') as infile:
                 reader = csv.DictReader(infile)
                 fieldnames = reader.fieldnames.copy()
-                if basename == 'Category.csv':
-                    fieldnames.remove('variable_mnemonic')
-                    fieldnames.append('Variable_Mnemonic')
 
                 writer = csv.DictWriter(outfile, fieldnames)
                 writer.writeheader()
                 for line in reader:
-                    if basename == 'Category.csv':
-                        line['Variable_Mnemonic'] = line.pop('variable_mnemonic')
-
-                    if basename == 'Variable.csv':
-                        line['Security_Mnemonic'] = 'PUB'
-
-                        if not line['Variable_Type_Code']:
-                            line['Variable_Type_Code'] = 'DVO'
-
-                    elif basename == 'Classification.csv':
-                        if not line['Number_Of_Category_Items']:
-                            line['Number_Of_Category_Items'] = '0'
-
-                        if line['Classification_Mnemonic'] == 'hh_away_student_9a':
-                            line['Number_Of_Category_Items'] = '8'
-
-                        if line['Classification_Mnemonic'] == 'hh_families_count_7a':
-                            line['Number_Of_Category_Items'] = '8'
-
-                        if line['Classification_Mnemonic'] == 'legal_partnership_status_12a':
-                            line['Number_Of_Category_Items'] = '12'
-
-                        if line['Classification_Mnemonic'] == 'moving_group_size_10000a':
-                            line['Number_Of_Category_Items'] = '9716'
-
+                    if basename == 'Classification.csv':
                         if '_pop' in line['Variable_Mnemonic']:
                             continue
 
@@ -97,16 +71,7 @@ def main():
                         if line['Classification_Mnemonic'] == 'hh_multi_ethnic_combination_23B':
                             line['Classification_Mnemonic'] = 'hh_multi_ethnic_combination_23b'
 
-                        if line['Classification_Mnemonic'] == 'distance_to_work':
-                            line['Classification_Mnemonic'] = 'distance_to_work_12002a'
-
-                        if line['Classification_Mnemonic'] == 'moving_group_number':
-                            line['Classification_Mnemonic'] = 'moving_group_number_10000a'
-
-                        if line['Classification_Mnemonic'] == 'moving_group_size':
-                            line['Classification_Mnemonic'] = 'moving_group_size_10000a'
-
-                        if line['Classification_Mnemonic'] in [
+                        elif line['Classification_Mnemonic'] in [
                                 'dwelling_number', 'economic_activity_status_14a',
                                 'economic_activity_status_13a', 'economic_activity_status_12b',
                                 'economic_activity_status_11a', 'economic_activity_status_11b',
@@ -118,24 +83,24 @@ def main():
                             continue
 
                     elif basename == 'Category.csv':
-                        if line['Classification_Mnemonic'] == 'armed_forces_dependent_ind_5a':
-                            continue
-
-                        if line['Classification_Mnemonic'] == 'moving_group_size':
-                            line['Classification_Mnemonic'] = 'moving_group_size_10000a'
-
                         if '_pop' in line['Classification_Mnemonic']:
                             continue
 
-                    elif basename == 'Dataset.csv':
-                        line['Security_Mnemonic'] = 'PUB'
-
-                    elif basename == 'Release_Dataset.csv':
-                        line['Census_Release_Number'] = '1'
-
                     elif basename == 'Dataset_Variable.csv':
-                        if line['Classification_Mnemonic'] == 'sex':
-                            line['Classification_Mnemonic'] = 'sex_2a'
+                        line['Variable_Mnemonic'] = line['Variable_Mnemonic'].lower()
+                        if line['Variable_Mnemonic'] == 'region':
+                            line['Variable_Mnemonic'] = 'reg'
+                        elif line['Variable_Mnemonic'] == 'country':
+                            line['Variable_Mnemonic'] = 'ctry'
+
+                        if line['Variable_Mnemonic'] == 'oa':
+                            line['Lowest_Geog_Variable_Flag'] = 'Y'
+                        else:
+                            line['Lowest_Geog_Variable_Flag'] = ''
+
+                        if line['Variable_Mnemonic'] in ['oa', 'lsoa', 'msoa', 'la', 'reg',
+                                                         'ctry']:
+                            line['Processing_Priority'] = ''
 
                     elif basename == 'Database_Variable.csv':
                         if line['Variable_Mnemonic'] in ['dwelling_number', 'ethnic_group',
@@ -152,6 +117,29 @@ def main():
                         'Topic_Description_Welsh': '',
                         'Topic_Title': 'HDS',
                         'Topic_Title_Welsh': ''})
+                if basename == 'Database_Variable.csv':
+                    row_id = 145
+                    lowest_geog_variable_flag = 'Y'
+                    for geo in ['oa', 'lsoa', 'msoa', 'la', 'reg', 'ctry']:
+                        writer.writerow({
+                            'Id': row_id,
+                            'Database_Mnemonic': 'UR',
+                            'Variable_Mnemonic': geo,
+                            'Lowest_Geog_Variable_Flag': lowest_geog_variable_flag,
+                            'Version': '1'})
+                        row_id += 1
+                        lowest_geog_variable_flag = 'N'
+
+                    lowest_geog_variable_flag = 'Y'
+                    for geo in ['oa', 'lsoa', 'msoa', 'la', 'reg', 'ctry']:
+                        writer.writerow({
+                            'Id': row_id,
+                            'Database_Mnemonic': 'HH',
+                            'Variable_Mnemonic': geo,
+                            'Lowest_Geog_Variable_Flag': lowest_geog_variable_flag,
+                            'Version': '1'})
+                        row_id += 1
+                        lowest_geog_variable_flag = 'N'
 
         logging.info(f'Read file from: {filename} and wrote modified file to: {out_filename}')
 
