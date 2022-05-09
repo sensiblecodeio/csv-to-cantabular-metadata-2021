@@ -16,6 +16,14 @@ FILE_CONTENT_TYPE_TABLES = 'tables-md'
 FILE_CONTENT_TYPE_SERVICE = 'service-md'
 
 
+def filename_segment(value):
+    """Check that the string is valid for use as part of a filename."""
+    for character in value:
+        if not character.isalnum() and character not in '-_. ':
+            raise ValueError(f"invalid value: '{value}'")
+    return value
+
+
 def main():
     """
     Load metadata in CSV format and export in JSON format.
@@ -55,7 +63,7 @@ def main():
                              '(default: no prefix i.e. operational)')
 
     parser.add_argument('-m', '--metadata_master_version',
-                        type=str,
+                        type=filename_segment,
                         default='unknown-metadata-version',
                         help='Metadata master version to use in output filenames '
                              '(default: %(default)s)')

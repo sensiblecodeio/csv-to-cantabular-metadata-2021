@@ -40,6 +40,17 @@ class TestIntegration(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, expected_error):
                 ons_csv_to_ctb_json_main.main()
 
+    def test_metadata_master_version(self):
+        """Check that a SystemExit is raised if the metadata master version is invalid."""
+        file_dir = pathlib.Path(__file__).parent.resolve()
+        input_dir = os.path.join(file_dir, 'testdata')
+        output_dir = os.path.join(file_dir, 'out')
+
+        with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir,
+                                              '-m', 'a/../b']):
+            with self.assertRaises(SystemExit):
+                ons_csv_to_ctb_json_main.main()
+
     @unittest.mock.patch('ons_csv_to_ctb_json_main.date')
     def test_generated_json(self, mock_date):
         """Generate JSON from source CSV and compare it with expected values."""
