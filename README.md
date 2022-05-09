@@ -34,45 +34,84 @@ Basic logging will be displayed by default, including the number of high-level C
 objects loaded and the name of the output files.
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/
-t=2022-04-21 14:26:43,977 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
-t=2022-04-21 14:26:43,977 lvl=INFO msg=Dropped non public classification: CLASS_PRIV
-t=2022-04-21 14:26:43,977 lvl=INFO msg=Loaded metadata for 5 Cantabular variables
-t=2022-04-21 14:26:43,977 lvl=INFO msg=Loaded metadata for 3 Cantabular datasets
-t=2022-04-21 14:26:43,979 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/dataset-metadata.json
-t=2022-04-21 14:26:43,979 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
-t=2022-04-21 14:26:43,979 lvl=INFO msg=Loaded metadata for 4 Cantabular tables
-t=2022-04-21 14:26:43,980 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/table-metadata.json
-t=2022-04-21 14:26:43,980 lvl=INFO msg=Loaded service metadata
-t=2022-04-21 14:26:43,980 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/service-metadata.json
+t=2022-04-28 15:21:06,357 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
+t=2022-04-28 15:21:06,357 lvl=INFO msg=Dropped non public classification: CLASS_PRIV
+t=2022-04-28 15:21:06,357 lvl=INFO msg=Loaded metadata for 5 Cantabular variables
+t=2022-04-28 15:21:06,358 lvl=INFO msg=Loaded metadata for 3 Cantabular datasets
+t=2022-04-28 15:21:06,359 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v9-3-0_unknown-metadata-version_dataset-md_20220428-1.json
+t=2022-04-28 15:21:06,360 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
+t=2022-04-28 15:21:06,360 lvl=INFO msg=Loaded metadata for 4 Cantabular tables
+t=2022-04-28 15:21:06,360 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v9-3-0_unknown-metadata-version_tables-md_20220428-1.json
+t=2022-04-28 15:21:06,360 lvl=INFO msg=Loaded service metadata
+t=2022-04-28 15:21:06,360 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v9-3-0_unknown-metadata-version_service-md_20220428-1.json
 ```
 
 More detailed information can be obtained by running with a `-l DEBUG` flag e.g.:
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -l DEBUG
-t=2022-04-21 14:27:07,830 lvl=DEBUG msg=Creating classification for geographic variable: GEO1
-t=2022-04-21 14:27:07,830 lvl=DEBUG msg=Creating classification for geographic variable: GEO2
-t=2022-04-21 14:27:07,830 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
-t=2022-04-21 14:27:07,830 lvl=DEBUG msg=Loaded metadata for Cantabular variable: CLASS1
-t=2022-04-21 14:27:07,830 lvl=DEBUG msg=Loaded metadata for Cantabular variable: CLASS2
-t=2022-04-21 14:27:07,830 lvl=DEBUG msg=Loaded metadata for Cantabular variable: CLASS3
-t=2022-04-21 14:27:07,830 lvl=INFO msg=Dropped non public classification: CLASS_PRIV
-t=2022-04-21 14:27:07,830 lvl=DEBUG msg=Loaded metadata for Cantabular variable: GEO1
-t=2022-04-21 14:27:07,830 lvl=DEBUG msg=Loaded metadata for Cantabular variable: GEO2
-t=2022-04-21 14:27:07,830 lvl=INFO msg=Loaded metadata for 5 Cantabular variables
-t=2022-04-21 14:27:07,831 lvl=DEBUG msg=Loaded metadata for Cantabular dataset: DB1
-t=2022-04-21 14:27:07,831 lvl=DEBUG msg=Loaded metadata for Cantabular dataset: DB2
-t=2022-04-21 14:27:07,831 lvl=DEBUG msg=Loaded metadata for Cantabular dataset: DB3
-t=2022-04-21 14:27:07,831 lvl=INFO msg=Loaded metadata for 3 Cantabular datasets
-t=2022-04-21 14:27:07,832 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/dataset-metadata.json
-t=2022-04-21 14:27:07,833 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS1
-t=2022-04-21 14:27:07,833 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS2
-t=2022-04-21 14:27:07,833 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS3
-t=2022-04-21 14:27:07,833 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
-t=2022-04-21 14:27:07,833 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS4
-t=2022-04-21 14:27:07,833 lvl=INFO msg=Loaded metadata for 4 Cantabular tables
-t=2022-04-21 14:27:07,833 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/table-metadata.json
-t=2022-04-21 14:27:07,833 lvl=INFO msg=Loaded service metadata
-t=2022-04-21 14:27:07,834 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/service-metadata.json
+t=2022-04-28 15:25:04,409 lvl=DEBUG msg=Creating classification for geographic variable: GEO1
+t=2022-04-28 15:25:04,409 lvl=DEBUG msg=Creating classification for geographic variable: GEO2
+t=2022-04-28 15:25:04,409 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
+t=2022-04-28 15:25:04,409 lvl=DEBUG msg=Loaded metadata for Cantabular variable: CLASS1
+t=2022-04-28 15:25:04,409 lvl=DEBUG msg=Loaded metadata for Cantabular variable: CLASS2
+t=2022-04-28 15:25:04,409 lvl=DEBUG msg=Loaded metadata for Cantabular variable: CLASS3
+t=2022-04-28 15:25:04,409 lvl=INFO msg=Dropped non public classification: CLASS_PRIV
+t=2022-04-28 15:25:04,409 lvl=DEBUG msg=Loaded metadata for Cantabular variable: GEO1
+t=2022-04-28 15:25:04,409 lvl=DEBUG msg=Loaded metadata for Cantabular variable: GEO2
+t=2022-04-28 15:25:04,409 lvl=INFO msg=Loaded metadata for 5 Cantabular variables
+t=2022-04-28 15:25:04,410 lvl=DEBUG msg=Loaded metadata for Cantabular dataset: DB1
+t=2022-04-28 15:25:04,410 lvl=DEBUG msg=Loaded metadata for Cantabular dataset: DB2
+t=2022-04-28 15:25:04,410 lvl=DEBUG msg=Loaded metadata for Cantabular dataset: DB3
+t=2022-04-28 15:25:04,410 lvl=INFO msg=Loaded metadata for 3 Cantabular datasets
+t=2022-04-28 15:25:04,411 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v9-3-0_unknown-metadata-version_dataset-md_20220428-1.json
+t=2022-04-28 15:25:04,412 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS1
+t=2022-04-28 15:25:04,412 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS2
+t=2022-04-28 15:25:04,412 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS3
+t=2022-04-28 15:25:04,412 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
+t=2022-04-28 15:25:04,412 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS4
+t=2022-04-28 15:25:04,412 lvl=INFO msg=Loaded metadata for 4 Cantabular tables
+t=2022-04-28 15:25:04,412 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v9-3-0_unknown-metadata-version_tables-md_20220428-1.json
+t=2022-04-28 15:25:04,412 lvl=INFO msg=Loaded service metadata
+t=2022-04-28 15:25:04,412 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v9-3-0_unknown-metadata-version_service-md_20220428-1.json
+```
+
+Output file names
+-----------------
+
+The output file names are formatted as follows:
+```
+<prefix>cantabm_9-3-0_<metadata master version>_dataset-md_<date as yyyymmdd-><build number>.json
+<prefix>cantabm_9-3-0_<metadata master version>_service-md_<date as yyyymmdd-><build number>.json
+<prefix>cantabm_9-3-0_<metadata master version>_tables-md_<date as yyyymmdd-><build number>.json
+```
+
+The `prefix`, `metadata master version` and `build number` can be specified using command line
+arguments as described in the help text for `ons_csv_to_ctb_json_main.py`:
+```
+  -p {d,t,tu}, --file_prefix {d,t,tu}
+                        Prefix to use in output filenames: d=dev, t=test,
+                        tu=tuning (default: no prefix i.e. operational)
+  -m METADATA_MASTER_VERSION, --metadata_master_version METADATA_MASTER_VERSION
+                        Metadata master version to use in output filenames
+                        (default: unknown-metadata-version)
+  -b BUILD_NUMBER, --build_number BUILD_NUMBER
+                        Build number to use in output filenames (default: 1)
+
+```
+
+For example:
+```
+> python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -p t -m test -b 42
+t=2022-04-28 15:28:02,518 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
+t=2022-04-28 15:28:02,518 lvl=INFO msg=Dropped non public classification: CLASS_PRIV
+t=2022-04-28 15:28:02,518 lvl=INFO msg=Loaded metadata for 5 Cantabular variables
+t=2022-04-28 15:28:02,518 lvl=INFO msg=Loaded metadata for 3 Cantabular datasets
+t=2022-04-28 15:28:02,519 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/t_cantabm_v9-3-0_test_dataset-md_20220428-42.json
+t=2022-04-28 15:28:02,520 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
+t=2022-04-28 15:28:02,520 lvl=INFO msg=Loaded metadata for 4 Cantabular tables
+t=2022-04-28 15:28:02,521 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/t_cantabm_v9-3-0_test_tables-md_20220428-42.json
+t=2022-04-28 15:28:02,521 lvl=INFO msg=Loaded service metadata
+t=2022-04-28 15:28:02,521 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/t_cantabm_v9-3-0_test_service-md_20220428-42.json
 ```
 
 Using externally sourced files
@@ -105,49 +144,50 @@ can be found in the `sample_2011` directory.
 
 Use this command to convert the files to JSON (with debugging enabled):
 ```
-> python3 bin/ons_csv_to_ctb_json_main.py -i sample_2011/ -g sample_2011/geography.csv -o ctb_metadata_files/ -l DEBUG
-t=2022-05-03 08:58:06,547 lvl=DEBUG msg=Creating classification for geographic variable: Region
-t=2022-05-03 08:58:06,547 lvl=DEBUG msg=Creating classification for geographic variable: Country
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Residence Type
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Family Composition
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Population Base
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Sex
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Age
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Marital Status
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Student
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Country of Birth
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Health
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Ethnic Group
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Religion
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Economic Activity
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Occupation
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Industry
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Hours worked per week
-t=2022-05-03 08:58:06,548 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Approximated Social Grade
-t=2022-05-03 08:58:06,549 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Region
-t=2022-05-03 08:58:06,549 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Country
-t=2022-05-03 08:58:06,549 lvl=INFO msg=Loaded metadata for 18 Cantabular variables
-t=2022-05-03 08:58:06,549 lvl=DEBUG msg=Loaded metadata for Cantabular dataset: Teaching-Dataset
-t=2022-05-03 08:58:06,549 lvl=INFO msg=Loaded metadata for 1 Cantabular datasets
-t=2022-05-03 08:58:06,552 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/dataset-metadata.json
-t=2022-05-03 08:58:06,553 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC2101EW
-t=2022-05-03 08:58:06,553 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC1117EW
-t=2022-05-03 08:58:06,553 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC2107EW
-t=2022-05-03 08:58:06,553 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC6107EW
-t=2022-05-03 08:58:06,553 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC6112EW
-t=2022-05-03 08:58:06,553 lvl=INFO msg=Loaded metadata for 5 Cantabular tables
-t=2022-05-03 08:58:06,554 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/table-metadata.json
-t=2022-05-03 08:58:06,554 lvl=INFO msg=Loaded service metadata
-t=2022-05-03 08:58:06,554 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/service-metadata.json
+> python3 bin/ons_csv_to_ctb_json_main.py -i sample_2011/ -g sample_2011/geography.csv -o ctb_metadata_files/ -m 2001-sample -l DEBUG
+t=2022-05-06 12:55:25,674 lvl=DEBUG msg=Creating classification for geographic variable: Region
+t=2022-05-06 12:55:25,675 lvl=DEBUG msg=Creating classification for geographic variable: Country
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Residence Type
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Family Composition
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Population Base
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Sex
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Age
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Marital Status
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Student
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Country of Birth
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Health
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Ethnic Group
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Religion
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Economic Activity
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Occupation
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Industry
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Hours worked per week
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Approximated Social Grade
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Region
+t=2022-05-06 12:55:25,676 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Country
+t=2022-05-06 12:55:25,676 lvl=INFO msg=Loaded metadata for 18 Cantabular variables
+t=2022-05-06 12:55:25,677 lvl=DEBUG msg=Loaded metadata for Cantabular dataset: Teaching-Dataset
+t=2022-05-06 12:55:25,677 lvl=INFO msg=Loaded metadata for 1 Cantabular datasets
+t=2022-05-06 12:55:25,680 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v9-3-0_2001-sample_dataset-md_20220506-1.json
+t=2022-05-06 12:55:25,681 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC2101EW
+t=2022-05-06 12:55:25,681 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC1117EW
+t=2022-05-06 12:55:25,681 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC2107EW
+t=2022-05-06 12:55:25,681 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC6107EW
+t=2022-05-06 12:55:25,681 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC6112EW
+t=2022-05-06 12:55:25,681 lvl=INFO msg=Loaded metadata for 5 Cantabular tables
+t=2022-05-06 12:55:25,682 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v9-3-0_2001-sample_tables-md_20220506-1.json
+t=2022-05-06 12:55:25,682 lvl=INFO msg=Loaded service metadata
+t=2022-05-06 12:55:25,682 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v9-3-0_2001-sample_service-md_20220506-1.json
 ```
 
 Load the JSON files with cantabular-metadata
 ============================================
 
-To load the generated JSON files into `cantabular-metadata` (version 9.3.0) run:
+To load the generated JSON files into `cantabular-metadata` (version 9.3.0) run the following
+commands, substituting the file names and paths as appropriate:
 ```
 cd ctb_metadata_files
-CANTABULAR_METADATA_GRAPHQL_TYPES_FILE=metadata.graphql CANTABULAR_METADATA_SERVICE_FILE=service-metadata.json CANTABULAR_METADATA_DATASET_FILES=dataset-metadata.json CANTABULAR_METADATA_TABLE_FILES=table-metadata.json <PATH_TO_BINARY>/cantabular-metadata
+CANTABULAR_METADATA_GRAPHQL_TYPES_FILE=metadata.graphql CANTABULAR_METADATA_SERVICE_FILE=cantabm_v9-3-0_unknown-metadata-version_service-md_20220428-1.json CANTABULAR_METADATA_DATASET_FILES=cantabm_v9-3-0_unknown-metadata-version_dataset-md_20220428-1.json CANTABULAR_METADATA_TABLE_FILES=cantabm_v9-3-0_unknown-metadata-version_tables-md_20220428-1.json <PATH_TO_BINARY>/cantabular-metadata
 ```
 
 The metadata can be queried via a GraphQL interface. By default this is accessible at:
