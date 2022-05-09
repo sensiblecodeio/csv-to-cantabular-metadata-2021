@@ -65,7 +65,7 @@ class Loader:
         self.input_directory = input_directory
         self.geography_file = geography_file
 
-    def read_file(self, filename, columns, unique_combo_fields=None):
+    def read_file(self, filename, columns, id_column='Id', unique_combo_fields=None):
         """
         Read data from a CSV file.
 
@@ -73,7 +73,7 @@ class Loader:
         and corresponding line number.
         """
         full_filename = self.full_filename(filename)
-        return Reader(full_filename, columns, unique_combo_fields).read()
+        return Reader(full_filename, columns, id_column, unique_combo_fields).read()
 
     def full_filename(self, filename):
         """Add the input_directory path to the filename."""
@@ -91,7 +91,7 @@ class Loader:
             optional('Contact_Phone'),
             optional('Contact_Website'),
         ]
-        contact_rows = self.read_file('Contact.csv', columns)
+        contact_rows = self.read_file('Contact.csv', columns, id_column='Contact_Id')
 
         contacts = {}
         for contact, _ in contact_rows:
@@ -284,9 +284,13 @@ class Loader:
             # that all the classifications are also public.
             if dataset['Security_Mnemonic'] == PUBLIC_SECURITY_MNEMONIC:
                 if not dataset_variables.classifications:
-                    raise ValueError(
-                        f'Reading {self.full_filename(filename)}:{line_num} {dataset_mnemonic} '
-                        'has no associated classifications or geographic variable')
+                    msg = (f'Reading {self.full_filename(filename)}:{line_num} {dataset_mnemonic} '
+                           'has no associated classifications or geographic variable')
+                    # raise ValueError(msg)
+                    logging.warning(msg)
+                    logging.warning(
+                        f'dropping record at {self.full_filename(filename)}:{line_num}')
+                    continue
 
                 for classification in all_classifications:
                     if self.classifications[classification].private['Security_Mnemonic'] != \
@@ -297,10 +301,11 @@ class Loader:
                             f'{classification}')
                     if classification not in \
                             self.databases[database_mnemonic].private['Classifications']:
-                        raise ValueError(
-                            f'Reading {self.full_filename(filename)}:{line_num} '
-                            f'{dataset_mnemonic} has classification {classification} '
-                            f'that is not in database {database_mnemonic}')
+                        msg = (f'Reading {self.full_filename(filename)}:{line_num} '
+                               f'{dataset_mnemonic} has classification {classification} '
+                               f'that is not in database {database_mnemonic}')
+                        # raise ValueError(msg)
+                        logging.warning(msg)
 
             del dataset['Id']
             del dataset['Signed_Off_Flag']
@@ -418,9 +423,11 @@ class Loader:
             num_cat_items = \
                 self.classifications[classification_mnemonic].private['Number_Of_Category_Items']
             if num_cat_items and len(one_var_categories) != num_cat_items:
-                raise ValueError(f'Reading {self.full_filename(filename)} '
-                                 f'Unexpected number of categories for {classification_mnemonic}: '
-                                 f'expected {num_cat_items} but found {len(one_var_categories)}')
+                msg = (f'Reading {self.full_filename(filename)} '
+                       f'Unexpected number of categories for {classification_mnemonic}: '
+                       f'expected {num_cat_items} but found {len(one_var_categories)}')
+                # raise ValueError(msg)
+                logging.warning(msg)
 
             welsh_cats = {cat['Category_Code']: cat['External_Category_Label_Welsh']
                           for cat in one_var_categories if cat['External_Category_Label_Welsh']}

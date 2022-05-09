@@ -1,4 +1,5 @@
 """Build data structure that represents relationship between dataset and variables."""
+import logging
 from collections import namedtuple
 
 DatasetVariables = namedtuple('DatasetVariables', 'classifications alternate_geog_variables')
@@ -47,9 +48,14 @@ class DatasetVarsBuilder():
         variable_mnemonic = variable['Variable_Mnemonic']
         classification_mnemonic = variable['Classification_Mnemonic']
         if not classification_mnemonic:
-            raise ValueError(f'Reading {self.filename} '
-                             'Classification must be specified for non-geographic '
-                             f'{variable_mnemonic} in dataset {self.dataset_mnemonic}')
+            msg = (f'Reading {self.filename} '
+                   'Classification must be specified for non-geographic '
+                   f'{variable_mnemonic} in dataset {self.dataset_mnemonic}')
+            # raise ValueError(msg)
+            logging.warning(msg)
+            logging.warning(f'dropping record at {self.filename}')
+            return
+
         if variable['Lowest_Geog_Variable_Flag'] == 'Y':
             raise ValueError(f'Reading {self.filename} '
                              'Lowest_Geog_Variable_Flag set on non-geographic variable'
@@ -77,10 +83,10 @@ class DatasetVarsBuilder():
                              f'for dataset {self.dataset_mnemonic}')
 
         if set(self.processing_priorities) != set(range(1, len(self.processing_priorities) + 1)):
-            raise ValueError(f'Reading {self.filename} '
-                             'Invalid processing_priorities '
-                             f'{self.processing_priorities} for dataset '
-                             f'{self.dataset_mnemonic}')
+            msg = (f'Reading {self.filename} Invalid processing_priorities '
+                   f'{self.processing_priorities} for dataset {self.dataset_mnemonic}')
+            # raise ValueError(msg)
+            logging.warning(msg)
 
         classifications = [c for _, c in sorted(zip(self.processing_priorities,
                                                     self.classifications))]
