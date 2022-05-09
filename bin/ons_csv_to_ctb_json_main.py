@@ -24,6 +24,15 @@ def filename_segment(value):
     return value
 
 
+def positive_int(value):
+    """Check that the value is an integer greater or equal to 0."""
+    # An exception will be raised if value is not an int
+    number = int(value)
+    if number < 0:
+        raise ValueError(f"invalid value: '{value}'")
+    return number
+
+
 def main():
     """
     Load metadata in CSV format and export in JSON format.
@@ -69,7 +78,7 @@ def main():
                              '(default: %(default)s)')
 
     parser.add_argument('-b', '--build_number',
-                        type=int,
+                        type=positive_int,
                         default=1,
                         help='Build number to use in output filenames '
                              '(default: %(default)s)')
