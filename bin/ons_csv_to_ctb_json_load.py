@@ -256,7 +256,7 @@ class Loader:
         dataset_to_variables = self.load_dataset_to_variables(dataset_mnemonics)
 
         datasets = {}
-        for dataset, line_num in dataset_rows:
+        for dataset, row_num in dataset_rows:
             dataset_mnemonic = dataset.pop('Dataset_Mnemonic')
             database_mnemonic = dataset.pop('Database_Mnemonic')
 
@@ -285,20 +285,20 @@ class Loader:
             if dataset['Security_Mnemonic'] == PUBLIC_SECURITY_MNEMONIC:
                 if not dataset_variables.classifications:
                     raise ValueError(
-                        f'Reading {self.full_filename(filename)}:{line_num} {dataset_mnemonic} '
+                        f'Reading {self.full_filename(filename)}:{row_num} {dataset_mnemonic} '
                         'has no associated classifications or geographic variable')
 
                 for classification in all_classifications:
                     if self.classifications[classification].private['Security_Mnemonic'] != \
                             PUBLIC_SECURITY_MNEMONIC:
                         raise ValueError(
-                            f'Reading {self.full_filename(filename)}:{line_num} Public ONS '
+                            f'Reading {self.full_filename(filename)}:{row_num} Public ONS '
                             f'dataset {dataset_mnemonic} has non-public classification '
                             f'{classification}')
                     if classification not in \
                             self.databases[database_mnemonic].private['Classifications']:
                         raise ValueError(
-                            f'Reading {self.full_filename(filename)}:{line_num} '
+                            f'Reading {self.full_filename(filename)}:{row_num} '
                             f'{dataset_mnemonic} has classification {classification} '
                             f'that is not in database {database_mnemonic}')
 
@@ -403,10 +403,10 @@ class Loader:
             unique_combo_fields=['Category_Code', 'Classification_Mnemonic'])
 
         classification_to_cats = {}
-        for cat, line_num in category_rows:
+        for cat, row_num in category_rows:
             classification_mnemonic = cat['Classification_Mnemonic']
             if self.classifications[classification_mnemonic].private['Is_Geographic']:
-                raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
+                raise ValueError(f'Reading {self.full_filename(filename)}:{row_num} '
                                  'found category for geographic classification '
                                  f'{classification_mnemonic}: all categories for geographic '
                                  'classifications must be in a separate lookup file')
@@ -586,18 +586,18 @@ class Loader:
                                           'Geographic_Theme_Welsh',
                                           'Geographic_Coverage_Welsh'}
         variables = {}
-        for variable, line_num in variable_rows:
+        for variable, row_num in variable_rows:
             # Ensure that non-geographic variables do not have geographic values set.
             is_geographic = variable['Variable_Type_Code'] == GEOGRAPHIC_VARIABLE_TYPE
             if not is_geographic:
                 # This value is not always populated in source files
                 # if not variable['Statistical_Unit']:
-                #     raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
+                #     raise ValueError(f'Reading {self.full_filename(filename)}:{row_num} '
                 #                    f'no Statistical_Unit specified for non geographic variable: '
                 #                    f'{variable["Variable_Mnemonic"]}')
                 for geo_field in all_geo_fields:
                     if variable[geo_field]:
-                        raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
+                        raise ValueError(f'Reading {self.full_filename(filename)}:{row_num} '
                                          f'{geo_field} specified for non geographic variable: '
                                          f'{variable["Variable_Mnemonic"]}')
 
@@ -605,7 +605,7 @@ class Loader:
             # else:
             #    for geo_field in en_geo_fields:
             #        if not variable[geo_field]:
-            #            raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
+            #            raise ValueError(f'Reading {self.full_filename(filename)}:{row_num} '
             #                             f'no {geo_field} specified for geographic variable: '
             #                             f'{variable["Variable_Mnemonic"]}')
 
@@ -688,11 +688,11 @@ class Loader:
         classification_to_topics = self.load_classification_to_topics(classification_mnemonics)
 
         classifications = {}
-        for classification, line_num in classification_rows:
+        for classification, row_num in classification_rows:
             variable_mnemonic = classification.pop('Variable_Mnemonic')
             classification_mnemonic = classification.pop('Classification_Mnemonic')
             if self.variables[variable_mnemonic].private['Is_Geographic']:
-                raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
+                raise ValueError(f'Reading {self.full_filename(filename)}:{row_num} '
                                  f'{classification_mnemonic} has a geographic variable '
                                  f'{variable_mnemonic} which is not allowed')
 
@@ -709,7 +709,7 @@ class Loader:
             if classification['Security_Mnemonic'] == PUBLIC_SECURITY_MNEMONIC:
                 variable = classification['ONS_Variable']
                 if variable.private['Security_Mnemonic'] != PUBLIC_SECURITY_MNEMONIC:
-                    raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
+                    raise ValueError(f'Reading {self.full_filename(filename)}:{row_num} '
                                      f'Public classification {classification_mnemonic} has '
                                      f'non-public variable {variable_mnemonic}')
 

@@ -69,7 +69,7 @@ bill,bill@bill.com,50
             required('name'),
             required('email'),
             ]
-        with self.assertRaisesRegex(ValueError, 'Reading file.csv: too many fields on line 3'):
+        with self.assertRaisesRegex(ValueError, 'Reading file.csv: too many fields on row 3'):
             Reader('file.csv', columns).read()
 
     @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""name,email
@@ -81,7 +81,7 @@ bill
             required('name'),
             required('email'),
             ]
-        with self.assertRaisesRegex(ValueError, 'Reading file.csv: too few fields on line 3'):
+        with self.assertRaisesRegex(ValueError, 'Reading file.csv: too few fields on row 3'):
             Reader('file.csv', columns).read()
 
     @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""name

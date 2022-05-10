@@ -15,7 +15,7 @@ def optional(name, unique=False, validate_fn=None):
     return Column(name, unique, validate_fn, required=False)
 
 
-Row = namedtuple('Row', 'data line_num')
+Row = namedtuple('Row', 'data row_num')
 
 
 class Reader:
@@ -48,13 +48,11 @@ class Reader:
                 raise ValueError(f'Reading {self.filename}: missing expected columns: '
                                  f'{", ".join(sorted(missing_columns))}')
 
-            for row in reader:
+            for row_num, row in enumerate(reader, 2):
                 if None in row:
-                    raise ValueError(f'Reading {self.filename}: too many fields on line '
-                                     f'{reader.line_num}')
+                    raise ValueError(f'Reading {self.filename}: too many fields on row {row_num}')
                 if None in row.values():
-                    raise ValueError(f'Reading {self.filename}: too few fields on line '
-                                     f'{reader.line_num}')
+                    raise ValueError(f'Reading {self.filename}: too few fields on row {row_num}')
 
                 for k in list(row.keys()):
                     if k not in self.expected_columns:
@@ -63,40 +61,40 @@ class Reader:
                 if not [k for k in row if row[k]]:
                     continue
 
-                self.validate_row(row, reader.line_num)
+                self.validate_row(row, row_num)
 
                 for k in row.keys():
                     if row[k] == '':
                         row[k] = None
 
-                data.append(Row(row, reader.line_num))
+                data.append(Row(row, row_num))
 
         return data
 
-    def validate_row(self, row, line_num):
+    def validate_row(self, row, row_num):
         """Validate the fields in a row."""
         for column in self.columns:
             row[column.name] = row[column.name].strip()
 
             if column.required and not row[column.name]:
-                raise ValueError(f'Reading {self.filename}:{line_num} no value supplied '
+                raise ValueError(f'Reading {self.filename}:{row_num} no value supplied '
                                  f'for required field {column.name}')
 
             if column.unique:
                 if row[column.name] in self.unique_column_values[column.name]:
-                    raise ValueError(f'Reading {self.filename}:{line_num} duplicate '
+                    raise ValueError(f'Reading {self.filename}:{row_num} duplicate '
                                      f'value {row[column.name]} for {column.name}')
                 self.unique_column_values[column.name].add(row[column.name])
 
             if row[column.name] and column.validate_fn and not \
                     column.validate_fn(row[column.name]):
-                raise ValueError(f'Reading {self.filename}:{line_num} invalid value '
+                raise ValueError(f'Reading {self.filename}:{row_num} invalid value '
                                  f'{row[column.name]} for {column.name}')
 
         if self.unique_combo_fields:
             combo = tuple([row[f] for f in self.unique_combo_fields])
             if combo in self.unique_combos:
-                raise ValueError(f'Reading {self.filename}:{line_num} duplicate '
+                raise ValueError(f'Reading {self.filename}:{row_num} duplicate '
                                  f'value combo {"/".join(combo)} for '
                                  f'{"/".join(self.unique_combo_fields)}')
             self.unique_combos.add(combo)
