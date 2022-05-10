@@ -11,7 +11,6 @@ type DatasetMetadata {
 
 type VariableMetadata {
   Mnemonic_2011: String
-  Flat_Classification_Flag: String
   Parent_Classification_Mnemonic: String
   Default_Classification_Flag: String
   Version: String!
@@ -67,7 +66,7 @@ type Source {
   Methodology_Statement: String
   SDC_Link: String
   SDC_Statement: String
-  Version: String
+  Version: String!
   Contact: Contact
 }
 
