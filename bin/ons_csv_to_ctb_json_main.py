@@ -2,6 +2,8 @@
 import json
 import os
 import logging
+import re
+from pathlib import Path
 from argparse import ArgumentParser
 from datetime import date
 from ons_csv_to_ctb_json_load import Loader, PUBLIC_SECURITY_MNEMONIC
@@ -10,10 +12,12 @@ from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 VERSION = '1.1.alpha'
 
 SYSTEM = 'cantabm'
-SYSTEM_SOFTWARE_VERSION = 'v9-3-0'
+DEFAULT_CANTABULAR_VERSION = '9.3.0'
+CANTABULAR_V9_2_0 = '9.2.0'
 FILE_CONTENT_TYPE_DATASET = 'dataset-md'
 FILE_CONTENT_TYPE_TABLES = 'tables-md'
 FILE_CONTENT_TYPE_SERVICE = 'service-md'
+KNOWN_CANTABULAR_VERSIONS = [DEFAULT_CANTABULAR_VERSION, CANTABULAR_V9_2_0]
 
 
 def filename_segment(value):
@@ -31,6 +35,14 @@ def positive_int(value):
     if number < 0:
         raise ValueError(f"invalid value: '{value}'")
     return number
+
+
+def cantabular_version_string(value):
+    """Check that the version is of format x.y.z."""
+    value = value.strip()
+    if not re.match(r'^\d+.\d+.\d+$', value):
+        raise ValueError(f"invalid value: '{value}'")
+    return value
 
 
 def main():
@@ -83,62 +95,124 @@ def main():
                         help='Build number to use in output filenames '
                              '(default: %(default)s)')
 
+    parser.add_argument('-v', '--cantabular-version',
+                        type=cantabular_version_string,
+                        default=DEFAULT_CANTABULAR_VERSION,
+                        help='Cantabular version for output files. The supported versions are '
+                             f'[{", ".join(KNOWN_CANTABULAR_VERSIONS)}]. If any other version is '
+                             'supplied then it will be used in the filename, but version '
+                             f'{DEFAULT_CANTABULAR_VERSION} formatting will be used. '
+                             '(default: %(default)s)')
+
     args = parser.parse_args()
 
     logging.basicConfig(format='t=%(asctime)s lvl=%(levelname)s msg=%(message)s',
                         level=args.log_level)
+
+    logging.info(f'{Path(__file__).name} version {VERSION}')
+    logging.info(f'CSV source directory: {args.input_dir}')
+    if args.geography_file:
+        logging.info(f'Geography file: {args.geography_file}')
 
     for directory in (args.input_dir, args.output_dir):
         if not os.path.isdir(directory):
             raise ValueError(f'{directory} does not exist or is not a directory')
 
     todays_date = date.today().strftime('%Y%m%d')
+    base_filename_template = output_filename_template(
+        args.file_prefix, args.cantabular_version, args.metadata_master_version, todays_date,
+        args.build_number)
 
     # loader is used to load the metadata from CSV files and convert it to JSON.
     loader = Loader(args.input_dir, args.geography_file)
 
-    # Build Cantabular variable and dataset objects and write them to a JSON file.
+    # Build Cantabular variable objects.
     # A Cantabular variable is equivalent to an ONS classification.
-    # A Cantabular dataset is equivalent to an ONS database.
     ctb_variables = build_ctb_variables(loader.classifications, loader.categories)
+
+    # Build Cantabular dataset objects.
+    # A Cantabular dataset is equivalent to an ONS database.
     ctb_datasets = build_ctb_datasets(loader.databases, ctb_variables)
 
-    base_filename = output_filename(args.file_prefix, args.metadata_master_version,
-                                    FILE_CONTENT_TYPE_DATASET, todays_date,
-                                    args.build_number)
-    filename = os.path.join(args.output_dir, base_filename)
-    with open(filename, 'w') as jsonfile:
-        json.dump(ctb_datasets, jsonfile, indent=4)
-    logging.info(f'Written dataset metadata file to: {filename}')
-
-    # Build Cantabular table objects and write to JSON.
+    # Build Cantabular table objects.
+    # A Cantabular table is equivalent to an ONS dataset.
     ctb_tables = build_ctb_tables(loader.datasets)
 
-    base_filename = output_filename(args.file_prefix, args.metadata_master_version,
-                                    FILE_CONTENT_TYPE_TABLES, todays_date, args.build_number)
-    filename = os.path.join(args.output_dir, base_filename)
-    with open(filename, 'w') as jsonfile:
-        json.dump(ctb_tables, jsonfile, indent=4)
-    logging.info(f'Written table metadata file to: {filename}')
-
-    # Build Cantabular service metadata objects and write to JSON.
+    # Build Cantabular service metadata.
     service_metadata = build_ctb_service_metadata()
 
-    base_filename = output_filename(args.file_prefix, args.metadata_master_version,
-                                    FILE_CONTENT_TYPE_SERVICE, todays_date,
-                                    args.build_number)
-    filename = os.path.join(args.output_dir, base_filename)
-    with open(filename, 'w') as jsonfile:
-        json.dump(service_metadata, jsonfile, indent=4)
-    logging.info(f'Written service metadata file to: {filename}')
+    # There is not a separate tables file for v9.2.0. Use the output_file_types list
+    # to determine which file types will be written.
+    output_file_types = [FILE_CONTENT_TYPE_DATASET, FILE_CONTENT_TYPE_SERVICE,
+                         FILE_CONTENT_TYPE_TABLES]
+
+    if args.cantabular_version == DEFAULT_CANTABULAR_VERSION:
+        logging.info(
+            f'Output files will be written in Cantabular {args.cantabular_version} format')
+
+    elif args.cantabular_version == CANTABULAR_V9_2_0:
+        output_file_types = [FILE_CONTENT_TYPE_DATASET, FILE_CONTENT_TYPE_SERVICE]
+        convert_json_to_ctb_v9_2_0(ctb_datasets, ctb_tables, service_metadata)
+        logging.info(
+            f'Output files will be written in Cantabular {args.cantabular_version} format')
+
+    else:
+        logging.info(
+            f'{args.cantabular_version} is an unknown Cantabular version: files will be written '
+            f'using {DEFAULT_CANTABULAR_VERSION} format')
+
+    if FILE_CONTENT_TYPE_DATASET in output_file_types:
+        filename = os.path.join(args.output_dir,
+                                base_filename_template.format(FILE_CONTENT_TYPE_DATASET))
+        with open(filename, 'w') as jsonfile:
+            json.dump(ctb_datasets, jsonfile, indent=4)
+        logging.info(f'Written dataset metadata file to: {filename}')
+
+    if FILE_CONTENT_TYPE_TABLES in output_file_types:
+        filename = os.path.join(args.output_dir,
+                                base_filename_template.format(FILE_CONTENT_TYPE_TABLES))
+        with open(filename, 'w') as jsonfile:
+            json.dump(ctb_tables, jsonfile, indent=4)
+        logging.info(f'Written table metadata file to: {filename}')
+
+    if FILE_CONTENT_TYPE_SERVICE in output_file_types:
+        filename = os.path.join(args.output_dir,
+                                base_filename_template.format(FILE_CONTENT_TYPE_SERVICE))
+        with open(filename, 'w') as jsonfile:
+            json.dump(service_metadata, jsonfile, indent=4)
+        logging.info(f'Written service metadata file to: {filename}')
 
 
-def output_filename(prefix, metadata_master_version, content_type, todays_date, build_number):
-    """Generate output filename."""
-    filename = (f'{SYSTEM}_{SYSTEM_SOFTWARE_VERSION}_{metadata_master_version}_{content_type}_'
+def convert_json_to_ctb_v9_2_0(ctb_datasets, ctb_tables, service_metadata):
+    """Convert JSON to Cantabular v9.2.0 format."""
+    for dataset in ctb_datasets:
+        dataset['meta']['description'] = dataset.pop('description')
+        for variable in dataset['vars'] if dataset['vars'] else []:
+            variable['meta']['description'] = variable.pop('description')
+
+    service_metadata[0]['meta']['tables'] = []
+    service_metadata[1]['meta']['tables'] = []
+    for table in ctb_tables:
+        for idx in [0, 1]:
+            localized_table = {
+                'name': table['name'],
+                'label': table['ref'][idx]['label'],
+                'description': table['ref'][idx]['description'],
+                'datasetName': table['datasetName'],
+                'vars': table['vars'],
+                'meta': table['ref'][idx]['meta'],
+            }
+            service_metadata[idx]['meta']['tables'].append(localized_table)
+
+
+def output_filename_template(prefix, cantabular_version, metadata_master_version, todays_date,
+                             build_number):
+    """Generate template for output filename."""
+    system_software_version = 'v' + cantabular_version.replace('.', '-')
+    filename = (f'{SYSTEM}_{system_software_version}_{metadata_master_version}_{{}}_'
                 f'{todays_date}-{build_number}.json')
     if prefix:
-        filename = f'{prefix}_{filename}'
+        filename = prefix + '_' + filename
 
     return filename
 
