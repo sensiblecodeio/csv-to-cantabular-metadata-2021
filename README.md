@@ -4,7 +4,8 @@ Introduction
 `bin/ons_csv_to_ctb_json_main.py` is an application that loads source metadata files in CSV format
 and converts them to hierarchical JSON that can be loaded into `cantabular-metadata`.
 
-It is compatible with version `1.1` of the metadata schema and version `9.3.0` of `cantabular-metadata`.
+It is compatible with version `1.1` of the metadata schema and versions `9.3.0`/`9.2.0` of
+`cantabular-metadata`. `9.3.0` format is used by default.
 
 This is version `1.1.alpha` of the CSV to JSON processing software and is subject to change.
 
