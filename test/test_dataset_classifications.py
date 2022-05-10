@@ -63,38 +63,38 @@ class TestDatasetClassification(unittest.TestCase):
         self.run_test(
             [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO1',
               'Id': '1', 'Classification_Mnemonic': 'GEO1'}],
-            f'^Reading {FILENAME} Classification_Mnemonic must not be specified for geographic variable GEO1 in dataset DS1$')
+            f'^Reading {FILENAME}:2 Classification_Mnemonic must not be specified for geographic variable GEO1 in dataset DS1$')
 
     def test_processing_priority_on_geo_var(self):
         self.run_test(
             [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO1',
               'Id': '1', 'Processing_Priority': '1'}],
-            f'^Reading {FILENAME} Processing_Priority must not be specified for geographic variable GEO1 in dataset DS1$')
+            f'^Reading {FILENAME}:2 Processing_Priority must not be specified for geographic variable GEO1 in dataset DS1$')
 
     def test_no_classification_on_non_geo_var(self):
         self.run_test(
             [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'VAR1',
               'Id': '1', 'Processing_Priority': '1'}],
-            f'^Reading {FILENAME} Classification must be specified for non-geographic VAR1 in dataset DS1$')
+            f'^Reading {FILENAME}:2 Classification must be specified for non-geographic VAR1 in dataset DS1$')
 
     def test_no_processing_priority_on_non_geo_var(self):
         self.run_test(
             [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'VAR1',
               'Id': '1', 'Classification_Mnemonic': 'CLASS1'}],
-            f'^Reading {FILENAME} Processing_Priority not specified for classification CLASS1 in dataset DS1$')
+            f'^Reading {FILENAME}:2 Processing_Priority not specified for classification CLASS1 in dataset DS1$')
 
     def test_lowest_geog_on_non_geo_var(self):
         self.run_test(
             [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'VAR1',
               'Id': '1', 'Classification_Mnemonic': 'CLASS1', 'Processing_Priority': '1',
               'Lowest_Geog_Variable_Flag': 'Y'}],
-            f'^Reading {FILENAME} Lowest_Geog_Variable_Flag set on non-geographic variable VAR1 for dataset DS1$')
+            f'^Reading {FILENAME}:2 Lowest_Geog_Variable_Flag set on non-geographic variable VAR1 for dataset DS1$')
 
     def test_invalid_classification_on_var(self):
         self.run_test(
             [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'VAR1',
               'Id': '1', 'Classification_Mnemonic': 'CLASS2', 'Processing_Priority': '1'}],
-            f'^Reading {FILENAME} Invalid classification CLASS2 specified for variable VAR1 in dataset DS1$')
+            f'^Reading {FILENAME}:2 Invalid classification CLASS2 specified for variable VAR1 in dataset DS1$')
 
     def test_no_lowest_geog_flag(self):
         self.run_test(
@@ -108,7 +108,7 @@ class TestDatasetClassification(unittest.TestCase):
               'Id': '1', 'Lowest_Geog_Variable_Flag': 'Y'},
              {'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO2',
               'Id': '1', 'Lowest_Geog_Variable_Flag': 'Y'}],
-            f'^Reading {FILENAME} Lowest_Geog_Variable_Flag set on variable GEO2 and GEO1 for dataset DS1$')
+            f'^Reading {FILENAME}:3 Lowest_Geog_Variable_Flag set on variable GEO2 and GEO1 for dataset DS1$')
 
 
 if __name__ == '__main__':

@@ -104,6 +104,11 @@ def main():
                              f'{DEFAULT_CANTABULAR_VERSION} formatting will be used. '
                              '(default: %(default)s)')
 
+    parser.add_argument('--best-effort',
+                        action='store_true',
+                        help='Discard invalid data instead of failing on the first error and '
+                             'make a best effort attempt to produce valid output files.')
+
     args = parser.parse_args()
 
     logging.basicConfig(format='t=%(asctime)s lvl=%(levelname)s msg=%(message)s',
@@ -124,7 +129,7 @@ def main():
         args.build_number)
 
     # loader is used to load the metadata from CSV files and convert it to JSON.
-    loader = Loader(args.input_dir, args.geography_file)
+    loader = Loader(args.input_dir, args.geography_file, best_effort=args.best_effort)
 
     # Build Cantabular variable objects.
     # A Cantabular variable is equivalent to an ONS classification.
@@ -140,6 +145,10 @@ def main():
 
     # Build Cantabular service metadata.
     service_metadata = build_ctb_service_metadata()
+
+    error_count = loader.error_count()
+    if error_count:
+        logging.warning(f'{error_count} errors were encountered during processing')
 
     # There is not a separate tables file for v9.2.0. Use the output_file_types list
     # to determine which file types will be written.
