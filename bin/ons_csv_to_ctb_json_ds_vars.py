@@ -75,6 +75,7 @@ class DatasetVarsBuilder():
                                    'Processing_Priority not specified for classification '
                                    f'{classification_mnemonic} in dataset '
                                    f'{self.dataset_mnemonic}')
+            logging.warning(f'Reading {self.filename}:{row_num} using 0 for Processing_Priority')
             variable['Processing_Priority'] = 0
 
         self.classifications.append(variable['Classification_Mnemonic'])

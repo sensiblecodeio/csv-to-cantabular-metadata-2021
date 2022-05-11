@@ -103,6 +103,7 @@ class Reader:
                 if column.required:
                     keep_row = False
                     continue
+                logging.warning(f'Reading {self.filename}:{row_num} ignoring field {column.name}')
                 row[column.name] = ""
 
         if self.unique_combo_fields and keep_row:
