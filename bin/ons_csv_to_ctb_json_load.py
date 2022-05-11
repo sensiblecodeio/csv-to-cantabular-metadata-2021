@@ -60,10 +60,26 @@ class Loader:
     Many of the fields in this class are cached properties, with the data loaded on first access.
     """
 
-    def __init__(self, input_directory, geography_file):
+    def __init__(self, input_directory, geography_file, best_effort=False):
         """Initialise MetadataLoader object."""
         self.input_directory = input_directory
         self.geography_file = geography_file
+        self._error_count = 0
+
+        def raise_value_error(msg):
+            """Raise a ValueError exception."""
+            raise ValueError(msg)
+
+        def log_error(msg):
+            """Log the error."""
+            self._error_count += 1
+            logging.warning(msg)
+
+        self.recoverable_error = log_error if best_effort else raise_value_error
+
+    def error_count(self):
+        """Return number of errors."""
+        return self._error_count
 
     def read_file(self, filename, columns, unique_combo_fields=None):
         """
@@ -73,7 +89,7 @@ class Loader:
         and corresponding line number.
         """
         full_filename = self.full_filename(filename)
-        return Reader(full_filename, columns, unique_combo_fields).read()
+        return Reader(full_filename, columns, self.recoverable_error, unique_combo_fields).read()
 
     def full_filename(self, filename):
         """Add the input_directory path to the filename."""
@@ -256,7 +272,7 @@ class Loader:
         dataset_to_variables = self.load_dataset_to_variables(dataset_mnemonics)
 
         datasets = {}
-        for dataset, line_num in dataset_rows:
+        for dataset, row_num in dataset_rows:
             dataset_mnemonic = dataset.pop('Dataset_Mnemonic')
             database_mnemonic = dataset.pop('Database_Mnemonic')
 
@@ -283,24 +299,34 @@ class Loader:
             # If the dataset is public then ensure that there is at least one classification and
             # that all the classifications are also public.
             if dataset['Security_Mnemonic'] == PUBLIC_SECURITY_MNEMONIC:
+                drop_dataset = False
                 if not dataset_variables.classifications:
-                    raise ValueError(
-                        f'Reading {self.full_filename(filename)}:{line_num} {dataset_mnemonic} '
+                    self.recoverable_error(
+                        f'Reading {self.full_filename(filename)}:{row_num} {dataset_mnemonic} '
                         'has no associated classifications or geographic variable')
+                    drop_dataset = True
 
                 for classification in all_classifications:
                     if self.classifications[classification].private['Security_Mnemonic'] != \
                             PUBLIC_SECURITY_MNEMONIC:
-                        raise ValueError(
-                            f'Reading {self.full_filename(filename)}:{line_num} Public ONS '
+                        self.recoverable_error(
+                            f'Reading {self.full_filename(filename)}:{row_num} Public ONS '
                             f'dataset {dataset_mnemonic} has non-public classification '
                             f'{classification}')
+                        drop_dataset = True
+
                     if classification not in \
                             self.databases[database_mnemonic].private['Classifications']:
-                        raise ValueError(
-                            f'Reading {self.full_filename(filename)}:{line_num} '
+                        self.recoverable_error(
+                            f'Reading {self.full_filename(filename)}:{row_num} '
                             f'{dataset_mnemonic} has classification {classification} '
                             f'that is not in database {database_mnemonic}')
+                        drop_dataset = True
+
+                if drop_dataset:
+                    logging.warning(
+                        f'Reading {self.full_filename(filename)}:{row_num} dropping record')
+                    continue
 
             del dataset['Id']
             del dataset['Signed_Off_Flag']
@@ -403,10 +429,10 @@ class Loader:
             unique_combo_fields=['Category_Code', 'Classification_Mnemonic'])
 
         classification_to_cats = {}
-        for cat, line_num in category_rows:
+        for cat, row_num in category_rows:
             classification_mnemonic = cat['Classification_Mnemonic']
             if self.classifications[classification_mnemonic].private['Is_Geographic']:
-                raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
+                raise ValueError(f'Reading {self.full_filename(filename)}:{row_num} '
                                  'found category for geographic classification '
                                  f'{classification_mnemonic}: all categories for geographic '
                                  'classifications must be in a separate lookup file')
@@ -418,9 +444,10 @@ class Loader:
             num_cat_items = \
                 self.classifications[classification_mnemonic].private['Number_Of_Category_Items']
             if num_cat_items and len(one_var_categories) != num_cat_items:
-                raise ValueError(f'Reading {self.full_filename(filename)} '
-                                 f'Unexpected number of categories for {classification_mnemonic}: '
-                                 f'expected {num_cat_items} but found {len(one_var_categories)}')
+                self.recoverable_error(
+                    f'Reading {self.full_filename(filename)} '
+                    f'Unexpected number of categories for {classification_mnemonic}: '
+                    f'expected {num_cat_items} but found {len(one_var_categories)}')
 
             welsh_cats = {cat['Category_Code']: cat['External_Category_Label_Welsh']
                           for cat in one_var_categories if cat['External_Category_Label_Welsh']}
@@ -440,8 +467,9 @@ class Loader:
                 continue
 
             if not self.classifications[class_name].private['Is_Geographic']:
-                raise ValueError(f'Reading {self.geography_file}: found Welsh labels for non '
-                                 f'geographic classification: {class_name}')
+                self.recoverable_error(f'Reading {self.geography_file}: found Welsh labels for '
+                                       f'non geographic classification: {class_name}')
+                continue
 
             welsh_names = {cd: nm.welsh_name for cd, nm in geo_cats.items() if nm.welsh_name}
             if geo_cats:
@@ -586,26 +614,26 @@ class Loader:
                                           'Geographic_Theme_Welsh',
                                           'Geographic_Coverage_Welsh'}
         variables = {}
-        for variable, line_num in variable_rows:
+        for variable, row_num in variable_rows:
             # Ensure that non-geographic variables do not have geographic values set.
             is_geographic = variable['Variable_Type_Code'] == GEOGRAPHIC_VARIABLE_TYPE
             if not is_geographic:
                 # This value is not always populated in source files
                 # if not variable['Statistical_Unit']:
-                #     raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
+                #     raise ValueError(f'Reading {self.full_filename(filename)}:{row_num} '
                 #                    f'no Statistical_Unit specified for non geographic variable: '
                 #                    f'{variable["Variable_Mnemonic"]}')
                 for geo_field in all_geo_fields:
                     if variable[geo_field]:
-                        raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
-                                         f'{geo_field} specified for non geographic variable: '
-                                         f'{variable["Variable_Mnemonic"]}')
+                        self.recoverable_error(f'Reading {self.full_filename(filename)}:{row_num} '
+                                               f'{geo_field} specified for non geographic '
+                                               f'variable: {variable["Variable_Mnemonic"]}')
 
             # These values are not yet populated in source files
             # else:
             #    for geo_field in en_geo_fields:
             #        if not variable[geo_field]:
-            #            raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
+            #            raise ValueError(f'Reading {self.full_filename(filename)}:{row_num} '
             #                             f'no {geo_field} specified for geographic variable: '
             #                             f'{variable["Variable_Mnemonic"]}')
 
@@ -688,11 +716,11 @@ class Loader:
         classification_to_topics = self.load_classification_to_topics(classification_mnemonics)
 
         classifications = {}
-        for classification, line_num in classification_rows:
+        for classification, row_num in classification_rows:
             variable_mnemonic = classification.pop('Variable_Mnemonic')
             classification_mnemonic = classification.pop('Classification_Mnemonic')
             if self.variables[variable_mnemonic].private['Is_Geographic']:
-                raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
+                raise ValueError(f'Reading {self.full_filename(filename)}:{row_num} '
                                  f'{classification_mnemonic} has a geographic variable '
                                  f'{variable_mnemonic} which is not allowed')
 
@@ -709,7 +737,7 @@ class Loader:
             if classification['Security_Mnemonic'] == PUBLIC_SECURITY_MNEMONIC:
                 variable = classification['ONS_Variable']
                 if variable.private['Security_Mnemonic'] != PUBLIC_SECURITY_MNEMONIC:
-                    raise ValueError(f'Reading {self.full_filename(filename)}:{line_num} '
+                    raise ValueError(f'Reading {self.full_filename(filename)}:{row_num} '
                                      f'Public classification {classification_mnemonic} has '
                                      f'non-public variable {variable_mnemonic}')
 
@@ -803,20 +831,23 @@ class Loader:
 
                 if db_var['Lowest_Geog_Variable_Flag'] == 'Y':
                     if not is_geographic:
-                        raise ValueError(f'Reading {self.full_filename(filename)} '
-                                         'Lowest_Geog_Variable_Flag set on non-geographic variable'
-                                         f' {variable_mnemonic} for database {database_mnemonic}')
-                    if lowest_geog_var:
-                        raise ValueError(f'Reading {self.full_filename(filename)} '
-                                         f'Lowest_Geog_Variable_Flag set on {variable_mnemonic} '
-                                         f'and {lowest_geog_var} for database {database_mnemonic}')
-                    lowest_geog_var = variable_mnemonic
+                        self.recoverable_error(
+                            f'Reading {self.full_filename(filename)} '
+                            'Lowest_Geog_Variable_Flag set on non-geographic variable'
+                            f' {variable_mnemonic} for database {database_mnemonic}')
+                    elif lowest_geog_var:
+                        self.recoverable_error(
+                            f'Reading {self.full_filename(filename)} '
+                            f'Lowest_Geog_Variable_Flag set on {variable_mnemonic} '
+                            f'and {lowest_geog_var} for database {database_mnemonic}')
+                    else:
+                        lowest_geog_var = variable_mnemonic
                 variables.append(variable_mnemonic)
 
             if not lowest_geog_var and contains_geo_vars:
-                raise ValueError(f'Reading {self.full_filename(filename)} '
-                                 'Lowest_Geog_Variable_Flag not set on any geographic variable '
-                                 f'for database {database_mnemonic}')
+                self.recoverable_error(f'Reading {self.full_filename(filename)} '
+                                       'Lowest_Geog_Variable_Flag not set on any geographic '
+                                       f'variable for database {database_mnemonic}')
 
             database_to_variables[database_mnemonic] = DatabaseVariables(
                 variables=variables, lowest_geog_variable=lowest_geog_var)
@@ -983,18 +1014,19 @@ class Loader:
             unique_combo_fields=['Dataset_Mnemonic', 'Variable_Mnemonic'])
 
         ds_to_vars_builder = {}
-        for ds_variable, _ in dataset_variable_rows:
+        for ds_variable, row_num in dataset_variable_rows:
             dataset_mnemonic = ds_variable['Dataset_Mnemonic']
             variable_mnemonic = ds_variable['Variable_Mnemonic']
             if dataset_mnemonic not in ds_to_vars_builder:
                 ds_to_vars_builder[dataset_mnemonic] = DatasetVarsBuilder(
-                    dataset_mnemonic, self.full_filename(filename), self.classifications)
+                    dataset_mnemonic, self.full_filename(filename), self.classifications,
+                    self.recoverable_error)
             vars_builder = ds_to_vars_builder[dataset_mnemonic]
 
             if self.variables[variable_mnemonic].private['Is_Geographic']:
-                vars_builder.add_geographic_variable(ds_variable)
+                vars_builder.add_geographic_variable(ds_variable, row_num)
             else:
-                vars_builder.add_non_geographic_variable(ds_variable)
+                vars_builder.add_non_geographic_variable(ds_variable, row_num)
 
         ds_to_variables = {}
         for dataset_mnemonic, vars_builder in ds_to_vars_builder.items():

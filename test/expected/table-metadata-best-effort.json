@@ -1,0 +1,62 @@
+[
+    {
+        "name": "DS1",
+        "datasetName": "DB1",
+        "vars": [
+            "GEO1",
+            "CLASS1"
+        ],
+        "ref": [
+            {
+                "lang": "en",
+                "label": "DS1 Title",
+                "description": "DS1 Description",
+                "meta": {
+                    "Dataset_Mnemonic_2011": null,
+                    "Last_Updated": null,
+                    "Unique_Url": null,
+                    "Version": "1",
+                    "Geographic_Coverage": "Everywhere",
+                    "Dataset_Population": "Everyone",
+                    "Statistical_Unit": {
+                        "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Description": "House Description"
+                    },
+                    "Contact": null,
+                    "Keywords": [],
+                    "Related_Datasets": [],
+                    "Census_Releases": [],
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": [
+                        "GEO3"
+                    ]
+                }
+            },
+            {
+                "lang": "cy",
+                "label": "DS1 Title",
+                "description": "DS1 Description",
+                "meta": {
+                    "Dataset_Mnemonic_2011": null,
+                    "Last_Updated": null,
+                    "Unique_Url": null,
+                    "Version": "1",
+                    "Geographic_Coverage": "Everywhere",
+                    "Dataset_Population": "Everyone",
+                    "Statistical_Unit": {
+                        "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Description": "House Description"
+                    },
+                    "Contact": null,
+                    "Keywords": [],
+                    "Related_Datasets": [],
+                    "Census_Releases": [],
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": [
+                        "GEO3"
+                    ]
+                }
+            }
+        ]
+    }
+]
