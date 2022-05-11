@@ -1,6 +1,16 @@
 Release Notes
 =============
 
+1.1.beta
+--------
+- Added `--best-effort` flag to discard invalid data and make a best effort
+  attempt to generate output files.
+  - This replaces the `fixup.py` script.
+- Formatted and customizable output filenames.
+- Support for Cantabular version 9.2.0 formatting.
+- Rework on mandatory fields.
+- Added 2011 1% sample metadata.
+
 1.1.alpha
 ---------
 - Updated code to work with metadata schema version 1.1.
