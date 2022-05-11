@@ -12,7 +12,8 @@ HEADERS = ['Source_Mnemonic', 'Id', 'Source_Description', 'Source_Description_We
 
 REQUIRED_FIELDS = {'Source_Mnemonic': 'SRC1',
                    'Source_Description': 'description',
-                   'Id': '1'}
+                   'Id': '1',
+                   'Version': '1'}
 
 INPUT_DIR = os.path.join(pathlib.Path(__file__).parent.resolve(), 'testdata')
 

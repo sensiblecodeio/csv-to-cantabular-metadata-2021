@@ -8,7 +8,8 @@ from helper_funcs import conditional_mock_open, build_test_file
 HEADERS = ['Security_Mnemonic', 'Id', 'Security_Description', 'Security_Description_Welsh']
 
 REQUIRED_FIELDS = {'Security_Mnemonic': 'PUB',
-                   'Id': '1'}
+                   'Id': '1',
+                   'Security_Description': 'Public'}
 
 INPUT_DIR = os.path.join(pathlib.Path(__file__).parent.resolve(), 'testdata')
 
@@ -35,7 +36,7 @@ class TestSecurityClassification(unittest.TestCase):
 
     def test_missing_public_security_classification(self):
         self.run_test(
-            [{'Security_Mnemonic': 'PRIVATE', 'Id': '1'}],
+            [{'Security_Mnemonic': 'PRIVATE', 'Id': '1', 'Security_Description': 'Private'}],
             f'^PUB not found as Security_Mnemonic for any entry in {FILENAME}$')
 
 

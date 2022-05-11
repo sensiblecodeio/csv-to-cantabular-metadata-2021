@@ -14,9 +14,9 @@ REQUIRED_FIELDS = {'Classification_Mnemonic': 'CLASS1',
                    'Security_Mnemonic': 'PUB',
                    'Variable_Mnemonic': 'VAR1',
                    'Internal_Classification_Label_English': 'label',
-                   'Number_Of_Category_Items': '1',
                    'Version': '1',
-                   'Id': '1'}
+                   'Id': '1',
+                   'Signed_Off_Flag': 'N'}
 
 INPUT_DIR = os.path.join(pathlib.Path(__file__).parent.resolve(), 'testdata')
 
@@ -37,7 +37,8 @@ class TestClassification(unittest.TestCase):
                 self.run_test([row], f'^Reading {FILENAME}:2 no value supplied for required field {field}$')
 
     def test_invalid_values(self):
-        for field in ['Security_Mnemonic', 'Variable_Mnemonic', 'Number_Of_Category_Items']:
+        for field in ['Security_Mnemonic', 'Variable_Mnemonic', 'Number_Of_Category_Items',
+                      'Signed_Off_Flag']:
             with self.subTest(field=field):
                 row = REQUIRED_FIELDS.copy()
                 row[field] = 'X'

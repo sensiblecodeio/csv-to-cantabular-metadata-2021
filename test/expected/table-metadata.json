@@ -64,6 +64,9 @@
                             "Publisher_Name": null,
                             "Publisher_Website": null
                         }
+                    ],
+                    "Alternate_Geographic_Variables": [
+                        "GEO2"
                     ]
                 }
             },
@@ -122,6 +125,9 @@
                             "Publisher_Name": null,
                             "Publisher_Website": null
                         }
+                    ],
+                    "Alternate_Geographic_Variables": [
+                        "GEO2"
                     ]
                 }
             }
@@ -159,7 +165,8 @@
                             "Release_Date": "1/1/2022"
                         }
                     ],
-                    "Publications": []
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
                 }
             },
             {
@@ -187,7 +194,8 @@
                             "Release_Date": "1/1/2022"
                         }
                     ],
-                    "Publications": []
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
                 }
             }
         ]
@@ -224,7 +232,8 @@
                     "Keywords": [],
                     "Related_Datasets": [],
                     "Census_Releases": [],
-                    "Publications": []
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
                 }
             },
             {
@@ -252,7 +261,8 @@
                     "Keywords": [],
                     "Related_Datasets": [],
                     "Census_Releases": [],
-                    "Publications": []
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
                 }
             }
         ]
@@ -283,7 +293,8 @@
                     "Keywords": [],
                     "Related_Datasets": [],
                     "Census_Releases": [],
-                    "Publications": []
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
                 }
             },
             {
@@ -305,7 +316,8 @@
                     "Keywords": [],
                     "Related_Datasets": [],
                     "Census_Releases": [],
-                    "Publications": []
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
                 }
             }
         ]

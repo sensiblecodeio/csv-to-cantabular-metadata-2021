@@ -18,7 +18,8 @@ COMMON_FIELDS = {'Dataset_Title': 'title',
                  'Dataset_Population': 'population',
                  'Id': '1',
                  'Statistical_Unit': 'People',
-                 'Version': '1'}
+                 'Version': '1',
+                 'Signed_Off_Flag': 'N'}
 
 REQUIRED_FIELDS = {'Dataset_Mnemonic': 'DS1',
                    'Database_Mnemonic': 'DB1',
@@ -44,7 +45,8 @@ class TestDataset(unittest.TestCase):
                 self.run_test([row], f'^Reading {FILENAME}:2 no value supplied for required field {field}$')
 
     def test_invalid_values(self):
-        for field in ['Security_Mnemonic', 'Database_Mnemonic', 'Contact_Id', 'Statistical_Unit']:
+        for field in ['Security_Mnemonic', 'Database_Mnemonic', 'Contact_Id', 'Statistical_Unit',
+                      'Signed_Off_Flag']:
             with self.subTest(field=field):
                 row = REQUIRED_FIELDS.copy()
                 row[field] = 'X'

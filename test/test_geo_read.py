@@ -64,14 +64,14 @@ OA7,LAD5,LAD5 Name,LAD5 Name (Welsh),COUNTRY1,COUNTRY1 Name
 OA1,LAD1,LAD1 Name,LAD1 Name (Welsh),COUNTRY1,COUNTRY1 Name,extra
 """)
     def test_too_many_columns(self, m):
-        with self.assertRaisesRegex(ValueError, 'Reading file.csv: too many fields on line 2'):
+        with self.assertRaisesRegex(ValueError, 'Reading file.csv: too many fields on row 2'):
             read_geo_cats('file.csv')
 
     @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""OA11CD,LAD22CD,LAD22NM,LAD22NMW,COUNTRY22CD,COUNTRY22NM
 OA1,LAD1,LAD1 Name,LAD1 Name (Welsh),COUNTRY1
 """)
     def test_too_few_columns(self, m):
-        with self.assertRaisesRegex(ValueError, 'Reading file.csv: too few fields on line 2'):
+        with self.assertRaisesRegex(ValueError, 'Reading file.csv: too few fields on row 2'):
             read_geo_cats('file.csv')
 
     @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""LAD22CD,LAD22NM,LAD22NMW

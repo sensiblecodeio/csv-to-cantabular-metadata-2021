@@ -7,7 +7,8 @@
         "meta": {
             "Source": {
                 "Source_Mnemonic": "Census2021",
-                "Source_Description": "The 2021 England and Wales Census"
+                "Source_Description": "The 2021 England and Wales Census",
+                "Version": "1"
             },
             "Version": "1"
         },
@@ -245,7 +246,8 @@
         "meta": {
             "Source": {
                 "Source_Mnemonic": "Census2021",
-                "Source_Description": "The 2021 England and Wales Census"
+                "Source_Description": "The 2021 England and Wales Census",
+                "Version": "1"
             },
             "Version": "1"
         },
@@ -357,7 +359,9 @@
                     },
                     "Topics": []
                 },
-                "catLabels": null
+                "catLabels": {
+                    "CODE2-1": "LABEL2-1 (Welsh)"
+                }
             },
             {
                 "name": "CLASS3",

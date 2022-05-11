@@ -40,13 +40,11 @@ def read_geo_cats(filename):
         var_to_columns = assign_columns_to_variables(filename, fieldnames)
         data = {var_name: {} for var_name in var_to_columns}
 
-        for row in reader:
+        for row_num, row in enumerate(reader, 2):
             if len(row) > len(fieldnames):
-                raise ValueError(f'Reading {filename}: too many fields on line '
-                                 f'{reader.line_num}')
+                raise ValueError(f'Reading {filename}: too many fields on row {row_num}')
             if len(row) < len(fieldnames):
-                raise ValueError(f'Reading {filename}: too few fields on line '
-                                 f'{reader.line_num}')
+                raise ValueError(f'Reading {filename}: too few fields on row {row_num}')
 
             for geo, columns in var_to_columns.items():
                 code = row[columns.code].strip()
