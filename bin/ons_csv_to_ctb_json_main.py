@@ -9,7 +9,7 @@ from datetime import date
 from ons_csv_to_ctb_json_load import Loader, PUBLIC_SECURITY_MNEMONIC
 from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 
-VERSION = '1.1.alpha'
+VERSION = '1.1.beta'
 
 SYSTEM = 'cantabm'
 DEFAULT_CANTABULAR_VERSION = '9.3.0'
