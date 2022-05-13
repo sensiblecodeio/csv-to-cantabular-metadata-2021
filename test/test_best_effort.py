@@ -67,7 +67,6 @@ class TestBestEffort(unittest.TestCase):
             r'Dataset_Variable.csv:8 dropping record',
             r'Dataset_Variable.csv Invalid processing_priorities \[0\] for dataset DS1',
             r'Dataset.csv:3 DS2 has classification CLASS3 that is not in database DB1',
-            r'Dataset.csv:3 dropping record',
             r'Dataset.csv:4 DS3 has no associated classifications or geographic variable',
             r'Dataset.csv:4 dropping record',
             r'16 errors were encountered during processing',

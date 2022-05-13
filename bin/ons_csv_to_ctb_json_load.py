@@ -321,7 +321,9 @@ class Loader:
                             f'Reading {self.full_filename(filename)}:{row_num} '
                             f'{dataset_mnemonic} has classification {classification} '
                             f'that is not in database {database_mnemonic}')
-                        drop_dataset = True
+                        # Keeping the dataset in this scenario produces more useful data
+                        # when operating in best effort mode.
+                        drop_dataset = False
 
                 if drop_dataset:
                     logging.warning(
