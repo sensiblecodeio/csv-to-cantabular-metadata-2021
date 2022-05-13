@@ -7,7 +7,7 @@ and converts them to hierarchical JSON that can be loaded into `cantabular-metad
 It is compatible with version `1.1` of the metadata schema and versions `9.3.0`/`9.2.0` of
 `cantabular-metadata`. `9.3.0` format is used by default.
 
-This is version `1.1.beta` of the CSV to JSON processing software and is subject to change.
+This is version `1.1.gamma` of the CSV to JSON processing software and is subject to change.
 
 The applications only use packages in the Python standard library.
 
@@ -35,7 +35,7 @@ Basic logging will be displayed by default, including the number of high-level C
 objects loaded and the name of the output files.
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/
-t=2022-05-09 21:26:50,348 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.1.beta
+t=2022-05-09 21:26:50,348 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.1.gamma
 t=2022-05-09 21:26:50,348 lvl=INFO msg=CSV source directory: test/testdata/
 t=2022-05-09 21:26:50,348 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
 t=2022-05-09 21:26:50,350 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
@@ -55,7 +55,7 @@ t=2022-05-09 21:26:50,353 lvl=INFO msg=Written service metadata file to: ctb_met
 More detailed information can be obtained by running with a `-l DEBUG` flag e.g.:
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -l DEBUG
-t=2022-05-09 21:27:20,066 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.1.beta
+t=2022-05-09 21:27:20,066 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.1.gamma
 t=2022-05-09 21:27:20,066 lvl=INFO msg=CSV source directory: test/testdata/
 t=2022-05-09 21:27:20,066 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
 t=2022-05-09 21:27:20,067 lvl=DEBUG msg=Creating classification for geographic variable: GEO1
@@ -114,7 +114,7 @@ arguments as described in the help text for `ons_csv_to_ctb_json_main.py`:
 For example:
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -p t -m test -b 42
-t=2022-05-09 21:27:57,633 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.1.beta
+t=2022-05-09 21:27:57,633 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.1.gamma
 t=2022-05-09 21:27:57,633 lvl=INFO msg=CSV source directory: test/testdata/
 t=2022-05-09 21:27:57,633 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
 t=2022-05-09 21:27:57,634 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
@@ -143,43 +143,42 @@ This repository contains some test data that is full of errors. It can be used t
 of the `--best-effort` flag as shown below:
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/best_effort  -o ctb_metadata_files/ -m best-effort --best-effort
-t=2022-05-11 10:10:38,936 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.1.beta
-t=2022-05-11 10:10:38,936 lvl=INFO msg=CSV source directory: test/testdata/best_effort
-t=2022-05-11 10:10:38,937 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:3 no value supplied for required field Variable_Mnemonic
-t=2022-05-11 10:10:38,937 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:3 dropping record
-t=2022-05-11 10:10:38,937 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:4 duplicate value CLASS1 for Classification_Mnemonic
-t=2022-05-11 10:10:38,937 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:4 dropping record
-t=2022-05-11 10:10:38,937 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:5 invalid value x for Number_Of_Category_Items
-t=2022-05-11 10:10:38,937 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:5 ignoring field Number_Of_Category_Items
-t=2022-05-11 10:10:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Category.csv Unexpected number of categories for CLASS1: expected 4 but found 1
-t=2022-05-11 10:10:38,938 lvl=INFO msg=No geography file specified
-t=2022-05-11 10:10:38,938 lvl=INFO msg=Loaded metadata for 5 Cantabular variables
-t=2022-05-11 10:10:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Database_Variable.csv Lowest_Geog_Variable_Flag set on GEO3 and GEO1 for database DB1
-t=2022-05-11 10:10:38,938 lvl=INFO msg=Loaded metadata for 1 Cantabular datasets
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:4 duplicate value combo DS1/VAR1 for Dataset_Mnemonic/Variable_Mnemonic
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:4 dropping record
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:2 Lowest_Geog_Variable_Flag set on non-geographic variable VAR1 for dataset DS1
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:2 Processing_Priority not specified for classification CLASS1 in dataset DS1
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:2 using 0 for Processing_Priority
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:3 Classification_Mnemonic must not be specified for geographic variable GEO1 in dataset DS1
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:3 Processing_Priority must not be specified for geographic variable GEO1 in dataset DS1
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:5 Lowest_Geog_Variable_Flag set on variable GEO2 and GEO1 for dataset DS1
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:7 Classification must be specified for non-geographic VAR2 in dataset DS1
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:7 dropping record
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:8 Invalid classification CLASS1 specified for variable VAR3 in dataset DS1
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:8 dropping record
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv Invalid processing_priorities [0] for dataset DS1
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:3 DS2 has classification CLASS3 that is not in database DB1
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:3 dropping record
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:4 DS3 has no associated classifications or geographic variable
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:4 dropping record
-t=2022-05-11 10:10:38,939 lvl=INFO msg=Loaded metadata for 1 Cantabular tables
-t=2022-05-11 10:10:38,939 lvl=INFO msg=Loaded service metadata
-t=2022-05-11 10:10:38,939 lvl=WARNING msg=16 errors were encountered during processing
-t=2022-05-11 10:10:38,939 lvl=INFO msg=Output files will be written in Cantabular 9.3.0 format
-t=2022-05-11 10:10:38,940 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v9-3-0_best-effort_dataset-md_20220511-1.json
-t=2022-05-11 10:10:38,940 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v9-3-0_best-effort_tables-md_20220511-1.json
-t=2022-05-11 10:10:38,940 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v9-3-0_best-effort_service-md_20220511-1.json
+t=2022-05-13 16:07:44,712 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.1.gamma
+t=2022-05-13 16:07:44,712 lvl=INFO msg=CSV source directory: test/testdata/best_effort
+t=2022-05-13 16:07:44,713 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:3 no value supplied for required field Variable_Mnemonic
+t=2022-05-13 16:07:44,713 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:3 dropping record
+t=2022-05-13 16:07:44,713 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:4 duplicate value CLASS1 for Classification_Mnemonic
+t=2022-05-13 16:07:44,713 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:4 dropping record
+t=2022-05-13 16:07:44,713 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:5 invalid value x for Number_Of_Category_Items
+t=2022-05-13 16:07:44,713 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:5 ignoring field Number_Of_Category_Items
+t=2022-05-13 16:07:44,713 lvl=WARNING msg=Reading test/testdata/best_effort/Category.csv Unexpected number of categories for CLASS1: expected 4 but found 1
+t=2022-05-13 16:07:44,713 lvl=INFO msg=No geography file specified
+t=2022-05-13 16:07:44,713 lvl=INFO msg=Loaded metadata for 5 Cantabular variables
+t=2022-05-13 16:07:44,714 lvl=WARNING msg=Reading test/testdata/best_effort/Database_Variable.csv Lowest_Geog_Variable_Flag set on GEO3 and GEO1 for database DB1
+t=2022-05-13 16:07:44,714 lvl=INFO msg=Loaded metadata for 1 Cantabular datasets
+t=2022-05-13 16:07:44,714 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:4 duplicate value combo DS1/VAR1 for Dataset_Mnemonic/Variable_Mnemonic
+t=2022-05-13 16:07:44,714 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:4 dropping record
+t=2022-05-13 16:07:44,714 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:2 Lowest_Geog_Variable_Flag set on non-geographic variable VAR1 for dataset DS1
+t=2022-05-13 16:07:44,714 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:2 Processing_Priority not specified for classification CLASS1 in dataset DS1
+t=2022-05-13 16:07:44,714 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:2 using 0 for Processing_Priority
+t=2022-05-13 16:07:44,714 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:3 Classification_Mnemonic must not be specified for geographic variable GEO1 in dataset DS1
+t=2022-05-13 16:07:44,714 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:3 Processing_Priority must not be specified for geographic variable GEO1 in dataset DS1
+t=2022-05-13 16:07:44,714 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:5 Lowest_Geog_Variable_Flag set on variable GEO2 and GEO1 for dataset DS1
+t=2022-05-13 16:07:44,714 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:7 Classification must be specified for non-geographic VAR2 in dataset DS1
+t=2022-05-13 16:07:44,714 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:7 dropping record
+t=2022-05-13 16:07:44,714 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:8 Invalid classification CLASS1 specified for variable VAR3 in dataset DS1
+t=2022-05-13 16:07:44,714 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:8 dropping record
+t=2022-05-13 16:07:44,714 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv Invalid processing_priorities [0] for dataset DS1
+t=2022-05-13 16:07:44,714 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:3 DS2 has classification CLASS3 that is not in database DB1
+t=2022-05-13 16:07:44,715 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:4 DS3 has no associated classifications or geographic variable
+t=2022-05-13 16:07:44,715 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:4 dropping record
+t=2022-05-13 16:07:44,715 lvl=INFO msg=Loaded metadata for 2 Cantabular tables
+t=2022-05-13 16:07:44,715 lvl=INFO msg=Loaded service metadata
+t=2022-05-13 16:07:44,715 lvl=WARNING msg=16 errors were encountered during processing
+t=2022-05-13 16:07:44,715 lvl=INFO msg=Output files will be written in Cantabular 9.3.0 format
+t=2022-05-13 16:07:44,715 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v9-3-0_best-effort_dataset-md_20220513-1.json
+t=2022-05-13 16:07:44,716 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v9-3-0_best-effort_tables-md_20220513-1.json
+t=2022-05-13 16:07:44,716 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v9-3-0_best-effort_service-md_20220513-1.json
 ```
 
 Many lines contain strings such as `test/testdata/best_effort/Dataset.csv:4` this means that an error has been detected
@@ -200,7 +199,7 @@ can be found in the `sample_2011` directory.
 Use this command to convert the files to JSON (with debugging enabled):
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i sample_2011/ -g sample_2011/geography.csv -o ctb_metadata_files/ -m 2001-sample -l DEBUG
-t=2022-05-09 21:28:29,336 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.1.beta
+t=2022-05-09 21:28:29,336 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.1.gamma
 t=2022-05-09 21:28:29,336 lvl=INFO msg=CSV source directory: sample_2011/
 t=2022-05-09 21:28:29,336 lvl=INFO msg=Geography file: sample_2011/geography.csv
 t=2022-05-09 21:28:29,354 lvl=DEBUG msg=Creating classification for geographic variable: Region
@@ -285,7 +284,7 @@ will be reflected in the output filenames, but `9.3.0` format will be used.
 To generate version 9.2.0 compatible files from the test data use the following command:
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -v 9.2.0
-t=2022-05-09 21:40:49,218 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.1.beta
+t=2022-05-09 21:40:49,218 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.1.gamma
 t=2022-05-09 21:40:49,218 lvl=INFO msg=CSV source directory: test/testdata/
 t=2022-05-09 21:40:49,218 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
 t=2022-05-09 21:40:49,220 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
