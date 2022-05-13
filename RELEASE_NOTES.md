@@ -1,6 +1,11 @@
 Release Notes
 =============
 
+1.1.gamma
+---------
+- In `--best-effort` mode don't drop tables (ONS datasets) which use variables (ONS classifications) that
+  are not listed as belonging to the table dataset (ONS database).
+
 1.1.beta
 --------
 - Added `--best-effort` flag to discard invalid data and make a best effort
