@@ -241,7 +241,7 @@ def build_ctb_variables(classifications, cat_labels):
             continue
 
         ctb_class = {
-            'name': mnemonic,
+            'name': classification.private['Codebook_Mnemonic'],
             'label': classification.private['Classification_Label'],
             'description': classification.private['Variable_Description'],
             'meta': classification,
@@ -331,7 +331,7 @@ def build_ctb_tables(datasets):
         table = {
             'name': mnemonic,
             'datasetName': dataset.private['Database_Mnemonic'],
-            'vars': dataset.private['Classifications'],
+            'vars': dataset.private['Codebook_Mnemonics'],
             'ref': [ref.english(), ref.welsh()],
         }
 

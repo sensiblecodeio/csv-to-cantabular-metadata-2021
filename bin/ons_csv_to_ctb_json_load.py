@@ -345,7 +345,8 @@ class Loader:
                     'Dataset_Description': Bilingual(dataset.pop('Dataset_Description'),
                                                      dataset.pop('Dataset_Description_Welsh')),
                     'Database_Mnemonic': database_mnemonic,
-                    'Classifications': dataset_variables.classifications,
+                    'Codebook_Mnemonics': [self.classifications[c].private['Codebook_Mnemonic'] for
+                                           c in dataset_variables.classifications],
                 })
 
         return datasets
@@ -716,6 +717,7 @@ class Loader:
 
         classification_mnemonics = [c.data['Classification_Mnemonic'] for c in classification_rows]
         classification_to_topics = self.load_classification_to_topics(classification_mnemonics)
+        classification_to_codebook = self.load_class_to_codebook_mnemonic(classification_mnemonics)
 
         classifications = {}
         for classification, row_num in classification_rows:
@@ -743,6 +745,9 @@ class Loader:
                                      f'Public classification {classification_mnemonic} has '
                                      f'non-public variable {variable_mnemonic}')
 
+            codebook_mnemonic = classification_to_codebook.get(classification_mnemonic,
+                                                               classification_mnemonic)
+
             del classification['Signed_Off_Flag']
             del classification['Flat_Classification_Flag']
             del classification['Id']
@@ -763,7 +768,8 @@ class Loader:
                         classification.pop('External_Classification_Label_Welsh')),
                     'Variable_Mnemonic': variable_mnemonic,
                     'Variable_Description': ons_variable.private['Variable_Description'],
-                    'Is_Geographic': False})
+                    'Is_Geographic': False,
+                    'Codebook_Mnemonic': codebook_mnemonic})
 
         # Every geographic variable must have a corresponding classification with the same
         # mnemonic. This is due to the fact that the dataset specifies a geographic variable
@@ -788,7 +794,8 @@ class Loader:
                         'Classification_Label': variable.private['Variable_Title'],
                         'Variable_Mnemonic': variable_mnemonic,
                         'Variable_Description': variable.private['Variable_Description'],
-                        'Is_Geographic': True})
+                        'Is_Geographic': True,
+                        'Codebook_Mnemonic': variable_mnemonic})
 
         return classifications
 
@@ -1056,3 +1063,66 @@ class Loader:
                                    self.topics[topic_class['Topic_Mnemonic']])
 
         return classification_to_topics
+
+    def load_class_to_codebook_mnemonic(self, classification_mnemonics):
+        """
+        Load codebook mnemonic associated with each classification.
+
+        The codebook mnemonic is generally the same as the associated variable mnemonic for
+        base variables and the same as the classification mnemonic for other classifications.
+        It is the name used for variables in Cantabular codebooks.
+
+        The Category_Mapping.csv file contains more fields than those listed here, but they are
+        not required in the cantabular-metadata JSON files.
+        """
+        filename = 'Category_Mapping.csv'
+        columns = [
+            required('Classification_Mnemonic', validate_fn=isoneof(classification_mnemonics)),
+            required('Codebook_Mnemonic'),
+        ]
+        rows = self.read_file(filename, columns)
+
+        classification_to_codebook = {}
+        codebook_to_classification = {}
+        for row, row_num in rows:
+            classification_mnemonic = row['Classification_Mnemonic']
+            codebook_mnemonic = row['Codebook_Mnemonic']
+            if classification_mnemonic not in classification_to_codebook:
+                if codebook_mnemonic in codebook_to_classification:
+                    self.recoverable_error(
+                        f'Reading {self.full_filename(filename)}:{row_num} '
+                        f'{codebook_mnemonic} is Codebook_Mnemonic for both '
+                        f'{codebook_to_classification[codebook_mnemonic]} and '
+                        f'{classification_mnemonic}')
+                elif codebook_mnemonic != classification_mnemonic and \
+                        codebook_mnemonic in classification_mnemonics:
+                    self.recoverable_error(
+                        f'Reading {self.full_filename(filename)}:{row_num} '
+                        f'{codebook_mnemonic} is an invalid Codebook_Mnemonic for classification '
+                        f'{classification_mnemonic} as it is already the Classification_Mnemonic '
+                        'for another classification')
+                else:
+                    codebook_to_classification[codebook_mnemonic] = classification_mnemonic
+                    classification_to_codebook[classification_mnemonic] = codebook_mnemonic
+                    continue
+
+                # Set the classification_to_codebook value to None and use this to avoid reporting
+                # multiple identical errors for a given Classification_Mnemonic.
+                logging.warning(f'Reading {self.full_filename(filename)}:{row_num} '
+                                f'ignoring field Codebook_Mnemonic')
+                classification_to_codebook[classification_mnemonic] = None
+            elif classification_to_codebook[classification_mnemonic] and \
+                    classification_to_codebook[classification_mnemonic] != codebook_mnemonic:
+                self.recoverable_error(
+                    f'Reading {self.full_filename(filename)}:{row_num} different '
+                    'Codebook_Mnemonic values specified for classification '
+                    f'{classification_mnemonic}: {codebook_mnemonic} and '
+                    f'{classification_to_codebook[classification_mnemonic]}')
+
+        # Set the codebook menemonic to the classification mnemonic in cases where an invalid
+        # codebook mnemonic was provided.
+        for classification_mnemonic, codebook_mnemonic in classification_to_codebook.items():
+            if not codebook_mnemonic:
+                classification_to_codebook[classification_mnemonic] = classification_mnemonic
+
+        return classification_to_codebook

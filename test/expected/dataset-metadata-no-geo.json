@@ -14,7 +14,7 @@
         },
         "vars": [
             {
-                "name": "CLASS1",
+                "name": "CLASS1 (Codebook)",
                 "label": "CLASS1 Label",
                 "description": "VAR1 Description",
                 "meta": {
@@ -253,7 +253,7 @@
         },
         "vars": [
             {
-                "name": "CLASS1",
+                "name": "CLASS1 (Codebook)",
                 "label": "CLASS1 Label Welsh",
                 "description": "VAR1 Description (Welsh)",
                 "meta": {

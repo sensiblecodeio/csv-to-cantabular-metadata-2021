@@ -14,7 +14,7 @@
         },
         "vars": [
             {
-                "name": "CLASS1",
+                "name": "CLASS1 (Codebook)",
                 "label": "CLASS1 Label Internal",
                 "description": "VAR1 Description",
                 "meta": {
@@ -65,6 +65,39 @@
                         "Variable_Title": "VAR3 Title",
                         "Comparability_Comments": "VAR3 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR3 UK Comparison Comments",
+                        "Geographic_Abbreviation": null,
+                        "Geographic_Theme": null,
+                        "Geographic_Coverage": null,
+                        "Variable_Type": {
+                            "Variable_Type_Code": "DVO",
+                            "Variable_Type_Description": "Derived variable"
+                        },
+                        "Statistical_Unit": null,
+                        "Topic": null,
+                        "Keywords": [],
+                        "Questions": []
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            },
+            {
+                "name": "CLASS4",
+                "label": "CLASS4 Label Internal",
+                "description": "VAR1 Description",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "VAR1",
+                        "Variable_Mnemonic_2011": null,
+                        "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
+                        "Variable_Title": "VAR1 Title",
+                        "Comparability_Comments": "VAR1 Comparability Comments",
+                        "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
                         "Geographic_Abbreviation": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
@@ -200,7 +233,7 @@
         },
         "vars": [
             {
-                "name": "CLASS1",
+                "name": "CLASS1 (Codebook)",
                 "label": "CLASS1 Label Internal",
                 "description": "VAR1 Description",
                 "meta": {
@@ -251,6 +284,39 @@
                         "Variable_Title": "VAR3 Title",
                         "Comparability_Comments": "VAR3 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR3 UK Comparison Comments",
+                        "Geographic_Abbreviation": null,
+                        "Geographic_Theme": null,
+                        "Geographic_Coverage": null,
+                        "Variable_Type": {
+                            "Variable_Type_Code": "DVO",
+                            "Variable_Type_Description": "Derived variable"
+                        },
+                        "Statistical_Unit": null,
+                        "Topic": null,
+                        "Keywords": [],
+                        "Questions": []
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            },
+            {
+                "name": "CLASS4",
+                "label": "CLASS4 Label Internal",
+                "description": "VAR1 Description",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "VAR1",
+                        "Variable_Mnemonic_2011": null,
+                        "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
+                        "Variable_Title": "VAR1 Title",
+                        "Comparability_Comments": "VAR1 Comparability Comments",
+                        "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
                         "Geographic_Abbreviation": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
