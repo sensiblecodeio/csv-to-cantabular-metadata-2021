@@ -14,10 +14,11 @@
         },
         "vars": [
             {
-                "name": "CLASS1",
+                "name": "CLASS1 (Codebook)",
                 "label": "CLASS1 Label",
                 "description": "VAR1 Description",
                 "meta": {
+                    "Classification_Mnemonic": "CLASS1",
                     "Mnemonic_2011": "CLASS1 2011",
                     "Parent_Classification_Mnemonic": "CLASS1 Parent",
                     "Default_Classification_Flag": "Y",
@@ -88,6 +89,7 @@
                 "label": "CLASS2 Label Internal",
                 "description": "VAR2 Description",
                 "meta": {
+                    "Classification_Mnemonic": "CLASS2",
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": null,
                     "Default_Classification_Flag": null,
@@ -122,6 +124,7 @@
                 "label": "CLASS3 Label Internal",
                 "description": "VAR3 Description",
                 "meta": {
+                    "Classification_Mnemonic": "CLASS3",
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": null,
                     "Default_Classification_Flag": "N",
@@ -156,6 +159,7 @@
                 "label": "GEO1 Title",
                 "description": "GEO1 Description",
                 "meta": {
+                    "Classification_Mnemonic": "GEO1",
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": "GEO1",
                     "Default_Classification_Flag": null,
@@ -207,6 +211,7 @@
                 "label": "GEO2 Title",
                 "description": "GEO2 Description",
                 "meta": {
+                    "Classification_Mnemonic": "GEO2",
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": "GEO2",
                     "Default_Classification_Flag": null,
@@ -253,10 +258,11 @@
         },
         "vars": [
             {
-                "name": "CLASS1",
+                "name": "CLASS1 (Codebook)",
                 "label": "CLASS1 Label Welsh",
                 "description": "VAR1 Description (Welsh)",
                 "meta": {
+                    "Classification_Mnemonic": "CLASS1",
                     "Mnemonic_2011": "CLASS1 2011",
                     "Parent_Classification_Mnemonic": "CLASS1 Parent",
                     "Default_Classification_Flag": "Y",
@@ -332,6 +338,7 @@
                 "label": "CLASS2 Label Internal",
                 "description": "VAR2 Description",
                 "meta": {
+                    "Classification_Mnemonic": "CLASS2",
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": null,
                     "Default_Classification_Flag": null,
@@ -368,6 +375,7 @@
                 "label": "CLASS3 Label Welsh",
                 "description": "VAR3 Description",
                 "meta": {
+                    "Classification_Mnemonic": "CLASS3",
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": null,
                     "Default_Classification_Flag": "N",
@@ -402,6 +410,7 @@
                 "label": "GEO1 Title (Welsh)",
                 "description": "GEO1 Description (Welsh)",
                 "meta": {
+                    "Classification_Mnemonic": "GEO1",
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": "GEO1",
                     "Default_Classification_Flag": null,
@@ -453,6 +462,7 @@
                 "label": "GEO2 Title",
                 "description": "GEO2 Description",
                 "meta": {
+                    "Classification_Mnemonic": "GEO2",
                     "Mnemonic_2011": null,
                     "Parent_Classification_Mnemonic": "GEO2",
                     "Default_Classification_Flag": null,

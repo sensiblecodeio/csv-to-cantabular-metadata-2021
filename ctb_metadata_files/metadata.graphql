@@ -10,6 +10,7 @@ type DatasetMetadata {
 }
 
 type VariableMetadata {
+  Classification_Mnemonic: String!
   Mnemonic_2011: String
   Parent_Classification_Mnemonic: String
   Default_Classification_Flag: String

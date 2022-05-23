@@ -21,6 +21,7 @@ type DatasetMetadata {
 }
 
 type VariableMetadata {
+  Classification_Mnemonic: String!
   description: String!
   Mnemonic_2011: String
   Flat_Classification_Flag: String
