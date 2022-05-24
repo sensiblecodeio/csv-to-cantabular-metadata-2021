@@ -26,6 +26,7 @@ type VariableMetadata {
   Mnemonic_2011: String
   Flat_Classification_Flag: String
   Parent_Classification_Mnemonic: String
+  Parent_Codebook_Mnemonic: String
   Default_Classification_Flag: String
   Version: String!
   ONS_Variable: ONS_Variable!

@@ -748,6 +748,21 @@ class Loader:
             codebook_mnemonic = classification_to_codebook.get(classification_mnemonic,
                                                                classification_mnemonic)
 
+            classification['Parent_Codebook_Mnemonic'] = None
+            parent_classification = classification['Parent_Classification_Mnemonic']
+            if parent_classification:
+                if parent_classification not in classification_mnemonics:
+                    self.recoverable_error(
+                        f'Reading {self.full_filename(filename)}:{row_num} '
+                        f'invalid value {parent_classification} for '
+                        'Parent_Classification_Mnemonic')
+                    classification['Parent_Classification_Mnemonic'] = None
+                    logging.warning(f'Reading {self.full_filename(filename)}:{row_num} '
+                                    f'ignoring field Parent_Classification_Mnemonic')
+                else:
+                    classification['Parent_Codebook_Mnemonic'] = classification_to_codebook.get(
+                        parent_classification, None)
+
             del classification['Signed_Off_Flag']
             del classification['Flat_Classification_Flag']
             del classification['Id']
@@ -783,7 +798,8 @@ class Loader:
                     {
                         'Classification_Mnemonic': variable_mnemonic,
                         'Mnemonic_2011': None,
-                        'Parent_Classification_Mnemonic': variable_mnemonic,
+                        'Parent_Classification_Mnemonic': None,
+                        'Parent_Codebook_Mnemonic': None,
                         'Default_Classification_Flag': None,
                         'Version': variable.private['Version'],
                         'ONS_Variable': variable,

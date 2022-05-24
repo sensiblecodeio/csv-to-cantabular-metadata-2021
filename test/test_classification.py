@@ -38,7 +38,7 @@ class TestClassification(unittest.TestCase):
 
     def test_invalid_values(self):
         for field in ['Security_Mnemonic', 'Variable_Mnemonic', 'Number_Of_Category_Items',
-                      'Signed_Off_Flag']:
+                      'Signed_Off_Flag', 'Parent_Classification_Mnemonic']:
             with self.subTest(field=field):
                 row = REQUIRED_FIELDS.copy()
                 row[field] = 'X'
