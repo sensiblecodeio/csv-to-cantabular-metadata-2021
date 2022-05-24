@@ -51,7 +51,10 @@ If an optional Welsh field is not populated, then the English version will typic
 The source files can have English and Welsh category labels. The English labels are not included in
 the output JSON files. This information can be obtained from the codebook.
 
-The data in `Asset_Child_Reference.csv`, `Asset_Reference.csv`, `Category_Mapping.csv` and `Metadata_Version.csv` is not processed.
+The `Codebook_Mnemonic` for each classification is extracted from `Category_Mapping.csv` but the other fields are ignored.
+
+The data in `Specification.csv`, `Specification_Type.csv`, `Asset_Child_Reference.csv`, `Asset_Reference.csv`
+and `Metadata_Version.csv` are not processed.
 
 ## Geography lookup file
 
@@ -182,12 +185,17 @@ from appropriate values in `Classification.csv` or `Variable.csv`.
 
 | Field | GraphQL Type | Source (en) | Source (cy) |
 | --- | --- | --- | --- |
-| `name` | `String!` | `Classification.Classification_Mnemonic` or `Variable.Variable_Mnemonic` for geographic variables | |
+| `name` | `String!` | See note below | |
 | `label` | `String` | `Classification.External_Classification_Label_English` or `Variable.Variable_Title` for geographic variables | `Classification.External_Classification_Label_Welsh` or `Variable.Variable_Title_Welsh` for geographic variables |
 | `description` | `String` | `Variable.Variable_Description` | `Variable.Variable_Description_Welsh`. |
 | `meta` | `VariableMetadata!` | User specific metadata from `Classification.csv` | |
 | `catLabels` | `LabelsMap` | `{}` | Map of `Category.Code` to `Category.External_Category_Label_Welsh` values (see note below) |
 | `digest` | `String!` | Automatically populated hash of values in metadata for the variable | |
+
+It is essential that the variable `name` matches the name of the variable in the Cantabular codebook. For
+non-geographic variables this will be `Category_Mapping.Codebook_Mnemonic` if the field is populated for
+the classification or else `Classification.Classification_Mnemonic`. For base classifications the `Codebook_Mnemonic` and `Classification_Mnemonic` are likely to be different, whereas for higher level
+classifications they will be the same. The `name` will be `Variable.Variable_Mnemonic` for geographic variables.
 
 The English version of `catLabels` is an empty map. The English labels can be sourced from the codebook. The Welsh
 version of `catLabels` is a map of category codes to Welsh labels. It only contains values for Welsh labels that are
@@ -199,12 +207,11 @@ All the fields in `VariableMetadata` are user defined. It contains information f
 is not included in the `Variable` object. As noted above, classifications for geographic variables are automatically
 created and this is reflected in the values in this object.
 
-The `Signed_Off_Flag`, `Flat_Classification_Flag` and `Id` field in `Classification.csv` are ignored.
+The `Parent_Classification_Mnemonic`, `Signed_Off_Flag`, `Flat_Classification_Flag` and `Id` field in `Classification.csv` are ignored.
 
 | Field | GraphQL Type | Source (en) | Source (cy) |
 | --- | --- | --- | --- |
 | `Mnemonic_2011` | `String` | `Classification.Mnemonic_2011` or `null` for geographic variables | |
-| `Parent_Classification_Mnemonic` | `String` | `Classification.Parent_Classification_Mnemonic` or `Variable.Variable_Mnemonic` for geographic variables | |
 | `Default_Classification_Flag` | `String` | `Classification.Default_Classification_Flag` or `null` for geographic variables | |
 | `Version` | `String!` | `Classification.Version` or `Variable.Version` for geographic variables | |
 | `ONS_Variable` | `ONS_Variable!` | Keyed on `Classification.Variable_Mnemonic` or `Variable.Variable_Mnemonic` for geographic variables | |
