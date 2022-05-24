@@ -748,6 +748,10 @@ class Loader:
             codebook_mnemonic = classification_to_codebook.get(classification_mnemonic,
                                                                classification_mnemonic)
 
+            # Discard the Parent_Classification_Mnemonic. It can be obtained via the codebook and
+            # the value may be ambiguous since some classifications are renamed using the
+            # Codebook_Mnemonic from Category_Mapping.csv.
+            del classification['Parent_Classification_Mnemonic']
             del classification['Signed_Off_Flag']
             del classification['Flat_Classification_Flag']
             del classification['Id']
@@ -782,7 +786,6 @@ class Loader:
                 classifications[variable_mnemonic] = BilingualDict(
                     {
                         'Mnemonic_2011': None,
-                        'Parent_Classification_Mnemonic': variable_mnemonic,
                         'Default_Classification_Flag': None,
                         'Version': variable.private['Version'],
                         'ONS_Variable': variable,

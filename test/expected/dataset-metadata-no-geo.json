@@ -19,7 +19,6 @@
                 "description": "VAR1 Description",
                 "meta": {
                     "Mnemonic_2011": "CLASS1 2011",
-                    "Parent_Classification_Mnemonic": "CLASS1 Parent",
                     "Default_Classification_Flag": "Y",
                     "Version": "1",
                     "ONS_Variable": {
@@ -89,7 +88,6 @@
                 "description": "VAR2 Description",
                 "meta": {
                     "Mnemonic_2011": null,
-                    "Parent_Classification_Mnemonic": null,
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -123,7 +121,6 @@
                 "description": "VAR3 Description",
                 "meta": {
                     "Mnemonic_2011": null,
-                    "Parent_Classification_Mnemonic": null,
                     "Default_Classification_Flag": "N",
                     "Version": "1",
                     "ONS_Variable": {
@@ -157,7 +154,6 @@
                 "description": "GEO1 Description",
                 "meta": {
                     "Mnemonic_2011": null,
-                    "Parent_Classification_Mnemonic": "GEO1",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -208,7 +204,6 @@
                 "description": "GEO2 Description",
                 "meta": {
                     "Mnemonic_2011": null,
-                    "Parent_Classification_Mnemonic": "GEO2",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -258,7 +253,6 @@
                 "description": "VAR1 Description (Welsh)",
                 "meta": {
                     "Mnemonic_2011": "CLASS1 2011",
-                    "Parent_Classification_Mnemonic": "CLASS1 Parent",
                     "Default_Classification_Flag": "Y",
                     "Version": "1",
                     "ONS_Variable": {
@@ -333,7 +327,6 @@
                 "description": "VAR2 Description",
                 "meta": {
                     "Mnemonic_2011": null,
-                    "Parent_Classification_Mnemonic": null,
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -369,7 +362,6 @@
                 "description": "VAR3 Description",
                 "meta": {
                     "Mnemonic_2011": null,
-                    "Parent_Classification_Mnemonic": null,
                     "Default_Classification_Flag": "N",
                     "Version": "1",
                     "ONS_Variable": {
@@ -403,7 +395,6 @@
                 "description": "GEO1 Description (Welsh)",
                 "meta": {
                     "Mnemonic_2011": null,
-                    "Parent_Classification_Mnemonic": "GEO1",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -454,7 +445,6 @@
                 "description": "GEO2 Description",
                 "meta": {
                     "Mnemonic_2011": null,
-                    "Parent_Classification_Mnemonic": "GEO2",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
