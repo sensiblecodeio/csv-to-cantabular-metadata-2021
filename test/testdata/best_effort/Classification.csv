@@ -3,3 +3,4 @@ CLASS1,VAR1,1,,,4,,,,PUB,N,,1,CLASS1 Label Internal
 CLASS2,,2,,,,,,,PUB,N,,1,CLASS2 Label Internal
 CLASS1,VAR1,3,,,,,,,PUB,N,,1,CLASS1 Label Internal (Alternative)
 CLASS3,VAR3,4,,,x,,,,PUB,N,,1,CLASS3 Label Internal
+CLASS4,VAR1,5,,,,,,,PUB,N,,1,CLASS4 Label Internal

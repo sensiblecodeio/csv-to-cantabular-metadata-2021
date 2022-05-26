@@ -1,6 +1,15 @@
 Release Notes
 =============
 
+1.1.delta
+---------
+- Cantabular version 10.0.0 is now the default version. The file format for version 10.0.0 and
+  9.3.0 are identical.
+- Use the Codebook_Mnemonic from Category_Mapping.csv as the variable name.
+- Drop the Parent_Classification_Mnemonic from VariableMetadata in the GraphQL schema. This
+  information can be obtained from the codebook and its contents are ambiguous since a variable
+  name can now be either the Classification_Mnemonic or Codebook_Mnemonic.
+
 1.1.gamma
 ---------
 - In `--best-effort` mode don't drop tables (ONS datasets) which use variables (ONS classifications) that

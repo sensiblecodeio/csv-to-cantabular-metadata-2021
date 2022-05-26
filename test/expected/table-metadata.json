@@ -4,7 +4,7 @@
         "datasetName": "DB1",
         "vars": [
             "GEO1",
-            "CLASS1",
+            "CLASS1 (Codebook)",
             "CLASS2",
             "CLASS3"
         ],

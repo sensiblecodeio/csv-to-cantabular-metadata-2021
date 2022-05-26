@@ -9,15 +9,16 @@ from datetime import date
 from ons_csv_to_ctb_json_load import Loader, PUBLIC_SECURITY_MNEMONIC
 from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 
-VERSION = '1.1.gamma'
+VERSION = '1.1.delta'
 
 SYSTEM = 'cantabm'
-DEFAULT_CANTABULAR_VERSION = '9.3.0'
+DEFAULT_CANTABULAR_VERSION = '10.0.0'
+CANTABULAR_V9_3_0 = '9.3.0'
 CANTABULAR_V9_2_0 = '9.2.0'
 FILE_CONTENT_TYPE_DATASET = 'dataset-md'
 FILE_CONTENT_TYPE_TABLES = 'tables-md'
 FILE_CONTENT_TYPE_SERVICE = 'service-md'
-KNOWN_CANTABULAR_VERSIONS = [DEFAULT_CANTABULAR_VERSION, CANTABULAR_V9_2_0]
+KNOWN_CANTABULAR_VERSIONS = [DEFAULT_CANTABULAR_VERSION, CANTABULAR_V9_3_0, CANTABULAR_V9_2_0]
 
 
 def filename_segment(value):
@@ -241,7 +242,7 @@ def build_ctb_variables(classifications, cat_labels):
             continue
 
         ctb_class = {
-            'name': mnemonic,
+            'name': classification.private['Codebook_Mnemonic'],
             'label': classification.private['Classification_Label'],
             'description': classification.private['Variable_Description'],
             'meta': classification,
@@ -331,7 +332,7 @@ def build_ctb_tables(datasets):
         table = {
             'name': mnemonic,
             'datasetName': dataset.private['Database_Mnemonic'],
-            'vars': dataset.private['Classifications'],
+            'vars': dataset.private['Codebook_Mnemonics'],
             'ref': [ref.english(), ref.welsh()],
         }
 
