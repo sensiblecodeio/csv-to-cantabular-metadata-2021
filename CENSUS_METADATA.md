@@ -3,6 +3,10 @@
 The scripts in this repository convert census metadata in CSV format to JSON files
 which serve as the input to the Cantabular metadata service, `cantabular-metadata`.
 
+The metadata schema has changed slightly between different versions of Cantabular.
+This document covers the current version of Cantabular (**10.0.0**). The scripts also
+provide support for generating JSON files that are compatible with some legacy versions.
+
 `cantabular-metadata` allows metadata for one or more datasets in a companion
 `cantabular-server` service to be loaded and made available to query by `cantabular-ui`
 and other software accessing its API directly.
@@ -17,9 +21,9 @@ content, allowing for a wide variety of metadata to be loaded.
 
 The software allows metadata to be attached to:
  - a **service** (which serves a collection of datasets)
- - the **datasets** within the service (from which tables can be built using queries)
+ - the **datasets** associated with the service (from which tables can be built using queries)
  - the **variables** which exist in each dataset
- - pre-defined **tables**
+ - pre-defined **tables** within the service
 
 Metadata can be loaded in multiple languages by specifying a
 language parameter on input metadata JSON. This allows other software that
@@ -29,6 +33,9 @@ metadata, where relevant, for all metadata types.
 # Processing 2021 census metadata
 
 ## CSV metadata files
+
+The raw metadata are provided as a set of CSV files, the format and arrangement of which has been
+specified by the ONS.
 
 The CSV files contain metadata for:
  - **databases** which correspond to Cantabular **datasets**
@@ -48,8 +55,8 @@ has separate objects for English and Welsh versions of the high level metadata o
 
 If an optional Welsh field is not populated, then the English version will typically be used in its place.
 
-The source files can have English and Welsh category labels. The English labels are not included in
-the output JSON files. This information can be obtained from the codebook.
+The source files can have English and Welsh category labels. Only Welsh labels are included in the
+output JSON because the English labels can be obtained from the codebook.
 
 The `Codebook_Mnemonic` for each classification is extracted from `Category_Mapping.csv` but the other fields are ignored.
 
@@ -64,9 +71,9 @@ variables from this file.
 
 # `cantabular-metadata` schema
 
-This section describes the `cantabular-metadata` schema and describes how fields in the output are
+This section describes the `cantabular-metadata` schema and how fields in the output are
 derived from the source files. A table is provided for each object which details the field name,
-the GraphQL type and the sources for the English and Welsh versions of the metadata.
+the [GraphQL](https://graphql.org/learn/schema/) type and the sources for the English and Welsh versions of the metadata.
 
 Where the "Source (en)" or "Source (cy)" columns have a value such as `Dataset.Dataset_Mnemonic` this
 means that the source is the `Dataset_Mnemonic` field in the appropriate row of the `Dataset.csv` file.
@@ -87,7 +94,7 @@ objects where each entry corresponds to a table specified in `Dataset.csv`.
 ## ServiceMetadata
 
 All the fields in `ServiceMetadata` are user defined. The census metadata consists of data that is
-relevant on a per dataset basis, so this object only has a `description` field containing a basic
+relevant on a per dataset basis, so this object only has a `description` field containing a preset
 message.
 
 | Field | GraphQL Type | Source (en) | Source (cy) |
@@ -101,6 +108,9 @@ A Cantabular table is equivalent to an ONS dataset.
 The `Table` object is a built-in type in `cantabular-metadata`. The `name`, `label` and `description`
 fields are sourced from `Dataset.csv`. The other fields in the file are contained in the `TableMetadata`
 object.
+
+Only tables with a value of `PUB` (i.e. public) in `Dataset.Security_Mnemonic` are included in the
+Cantabular metadata.
 
 | Field | GraphQL Type | Source (en) | Source (cy) |
 | --- | --- | --- | --- |
@@ -123,7 +133,7 @@ All other geographic variables are listed in `TableMetadata.Alternate_Geographic
 All the fields in `TableMetadata` are user defined. It contains information from `Dataset.csv` that
 is not included in the `Table` object.
 
-The object also contains data from `Related_Dataset.csv`, `Dataset_Keyword.csv`, `Publication_Dataset.csv`
+The object also contains data from `Related_Datasets.csv`, `Dataset_Keyword.csv`, `Publication_Dataset.csv`
 and `Release_Dataset.csv`.
 
 The `Signed_Off_Flag` and `Id` field in `Classification.csv` are ignored.
@@ -137,12 +147,12 @@ The `Signed_Off_Flag` and `Id` field in `Classification.csv` are ignored.
 | `Unique_Url` | `String` | `Dataset.Unique_Url` | |
 | `Contact` | `Contact` | Keyed on `Dataset.Contact_Id` | |
 | `Version` | `String!` | `Dataset.Version` | |
-| `Related_Datasets` | `[String]!` | List of `Related_Dataset.Related_Dataset_Mnemonic` values keyed on `Related_Dataset.Dataset_Mnemonic` | |
+| `Related_Datasets` | `[String]!` | List of `Related_Datasets.Related_Dataset_Mnemonic` values keyed on `Related_Datasets.Dataset_Mnemonic` | |
 | `Keywords` | `[String]!` | List of `Dataset_Keyword.Dataset_Keyword` values keyed on `Dataset_Keyword.Dataset_Mnemonic` | List of `Dataset_Keyword.Dataset_Keyword_Welsh` values keyed on `Dataset_Keyword.Dataset_Mnemonic` |
-| `Publications` | `[Publication]!` | Keyed on `Publication_Dataset.Dataset_Mnemonic` | |
-| `Census_Releases` | `[Census_Release]!` | Keyed on `Release_Dataset.Dataset_Mnemonic`/`Census_Release_Number`| |
+| `Publications` | `[Publication]!` | List of `Publication` values keyed on `Publication_Dataset.Dataset_Mnemonic` | |
+| `Census_Releases` | `[Census_Release]!` | List of `Census_Release` values keyed on `Release_Dataset.Dataset_Mnemonic`/`Census_Release_Number`| |
 | `Statistical_Unit` | `Statistical_Unit!` | Keyed on `Dataset.Statistical_Unit` | |
-| `Alternate_Geographic_Variables` | `[String!]` | List of alternate geographic variable names which are available for this table sourced from `Dataset_Variables.csv` | |
+| `Alternate_Geographic_Variables` | `[String!]` | List of alternate geographic variable names which are available for this table sourced from `Dataset_Variable.csv` keyed on `Dataset_Variable.Dataset_Mnemonic` | |
 
 ## Dataset
 
@@ -150,13 +160,16 @@ The `Dataset` object is a built-in type in `cantabular-metadata`. The `name`, `l
 fields are sourced from `Database.csv`. The other fields in the file are contained in the `DatasetMetadata`
 object.
 
+All the variables in the metadata have been added to a base dataset, which all other datasets include.
+This significantly reduces the size of the JSON file containing the dataset information.
+
 | Field | GraphQL Type | Source (en) | Source (cy) |
 | --- | --- | --- | --- |
 | `name` | `String!` | `Database.Database_Mnemonic` | |
 | `label` | `String` | `Database.Database_Title` | `Database.Database_Title_Welsh` |
 | `description` | `String` | `Database.Description` | `Database.Database_Description_Welsh` |
-| `meta` | `DatasetMetadata!` | Additional fields from `Dataset.csv` | |
-| `vars(names: [String!]!)` | `[Variable]!` | | |
+| `meta` | `DatasetMetadata!` | Additional fields from `Database.csv` | |
+| `vars` | `[Variable]!` | List of `Variable` objects read from `Classification.csv` | |
 
 ## DatasetMetadata
 
@@ -182,6 +195,9 @@ this repository therefore automatically create classifications for geographic va
 
 The `Variable` object is a built-in type in `cantabular-metadata`. The `name`, `label` and `description` are populated
 from appropriate values in `Classification.csv` or `Variable.csv`.
+
+Only variables with a value of `PUB` (i.e. public) in `Classification.Security_Mnemonic` are included in the
+Cantabular metadata.
 
 | Field | GraphQL Type | Source (en) | Source (cy) |
 | --- | --- | --- | --- |
@@ -215,7 +231,7 @@ The `Parent_Classification_Mnemonic`, `Signed_Off_Flag`, `Flat_Classification_Fl
 | `Default_Classification_Flag` | `String` | `Classification.Default_Classification_Flag` or `null` for geographic variables | |
 | `Version` | `String!` | `Classification.Version` or `Variable.Version` for geographic variables | |
 | `ONS_Variable` | `ONS_Variable!` | Keyed on `Classification.Variable_Mnemonic` or `Variable.Variable_Mnemonic` for geographic variables | |
-| `Topics` | `[Topic]!` | Keyed on `Topic_Classification.Classification_Mnemonic`/`Topic_Mnemonic` or `[]` for geographic variables | |
+| `Topics` | `[Topic]!` | List of `Topic` values keyed on `Topic_Classification.Classification_Mnemonic`/`Topic_Mnemonic` or `[]` for geographic variables | |
 
 ## ONS_Variable
 
@@ -239,7 +255,7 @@ The `Id`, `Signed_Off_Flag` and `Number_Of_Classifications` fields in `Variable.
 | `Statistical_Unit` | `Statistical_Unit` | Keyed on `Variable.Statistical_Unit` | |
 | `Keywords` | `[String]!` | List of `Variable_Keyword.Variable_Keyword` values keyed on `Variable_Keyword.Variable_Mnemonic` | List of `Variable_Keyword.Variable_Keyword_Welsh` values keyed on `Variable_Keyword.Variable_Mnemonic`|
 | `Topic` | `Topic` | Keyed on `Variable.Topic_Mnemonic` | |
-| `Questions` | `[Question]!` | Keyed on `Variable.Source_Question.Variable_Mnemonic`/`Source_Question_Code` | |
+| `Questions` | `[Question]!` | List of `Question` keyed on `Variable.Source_Question.Variable_Mnemonic`/`Source_Question_Code` | |
 | `Variable_Type` | `Variable_Type!` | `Variable.Variable_Type_Code` | |
 | `Quality_Statement_Text` | `String` | `Variable.Quality_Statement_Text` | |
 | `Quality_Summary_URL` | `String` | `Variable.Quality_Summary_URL` | |
@@ -253,7 +269,7 @@ The data is sourced from `Variable_Type.csv`. The `Id` field in `Variable_Type.c
 | `Variable_Type_Code` | `String!` | `Variable_Type.Variable_Type_Code` | |
 | `Variable_Type_Description` | `String!` | `Variable_Type.Variable_Type_Description` | `Variable_Type.Variable_Type_Description_Welsh` |
 
-### Topic
+## Topic
 
 The data is sourced from `Topic.csv`. The `Id` field in `Topic.csv` is ignored.
 
@@ -263,7 +279,7 @@ The data is sourced from `Topic.csv`. The `Id` field in `Topic.csv` is ignored.
 | `Topic_Description` | `String!` | `Topic.Topic_Description` | `Topic.Topic_Description_Welsh` |
 | `Topic_Title` | `String!` | `Topic.Topic_Title` | `Topic.Topic_Title_Welsh` |
 
-### Question
+## Question
 
 The data is sourced from `Question.csv`. The `Id` field in `Question.csv` is ignored.
 
@@ -293,7 +309,7 @@ The data is sourced from `Source.csv`. The `Id` field in `Source.csv` is ignored
 | `Version` | `String!` | `Source.Version` | |
 | `Contact` | `Contact` | Keyed on `Source.Contact_Id` | |
 
-### Contact
+## Contact
 
 The data is sourced from `Contact.csv`.
 
@@ -342,7 +358,7 @@ The data is sourced from `Statistical_Unit.csv`. The `Id` field in `Statistical_
 # Sample queries
 
 This section contains some examples of GraphQL queries that can be used to query metadata for the
-dataset name `Teaching-Dataset` from `cantabular-metadata` and `cantabular-api-ext`. Sample responses
+dataset named `Teaching-Dataset` from `cantabular-metadata` and `cantabular-api-ext`. Sample responses
 have also been provided.
 
 ## `cantabular-metadata` queries
@@ -449,7 +465,7 @@ This query gets additional metadata for a single table named **LC1117EW**.
 }
 ```
 
-### Get metadata for dataset and variables
+### Get metadata for a dataset and its variables
 
 This query gets some metadata for a specific dataset named **Teaching-Dataset** along
 with metadata for the **Region** and **Sex** variables.
@@ -464,7 +480,7 @@ with metadata for the **Region** and **Sex** variables.
     meta {
       Lowest_Geog_Variable
     }
-    vars(names: ["Region" "Sex"]){
+    vars(names: ["Region", "Sex"]){
       catLabels
       description
       meta {
@@ -515,7 +531,7 @@ with metadata for the **Region** and **Sex** variables.
 }
 ```
 
-### Get metadata for dataset and variables in Welsh
+### Get metadata for a dataset and its variables in Welsh
 
 This query requests the same information as requested in the previous query but in Welsh.
 
@@ -529,7 +545,7 @@ This query requests the same information as requested in the previous query but 
     meta {
       Lowest_Geog_Variable
     }
-    vars(names: ["Region" "Sex"]){
+    vars(names: ["Region", "Sex"]){
       catLabels
       description
       meta {
