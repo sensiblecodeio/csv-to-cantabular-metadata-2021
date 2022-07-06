@@ -364,6 +364,7 @@ class Loader:
             required('Version'),
             # This should be mandatory but is not yet populated
             optional('Cantabular_DB_Flag', validate_fn=is_y_or_n),
+            required('Database_Type_Code', validate_fn=isoneof(self.database_types.keys())),
 
             optional('Database_Title_Welsh'),
             optional('Database_Description_Welsh'),
@@ -387,6 +388,9 @@ class Loader:
             classifications = [k for k, v in self.classifications.items() if
                                v.private['Variable_Mnemonic'] in db_vars.variables]
             database['Lowest_Geog_Variable'] = db_vars.lowest_geog_variable
+
+            database['Database_Type'] = self.database_types.get(
+                database.pop('Database_Type_Code'), None)
 
             databases[database_mnemonic] = BilingualDict(
                 database,
@@ -819,6 +823,24 @@ class Loader:
                 BilingualDict(observation_type)
 
         return observation_types
+
+    @property
+    @lru_cache(maxsize=1)
+    def database_types(self):
+        """Load database types."""
+        columns = [
+            required('Database_Type_Code', unique=True),
+            required('Database_Type_Description'),
+            required('Id'),
+        ]
+        database_type_rows = self.read_file('Database_Type.csv', columns)
+
+        database_types = {}
+        for database_type, _ in database_type_rows:
+            del database_type['Id']
+            database_types[database_type['Database_Type_Code']] = BilingualDict(database_type)
+
+        return database_types
 
     def load_database_to_variables(self, database_mnemonics):
         """

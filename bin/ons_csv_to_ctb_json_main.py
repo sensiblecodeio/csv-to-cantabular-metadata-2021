@@ -285,7 +285,12 @@ def build_ctb_datasets(databases, ctb_variables):
                 'Source_Description': 'The 2021 England and Wales Census',
                 'Version': '1',
             },
-            'Version': '1'
+            'Version': '1',
+            'Database_Type': {
+                'Database_Type_Code': 'BASE',
+                'Database_Type_Description': 'Base dataset containing metadata for all variables '
+                                             'used across all other datasets',
+            }
         },
         'vars': ctb_variables,
     })

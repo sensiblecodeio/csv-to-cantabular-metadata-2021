@@ -10,7 +10,11 @@
                 "Source_Description": "The 2021 England and Wales Census",
                 "Version": "1"
             },
-            "Version": "1"
+            "Version": "1",
+            "Database_Type": {
+                "Database_Type_Code": "BASE",
+                "Database_Type_Description": "Base dataset containing metadata for all variables used across all other datasets"
+            }
         },
         "vars": [
             {
@@ -229,7 +233,11 @@
                 "Source_Description": "The 2021 England and Wales Census",
                 "Version": "1"
             },
-            "Version": "1"
+            "Version": "1",
+            "Database_Type": {
+                "Database_Type_Code": "BASE",
+                "Database_Type_Description": "Base dataset containing metadata for all variables used across all other datasets"
+            }
         },
         "vars": [
             {
@@ -481,7 +489,11 @@
                     "Contact_Website": "www.bob.com"
                 }
             },
-            "Lowest_Geog_Variable": "GEO1"
+            "Lowest_Geog_Variable": "GEO1",
+            "Database_Type": {
+                "Database_Type_Code": "MICRO",
+                "Database_Type_Description": "Microdata database"
+            }
         },
         "vars": null
     },
@@ -518,7 +530,11 @@
                     "Contact_Website": "www.bob.com"
                 }
             },
-            "Lowest_Geog_Variable": "GEO1"
+            "Lowest_Geog_Variable": "GEO1",
+            "Database_Type": {
+                "Database_Type_Code": "MICRO",
+                "Database_Type_Description": "Microdata database"
+            }
         },
         "vars": null
     },
@@ -549,7 +565,11 @@
                 "SDC_Statement": null,
                 "Contact": null
             },
-            "Lowest_Geog_Variable": "GEO2"
+            "Lowest_Geog_Variable": "GEO2",
+            "Database_Type": {
+                "Database_Type_Code": "MICRO",
+                "Database_Type_Description": "Microdata database"
+            }
         },
         "vars": null
     },
@@ -580,7 +600,11 @@
                 "SDC_Statement": null,
                 "Contact": null
             },
-            "Lowest_Geog_Variable": "GEO2"
+            "Lowest_Geog_Variable": "GEO2",
+            "Database_Type": {
+                "Database_Type_Code": "MICRO",
+                "Database_Type_Description": "Microdata database"
+            }
         },
         "vars": null
     },
@@ -611,7 +635,11 @@
                 "SDC_Statement": "SRC3",
                 "Contact": null
             },
-            "Lowest_Geog_Variable": null
+            "Lowest_Geog_Variable": null,
+            "Database_Type": {
+                "Database_Type_Code": "TAB",
+                "Database_Type_Description": "Tabular database"
+            }
         },
         "vars": null
     },
@@ -642,7 +670,11 @@
                 "SDC_Statement": "SRC3",
                 "Contact": null
             },
-            "Lowest_Geog_Variable": null
+            "Lowest_Geog_Variable": null,
+            "Database_Type": {
+                "Database_Type_Code": "TAB",
+                "Database_Type_Description": "Tabular database"
+            }
         },
         "vars": null
     }

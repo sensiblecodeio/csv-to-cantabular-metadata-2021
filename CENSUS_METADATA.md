@@ -185,6 +185,7 @@ The `Id` and `IAR_Asset_Id` fields in `Database.csv` are ignored.
 | `Source` | `Source!` | Keyed on `Database.Source_Mnemonic` | |
 | `Version` | `String!` | `Database.Version` | |
 | `Lowest_Geog_Variable` | `String` | `Database_Variable.Variable_Mnemonic` for entry in `Database_Variable.csv` with a `Database_Variable.Lowest_Geog_Variable_Flag` value of `Y` | |
+| `Database_Type` | `Database_Type!` | Object of type `Database_Type` keyed on `Database.Database_Type` | |
 
 ## Variable
 
@@ -365,6 +366,15 @@ The data is sourced from `Observation_Type.csv`. The `Id` field in `Observation_
 | `Suffix` | `String` | `Observation_Type.Suffix` | |
 | `FillTrailingSpaces` | `String` | `Observation_Type.FillTrailingSpaces` | |
 | `Negative_Sign` | `String` | `Observation_Type.Negative_Sign` | |
+
+## Database_Type
+
+The data is sourced from `Database_Type.csv`. The `Id` field in `Database_Type.csv` is ignored.
+
+| Field | GraphQL Type | Source (en) | Source (cy) |
+| --- | --- | --- | --- |
+| `Database_Type_Code` | `String!` | `Database_Type.Database_Type_Code` | |
+| `Database_Type_Description` | `String!` | `Database_Type.Database_Type_Description` | |
 
 # Sample queries
 

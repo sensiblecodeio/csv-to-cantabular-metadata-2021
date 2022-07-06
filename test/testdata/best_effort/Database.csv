@@ -1,2 +1,2 @@
-Database_Mnemonic,Id,Database_Title,Database_Title_Welsh,Database_Description,Database_Description_Welsh,Cantabular_DB_Flag,IAR_Asset_Id,Source_Mnemonic,Version
-DB1,1,DB1 Title,,DB1 Description,,,,SRC1,1
+Database_Mnemonic,Id,Database_Title,Database_Title_Welsh,Database_Description,Database_Description_Welsh,Cantabular_DB_Flag,IAR_Asset_Id,Source_Mnemonic,Version,Database_Type_Code
+DB1,1,DB1 Title,,DB1 Description,,,,SRC1,1,MICRO

@@ -18,6 +18,7 @@ type DatasetMetadata {
   Source: Source!
   Version: String!
   Lowest_Geog_Variable: String
+  Database_Type: Database_Type!
 }
 
 type VariableMetadata {
@@ -130,4 +131,9 @@ type Observation_Type {
   Suffix: String
   FillTrailingSpaces: String
   NegativeSign: String
+}
+
+type Database_Type {
+  Database_Type_Code: String!
+  Database_Type_Description: String!
 }

@@ -1,0 +1,3 @@
+Id,Database_Type_Code,Database_Type_Description
+1,MICRO,Microdata database
+2,TAB,Tabular database

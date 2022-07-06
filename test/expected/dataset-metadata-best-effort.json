@@ -10,7 +10,11 @@
                 "Source_Description": "The 2021 England and Wales Census",
                 "Version": "1"
             },
-            "Version": "1"
+            "Version": "1",
+            "Database_Type": {
+                "Database_Type_Code": "BASE",
+                "Database_Type_Description": "Base dataset containing metadata for all variables used across all other datasets"
+            }
         },
         "vars": [
             {
@@ -212,7 +216,11 @@
                 "Source_Description": "The 2021 England and Wales Census",
                 "Version": "1"
             },
-            "Version": "1"
+            "Version": "1",
+            "Database_Type": {
+                "Database_Type_Code": "BASE",
+                "Database_Type_Description": "Base dataset containing metadata for all variables used across all other datasets"
+            }
         },
         "vars": [
             {
@@ -430,7 +438,11 @@
                 "SDC_Statement": null,
                 "Contact": null
             },
-            "Lowest_Geog_Variable": "GEO1"
+            "Lowest_Geog_Variable": "GEO1",
+            "Database_Type": {
+                "Database_Type_Code": "MICRO",
+                "Database_Type_Description": "Microdata database"
+            }
         },
         "vars": null
     },
@@ -461,7 +473,11 @@
                 "SDC_Statement": null,
                 "Contact": null
             },
-            "Lowest_Geog_Variable": "GEO1"
+            "Lowest_Geog_Variable": "GEO1",
+            "Database_Type": {
+                "Database_Type_Code": "MICRO",
+                "Database_Type_Description": "Microdata database"
+            }
         },
         "vars": null
     }
