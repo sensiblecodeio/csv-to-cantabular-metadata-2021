@@ -133,7 +133,7 @@ All other geographic variables are listed in `TableMetadata.Alternate_Geographic
 All the fields in `TableMetadata` are user defined. It contains information from `Dataset.csv` that
 is not included in the `Table` object.
 
-The object also contains data from `Related_Datasets.csv`, `Dataset_Keyword.csv`, `Publication_Dataset.csv`
+The object also contains data from `Related_Datasets.csv`, `Publication_Dataset.csv`
 and `Release_Dataset.csv`.
 
 The `Signed_Off_Flag` and `Id` field in `Classification.csv` are ignored.
@@ -148,7 +148,6 @@ The `Signed_Off_Flag` and `Id` field in `Classification.csv` are ignored.
 | `Contact` | `Contact` | Keyed on `Dataset.Contact_Id` | |
 | `Version` | `String!` | `Dataset.Version` | |
 | `Related_Datasets` | `[String]!` | List of `Related_Datasets.Related_Dataset_Mnemonic` values keyed on `Related_Datasets.Dataset_Mnemonic` | |
-| `Keywords` | `[String]!` | List of `Dataset_Keyword.Dataset_Keyword` values keyed on `Dataset_Keyword.Dataset_Mnemonic` | List of `Dataset_Keyword.Dataset_Keyword_Welsh` values keyed on `Dataset_Keyword.Dataset_Mnemonic` |
 | `Publications` | `[Publication]!` | List of `Publication` values keyed on `Publication_Dataset.Dataset_Mnemonic` | |
 | `Census_Releases` | `[Census_Release]!` | List of `Census_Release` values keyed on `Release_Dataset.Dataset_Mnemonic`/`Census_Release_Number`| |
 | `Statistical_Unit` | `Statistical_Unit!` | Keyed on `Dataset.Statistical_Unit` | |

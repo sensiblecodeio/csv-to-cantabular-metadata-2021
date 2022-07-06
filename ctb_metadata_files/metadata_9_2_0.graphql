@@ -98,7 +98,6 @@ type TableMetadata {
   Contact: Contact
   Version: String!
   Related_Datasets: [String]!
-  Keywords: [String]!
   Publications: [Publication]!
   Census_Releases: [Census_Release]!
   Statistical_Unit: Statistical_Unit!

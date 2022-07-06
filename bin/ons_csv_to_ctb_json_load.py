@@ -266,7 +266,6 @@ class Loader:
         dataset_mnemonics = [d.data['Dataset_Mnemonic'] for d in dataset_rows]
 
         dataset_to_related_datasets = self.load_dataset_to_related(dataset_mnemonics)
-        dataset_to_keywords = self.load_dataset_to_keywords(dataset_mnemonics)
         dataset_to_publications = self.load_dataset_to_publications(dataset_mnemonics)
         dataset_to_releases = self.load_dataset_to_releases(dataset_mnemonics)
         dataset_to_variables = self.load_dataset_to_variables(dataset_mnemonics)
@@ -284,7 +283,6 @@ class Loader:
                 dataset.pop('Statistical_Unit'), None)
             dataset['Contact'] = self.contacts.get(dataset.pop('Contact_Id'), None)
 
-            dataset['Keywords'] = dataset_to_keywords.get(dataset_mnemonic, [])
             dataset['Related_Datasets'] = dataset_to_related_datasets.get(dataset_mnemonic, [])
             dataset['Census_Releases'] = dataset_to_releases.get(dataset_mnemonic, [])
             dataset['Publications'] = dataset_to_publications.get(dataset_mnemonic, [])
@@ -884,28 +882,6 @@ class Loader:
                                    rel_ds['Related_Dataset_Mnemonic'])
 
         return ds_to_related_ds_mnemonics
-
-    def load_dataset_to_keywords(self, dataset_mnemonics):
-        """Load keywords associated with each dataset."""
-        columns = [
-            required('Dataset_Keyword'),
-            required('Dataset_Mnemonic', validate_fn=isoneof(dataset_mnemonics)),
-            required('Id'),
-
-            optional('Dataset_Keyword_Welsh'),
-        ]
-        dataset_keyword_rows = self.read_file(
-            'Dataset_Keyword.csv', columns,
-            # There can only be one row for each Dataset_Mnemonic/Dataset_Keyword combination.
-            unique_combo_fields=['Dataset_Mnemonic', 'Dataset_Keyword'])
-
-        dataset_to_keywords = {}
-        for ds_key, _ in dataset_keyword_rows:
-            append_to_list_in_dict(dataset_to_keywords, ds_key['Dataset_Mnemonic'],
-                                   Bilingual(ds_key['Dataset_Keyword'],
-                                             ds_key['Dataset_Keyword_Welsh']))
-
-        return dataset_to_keywords
 
     def load_dataset_to_publications(self, dataset_mnemonics):
         """Load publications associated with each dataset."""

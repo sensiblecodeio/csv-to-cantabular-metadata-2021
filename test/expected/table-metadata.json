@@ -31,10 +31,6 @@
                         "Contact_Phone": null,
                         "Contact_Website": null
                     },
-                    "Keywords": [
-                        "DS1 Keyword",
-                        "DS1 Other Keyword"
-                    ],
                     "Related_Datasets": [
                         "DS2",
                         "DS3"
@@ -92,10 +88,6 @@
                         "Contact_Phone": null,
                         "Contact_Website": null
                     },
-                    "Keywords": [
-                        "DS1 Keyword (Welsh)",
-                        "DS1 Other Keyword"
-                    ],
                     "Related_Datasets": [
                         "DS2",
                         "DS3"
@@ -156,7 +148,6 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
-                    "Keywords": [],
                     "Related_Datasets": [],
                     "Census_Releases": [
                         {
@@ -185,7 +176,6 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
-                    "Keywords": [],
                     "Related_Datasets": [],
                     "Census_Releases": [
                         {
@@ -229,7 +219,6 @@
                         "Contact_Phone": "12345",
                         "Contact_Website": "www.bob.com"
                     },
-                    "Keywords": [],
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
@@ -258,7 +247,6 @@
                         "Contact_Phone": "12345",
                         "Contact_Website": "www.bob.com"
                     },
-                    "Keywords": [],
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
@@ -290,7 +278,6 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
-                    "Keywords": [],
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
@@ -313,7 +300,6 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
-                    "Keywords": [],
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
