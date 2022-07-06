@@ -258,7 +258,6 @@ class Loader:
             optional('Geographic_Coverage_Welsh'),
             optional('Dataset_Population_Welsh'),
             optional('Last_Updated'),
-            optional('Unique_Url'),
             optional('Contact_Id', validate_fn=isoneof(self.contacts.keys())),
         ]
         dataset_rows = self.read_file(filename, columns)

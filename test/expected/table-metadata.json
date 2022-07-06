@@ -16,7 +16,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": "DS1 2011",
                     "Last_Updated": "Today",
-                    "Unique_Url": "DS1 Unique URL",
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",
@@ -73,7 +72,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": "DS1 2011",
                     "Last_Updated": "Today",
-                    "Unique_Url": "DS1 Unique URL",
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere (Welsh)",
                     "Dataset_Population": "Everyone (Welsh)",
@@ -139,7 +137,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
                     "Last_Updated": null,
-                    "Unique_Url": null,
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",
@@ -167,7 +164,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
                     "Last_Updated": null,
-                    "Unique_Url": null,
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",
@@ -204,7 +200,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": "DS3 2011",
                     "Last_Updated": "Today",
-                    "Unique_Url": "DS3 Unique URL",
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",
@@ -232,7 +227,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": "DS3 2011",
                     "Last_Updated": "Today",
-                    "Unique_Url": "DS3 Unique URL",
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere (Welsh)",
                     "Dataset_Population": "Everyone (Welsh)",
@@ -269,7 +263,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
                     "Last_Updated": null,
-                    "Unique_Url": null,
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",
@@ -291,7 +284,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
                     "Last_Updated": null,
-                    "Unique_Url": null,
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",

@@ -144,7 +144,6 @@ The `Signed_Off_Flag` and `Id` field in `Classification.csv` are ignored.
 | `Geographic_Coverage` | `String!` | `Dataset.Geographic_Coverage` | `Dataset.Geographic_Coverage_Welsh` |
 | `Dataset_Population` | `String!` | `Dataset.Dataset_Population` | `Dataset.Population_Welsh` |
 | `Last_Updated` | `String` | `Dataset.Last_Updated` | |
-| `Unique_Url` | `String` | `Dataset.Unique_Url` | |
 | `Contact` | `Contact` | Keyed on `Dataset.Contact_Id` | |
 | `Version` | `String!` | `Dataset.Version` | |
 | `Related_Datasets` | `[String]!` | List of `Related_Datasets.Related_Dataset_Mnemonic` values keyed on `Related_Datasets.Dataset_Mnemonic` | |

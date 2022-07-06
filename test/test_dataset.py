@@ -9,7 +9,7 @@ HEADERS = ['Dataset_Mnemonic', 'Id', 'Dataset_Title', 'Dataset_Title_Welsh', 'Da
            'Dataset_Description_Welsh', 'Statistical_Unit', 'Dataset_Mnemonic_2011',
            'Geographic_Coverage', 'Geographic_Coverage_Welsh', 'Dataset_Population',
            'Dataset_Population_Welsh', 'Last_Updated',
-           'Unique_Url', 'Security_Mnemonic', 'Signed_Off_Flag', 'Database_Mnemonic', 'Contact_Id',
+           'Security_Mnemonic', 'Signed_Off_Flag', 'Database_Mnemonic', 'Contact_Id',
            'Version']
 
 COMMON_FIELDS = {'Dataset_Title': 'title',

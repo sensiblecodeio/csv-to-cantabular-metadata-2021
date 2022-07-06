@@ -80,7 +80,6 @@ type TableMetadata {
   Geographic_Coverage: String!
   Dataset_Population: String!
   Last_Updated: String
-  Unique_Url: String
   Contact: Contact
   Version: String!
   Related_Datasets: [String]!
