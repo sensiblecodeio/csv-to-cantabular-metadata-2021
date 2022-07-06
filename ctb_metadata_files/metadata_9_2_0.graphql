@@ -41,7 +41,6 @@ type ONS_Variable {
   Geographic_Coverage: String
   Version: String!
   Statistical_Unit: Statistical_Unit
-  Keywords: [String]!
   Topic: Topic
   Questions: [Question]!
   Variable_Type: Variable_Type!

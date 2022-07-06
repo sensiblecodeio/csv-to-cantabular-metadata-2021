@@ -46,10 +46,6 @@
                             "Topic_Description": "TOPIC1 Description",
                             "Topic_Title": "TOPIC1 Title"
                         },
-                        "Keywords": [
-                            "VAR1 Keyword1",
-                            "VAR1 Keyword2"
-                        ],
                         "Questions": [
                             {
                                 "Question_Code": "Q1",
@@ -108,7 +104,6 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Keywords": [],
                         "Questions": []
                     },
                     "Topics": []
@@ -141,7 +136,6 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Keywords": [],
                         "Questions": []
                     },
                     "Topics": []
@@ -181,9 +175,6 @@
                             "Topic_Description": "TOPIC1 Description",
                             "Topic_Title": "TOPIC1 Title"
                         },
-                        "Keywords": [
-                            "GEO1 Keyword1"
-                        ],
                         "Questions": [
                             {
                                 "Question_Code": "Q2",
@@ -224,7 +215,6 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Keywords": [],
                         "Questions": []
                     },
                     "Topics": []
@@ -280,10 +270,6 @@
                             "Topic_Description": "TOPIC1 Description (Welsh)",
                             "Topic_Title": "TOPIC1 Title (Welsh)"
                         },
-                        "Keywords": [
-                            "VAR1 Keyword1 (Welsh)",
-                            "VAR1 Keyword2"
-                        ],
                         "Questions": [
                             {
                                 "Question_Code": "Q1",
@@ -347,7 +333,6 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Keywords": [],
                         "Questions": []
                     },
                     "Topics": []
@@ -382,7 +367,6 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Keywords": [],
                         "Questions": []
                     },
                     "Topics": []
@@ -422,9 +406,6 @@
                             "Topic_Description": "TOPIC1 Description (Welsh)",
                             "Topic_Title": "TOPIC1 Title (Welsh)"
                         },
-                        "Keywords": [
-                            "GEO1 Keyword1 (Welsh)"
-                        ],
                         "Questions": [
                             {
                                 "Question_Code": "Q2",
@@ -465,7 +446,6 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Keywords": [],
                         "Questions": []
                     },
                     "Topics": []

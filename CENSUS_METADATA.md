@@ -253,7 +253,6 @@ The `Id`, `Signed_Off_Flag` and `Number_Of_Classifications` fields in `Variable.
 | `Geographic_Coverage` | `String` | `Variable.Geographic_Coverage` | `Variable.Geographic_Coverage_Welsh` |
 | `Version` | `String!` | `Variable.Version` | |
 | `Statistical_Unit` | `Statistical_Unit` | Keyed on `Variable.Statistical_Unit` | |
-| `Keywords` | `[String]!` | List of `Variable_Keyword.Variable_Keyword` values keyed on `Variable_Keyword.Variable_Mnemonic` | List of `Variable_Keyword.Variable_Keyword_Welsh` values keyed on `Variable_Keyword.Variable_Mnemonic`|
 | `Topic` | `Topic` | Keyed on `Variable.Topic_Mnemonic` | |
 | `Questions` | `[Question]!` | List of `Question` keyed on `Variable.Source_Question.Variable_Mnemonic`/`Source_Question_Code` | |
 | `Variable_Type` | `Variable_Type!` | `Variable.Variable_Type_Code` | |

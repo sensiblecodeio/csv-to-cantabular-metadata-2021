@@ -609,7 +609,6 @@ class Loader:
         variable_rows = self.read_file(filename, columns)
 
         variable_mnemonics = [v.data['Variable_Mnemonic'] for v in variable_rows]
-        variable_to_keywords = self.load_variable_to_keywords(variable_mnemonics)
         variable_to_source_questions = self.load_variable_to_questions(variable_mnemonics)
 
         en_geo_fields = {'Geographic_Abbreviation', 'Geographic_Theme', 'Geographic_Coverage'}
@@ -667,7 +666,6 @@ class Loader:
                 variable.pop('Statistical_Unit'), None)
             variable['Topic'] = self.topics.get(variable.pop('Topic_Mnemonic'), None)
 
-            variable['Keywords'] = variable_to_keywords.get(variable['Variable_Mnemonic'], [])
             variable['Questions'] = variable_to_source_questions.get(
                 variable['Variable_Mnemonic'], [])
 
@@ -949,28 +947,6 @@ class Loader:
                                    self.census_releases[rel_ds['Census_Release_Number']])
 
         return dataset_to_releases
-
-    def load_variable_to_keywords(self, variable_mnemonics):
-        """Load keywords associated with each variable."""
-        columns = [
-            required('Variable_Mnemonic', validate_fn=isoneof(variable_mnemonics)),
-            required('Variable_Keyword'),
-            required('Id'),
-
-            optional('Variable_Keyword_Welsh'),
-        ]
-        variable_keyword_rows = self.read_file(
-            'Variable_Keyword.csv', columns,
-            # There can only be one row for each Variable_Mnemonic/Variable_Keyword combination.
-            unique_combo_fields=['Variable_Mnemonic', 'Variable_Keyword'])
-
-        variable_to_keywords = {}
-        for var_key, _ in variable_keyword_rows:
-            append_to_list_in_dict(variable_to_keywords, var_key['Variable_Mnemonic'],
-                                   Bilingual(var_key['Variable_Keyword'],
-                                             var_key['Variable_Keyword_Welsh']))
-
-        return variable_to_keywords
 
     def load_variable_to_questions(self, variable_mnemonics):
         """Load questions associated with each variable."""
