@@ -247,7 +247,6 @@ The `Id`, `Signed_Off_Flag` and `Number_Of_Classifications` fields in `Variable.
 | `Variable_Mnemonic_2011` | `String` | `Variable.Variable_Mnemonic_2011` | |
 | `Comparability_Comments` | `String` | `Variable.Comparability_Comments` | `Variable.Comparability_Comments_Welsh` |
 | `Uk_Comparison_Comments` | `String` | `Variable.Uk_Comparison_Comments` | `Variable.Uk_Comparison_Comments_Welsh` |
-| `Geographic_Abbreviation` | `String` | `Variable.Geographic_Abbreviation` | `Variable.Geographic_Abbreviation_Welsh` |
 | `Geographic_Theme` | `String` | `Variable.Geographic_Theme` | `Variable.Geographic_Theme_Welsh` |
 | `Geographic_Coverage` | `String` | `Variable.Geographic_Coverage` | `Variable.Geographic_Coverage_Welsh` |
 | `Version` | `String!` | `Variable.Version` | |

@@ -23,7 +23,6 @@ type ONS_Variable {
   Variable_Mnemonic_2011: String
   Comparability_Comments: String
   Uk_Comparison_Comments: String
-  Geographic_Abbreviation: String
   Geographic_Theme: String
   Geographic_Coverage: String
   Version: String!

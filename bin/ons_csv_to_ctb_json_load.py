@@ -585,7 +585,6 @@ class Loader:
             optional('Statistical_Unit', validate_fn=isoneof(self.statistical_units.keys())),
 
             # Required for geographic variables but not yet populated
-            optional('Geographic_Abbreviation'),
             optional('Geographic_Theme'),
             optional('Geographic_Coverage'),
 
@@ -596,7 +595,6 @@ class Loader:
             optional('Comparability_Comments_Welsh'),
             optional('Uk_Comparison_Comments'),
             optional('Uk_Comparison_Comments_Welsh'),
-            optional('Geographic_Abbreviation_Welsh'),
             optional('Geographic_Theme_Welsh'),
             optional('Geographic_Coverage_Welsh'),
             optional('Topic_Mnemonic', validate_fn=isoneof(self.topics.keys())),
@@ -609,9 +607,8 @@ class Loader:
         variable_mnemonics = [v.data['Variable_Mnemonic'] for v in variable_rows]
         variable_to_source_questions = self.load_variable_to_questions(variable_mnemonics)
 
-        en_geo_fields = {'Geographic_Abbreviation', 'Geographic_Theme', 'Geographic_Coverage'}
-        all_geo_fields = en_geo_fields | {'Geographic_Abbreviation_Welsh',
-                                          'Geographic_Theme_Welsh',
+        en_geo_fields = {'Geographic_Theme', 'Geographic_Coverage'}
+        all_geo_fields = en_geo_fields | {'Geographic_Theme_Welsh',
                                           'Geographic_Coverage_Welsh'}
         variables = {}
         for variable, row_num in variable_rows:
@@ -648,9 +645,6 @@ class Loader:
             variable['Uk_Comparison_Comments'] = Bilingual(
                 variable.pop('Uk_Comparison_Comments'),
                 variable.pop('Uk_Comparison_Comments_Welsh'))
-            variable['Geographic_Abbreviation'] = Bilingual(
-                variable.pop('Geographic_Abbreviation'),
-                variable.pop('Geographic_Abbreviation_Welsh'))
             variable['Geographic_Theme'] = Bilingual(
                 variable.pop('Geographic_Theme'),
                 variable.pop('Geographic_Theme_Welsh'))

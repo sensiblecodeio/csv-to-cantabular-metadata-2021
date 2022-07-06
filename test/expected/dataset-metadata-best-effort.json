@@ -30,7 +30,6 @@
                         "Variable_Title": "VAR1 Title",
                         "Comparability_Comments": "VAR1 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
-                        "Geographic_Abbreviation": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Variable_Type": {
@@ -62,7 +61,6 @@
                         "Variable_Title": "VAR3 Title",
                         "Comparability_Comments": "VAR3 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR3 UK Comparison Comments",
-                        "Geographic_Abbreviation": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Variable_Type": {
@@ -94,7 +92,6 @@
                         "Variable_Title": "VAR1 Title",
                         "Comparability_Comments": "VAR1 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
-                        "Geographic_Abbreviation": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Variable_Type": {
@@ -126,7 +123,6 @@
                         "Variable_Title": "GEO1 Title",
                         "Comparability_Comments": "GEO1 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO1 UK Comparison Comments",
-                        "Geographic_Abbreviation": "G1",
                         "Geographic_Theme": "GEO1 Theme",
                         "Geographic_Coverage": "GEO1 Coverage",
                         "Variable_Type": {
@@ -158,7 +154,6 @@
                         "Variable_Title": "GEO2 Title",
                         "Comparability_Comments": "GEO2 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments",
-                        "Geographic_Abbreviation": "G1",
                         "Geographic_Theme": "GEO2 Theme",
                         "Geographic_Coverage": "GEO2 Coverage",
                         "Variable_Type": {
@@ -190,7 +185,6 @@
                         "Variable_Title": "GEO3 Title",
                         "Comparability_Comments": "GEO3 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO3 UK Comparison Comments",
-                        "Geographic_Abbreviation": "G1",
                         "Geographic_Theme": "GEO3 Theme",
                         "Geographic_Coverage": "GEO3 Coverage",
                         "Variable_Type": {
@@ -238,7 +232,6 @@
                         "Variable_Title": "VAR1 Title",
                         "Comparability_Comments": "VAR1 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
-                        "Geographic_Abbreviation": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Variable_Type": {
@@ -270,7 +263,6 @@
                         "Variable_Title": "VAR3 Title",
                         "Comparability_Comments": "VAR3 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR3 UK Comparison Comments",
-                        "Geographic_Abbreviation": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Variable_Type": {
@@ -302,7 +294,6 @@
                         "Variable_Title": "VAR1 Title",
                         "Comparability_Comments": "VAR1 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
-                        "Geographic_Abbreviation": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Variable_Type": {
@@ -334,7 +325,6 @@
                         "Variable_Title": "GEO1 Title (Welsh)",
                         "Comparability_Comments": "GEO1 Comparability Comments (Welsh)",
                         "Uk_Comparison_Comments": "GEO1 UK Comparison Comments (Welsh)",
-                        "Geographic_Abbreviation": "G1 (Welsh)",
                         "Geographic_Theme": "GEO1 Theme (Welsh)",
                         "Geographic_Coverage": "GEO1 Coverage (Welsh)",
                         "Variable_Type": {
@@ -366,7 +356,6 @@
                         "Variable_Title": "GEO2 Title (Welsh)",
                         "Comparability_Comments": "GEO2 Comparability Comments (Welsh)",
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments (Welsh)",
-                        "Geographic_Abbreviation": "G1 (Welsh)",
                         "Geographic_Theme": "GEO2 Theme (Welsh)",
                         "Geographic_Coverage": "GEO2 Coverage (Welsh)",
                         "Variable_Type": {
@@ -398,7 +387,6 @@
                         "Variable_Title": "GEO3 Title (Welsh)",
                         "Comparability_Comments": "GEO3 Comparability Comments (Welsh)",
                         "Uk_Comparison_Comments": "GEO3 UK Comparison Comments (Welsh)",
-                        "Geographic_Abbreviation": "G1 (Welsh)",
                         "Geographic_Theme": "GEO3 Theme (Welsh)",
                         "Geographic_Coverage": "GEO3 Coverage (Welsh)",
                         "Variable_Type": {
