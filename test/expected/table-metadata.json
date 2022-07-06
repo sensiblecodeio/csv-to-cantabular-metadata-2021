@@ -30,6 +30,16 @@
                         "Contact_Phone": null,
                         "Contact_Website": null
                     },
+                    "Observation_Type": {
+                        "Observation_Type_Code": "AMT",
+                        "Observation_Type_Label": "Amount",
+                        "Observation_Type_Description": "A financial amount",
+                        "Decimal_Places": "2",
+                        "Prefix": "\u00a3",
+                        "Suffix": "GBP",
+                        "FillTrailingSpaces": "Y",
+                        "NegativeSign": "-"
+                    },
                     "Related_Datasets": [
                         "DS2",
                         "DS3"
@@ -85,6 +95,16 @@
                         "Contact_Email": "bill@bill.com",
                         "Contact_Phone": null,
                         "Contact_Website": null
+                    },
+                    "Observation_Type": {
+                        "Observation_Type_Code": "AMT",
+                        "Observation_Type_Label": "Amount",
+                        "Observation_Type_Description": "A financial amount",
+                        "Decimal_Places": "2",
+                        "Prefix": "\u00a3",
+                        "Suffix": "GBP",
+                        "FillTrailingSpaces": "Y",
+                        "NegativeSign": "-"
                     },
                     "Related_Datasets": [
                         "DS2",
@@ -145,6 +165,7 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [
                         {
@@ -172,6 +193,7 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [
                         {
@@ -214,6 +236,7 @@
                         "Contact_Phone": "12345",
                         "Contact_Website": "www.bob.com"
                     },
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
@@ -241,6 +264,7 @@
                         "Contact_Phone": "12345",
                         "Contact_Website": "www.bob.com"
                     },
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
@@ -271,6 +295,7 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
@@ -292,6 +317,7 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],

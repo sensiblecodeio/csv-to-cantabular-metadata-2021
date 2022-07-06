@@ -87,6 +87,7 @@ type TableMetadata {
   Census_Releases: [Census_Release]!
   Statistical_Unit: Statistical_Unit!
   Alternate_Geographic_Variables: [String]!
+  Observation_Type: Observation_Type
 }
 
 type Publication {
@@ -106,4 +107,14 @@ type Statistical_Unit {
   Statistical_Unit: String!
   Statistical_Unit_Description: String!
 }
- 
+
+type Observation_Type {
+  Observation_Type_Code: String!
+  Observation_Type_Label: String!
+  Observation_Type_Description: String
+  Decimal_Places: String
+  Prefix: String
+  Suffix: String
+  FillTrailingSpaces: String
+  NegativeSign: String
+}

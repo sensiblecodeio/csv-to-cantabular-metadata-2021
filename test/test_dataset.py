@@ -10,7 +10,7 @@ HEADERS = ['Dataset_Mnemonic', 'Id', 'Dataset_Title', 'Dataset_Title_Welsh', 'Da
            'Geographic_Coverage', 'Geographic_Coverage_Welsh', 'Dataset_Population',
            'Dataset_Population_Welsh', 'Last_Updated',
            'Security_Mnemonic', 'Signed_Off_Flag', 'Database_Mnemonic', 'Contact_Id',
-           'Version']
+           'Version', 'Observation_Type_Code']
 
 COMMON_FIELDS = {'Dataset_Title': 'title',
                  'Dataset_Description': 'description',
@@ -46,7 +46,7 @@ class TestDataset(unittest.TestCase):
 
     def test_invalid_values(self):
         for field in ['Security_Mnemonic', 'Database_Mnemonic', 'Contact_Id', 'Statistical_Unit',
-                      'Signed_Off_Flag']:
+                      'Signed_Off_Flag', 'Observation_Type_Code']:
             with self.subTest(field=field):
                 row = REQUIRED_FIELDS.copy()
                 row[field] = 'X'

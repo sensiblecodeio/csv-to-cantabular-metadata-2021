@@ -133,8 +133,8 @@ All other geographic variables are listed in `TableMetadata.Alternate_Geographic
 All the fields in `TableMetadata` are user defined. It contains information from `Dataset.csv` that
 is not included in the `Table` object.
 
-The object also contains data from `Related_Datasets.csv`, `Publication_Dataset.csv`
-and `Release_Dataset.csv`.
+The object also contains data from `Related_Datasets.csv`, `Publication_Dataset.csv`,
+`Release_Dataset.csv` and `Observation_Type.csv`.
 
 The `Signed_Off_Flag` and `Id` field in `Classification.csv` are ignored.
 
@@ -151,6 +151,7 @@ The `Signed_Off_Flag` and `Id` field in `Classification.csv` are ignored.
 | `Census_Releases` | `[Census_Release]!` | List of `Census_Release` values keyed on `Release_Dataset.Dataset_Mnemonic`/`Census_Release_Number`| |
 | `Statistical_Unit` | `Statistical_Unit!` | Keyed on `Dataset.Statistical_Unit` | |
 | `Alternate_Geographic_Variables` | `[String!]` | List of alternate geographic variable names which are available for this table sourced from `Dataset_Variable.csv` keyed on `Dataset_Variable.Dataset_Mnemonic` | |
+| `Observation_Type` | `Observation_Type!` | Object of type `Observation_Type` keyed on `Dataset.Observation_Type_Code` | |
 
 ## Dataset
 
@@ -350,6 +351,20 @@ The data is sourced from `Statistical_Unit.csv`. The `Id` field in `Statistical_
 | `Statistical_Unit` | `String!` | `Statistical_Unit.Statistical_Unit` | |
 | `Statistical_Unit_Description` | `String!` | `Statistical_Unit.Statistical_Unit_Description` | `Statistical_Unit.Statistical_Unit_Description_Welsh` |
 
+## Observation_Type
+
+The data is sourced from `Observation_Type.csv`. The `Id` field in `Observation_Type.csv` is ignored.
+
+| Field | GraphQL Type | Source (en) | Source (cy) |
+| --- | --- | --- | --- |
+| `Observation_Type_Code` | `String!` | `Observation_Type.Observation_Type_Code` | |
+| `Observation_Type_Label` | `String!` | `Observation_Type.Observation_Type_Label` | |
+| `Observation_Type_Description` | `String` | `Observation_Type.Observation_Type_Description` | |
+| `Decimal_Places` | `String` | `Observation_Type.Decimal_Places` | |
+| `Prefix` | `String` | `Observation_Type.Prefix` | |
+| `Suffix` | `String` | `Observation_Type.Suffix` | |
+| `FillTrailingSpaces` | `String` | `Observation_Type.FillTrailingSpaces` | |
+| `Negative_Sign` | `String` | `Observation_Type.Negative_Sign` | |
 
 # Sample queries
 

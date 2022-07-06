@@ -259,6 +259,7 @@ class Loader:
             optional('Dataset_Population_Welsh'),
             optional('Last_Updated'),
             optional('Contact_Id', validate_fn=isoneof(self.contacts.keys())),
+            optional('Observation_Type_Code', validate_fn=isoneof(self.observation_types.keys())),
         ]
         dataset_rows = self.read_file(filename, columns)
 
@@ -281,6 +282,8 @@ class Loader:
             dataset['Statistical_Unit'] = self.statistical_units.get(
                 dataset.pop('Statistical_Unit'), None)
             dataset['Contact'] = self.contacts.get(dataset.pop('Contact_Id'), None)
+            dataset['Observation_Type'] = self.observation_types.get(
+                dataset.pop('Observation_Type_Code'), None)
 
             dataset['Related_Datasets'] = dataset_to_related_datasets.get(dataset_mnemonic, [])
             dataset['Census_Releases'] = dataset_to_releases.get(dataset_mnemonic, [])
@@ -790,6 +793,32 @@ class Loader:
                         'Codebook_Mnemonic': variable_mnemonic})
 
         return classifications
+
+    @property
+    @lru_cache(maxsize=1)
+    def observation_types(self):
+        """Load observation types."""
+        columns = [
+            required('Observation_Type_Code', unique=True),
+            required('Observation_Type_Label'),
+            required('Id'),
+
+            optional('Observation_Type_Description'),
+            optional('Decimal_Places', validate_fn=isnumeric),
+            optional('Prefix'),
+            optional('Suffix'),
+            optional('FillTrailingSpaces', validate_fn=is_y_or_n),
+            optional('NegativeSign'),
+        ]
+        observation_type_rows = self.read_file('Observation_Type.csv', columns)
+
+        observation_types = {}
+        for observation_type, _ in observation_type_rows:
+            del observation_type['Id']
+            observation_types[observation_type['Observation_Type_Code']] = \
+                BilingualDict(observation_type)
+
+        return observation_types
 
     def load_database_to_variables(self, database_mnemonics):
         """
