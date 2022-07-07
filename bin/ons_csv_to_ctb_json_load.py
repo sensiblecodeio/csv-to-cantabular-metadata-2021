@@ -242,7 +242,7 @@ class Loader:
         columns = [
             required('Dataset_Mnemonic', unique=True),
             required('Security_Mnemonic', validate_fn=isoneof(self.security_classifications)),
-            required('Database_Mnemonic', validate_fn=isoneof(self.databases.keys())),
+            required('Source_Database_Mnemonic', validate_fn=isoneof(self.databases.keys())),
             required('Dataset_Title'),
             required('Id'),
             required('Geographic_Coverage'),
@@ -273,7 +273,7 @@ class Loader:
         datasets = {}
         for dataset, row_num in dataset_rows:
             dataset_mnemonic = dataset.pop('Dataset_Mnemonic')
-            database_mnemonic = dataset.pop('Database_Mnemonic')
+            database_mnemonic = dataset.pop('Source_Database_Mnemonic')
 
             dataset['Geographic_Coverage'] = Bilingual(dataset.pop('Geographic_Coverage'),
                                                        dataset.pop('Geographic_Coverage_Welsh'))
@@ -320,7 +320,7 @@ class Loader:
                         self.recoverable_error(
                             f'Reading {self.full_filename(filename)}:{row_num} '
                             f'{dataset_mnemonic} has classification {classification} '
-                            f'that is not in database {database_mnemonic}')
+                            f'that is not in source database {database_mnemonic}')
                         # Keeping the dataset in this scenario produces more useful data
                         # when operating in best effort mode.
                         drop_dataset = False

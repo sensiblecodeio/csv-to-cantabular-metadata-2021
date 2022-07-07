@@ -117,7 +117,7 @@ Cantabular metadata.
 | `name` | `String!` | `Dataset.Dataset_Mnemonic` | |
 | `label` | `String` | `Dataset.Dataset_Title` | `Dataset.Dataset_Title_Welsh` |
 | `description` | `String` | `Dataset.Dataset_Description` | `Dataset.Dataset_Description_Welsh` |
-| `datasetName` | `String` | `Dataset.Database_Mnemonic` | |
+| `datasetName` | `String` | `Dataset.Source_Database_Mnemonic` | |
 | `meta` | `TableMetadata!` | Additional data from `Dataset.csv` | |
 | `vars` | `[String!]!` | Table variable names sourced from `Dataset_Variable.csv` (see note below) | |
 
