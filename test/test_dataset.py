@@ -10,7 +10,7 @@ HEADERS = ['Dataset_Mnemonic', 'Id', 'Dataset_Title', 'Dataset_Title_Welsh', 'Da
            'Geographic_Coverage', 'Geographic_Coverage_Welsh', 'Dataset_Population',
            'Dataset_Population_Welsh', 'Last_Updated',
            'Security_Mnemonic', 'Signed_Off_Flag', 'Source_Database_Mnemonic', 'Contact_Id',
-           'Version', 'Observation_Type_Code']
+           'Version', 'Observation_Type_Code', 'Pre_Built_Database_Mnemonic']
 
 COMMON_FIELDS = {'Dataset_Title': 'title',
                  'Dataset_Description': 'description',
@@ -46,7 +46,7 @@ class TestDataset(unittest.TestCase):
 
     def test_invalid_values(self):
         for field in ['Security_Mnemonic', 'Source_Database_Mnemonic', 'Contact_Id', 'Statistical_Unit',
-                      'Signed_Off_Flag', 'Observation_Type_Code']:
+                      'Signed_Off_Flag', 'Observation_Type_Code', 'Pre_Built_Database_Mnemonic']:
             with self.subTest(field=field):
                 row = REQUIRED_FIELDS.copy()
                 row[field] = 'X'
@@ -64,7 +64,8 @@ class TestDataset(unittest.TestCase):
              {'Dataset_Mnemonic': 'DS1', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS2', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS3', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
-             {'Dataset_Mnemonic': 'DS4', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
+             {'Dataset_Mnemonic': 'DS4', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS_TAB', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
             f'^Reading {FILENAME}:2 Public ONS dataset DS_PRIV has non-public classification CLASS_PRIV$')
 
     def test_variable_not_in_database(self):
@@ -73,8 +74,20 @@ class TestDataset(unittest.TestCase):
              {'Dataset_Mnemonic': 'DS_PRIV', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'CLASS', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS2', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS3', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
-             {'Dataset_Mnemonic': 'DS4', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
+             {'Dataset_Mnemonic': 'DS4', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS_TAB', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
             f'^Reading {FILENAME}:2 DS1 has classification GEO1 that is not in source database DB2$')
+
+    def test_variable_not_in_pre_built_database(self):
+        self.run_test(
+            [{'Dataset_Mnemonic': 'DS1', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB',
+              'Pre_Built_Database_Mnemonic': 'DB_TAB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS_PRIV', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'CLASS', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS2', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS3', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS4', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS_TAB', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
+            f'^Reading {FILENAME}:2 DS1 has classification GEO1 that is not in pre built database DB_TAB$')
 
     def test_no_variables(self):
         self.run_test(
@@ -83,9 +96,29 @@ class TestDataset(unittest.TestCase):
              {'Dataset_Mnemonic': 'DS2', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS3', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS4', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
-             {'Dataset_Mnemonic': 'DS5', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
+             {'Dataset_Mnemonic': 'DS5', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS_TAB', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
             f'^Reading {FILENAME}:7 DS5 has no associated classifications or geographic variable$')
 
+    def test_source_database_is_tabular(self):
+        self.run_test(
+            [{'Dataset_Mnemonic': 'DS1', 'Source_Database_Mnemonic': 'DB_TAB', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS_PRIV', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'CLASS', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS2', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS3', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS4', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS_TAB', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
+            f'^Reading {FILENAME}:2 DS1 has Source_Database_Mnemonic DB_TAB which has invalid Database_Type_Code: AGGDATA$')
+
+    def test_pre_built_database_is_not_tabular(self):
+        self.run_test(
+            [{'Dataset_Mnemonic': 'DS1', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS_PRIV', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'CLASS', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS2', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS3', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS4', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS_TAB', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', 'Pre_Built_Database_Mnemonic': 'DB1', **COMMON_FIELDS}],
+            f'^Reading {FILENAME}:7 DS_TAB has Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA$')
 
 if __name__ == '__main__':
     unittest.main()

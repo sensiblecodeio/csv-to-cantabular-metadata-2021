@@ -491,7 +491,7 @@
             },
             "Lowest_Geog_Variable": "GEO1",
             "Database_Type": {
-                "Database_Type_Code": "MICRO",
+                "Database_Type_Code": "MICRODATA",
                 "Database_Type_Description": "Microdata database"
             }
         },
@@ -532,7 +532,7 @@
             },
             "Lowest_Geog_Variable": "GEO1",
             "Database_Type": {
-                "Database_Type_Code": "MICRO",
+                "Database_Type_Code": "MICRODATA",
                 "Database_Type_Description": "Microdata database"
             }
         },
@@ -567,7 +567,7 @@
             },
             "Lowest_Geog_Variable": "GEO2",
             "Database_Type": {
-                "Database_Type_Code": "MICRO",
+                "Database_Type_Code": "MICRODATA",
                 "Database_Type_Description": "Microdata database"
             }
         },
@@ -602,7 +602,7 @@
             },
             "Lowest_Geog_Variable": "GEO2",
             "Database_Type": {
-                "Database_Type_Code": "MICRO",
+                "Database_Type_Code": "MICRODATA",
                 "Database_Type_Description": "Microdata database"
             }
         },
@@ -637,22 +637,92 @@
             },
             "Lowest_Geog_Variable": null,
             "Database_Type": {
-                "Database_Type_Code": "TAB",
+                "Database_Type_Code": "MICRODATA",
+                "Database_Type_Description": "Microdata database"
+            }
+        },
+        "vars": null
+    },
+    {
+        "name": "DB3",
+        "incl": [
+            {
+                "name": "base",
+                "lang": "cy"
+            }
+        ],
+        "label": "DB3 Title",
+        "description": "DB3 Description",
+        "lang": "cy",
+        "meta": {
+            "Cantabular_DB_Flag": null,
+            "Version": "1",
+            "Source": {
+                "Source_Mnemonic": "SRC3",
+                "Copyright_Statement": null,
+                "Licence": null,
+                "Nationals_Statistic_Certified": null,
+                "Methodology_Link": null,
+                "SDC_Link": null,
+                "Version": "1",
+                "Source_Description": "SRC3 Description",
+                "Methodology_Statement": "SRC3 Methodology Statement",
+                "SDC_Statement": "SRC3",
+                "Contact": null
+            },
+            "Lowest_Geog_Variable": null,
+            "Database_Type": {
+                "Database_Type_Code": "MICRODATA",
+                "Database_Type_Description": "Microdata database"
+            }
+        },
+        "vars": null
+    },
+    {
+        "name": "DB_TAB",
+        "incl": [
+            {
+                "name": "base",
+                "lang": "en"
+            }
+        ],
+        "label": "DB_TAB Title",
+        "description": "DB_TAB Description",
+        "lang": "en",
+        "meta": {
+            "Cantabular_DB_Flag": null,
+            "Version": "1",
+            "Source": {
+                "Source_Mnemonic": "SRC3",
+                "Copyright_Statement": null,
+                "Licence": null,
+                "Nationals_Statistic_Certified": null,
+                "Methodology_Link": null,
+                "SDC_Link": null,
+                "Version": "1",
+                "Source_Description": "SRC3 Description",
+                "Methodology_Statement": "SRC3 Methodology Statement",
+                "SDC_Statement": "SRC3",
+                "Contact": null
+            },
+            "Lowest_Geog_Variable": null,
+            "Database_Type": {
+                "Database_Type_Code": "AGGDATA",
                 "Database_Type_Description": "Tabular database"
             }
         },
         "vars": null
     },
     {
-        "name": "DB3",
+        "name": "DB_TAB",
         "incl": [
             {
                 "name": "base",
                 "lang": "cy"
             }
         ],
-        "label": "DB3 Title",
-        "description": "DB3 Description",
+        "label": "DB_TAB Title",
+        "description": "DB_TAB Description",
         "lang": "cy",
         "meta": {
             "Cantabular_DB_Flag": null,
@@ -672,7 +742,7 @@
             },
             "Lowest_Geog_Variable": null,
             "Database_Type": {
-                "Database_Type_Code": "TAB",
+                "Database_Type_Code": "AGGDATA",
                 "Database_Type_Description": "Tabular database"
             }
         },

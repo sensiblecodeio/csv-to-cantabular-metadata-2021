@@ -10,6 +10,7 @@ from ons_csv_to_ctb_json_ds_vars import DatasetVarsBuilder, DatasetVariables
 
 PUBLIC_SECURITY_MNEMONIC = 'PUB'
 GEOGRAPHIC_VARIABLE_TYPE = 'GEOG'
+TABULAR_DATABASE_TYPE = 'AGGDATA'
 
 DatabaseVariables = namedtuple('DatabaseVariables', 'variables lowest_geog_variable')
 
@@ -260,6 +261,7 @@ class Loader:
             optional('Last_Updated'),
             optional('Contact_Id', validate_fn=isoneof(self.contacts.keys())),
             optional('Observation_Type_Code', validate_fn=isoneof(self.observation_types.keys())),
+            optional('Pre_Built_Database_Mnemonic', validate_fn=isoneof(self.databases.keys())),
         ]
         dataset_rows = self.read_file(filename, columns)
 
@@ -272,8 +274,27 @@ class Loader:
 
         datasets = {}
         for dataset, row_num in dataset_rows:
+            drop_dataset = False
             dataset_mnemonic = dataset.pop('Dataset_Mnemonic')
-            database_mnemonic = dataset.pop('Source_Database_Mnemonic')
+            source_database_mnemonic = dataset.pop('Source_Database_Mnemonic')
+            if self.databases[source_database_mnemonic].private['Database_Type_Code'] == \
+                    TABULAR_DATABASE_TYPE:
+                self.recoverable_error(
+                    f'Reading {self.full_filename(filename)}:{row_num} {dataset_mnemonic} '
+                    f'has Source_Database_Mnemonic {source_database_mnemonic} which has invalid '
+                    f'Database_Type_Code: {TABULAR_DATABASE_TYPE}')
+                drop_dataset = True
+
+            pre_built_database_mnemonic = dataset.pop('Pre_Built_Database_Mnemonic')
+            if pre_built_database_mnemonic and \
+                    self.databases[pre_built_database_mnemonic].private['Database_Type_Code'] != \
+                    TABULAR_DATABASE_TYPE:
+                self.recoverable_error(
+                    f'Reading {self.full_filename(filename)}:{row_num} {dataset_mnemonic} '
+                    f'has Pre_Built_Database_Mnemonic {pre_built_database_mnemonic} which has '
+                    f'invalid Database_Type_Code: '
+                    f'{self.databases[pre_built_database_mnemonic].private["Database_Type_Code"]}')
+                drop_dataset = True
 
             dataset['Geographic_Coverage'] = Bilingual(dataset.pop('Geographic_Coverage'),
                                                        dataset.pop('Geographic_Coverage_Welsh'))
@@ -299,7 +320,6 @@ class Loader:
             # If the dataset is public then ensure that there is at least one classification and
             # that all the classifications are also public.
             if dataset['Security_Mnemonic'] == PUBLIC_SECURITY_MNEMONIC:
-                drop_dataset = False
                 if not dataset_variables.classifications:
                     self.recoverable_error(
                         f'Reading {self.full_filename(filename)}:{row_num} {dataset_mnemonic} '
@@ -316,19 +336,29 @@ class Loader:
                         drop_dataset = True
 
                     if classification not in \
-                            self.databases[database_mnemonic].private['Classifications']:
+                            self.databases[source_database_mnemonic].private['Classifications']:
                         self.recoverable_error(
                             f'Reading {self.full_filename(filename)}:{row_num} '
                             f'{dataset_mnemonic} has classification {classification} '
-                            f'that is not in source database {database_mnemonic}')
+                            f'that is not in source database {source_database_mnemonic}')
                         # Keeping the dataset in this scenario produces more useful data
                         # when operating in best effort mode.
                         drop_dataset = False
 
-                if drop_dataset:
-                    logging.warning(
-                        f'Reading {self.full_filename(filename)}:{row_num} dropping record')
-                    continue
+                    if pre_built_database_mnemonic and classification not in \
+                            self.databases[pre_built_database_mnemonic].private['Classifications']:
+                        self.recoverable_error(
+                            f'Reading {self.full_filename(filename)}:{row_num} '
+                            f'{dataset_mnemonic} has classification {classification} '
+                            f'that is not in pre built database {pre_built_database_mnemonic}')
+                        # Keeping the dataset in this scenario produces more useful data
+                        # when operating in best effort mode.
+                        drop_dataset = False
+
+            if drop_dataset:
+                logging.warning(
+                    f'Reading {self.full_filename(filename)}:{row_num} dropping record')
+                continue
 
             del dataset['Id']
             del dataset['Signed_Off_Flag']
@@ -344,7 +374,8 @@ class Loader:
                                                dataset.pop('Dataset_Title_Welsh')),
                     'Dataset_Description': Bilingual(dataset.pop('Dataset_Description'),
                                                      dataset.pop('Dataset_Description_Welsh')),
-                    'Database_Mnemonic': database_mnemonic,
+                    'Database_Mnemonic': pre_built_database_mnemonic if \
+                    pre_built_database_mnemonic else source_database_mnemonic,
                     'Codebook_Mnemonics': [self.classifications[c].private['Codebook_Mnemonic'] for
                                            c in dataset_variables.classifications],
                 })
@@ -389,8 +420,8 @@ class Loader:
                                v.private['Variable_Mnemonic'] in db_vars.variables]
             database['Lowest_Geog_Variable'] = db_vars.lowest_geog_variable
 
-            database['Database_Type'] = self.database_types.get(
-                database.pop('Database_Type_Code'), None)
+            database_type_code = database.pop('Database_Type_Code')
+            database['Database_Type'] = self.database_types.get(database_type_code, None)
 
             databases[database_mnemonic] = BilingualDict(
                 database,
@@ -400,7 +431,8 @@ class Loader:
                          'Database_Description': Bilingual(
                              database.pop('Database_Description'),
                              database.pop('Database_Description_Welsh')),
-                         'Classifications': classifications})
+                         'Classifications': classifications,
+                         'Database_Type_Code': database_type_code})
 
         return databases
 
@@ -833,12 +865,18 @@ class Loader:
             required('Database_Type_Description'),
             required('Id'),
         ]
-        database_type_rows = self.read_file('Database_Type.csv', columns)
+        filename = 'Database_Type.csv'
+        database_type_rows = self.read_file(filename, columns)
 
         database_types = {}
         for database_type, _ in database_type_rows:
             del database_type['Id']
             database_types[database_type['Database_Type_Code']] = BilingualDict(database_type)
+
+        # TABULAR_DATABASE_TYPE must be defined as this is used to validate other data.
+        if TABULAR_DATABASE_TYPE not in database_types:
+            raise ValueError(f'{TABULAR_DATABASE_TYPE} not found as Database_Type_Code for any '
+                             f'entry in {self.full_filename(filename)}')
 
         return database_types
 

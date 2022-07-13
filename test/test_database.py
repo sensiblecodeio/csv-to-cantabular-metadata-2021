@@ -15,7 +15,7 @@ REQUIRED_FIELDS = {'Database_Mnemonic': 'DB1',
                    'Id': '1',
                    'Database_Description': 'description',
                    'Version': '1',
-                   'Database_Type_Code': 'MICRO'}
+                   'Database_Type_Code': 'MICRODATA'}
 
 INPUT_DIR = os.path.join(pathlib.Path(__file__).parent.resolve(), 'testdata')
 

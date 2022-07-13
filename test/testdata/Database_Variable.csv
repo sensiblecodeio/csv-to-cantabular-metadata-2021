@@ -6,3 +6,4 @@ Id,Database_Mnemonic,Variable_Mnemonic,Version,Lowest_Geog_Variable_Flag
 5,DB1,VAR3,1,
 6,DB2,VAR3,1,
 7,DB1,GEO2,1,
+8,DB_TAB,VAR1,1,

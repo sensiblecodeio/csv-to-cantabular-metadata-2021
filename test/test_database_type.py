@@ -34,6 +34,11 @@ class TestDatabaseType(unittest.TestCase):
             [REQUIRED_FIELDS, REQUIRED_FIELDS],
             f'^Reading {FILENAME}:3 duplicate value DT for Database_Type_Code$')
 
+    def test_missing_tabular_database_type(self):
+        self.run_test(
+            [{'Database_Type_Code': 'MICRODATA', 'Id': '1', 'Database_Type_Description': 'Microdata type'}],
+            f'^AGGDATA not found as Database_Type_Code for any entry in {FILENAME}$')
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -75,7 +75,12 @@ class TestBestEffort(unittest.TestCase):
             r'Dataset.csv:3 DS2 has classification CLASS3 that is not in source database DB1',
             r'Dataset.csv:4 DS3 has no associated classifications or geographic variable',
             r'Dataset.csv:4 dropping record',
-            r'19 errors were encountered during processing',
+            r'Dataset.csv:5 DS4 has Source_Database_Mnemonic DB_TAB which has invalid Database_Type_Code: AGGDATA',
+            r'Dataset.csv:5 dropping record',
+            r'Dataset.csv:6 DS5 has Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA',
+            r'Dataset.csv:6 dropping record',
+            r'Dataset.csv:7 DS6 has classification GEO1 that is not in pre built database DB_TAB',
+            r'22 errors were encountered during processing',
         ]
 
         self.assertEqual(len(warnings), len(cm.output))

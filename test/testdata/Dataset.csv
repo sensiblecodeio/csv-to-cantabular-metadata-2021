@@ -1,6 +1,7 @@
-Dataset_Mnemonic,Id,Dataset_Title,Dataset_Title_Welsh,Dataset_Description,Dataset_Description_Welsh,Statistical_Unit,Dataset_Mnemonic_2011,Geographic_Coverage,Geographic_Coverage_Welsh,Dataset_Population,Dataset_Population_Welsh,Last_Updated,Security_Mnemonic,Signed_Off_Flag,Source_Database_Mnemonic,Contact_Id,Version,Observation_Type_Code
-DS1,1,DS1 Title,DS1 Title (Welsh),DS1 Description,DS1 Description (Welsh),People,DS1 2011,Everywhere,Everywhere (Welsh),Everyone,Everyone (Welsh),Today,PUB,Y,DB1,2,1,AMT
-DS2,2,DS2 Title,,DS2 Description,,Houses,,Everywhere,,Everyone,,,PUB,N,DB2,,1,
-DS3,3,DS3 Title,DS3 Title (Welsh),DS3 Description,DS3 Description (Welsh),People,DS3 2011,Everywhere,Everywhere (Welsh),Everyone,Everyone (Welsh),Today,PUB,Y,DB2,1,1,
-DS_PRIV,4,DS_PRIV Title,DS_PRIV Title (Welsh),DS_PRIV Description,DS_PRIV Description (Welsh),People,DS_PRIV 2011,Everywhere,Everywhere (Welsh),Everyone,Everyone (Welsh),Today,CLASS,Y,DB1,1,1,
-DS4,5,DS4 Title,,DS4 Description,,Houses,,Everywhere,,Everyone,,,PUB,N,DB1,,1,
+Dataset_Mnemonic,Id,Dataset_Title,Dataset_Title_Welsh,Dataset_Description,Dataset_Description_Welsh,Statistical_Unit,Dataset_Mnemonic_2011,Geographic_Coverage,Geographic_Coverage_Welsh,Dataset_Population,Dataset_Population_Welsh,Last_Updated,Security_Mnemonic,Signed_Off_Flag,Source_Database_Mnemonic,Contact_Id,Version,Observation_Type_Code,Pre_Built_Database_Mnemonic
+DS1,1,DS1 Title,DS1 Title (Welsh),DS1 Description,DS1 Description (Welsh),People,DS1 2011,Everywhere,Everywhere (Welsh),Everyone,Everyone (Welsh),Today,PUB,Y,DB1,2,1,AMT,
+DS2,2,DS2 Title,,DS2 Description,,Houses,,Everywhere,,Everyone,,,PUB,N,DB2,,1,,
+DS3,3,DS3 Title,DS3 Title (Welsh),DS3 Description,DS3 Description (Welsh),People,DS3 2011,Everywhere,Everywhere (Welsh),Everyone,Everyone (Welsh),Today,PUB,Y,DB2,1,1,,
+DS_PRIV,4,DS_PRIV Title,DS_PRIV Title (Welsh),DS_PRIV Description,DS_PRIV Description (Welsh),People,DS_PRIV 2011,Everywhere,Everywhere (Welsh),Everyone,Everyone (Welsh),Today,CLASS,Y,DB1,1,1,,
+DS4,5,DS4 Title,,DS4 Description,,Houses,,Everywhere,,Everyone,,,PUB,N,DB1,,1,,
+DS_TAB,6,DS_TAB Title,,DS_TAB Description,,Houses,,Everywhere,,Everyone,,,PUB,N,DB1,,1,,DB_TAB
