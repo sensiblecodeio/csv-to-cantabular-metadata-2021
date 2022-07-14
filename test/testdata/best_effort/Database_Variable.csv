@@ -1,6 +1,6 @@
-Id,Database_Mnemonic,Variable_Mnemonic,Version,Lowest_Geog_Variable_Flag,Classification_Mnemonic
-1,DB1,VAR1,1,,
-2,DB1,GEO1,1,Y,
-3,DB1,GEO3,1,Y,
-4,DB_TAB,VAR1,1,N,
-5,DB1,VAR1,1,,GEO1
+Id,Database_Mnemonic,Variable_Mnemonic,Version,Lowest_Geog_Variable_Flag,Classification_Mnemonic,Source_Classification_Flag,Cantabular_Public_Flag
+1,DB1,VAR1,1,,,,
+2,DB1,GEO1,1,Y,,,
+3,DB1,GEO3,1,Y,,,
+4,DB_TAB,VAR1,1,N,,,
+5,DB1,VAR1,1,,GEO1,,

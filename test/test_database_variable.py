@@ -6,7 +6,7 @@ from ons_csv_to_ctb_json_load import Loader
 from helper_funcs import conditional_mock_open, build_test_file
 
 HEADERS = ['Id', 'Database_Mnemonic', 'Variable_Mnemonic', 'Version', 'Lowest_Geog_Variable_Flag',
-           'Classification_Mnemonic']
+           'Classification_Mnemonic', 'Source_Classification_Flag', 'Cantabular_Public_Flag']
 
 REQUIRED_FIELDS = {'Variable_Mnemonic': 'VAR1',
                    'Database_Mnemonic': 'DB1',
@@ -33,7 +33,8 @@ class TestDatabaseVariable(unittest.TestCase):
                 self.run_test([row], f'^Reading {FILENAME}:2 no value supplied for required field {field}$')
 
     def test_invalid_values(self):
-        for field in ['Variable_Mnemonic', 'Database_Mnemonic', 'Lowest_Geog_Variable_Flag', 'Classification_Mnemonic']:
+        for field in ['Variable_Mnemonic', 'Database_Mnemonic', 'Lowest_Geog_Variable_Flag', 'Classification_Mnemonic',
+                      'Source_Classification_Flag', 'Cantabular_Public_Flag']:
             with self.subTest(field=field):
                 row = REQUIRED_FIELDS.copy()
                 row[field] = 'X'

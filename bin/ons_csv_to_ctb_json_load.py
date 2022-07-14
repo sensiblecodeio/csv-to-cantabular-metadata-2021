@@ -898,6 +898,9 @@ class Loader:
             required('Version'),
 
             optional('Lowest_Geog_Variable_Flag', validate_fn=isoneof(['Y', 'N'])),
+            # No action is currently taken on these fields
+            optional('Source_Classification_Flag', validate_fn=isoneof(['Y', 'N'])),
+            optional('Cantabular_Public_Flag', validate_fn=isoneof(['Y', 'N'])),
         ]
         database_variable_rows = self.read_file(
             filename, columns,
