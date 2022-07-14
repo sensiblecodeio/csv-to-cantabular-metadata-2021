@@ -12,7 +12,8 @@ PUBLIC_SECURITY_MNEMONIC = 'PUB'
 GEOGRAPHIC_VARIABLE_TYPE = 'GEOG'
 TABULAR_DATABASE_TYPE = 'AGGDATA'
 
-DatabaseVariables = namedtuple('DatabaseVariables', 'variables lowest_geog_variable')
+DatabaseClassifications = namedtuple('DatabaseClassifications',
+                                     'classifications lowest_geog_variable')
 
 
 def isnumeric(string):
@@ -404,7 +405,7 @@ class Loader:
         database_rows = self.read_file('Database.csv', columns)
 
         database_mnemonics = [d.data['Database_Mnemonic'] for d in database_rows]
-        database_to_variables = self.load_database_to_variables(database_mnemonics)
+        database_to_classifications = self.load_database_to_classifications(database_mnemonics)
 
         databases = {}
         for database, _ in database_rows:
@@ -415,10 +416,9 @@ class Loader:
 
             database_mnemonic = database.pop('Database_Mnemonic')
 
-            db_vars = database_to_variables.get(database_mnemonic, DatabaseVariables([], None))
-            classifications = [k for k, v in self.classifications.items() if
-                               v.private['Variable_Mnemonic'] in db_vars.variables]
-            database['Lowest_Geog_Variable'] = db_vars.lowest_geog_variable
+            db_classifications = database_to_classifications.get(database_mnemonic,
+                                                                 DatabaseClassifications([], None))
+            database['Lowest_Geog_Variable'] = db_classifications.lowest_geog_variable
 
             database_type_code = database.pop('Database_Type_Code')
             database['Database_Type'] = self.database_types.get(database_type_code, None)
@@ -431,7 +431,7 @@ class Loader:
                          'Database_Description': Bilingual(
                              database.pop('Database_Description'),
                              database.pop('Database_Description_Welsh')),
-                         'Classifications': classifications,
+                         'Classifications': db_classifications.classifications,
                          'Database_Type_Code': database_type_code})
 
         return databases
@@ -880,7 +880,7 @@ class Loader:
 
         return database_types
 
-    def load_database_to_variables(self, database_mnemonics):
+    def load_database_to_classifications(self, database_mnemonics):
         """
         Load the variables associated with each database.
 
@@ -893,6 +893,7 @@ class Loader:
         columns = [
             required('Variable_Mnemonic', validate_fn=isoneof(self.variables.keys())),
             required('Database_Mnemonic', validate_fn=isoneof(database_mnemonics)),
+            optional('Classification_Mnemonic', validate_fn=isoneof(self.classifications.keys())),
             required('Id'),
             required('Version'),
 
@@ -901,20 +902,30 @@ class Loader:
         database_variable_rows = self.read_file(
             filename, columns,
             # There can only be one row for each Variable_Mnemonic/Database_Mnemonic combination.
-            unique_combo_fields=['Variable_Mnemonic', 'Database_Mnemonic'])
+            unique_combo_fields=['Variable_Mnemonic', 'Database_Mnemonic',
+                                 'Classification_Mnemonic'])
 
         db_to_raw_vars = {}
         for db_var, _ in database_variable_rows:
             append_to_list_in_dict(db_to_raw_vars, db_var['Database_Mnemonic'], db_var)
 
-        database_to_variables = {}
+        variable_to_classifications = dict()
+        for classification_mnemonic, classification in self.classifications.items():
+            variable_mnemonic = classification.private['Variable_Mnemonic']
+            if variable_mnemonic not in variable_to_classifications:
+                variable_to_classifications[variable_mnemonic] = set()
+            variable_to_classifications[variable_mnemonic].add(classification_mnemonic)
+
+        database_to_classifications = {}
         for database_mnemonic, db_vars in db_to_raw_vars.items():
             lowest_geog_var = None
-            variables = []
+            classifications = set()
             contains_geo_vars = False
             for db_var in db_vars:
                 database_mnemonic = db_var['Database_Mnemonic']
                 variable_mnemonic = db_var['Variable_Mnemonic']
+                classification_mnemonic = db_var['Classification_Mnemonic']
+
                 is_geographic = self.variables[variable_mnemonic].private['Is_Geographic']
                 if is_geographic:
                     contains_geo_vars = True
@@ -932,17 +943,31 @@ class Loader:
                             f'and {lowest_geog_var} for database {database_mnemonic}')
                     else:
                         lowest_geog_var = variable_mnemonic
-                variables.append(variable_mnemonic)
+
+                # Add the specific classification to the database if Classification_Mnemonic is set
+                # else add all the classifications for the variable.
+                if classification_mnemonic:
+                    if classification_mnemonic not in \
+                            variable_to_classifications.get(variable_mnemonic, set()):
+                        self.recoverable_error(
+                            f'Reading {self.full_filename(filename)} '
+                            f'{classification_mnemonic} is unknown Classification_Mnemonic for '
+                            f'Variable_Mnemonic {variable_mnemonic}')
+                    else:
+                        classifications.add(classification_mnemonic)
+                else:
+                    classifications = classifications.union(variable_to_classifications.get(
+                        variable_mnemonic, set()))
 
             if not lowest_geog_var and contains_geo_vars:
                 self.recoverable_error(f'Reading {self.full_filename(filename)} '
                                        'Lowest_Geog_Variable_Flag not set on any geographic '
                                        f'variable for database {database_mnemonic}')
 
-            database_to_variables[database_mnemonic] = DatabaseVariables(
-                variables=variables, lowest_geog_variable=lowest_geog_var)
+            database_to_classifications[database_mnemonic] = DatabaseClassifications(
+                classifications=classifications, lowest_geog_variable=lowest_geog_var)
 
-        return database_to_variables
+        return database_to_classifications
 
     def load_dataset_to_related(self, dataset_mnemonics):
         """Load the related datasets relationships."""

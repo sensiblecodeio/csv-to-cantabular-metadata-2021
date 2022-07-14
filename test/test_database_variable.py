@@ -5,7 +5,8 @@ import pathlib
 from ons_csv_to_ctb_json_load import Loader
 from helper_funcs import conditional_mock_open, build_test_file
 
-HEADERS = ['Id', 'Database_Mnemonic', 'Variable_Mnemonic', 'Version', 'Lowest_Geog_Variable_Flag']
+HEADERS = ['Id', 'Database_Mnemonic', 'Variable_Mnemonic', 'Version', 'Lowest_Geog_Variable_Flag',
+           'Classification_Mnemonic']
 
 REQUIRED_FIELDS = {'Variable_Mnemonic': 'VAR1',
                    'Database_Mnemonic': 'DB1',
@@ -22,7 +23,7 @@ class TestDatabaseVariable(unittest.TestCase):
         with unittest.mock.patch('builtins.open', conditional_mock_open('Database_Variable.csv',
                 read_data = build_test_file(HEADERS, rows))):
             with self.assertRaisesRegex(ValueError, expected_error):
-                Loader(INPUT_DIR, None).load_database_to_variables(['DB1', 'DB2', 'DB3'])
+                Loader(INPUT_DIR, None).load_database_to_classifications(['DB1', 'DB2', 'DB3'])
 
     def test_required_fields(self):
         for field in REQUIRED_FIELDS:
@@ -32,7 +33,7 @@ class TestDatabaseVariable(unittest.TestCase):
                 self.run_test([row], f'^Reading {FILENAME}:2 no value supplied for required field {field}$')
 
     def test_invalid_values(self):
-        for field in ['Variable_Mnemonic', 'Database_Mnemonic', 'Lowest_Geog_Variable_Flag']:
+        for field in ['Variable_Mnemonic', 'Database_Mnemonic', 'Lowest_Geog_Variable_Flag', 'Classification_Mnemonic']:
             with self.subTest(field=field):
                 row = REQUIRED_FIELDS.copy()
                 row[field] = 'X'
@@ -41,7 +42,7 @@ class TestDatabaseVariable(unittest.TestCase):
     def test_duplicate_entry(self):
         self.run_test(
             [REQUIRED_FIELDS, REQUIRED_FIELDS],
-            f'^Reading {FILENAME}:3 duplicate value combo VAR1/DB1 for Variable_Mnemonic/Database_Mnemonic$')
+            f'^Reading {FILENAME}:3 duplicate value combo VAR1/DB1/ for Variable_Mnemonic/Database_Mnemonic/Classification_Mnemonic$')
 
     def test_lowest_geog_on_non_geo_var(self):
         row = REQUIRED_FIELDS.copy()
@@ -63,6 +64,32 @@ class TestDatabaseVariable(unittest.TestCase):
         self.run_test(
             [row],
             f'^Reading {FILENAME} Lowest_Geog_Variable_Flag not set on any geographic variable for database DB1$')
+
+    def test_partial_inclusion(self):
+        rows = [{'Variable_Mnemonic': 'VAR1', 'Database_Mnemonic': 'DB1', 'Id': '1',
+                 'Version': '1', 'Lowest_Geog_Variable_Flag': '', 'Classification_Mnemonic': ''}]
+        with unittest.mock.patch('builtins.open', conditional_mock_open('Database_Variable.csv',
+                read_data = build_test_file(HEADERS, rows))):
+            db_classifications = Loader(INPUT_DIR, None).load_database_to_classifications(['DB1', 'DB2', 'DB3'])
+        self.assertEqual(db_classifications['DB1'].classifications, {'CLASS1', 'CLASS4'})
+
+        rows = [{'Variable_Mnemonic': 'VAR1', 'Database_Mnemonic': 'DB1', 'Id': '1',
+                 'Version': '1', 'Lowest_Geog_Variable_Flag': '', 'Classification_Mnemonic': 'CLASS4'}]
+        with unittest.mock.patch('builtins.open', conditional_mock_open('Database_Variable.csv',
+                read_data = build_test_file(HEADERS, rows))):
+            db_classifications = Loader(INPUT_DIR, None).load_database_to_classifications(['DB1', 'DB2', 'DB3'])
+        self.assertEqual(db_classifications['DB1'].classifications, {'CLASS4'})
+
+        # This should probably be an error but the data does currently have examples of this
+        rows = [{'Variable_Mnemonic': 'VAR1', 'Database_Mnemonic': 'DB1', 'Id': '1',
+                 'Version': '1', 'Lowest_Geog_Variable_Flag': '', 'Classification_Mnemonic': ''},
+                {'Variable_Mnemonic': 'VAR1', 'Database_Mnemonic': 'DB1', 'Id': '1',
+                 'Version': '1', 'Lowest_Geog_Variable_Flag': '', 'Classification_Mnemonic': 'CLASS4'}]
+        with unittest.mock.patch('builtins.open', conditional_mock_open('Database_Variable.csv',
+                read_data = build_test_file(HEADERS, rows))):
+            db_classifications = Loader(INPUT_DIR, None).load_database_to_classifications(['DB1', 'DB2', 'DB3'])
+        self.assertEqual(db_classifications['DB1'].classifications, {'CLASS1', 'CLASS4'})
+
 
 if __name__ == '__main__':
     unittest.main()

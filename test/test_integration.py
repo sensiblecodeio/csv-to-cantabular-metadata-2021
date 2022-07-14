@@ -83,19 +83,22 @@ class TestIntegration(unittest.TestCase):
                 service_metadata = json.load(f)
             with open(os.path.join(file_dir, 'expected/service-metadata.json')) as f:
                 expected_service_metadata = json.load(f)
-            self.assertEqual(service_metadata, expected_service_metadata)
+            self.assertEqual(service_metadata, expected_service_metadata,
+                             msg=f'Comparing out/{FILENAME_SERVICE} and expected/service-metadata.json')
 
             with open(os.path.join(output_dir, FILENAME_DATASET)) as f:
                 dataset_metadata = json.load(f)
             with open(os.path.join(file_dir, 'expected/dataset-metadata.json')) as f:
                 expected_dataset_metadata = json.load(f)
-            self.assertEqual(dataset_metadata, expected_dataset_metadata)
+            self.assertEqual(dataset_metadata, expected_dataset_metadata,
+                             msg=f'Comparing out/{FILENAME_DATASET} and expected/dataset-metadata.json')
 
             with open(os.path.join(output_dir, FILENAME_TABLES)) as f:
                 table_metadata = json.load(f)
             with open(os.path.join(file_dir, 'expected/table-metadata.json')) as f:
                 expected_table_metadata = json.load(f)
-            self.assertEqual(table_metadata, expected_table_metadata)
+            self.assertEqual(table_metadata, expected_table_metadata,
+                             f'Comparing out/{FILENAME_TABLES} and expected/dataset-metadata.json')
 
     @unittest.mock.patch('ons_csv_to_ctb_json_main.date')
     def test_no_geography_file(self, mock_date):
@@ -113,16 +116,19 @@ class TestIntegration(unittest.TestCase):
                 service_metadata = json.load(f)
             with open(os.path.join(file_dir, 'expected/service-metadata.json')) as f:
                 expected_service_metadata = json.load(f)
-            self.assertEqual(service_metadata, expected_service_metadata)
+            self.assertEqual(service_metadata, expected_service_metadata,
+                             f'Comparing out/{FILENAME_SERVICE_NO_GEO} and expected/service-metadata.json')
 
             with open(os.path.join(output_dir, FILENAME_DATASET_NO_GEO)) as f:
                 dataset_metadata = json.load(f)
             with open(os.path.join(file_dir, 'expected/dataset-metadata-no-geo.json')) as f:
                 expected_dataset_metadata = json.load(f)
-            self.assertEqual(dataset_metadata, expected_dataset_metadata)
+            self.assertEqual(dataset_metadata, expected_dataset_metadata,
+                             f'Comparing out/{FILENAME_DATASET_NO_GEO} and expected/dataset-metadata-no-geo.json')
 
             with open(os.path.join(output_dir, FILENAME_TABLES_NO_GEO)) as f:
                 table_metadata = json.load(f)
             with open(os.path.join(file_dir, 'expected/table-metadata.json')) as f:
                 expected_table_metadata = json.load(f)
-            self.assertEqual(table_metadata, expected_table_metadata)
+            self.assertEqual(table_metadata, expected_table_metadata,
+                             f'Comparing out/{FILENAME_TABLES_NO_GEO} and expected/table-metadata.json')

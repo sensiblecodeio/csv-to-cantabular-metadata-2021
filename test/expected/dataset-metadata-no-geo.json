@@ -144,6 +144,90 @@
                 "catLabels": null
             },
             {
+                "name": "CLASS4",
+                "label": "CLASS4 Label Internal",
+                "description": "VAR1 Description",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "VAR1",
+                        "Variable_Mnemonic_2011": "VAR1 2011",
+                        "Version": "1",
+                        "Quality_Statement_Text": "VAR1 Quality Statement Text",
+                        "Quality_Summary_URL": "VAR1 Quality Statement URL",
+                        "Variable_Title": "VAR1 Title",
+                        "Comparability_Comments": "VAR1 Comparability Comments",
+                        "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
+                        "Geographic_Theme": null,
+                        "Geographic_Coverage": null,
+                        "Variable_Type": {
+                            "Variable_Type_Code": "DVO",
+                            "Variable_Type_Description": "Derived variable"
+                        },
+                        "Statistical_Unit": {
+                            "Statistical_Unit": "People",
+                            "Statistical_Unit_Description": "People Description"
+                        },
+                        "Topic": {
+                            "Topic_Mnemonic": "TOPIC1",
+                            "Topic_Description": "TOPIC1 Description",
+                            "Topic_Title": "TOPIC1 Title"
+                        },
+                        "Questions": [
+                            {
+                                "Question_Code": "Q1",
+                                "Question_First_Asked_In_Year": "2001",
+                                "Version": "1",
+                                "Question_Label": "Q1 Label",
+                                "Reason_For_Asking_Question": "Q1 Why asked"
+                            },
+                            {
+                                "Question_Code": "Q3",
+                                "Question_First_Asked_In_Year": null,
+                                "Version": "2",
+                                "Question_Label": "Q3 Label",
+                                "Reason_For_Asking_Question": "Q3 Why asked"
+                            }
+                        ]
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            },
+            {
+                "name": "CLASS5",
+                "label": "CLASS5 Label Internal",
+                "description": "VAR2 Description",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "VAR2",
+                        "Variable_Mnemonic_2011": null,
+                        "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
+                        "Variable_Title": "VAR2 Title",
+                        "Comparability_Comments": "VAR2 Comparability Comments",
+                        "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
+                        "Geographic_Theme": null,
+                        "Geographic_Coverage": null,
+                        "Variable_Type": {
+                            "Variable_Type_Code": "DVO",
+                            "Variable_Type_Description": "Derived variable"
+                        },
+                        "Statistical_Unit": null,
+                        "Topic": null,
+                        "Questions": []
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            },
+            {
                 "name": "GEO1",
                 "label": "GEO1 Title",
                 "description": "GEO1 Description",
@@ -359,6 +443,90 @@
                         "Variable_Title": "VAR3 Title",
                         "Comparability_Comments": null,
                         "Uk_Comparison_Comments": null,
+                        "Geographic_Theme": null,
+                        "Geographic_Coverage": null,
+                        "Variable_Type": {
+                            "Variable_Type_Code": "DVO",
+                            "Variable_Type_Description": "Derived variable"
+                        },
+                        "Statistical_Unit": null,
+                        "Topic": null,
+                        "Questions": []
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            },
+            {
+                "name": "CLASS4",
+                "label": "CLASS4 Label Internal",
+                "description": "VAR1 Description (Welsh)",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "VAR1",
+                        "Variable_Mnemonic_2011": "VAR1 2011",
+                        "Version": "1",
+                        "Quality_Statement_Text": "VAR1 Quality Statement Text",
+                        "Quality_Summary_URL": "VAR1 Quality Statement URL",
+                        "Variable_Title": "VAR1 Title (Welsh)",
+                        "Comparability_Comments": "VAR1 Comparability Comments (Welsh)",
+                        "Uk_Comparison_Comments": "VAR1 UK Comparison Comments (Welsh)",
+                        "Geographic_Theme": null,
+                        "Geographic_Coverage": null,
+                        "Variable_Type": {
+                            "Variable_Type_Code": "DVO",
+                            "Variable_Type_Description": "Derived variable"
+                        },
+                        "Statistical_Unit": {
+                            "Statistical_Unit": "People",
+                            "Statistical_Unit_Description": "People Description (Welsh)"
+                        },
+                        "Topic": {
+                            "Topic_Mnemonic": "TOPIC1",
+                            "Topic_Description": "TOPIC1 Description (Welsh)",
+                            "Topic_Title": "TOPIC1 Title (Welsh)"
+                        },
+                        "Questions": [
+                            {
+                                "Question_Code": "Q1",
+                                "Question_First_Asked_In_Year": "2001",
+                                "Version": "1",
+                                "Question_Label": "Q1 Label (Welsh)",
+                                "Reason_For_Asking_Question": "Q1 Why asked (Welsh)"
+                            },
+                            {
+                                "Question_Code": "Q3",
+                                "Question_First_Asked_In_Year": null,
+                                "Version": "2",
+                                "Question_Label": "Q3 Label",
+                                "Reason_For_Asking_Question": "Q3 Why asked"
+                            }
+                        ]
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            },
+            {
+                "name": "CLASS5",
+                "label": "CLASS5 Label Internal",
+                "description": "VAR2 Description",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "VAR2",
+                        "Variable_Mnemonic_2011": null,
+                        "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
+                        "Variable_Title": "VAR2 Title",
+                        "Comparability_Comments": "VAR2 Comparability Comments",
+                        "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Variable_Type": {

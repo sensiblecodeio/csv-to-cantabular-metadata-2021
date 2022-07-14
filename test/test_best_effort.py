@@ -30,19 +30,22 @@ class TestBestEffort(unittest.TestCase):
                     service_metadata = json.load(f)
                 with open(os.path.join(file_dir, 'expected/service-metadata.json')) as f:
                     expected_service_metadata = json.load(f)
-                self.assertEqual(service_metadata, expected_service_metadata)
+                self.assertEqual(service_metadata, expected_service_metadata,
+                                 msg=f'Compare out/{FILENAME_SERVICE} and expected/service-metadata.json')
 
                 with open(os.path.join(output_dir, FILENAME_DATASET)) as f:
                     dataset_metadata = json.load(f)
                 with open(os.path.join(file_dir, 'expected/dataset-metadata-best-effort.json')) as f:
                     expected_dataset_metadata = json.load(f)
-                self.assertEqual(dataset_metadata, expected_dataset_metadata)
+                self.assertEqual(dataset_metadata, expected_dataset_metadata,
+                                 msg=f'Comparing out/{FILENAME_DATASET} and expected/dataset-metadata-best-effort.json')
 
                 with open(os.path.join(output_dir, FILENAME_TABLES)) as f:
                     table_metadata = json.load(f)
                 with open(os.path.join(file_dir, 'expected/table-metadata-best-effort.json')) as f:
                     expected_table_metadata = json.load(f)
-                self.assertEqual(table_metadata, expected_table_metadata)
+                self.assertEqual(table_metadata, expected_table_metadata,
+                                 msg=f'Comparing {FILENAME_TABLES} and expected/table-metadata-best-effort.json')
 
         warnings = [
 
@@ -59,6 +62,7 @@ class TestBestEffort(unittest.TestCase):
             r'Category_Mapping.csv:5 ignoring field Codebook_Mnemonic',
             r'Category.csv Unexpected number of categories for CLASS1: expected 4 but found 1',
             r'Database_Variable.csv Lowest_Geog_Variable_Flag set on GEO3 and GEO1 for database DB1',
+            r'Database_Variable.csv GEO1 is unknown Classification_Mnemonic for Variable_Mnemonic VAR1',
             r'Dataset_Variable.csv:4 duplicate value combo DS1/VAR1 for Dataset_Mnemonic/Variable_Mnemonic',
             r'Dataset_Variable.csv:4 dropping record',
             r'Dataset_Variable.csv:2 Lowest_Geog_Variable_Flag set on non-geographic variable VAR1 for dataset DS1',
@@ -80,7 +84,7 @@ class TestBestEffort(unittest.TestCase):
             r'Dataset.csv:6 DS5 has Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA',
             r'Dataset.csv:6 dropping record',
             r'Dataset.csv:7 DS6 has classification GEO1 that is not in pre built database DB_TAB',
-            r'22 errors were encountered during processing',
+            r'23 errors were encountered during processing',
         ]
 
         self.assertEqual(len(warnings), len(cm.output))
