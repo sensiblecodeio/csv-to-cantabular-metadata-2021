@@ -5,3 +5,4 @@ DS3,3,DS3 Title,,DS3 Description,,Houses,,Everywhere,,Everyone,,,PUB,N,DB1,,1,,
 DS4,4,DS4 Title,,DS4 (has tabular database as source),,Houses,,Everywhere,,Everyone,,,PUB,N,DB_TAB,,1,,
 DS5,5,DS5 Title,,DS5 (has microdata database as pre-built),,Houses,,Everywhere,,Everyone,,,PUB,N,DB1,,1,,DB1
 DS6,6,DS6 Title,,DS6 (has missing variable in pre-built database),,Houses,,Everywhere,,Everyone,,,PUB,N,DB1,,1,,DB_TAB
+DS7,7,DS7 Title,,DS7 Different observation type,,Houses,,Everywhere,,Everyone,,,PUB,N,DB1,,1,AMT,DB_TAB
