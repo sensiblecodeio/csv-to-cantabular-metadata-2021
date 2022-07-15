@@ -5,22 +5,23 @@ import pathlib
 from ons_csv_to_ctb_json_load import Loader
 from helper_funcs import conditional_mock_open, build_test_file
 
-HEADERS = ['Variable_Mnemonic', 'Id', 'Variable_Keyword', 'Variable_Keyword_Welsh']
+HEADERS = ['Id', 'Observation_Type_Code', 'Observation_Type_Label', 'Observation_Type_Description',
+           'Decimal_Places', 'Prefix', 'Suffix', 'FillTrailingSpaces', 'NegativeSign']
 
-REQUIRED_FIELDS = {'Variable_Mnemonic': 'VAR1',
-                   'Variable_Keyword': 'KW',
+REQUIRED_FIELDS = {'Observation_Type_Code': 'OT',
+                   'Observation_Type_Label': 'OT label',
                    'Id': '1'}
 
 INPUT_DIR = os.path.join(pathlib.Path(__file__).parent.resolve(), 'testdata')
 
-FILENAME = os.path.join(INPUT_DIR, 'Variable_Keyword.csv')
+FILENAME = os.path.join(INPUT_DIR, 'Observation_Type.csv')
 
-class TestVariableKeyword(unittest.TestCase):
+class TestObservationType(unittest.TestCase):
     def run_test(self, rows, expected_error):
-        with unittest.mock.patch('builtins.open', conditional_mock_open('Variable_Keyword.csv',
+        with unittest.mock.patch('builtins.open', conditional_mock_open('Observation_Type.csv',
                 read_data = build_test_file(HEADERS, rows))):
             with self.assertRaisesRegex(ValueError, expected_error):
-                Loader(INPUT_DIR, None).load_variable_to_keywords(['VAR1', 'VAR2'])
+                Loader(INPUT_DIR, None).observation_types
 
     def test_required_fields(self):
         for field in REQUIRED_FIELDS:
@@ -30,16 +31,16 @@ class TestVariableKeyword(unittest.TestCase):
                 self.run_test([row], f'^Reading {FILENAME}:2 no value supplied for required field {field}$')
 
     def test_invalid_values(self):
-        for field in ['Variable_Mnemonic']:
+        for field in ['FillTrailingSpaces', 'Decimal_Places']:
             with self.subTest(field=field):
                 row = REQUIRED_FIELDS.copy()
                 row[field] = 'X'
                 self.run_test([row], f'^Reading {FILENAME}:2 invalid value X for {field}$')
 
-    def test_duplicate_entry(self):
+    def test_duplicate_observation_type_code(self):
         self.run_test(
             [REQUIRED_FIELDS, REQUIRED_FIELDS],
-            f'^Reading {FILENAME}:3 duplicate value combo VAR1/KW for Variable_Mnemonic/Variable_Keyword$')
+            f'^Reading {FILENAME}:3 duplicate value OT for Observation_Type_Code$')
 
 
 if __name__ == '__main__':

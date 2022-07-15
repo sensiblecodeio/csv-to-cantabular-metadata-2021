@@ -16,7 +16,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": "DS1 2011",
                     "Last_Updated": "Today",
-                    "Unique_Url": "DS1 Unique URL",
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",
@@ -31,10 +30,16 @@
                         "Contact_Phone": null,
                         "Contact_Website": null
                     },
-                    "Keywords": [
-                        "DS1 Keyword",
-                        "DS1 Other Keyword"
-                    ],
+                    "Observation_Type": {
+                        "Observation_Type_Code": "AMT",
+                        "Observation_Type_Label": "Amount",
+                        "Observation_Type_Description": "A financial amount",
+                        "Decimal_Places": "2",
+                        "Prefix": "\u00a3",
+                        "Suffix": "GBP",
+                        "FillTrailingSpaces": "Y",
+                        "NegativeSign": "-"
+                    },
                     "Related_Datasets": [
                         "DS2",
                         "DS3"
@@ -77,7 +82,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": "DS1 2011",
                     "Last_Updated": "Today",
-                    "Unique_Url": "DS1 Unique URL",
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere (Welsh)",
                     "Dataset_Population": "Everyone (Welsh)",
@@ -92,10 +96,16 @@
                         "Contact_Phone": null,
                         "Contact_Website": null
                     },
-                    "Keywords": [
-                        "DS1 Keyword (Welsh)",
-                        "DS1 Other Keyword"
-                    ],
+                    "Observation_Type": {
+                        "Observation_Type_Code": "AMT",
+                        "Observation_Type_Label": "Amount",
+                        "Observation_Type_Description": "A financial amount",
+                        "Decimal_Places": "2",
+                        "Prefix": "\u00a3",
+                        "Suffix": "GBP",
+                        "FillTrailingSpaces": "Y",
+                        "NegativeSign": "-"
+                    },
                     "Related_Datasets": [
                         "DS2",
                         "DS3"
@@ -147,7 +157,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
                     "Last_Updated": null,
-                    "Unique_Url": null,
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",
@@ -156,7 +165,7 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
-                    "Keywords": [],
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [
                         {
@@ -176,7 +185,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
                     "Last_Updated": null,
-                    "Unique_Url": null,
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",
@@ -185,7 +193,7 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
-                    "Keywords": [],
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [
                         {
@@ -214,7 +222,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": "DS3 2011",
                     "Last_Updated": "Today",
-                    "Unique_Url": "DS3 Unique URL",
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",
@@ -229,7 +236,7 @@
                         "Contact_Phone": "12345",
                         "Contact_Website": "www.bob.com"
                     },
-                    "Keywords": [],
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
@@ -243,7 +250,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": "DS3 2011",
                     "Last_Updated": "Today",
-                    "Unique_Url": "DS3 Unique URL",
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere (Welsh)",
                     "Dataset_Population": "Everyone (Welsh)",
@@ -258,7 +264,7 @@
                         "Contact_Phone": "12345",
                         "Contact_Website": "www.bob.com"
                     },
-                    "Keywords": [],
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
@@ -281,7 +287,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
                     "Last_Updated": null,
-                    "Unique_Url": null,
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",
@@ -290,7 +295,7 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
-                    "Keywords": [],
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
@@ -304,7 +309,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
                     "Last_Updated": null,
-                    "Unique_Url": null,
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",
@@ -313,7 +317,60 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
-                    "Keywords": [],
+                    "Observation_Type": null,
+                    "Related_Datasets": [],
+                    "Census_Releases": [],
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
+                }
+            }
+        ]
+    },
+    {
+        "name": "DS_TAB",
+        "datasetName": "DB_TAB",
+        "vars": [
+            "CLASS1 (Codebook)"
+        ],
+        "ref": [
+            {
+                "lang": "en",
+                "label": "DS_TAB Title",
+                "description": "DS_TAB Description",
+                "meta": {
+                    "Dataset_Mnemonic_2011": null,
+                    "Last_Updated": null,
+                    "Version": "1",
+                    "Geographic_Coverage": "Everywhere",
+                    "Dataset_Population": "Everyone",
+                    "Statistical_Unit": {
+                        "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Description": "House Description"
+                    },
+                    "Contact": null,
+                    "Observation_Type": null,
+                    "Related_Datasets": [],
+                    "Census_Releases": [],
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
+                }
+            },
+            {
+                "lang": "cy",
+                "label": "DS_TAB Title",
+                "description": "DS_TAB Description",
+                "meta": {
+                    "Dataset_Mnemonic_2011": null,
+                    "Last_Updated": null,
+                    "Version": "1",
+                    "Geographic_Coverage": "Everywhere",
+                    "Dataset_Population": "Everyone",
+                    "Statistical_Unit": {
+                        "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Description": "House Description"
+                    },
+                    "Contact": null,
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],

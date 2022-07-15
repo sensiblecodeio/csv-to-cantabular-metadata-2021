@@ -14,7 +14,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
                     "Last_Updated": null,
-                    "Unique_Url": null,
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",
@@ -23,7 +22,7 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
-                    "Keywords": [],
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
@@ -39,7 +38,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
                     "Last_Updated": null,
-                    "Unique_Url": null,
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",
@@ -48,7 +46,7 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
-                    "Keywords": [],
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
@@ -73,7 +71,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
                     "Last_Updated": null,
-                    "Unique_Url": null,
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",
@@ -82,7 +79,7 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
-                    "Keywords": [],
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
@@ -96,7 +93,6 @@
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
                     "Last_Updated": null,
-                    "Unique_Url": null,
                     "Version": "1",
                     "Geographic_Coverage": "Everywhere",
                     "Dataset_Population": "Everyone",
@@ -105,7 +101,60 @@
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
-                    "Keywords": [],
+                    "Observation_Type": null,
+                    "Related_Datasets": [],
+                    "Census_Releases": [],
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
+                }
+            }
+        ]
+    },
+    {
+        "name": "DS6",
+        "datasetName": "DB_TAB",
+        "vars": [
+            "GEO1"
+        ],
+        "ref": [
+            {
+                "lang": "en",
+                "label": "DS6 Title",
+                "description": "DS6 (has missing variable in pre-built database)",
+                "meta": {
+                    "Dataset_Mnemonic_2011": null,
+                    "Last_Updated": null,
+                    "Version": "1",
+                    "Geographic_Coverage": "Everywhere",
+                    "Dataset_Population": "Everyone",
+                    "Statistical_Unit": {
+                        "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Description": "House Description"
+                    },
+                    "Contact": null,
+                    "Observation_Type": null,
+                    "Related_Datasets": [],
+                    "Census_Releases": [],
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
+                }
+            },
+            {
+                "lang": "cy",
+                "label": "DS6 Title",
+                "description": "DS6 (has missing variable in pre-built database)",
+                "meta": {
+                    "Dataset_Mnemonic_2011": null,
+                    "Last_Updated": null,
+                    "Version": "1",
+                    "Geographic_Coverage": "Everywhere",
+                    "Dataset_Population": "Everyone",
+                    "Statistical_Unit": {
+                        "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Description": "House Description"
+                    },
+                    "Contact": null,
+                    "Observation_Type": null,
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],

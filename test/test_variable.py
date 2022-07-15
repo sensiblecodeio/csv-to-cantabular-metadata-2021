@@ -10,7 +10,7 @@ HEADERS = ['Variable_Mnemonic', 'Id', 'Variable_Title', 'Variable_Title_Welsh',
            'Statistical_Unit', 'Topic_Mnemonic', 'Variable_Mnemonic_2011',
            'Comparability_Comments', 'Comparability_Comments_Welsh', 'Uk_Comparison_Comments',
            'Uk_Comparison_Comments_Welsh', 'Security_Mnemonic', 'Signed_Off_Flag',
-           'Number_Of_Classifications', 'Geographic_Abbreviation', 'Geographic_Abbreviation_Welsh',
+           'Number_Of_Classifications',
            'Geographic_Theme', 'Geographic_Theme_Welsh', 'Geographic_Coverage',
            'Geographic_Coverage_Welsh', 'Version', 'Quality_Statement_Text', 'Quality_Summary_URL']
 
@@ -57,8 +57,7 @@ class TestVariable(unittest.TestCase):
             f'^Reading {FILENAME}:3 duplicate value VAR1 for Variable_Mnemonic$')
 
     def test_non_geo_with_geographic_value(self):
-        for field in ['Geographic_Abbreviation', 'Geographic_Abbreviation_Welsh',
-                      'Geographic_Theme', 'Geographic_Theme_Welsh',
+        for field in ['Geographic_Theme', 'Geographic_Theme_Welsh',
                       'Geographic_Coverage', 'Geographic_Coverage_Welsh']:
             with self.subTest(field=field):
                 rows = [{'Variable_Mnemonic': 'GEO1', 'Variable_Type_Code': 'GEOG', **COMMON_FIELDS},
