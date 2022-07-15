@@ -357,6 +357,7 @@ class Loader:
                             f'Reading {self.full_filename(filename)}:{row_num} '
                             f'{dataset_mnemonic} has classification {classification} '
                             f'that is not in source database {source_database_mnemonic}')
+                        # Do not set drop_dataset to True.
                         # Keeping the dataset in this scenario produces more useful data
                         # when operating in best effort mode.
 
@@ -366,6 +367,7 @@ class Loader:
                             f'Reading {self.full_filename(filename)}:{row_num} '
                             f'{dataset_mnemonic} has classification {classification} '
                             f'that is not in pre built database {pre_built_database_mnemonic}')
+                        # Do not set drop_dataset to True.
                         # Keeping the dataset in this scenario produces more useful data
                         # when operating in best effort mode.
 
