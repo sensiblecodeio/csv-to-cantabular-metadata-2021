@@ -96,9 +96,9 @@ Output file names
 
 The output file names are formatted as follows:
 ```
-<prefix>cantabm_10-0-0_<metadata master version>_dataset-md_<date as yyyymmdd-><build number>.json
-<prefix>cantabm_10-0-0_<metadata master version>_service-md_<date as yyyymmdd-><build number>.json
-<prefix>cantabm_10-0-0_<metadata master version>_tables-md_<date as yyyymmdd-><build number>.json
+<prefix>cantabm_10-1-0_<metadata master version>_dataset-md_<date as yyyymmdd-><build number>.json
+<prefix>cantabm_10-1-0_<metadata master version>_service-md_<date as yyyymmdd-><build number>.json
+<prefix>cantabm_10-1-0_<metadata master version>_tables-md_<date as yyyymmdd-><build number>.json
 ```
 
 The `prefix`, `metadata master version` and `build number` can be specified using command line

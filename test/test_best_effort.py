@@ -31,7 +31,7 @@ class TestBestEffort(unittest.TestCase):
                 with open(os.path.join(file_dir, 'expected/service-metadata.json')) as f:
                     expected_service_metadata = json.load(f)
                 self.assertEqual(service_metadata, expected_service_metadata,
-                                 msg=f'Compare out/{FILENAME_SERVICE} and expected/service-metadata.json')
+                                 msg=f'Comparing out/{FILENAME_SERVICE} and expected/service-metadata.json')
 
                 with open(os.path.join(output_dir, FILENAME_DATASET)) as f:
                     dataset_metadata = json.load(f)
@@ -45,7 +45,7 @@ class TestBestEffort(unittest.TestCase):
                 with open(os.path.join(file_dir, 'expected/table-metadata-best-effort.json')) as f:
                     expected_table_metadata = json.load(f)
                 self.assertEqual(table_metadata, expected_table_metadata,
-                                 msg=f'Comparing {FILENAME_TABLES} and expected/table-metadata-best-effort.json')
+                                 msg=f'Comparing out/{FILENAME_TABLES} and expected/table-metadata-best-effort.json')
 
         warnings = [
 

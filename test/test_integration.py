@@ -98,7 +98,7 @@ class TestIntegration(unittest.TestCase):
             with open(os.path.join(file_dir, 'expected/table-metadata.json')) as f:
                 expected_table_metadata = json.load(f)
             self.assertEqual(table_metadata, expected_table_metadata,
-                             f'Comparing out/{FILENAME_TABLES} and expected/dataset-metadata.json')
+                             f'Comparing out/{FILENAME_TABLES} and expected/table-metadata.json')
 
     @unittest.mock.patch('ons_csv_to_ctb_json_main.date')
     def test_no_geography_file(self, mock_date):
