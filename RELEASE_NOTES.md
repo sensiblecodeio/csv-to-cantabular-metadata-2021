@@ -1,6 +1,12 @@
 Release Notes
 =============
 
+1.2.alpha
+---------
+- Updated code to work with metadata schema version 1.2.
+- Cantabular version 10.1.0 is now the default version. The file format for version 10.1.0 and
+  10.0.0 are identical.
+
 1.1.delta
 ---------
 - Cantabular version 10.0.0 is now the default version. The file format for version 10.0.0 and

@@ -117,7 +117,7 @@ Cantabular metadata.
 | `name` | `String!` | `Dataset.Dataset_Mnemonic` | |
 | `label` | `String` | `Dataset.Dataset_Title` | `Dataset.Dataset_Title_Welsh` |
 | `description` | `String` | `Dataset.Dataset_Description` | `Dataset.Dataset_Description_Welsh` |
-| `datasetName` | `String` | `Dataset.Database_Mnemonic` | |
+| `datasetName` | `String` | `Dataset.Pre_Built_Database_Mnemonic` if set, else `Dataset.Source_Database_Mnemonic` | |
 | `meta` | `TableMetadata!` | Additional data from `Dataset.csv` | |
 | `vars` | `[String!]!` | Table variable names sourced from `Dataset_Variable.csv` (see note below) | |
 
@@ -133,8 +133,8 @@ All other geographic variables are listed in `TableMetadata.Alternate_Geographic
 All the fields in `TableMetadata` are user defined. It contains information from `Dataset.csv` that
 is not included in the `Table` object.
 
-The object also contains data from `Related_Datasets.csv`, `Dataset_Keyword.csv`, `Publication_Dataset.csv`
-and `Release_Dataset.csv`.
+The object also contains data from `Related_Datasets.csv`, `Publication_Dataset.csv`,
+`Release_Dataset.csv` and `Observation_Type.csv`.
 
 The `Signed_Off_Flag` and `Id` field in `Classification.csv` are ignored.
 
@@ -144,15 +144,14 @@ The `Signed_Off_Flag` and `Id` field in `Classification.csv` are ignored.
 | `Geographic_Coverage` | `String!` | `Dataset.Geographic_Coverage` | `Dataset.Geographic_Coverage_Welsh` |
 | `Dataset_Population` | `String!` | `Dataset.Dataset_Population` | `Dataset.Population_Welsh` |
 | `Last_Updated` | `String` | `Dataset.Last_Updated` | |
-| `Unique_Url` | `String` | `Dataset.Unique_Url` | |
 | `Contact` | `Contact` | Keyed on `Dataset.Contact_Id` | |
 | `Version` | `String!` | `Dataset.Version` | |
 | `Related_Datasets` | `[String]!` | List of `Related_Datasets.Related_Dataset_Mnemonic` values keyed on `Related_Datasets.Dataset_Mnemonic` | |
-| `Keywords` | `[String]!` | List of `Dataset_Keyword.Dataset_Keyword` values keyed on `Dataset_Keyword.Dataset_Mnemonic` | List of `Dataset_Keyword.Dataset_Keyword_Welsh` values keyed on `Dataset_Keyword.Dataset_Mnemonic` |
 | `Publications` | `[Publication]!` | List of `Publication` values keyed on `Publication_Dataset.Dataset_Mnemonic` | |
 | `Census_Releases` | `[Census_Release]!` | List of `Census_Release` values keyed on `Release_Dataset.Dataset_Mnemonic`/`Census_Release_Number`| |
 | `Statistical_Unit` | `Statistical_Unit!` | Keyed on `Dataset.Statistical_Unit` | |
 | `Alternate_Geographic_Variables` | `[String!]` | List of alternate geographic variable names which are available for this table sourced from `Dataset_Variable.csv` keyed on `Dataset_Variable.Dataset_Mnemonic` | |
+| `Observation_Type` | `Observation_Type!` | Object of type `Observation_Type` keyed on `Dataset.Observation_Type_Code` | |
 
 ## Dataset
 
@@ -186,6 +185,7 @@ The `Id` and `IAR_Asset_Id` fields in `Database.csv` are ignored.
 | `Source` | `Source!` | Keyed on `Database.Source_Mnemonic` | |
 | `Version` | `String!` | `Database.Version` | |
 | `Lowest_Geog_Variable` | `String` | `Database_Variable.Variable_Mnemonic` for entry in `Database_Variable.csv` with a `Database_Variable.Lowest_Geog_Variable_Flag` value of `Y` | |
+| `Database_Type` | `Database_Type!` | Object of type `Database_Type` keyed on `Database.Database_Type` | |
 
 ## Variable
 
@@ -248,12 +248,10 @@ The `Id`, `Signed_Off_Flag` and `Number_Of_Classifications` fields in `Variable.
 | `Variable_Mnemonic_2011` | `String` | `Variable.Variable_Mnemonic_2011` | |
 | `Comparability_Comments` | `String` | `Variable.Comparability_Comments` | `Variable.Comparability_Comments_Welsh` |
 | `Uk_Comparison_Comments` | `String` | `Variable.Uk_Comparison_Comments` | `Variable.Uk_Comparison_Comments_Welsh` |
-| `Geographic_Abbreviation` | `String` | `Variable.Geographic_Abbreviation` | `Variable.Geographic_Abbreviation_Welsh` |
 | `Geographic_Theme` | `String` | `Variable.Geographic_Theme` | `Variable.Geographic_Theme_Welsh` |
 | `Geographic_Coverage` | `String` | `Variable.Geographic_Coverage` | `Variable.Geographic_Coverage_Welsh` |
 | `Version` | `String!` | `Variable.Version` | |
 | `Statistical_Unit` | `Statistical_Unit` | Keyed on `Variable.Statistical_Unit` | |
-| `Keywords` | `[String]!` | List of `Variable_Keyword.Variable_Keyword` values keyed on `Variable_Keyword.Variable_Mnemonic` | List of `Variable_Keyword.Variable_Keyword_Welsh` values keyed on `Variable_Keyword.Variable_Mnemonic`|
 | `Topic` | `Topic` | Keyed on `Variable.Topic_Mnemonic` | |
 | `Questions` | `[Question]!` | List of `Question` keyed on `Variable.Source_Question.Variable_Mnemonic`/`Source_Question_Code` | |
 | `Variable_Type` | `Variable_Type!` | `Variable.Variable_Type_Code` | |
@@ -354,6 +352,29 @@ The data is sourced from `Statistical_Unit.csv`. The `Id` field in `Statistical_
 | `Statistical_Unit` | `String!` | `Statistical_Unit.Statistical_Unit` | |
 | `Statistical_Unit_Description` | `String!` | `Statistical_Unit.Statistical_Unit_Description` | `Statistical_Unit.Statistical_Unit_Description_Welsh` |
 
+## Observation_Type
+
+The data is sourced from `Observation_Type.csv`. The `Id` field in `Observation_Type.csv` is ignored.
+
+| Field | GraphQL Type | Source (en) | Source (cy) |
+| --- | --- | --- | --- |
+| `Observation_Type_Code` | `String!` | `Observation_Type.Observation_Type_Code` | |
+| `Observation_Type_Label` | `String!` | `Observation_Type.Observation_Type_Label` | |
+| `Observation_Type_Description` | `String` | `Observation_Type.Observation_Type_Description` | |
+| `Decimal_Places` | `String` | `Observation_Type.Decimal_Places` | |
+| `Prefix` | `String` | `Observation_Type.Prefix` | |
+| `Suffix` | `String` | `Observation_Type.Suffix` | |
+| `FillTrailingSpaces` | `String` | `Observation_Type.FillTrailingSpaces` | |
+| `Negative_Sign` | `String` | `Observation_Type.Negative_Sign` | |
+
+## Database_Type
+
+The data is sourced from `Database_Type.csv`. The `Id` field in `Database_Type.csv` is ignored.
+
+| Field | GraphQL Type | Source (en) | Source (cy) |
+| --- | --- | --- | --- |
+| `Database_Type_Code` | `String!` | `Database_Type.Database_Type_Code` | |
+| `Database_Type_Description` | `String!` | `Database_Type.Database_Type_Description` | |
 
 # Sample queries
 

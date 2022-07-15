@@ -110,6 +110,20 @@ bob
         with self.assertRaisesRegex(ValueError, 'Reading file.csv:4 duplicate value bob for name'):
             Reader('file.csv', columns, raise_error).read()
 
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""name
+bob
+bill
+bOb
+""")
+    def test_non_unique_value_case_insensitive(self, m):
+        columns = [
+            required('name', unique=True),
+            ]
+        with self.assertRaisesRegex(ValueError, 'Reading file.csv:4 duplicate value bOb for name'):
+            Reader('file.csv', columns, raise_error).read()
+
+
+
     @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""name,email
 bob,bob@bob.com
 ,

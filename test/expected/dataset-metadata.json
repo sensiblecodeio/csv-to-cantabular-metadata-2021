@@ -10,7 +10,11 @@
                 "Source_Description": "The 2021 England and Wales Census",
                 "Version": "1"
             },
-            "Version": "1"
+            "Version": "1",
+            "Database_Type": {
+                "Database_Type_Code": "BASE",
+                "Database_Type_Description": "Base dataset containing metadata for all variables used across all other datasets"
+            }
         },
         "vars": [
             {
@@ -30,7 +34,6 @@
                         "Variable_Title": "VAR1 Title",
                         "Comparability_Comments": "VAR1 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
-                        "Geographic_Abbreviation": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Variable_Type": {
@@ -46,10 +49,6 @@
                             "Topic_Description": "TOPIC1 Description",
                             "Topic_Title": "TOPIC1 Title"
                         },
-                        "Keywords": [
-                            "VAR1 Keyword1",
-                            "VAR1 Keyword2"
-                        ],
                         "Questions": [
                             {
                                 "Question_Code": "Q1",
@@ -99,7 +98,6 @@
                         "Variable_Title": "VAR2 Title",
                         "Comparability_Comments": "VAR2 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
-                        "Geographic_Abbreviation": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Variable_Type": {
@@ -108,7 +106,6 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Keywords": [],
                         "Questions": []
                     },
                     "Topics": []
@@ -132,7 +129,6 @@
                         "Variable_Title": "VAR3 Title",
                         "Comparability_Comments": null,
                         "Uk_Comparison_Comments": null,
-                        "Geographic_Abbreviation": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Variable_Type": {
@@ -141,7 +137,90 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Keywords": [],
+                        "Questions": []
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            },
+            {
+                "name": "CLASS4",
+                "label": "CLASS4 Label Internal",
+                "description": "VAR1 Description",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "VAR1",
+                        "Variable_Mnemonic_2011": "VAR1 2011",
+                        "Version": "1",
+                        "Quality_Statement_Text": "VAR1 Quality Statement Text",
+                        "Quality_Summary_URL": "VAR1 Quality Statement URL",
+                        "Variable_Title": "VAR1 Title",
+                        "Comparability_Comments": "VAR1 Comparability Comments",
+                        "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
+                        "Geographic_Theme": null,
+                        "Geographic_Coverage": null,
+                        "Variable_Type": {
+                            "Variable_Type_Code": "DVO",
+                            "Variable_Type_Description": "Derived variable"
+                        },
+                        "Statistical_Unit": {
+                            "Statistical_Unit": "People",
+                            "Statistical_Unit_Description": "People Description"
+                        },
+                        "Topic": {
+                            "Topic_Mnemonic": "TOPIC1",
+                            "Topic_Description": "TOPIC1 Description",
+                            "Topic_Title": "TOPIC1 Title"
+                        },
+                        "Questions": [
+                            {
+                                "Question_Code": "Q1",
+                                "Question_First_Asked_In_Year": "2001",
+                                "Version": "1",
+                                "Question_Label": "Q1 Label",
+                                "Reason_For_Asking_Question": "Q1 Why asked"
+                            },
+                            {
+                                "Question_Code": "Q3",
+                                "Question_First_Asked_In_Year": null,
+                                "Version": "2",
+                                "Question_Label": "Q3 Label",
+                                "Reason_For_Asking_Question": "Q3 Why asked"
+                            }
+                        ]
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            },
+            {
+                "name": "CLASS5",
+                "label": "CLASS5 Label Internal",
+                "description": "VAR2 Description",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "VAR2",
+                        "Variable_Mnemonic_2011": null,
+                        "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
+                        "Variable_Title": "VAR2 Title",
+                        "Comparability_Comments": "VAR2 Comparability Comments",
+                        "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
+                        "Geographic_Theme": null,
+                        "Geographic_Coverage": null,
+                        "Variable_Type": {
+                            "Variable_Type_Code": "DVO",
+                            "Variable_Type_Description": "Derived variable"
+                        },
+                        "Statistical_Unit": null,
+                        "Topic": null,
                         "Questions": []
                     },
                     "Topics": []
@@ -165,7 +244,6 @@
                         "Variable_Title": "GEO1 Title",
                         "Comparability_Comments": "GEO1 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO1 UK Comparison Comments",
-                        "Geographic_Abbreviation": "G1",
                         "Geographic_Theme": "GEO1 Theme",
                         "Geographic_Coverage": "GEO1 Coverage",
                         "Variable_Type": {
@@ -181,9 +259,6 @@
                             "Topic_Description": "TOPIC1 Description",
                             "Topic_Title": "TOPIC1 Title"
                         },
-                        "Keywords": [
-                            "GEO1 Keyword1"
-                        ],
                         "Questions": [
                             {
                                 "Question_Code": "Q2",
@@ -215,7 +290,6 @@
                         "Variable_Title": "GEO2 Title",
                         "Comparability_Comments": "GEO2 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments",
-                        "Geographic_Abbreviation": "G2",
                         "Geographic_Theme": "GEO1 Theme",
                         "Geographic_Coverage": "GEO2 Coverage",
                         "Variable_Type": {
@@ -224,7 +298,6 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Keywords": [],
                         "Questions": []
                     },
                     "Topics": []
@@ -244,7 +317,11 @@
                 "Source_Description": "The 2021 England and Wales Census",
                 "Version": "1"
             },
-            "Version": "1"
+            "Version": "1",
+            "Database_Type": {
+                "Database_Type_Code": "BASE",
+                "Database_Type_Description": "Base dataset containing metadata for all variables used across all other datasets"
+            }
         },
         "vars": [
             {
@@ -264,7 +341,6 @@
                         "Variable_Title": "VAR1 Title (Welsh)",
                         "Comparability_Comments": "VAR1 Comparability Comments (Welsh)",
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments (Welsh)",
-                        "Geographic_Abbreviation": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Variable_Type": {
@@ -280,10 +356,6 @@
                             "Topic_Description": "TOPIC1 Description (Welsh)",
                             "Topic_Title": "TOPIC1 Title (Welsh)"
                         },
-                        "Keywords": [
-                            "VAR1 Keyword1 (Welsh)",
-                            "VAR1 Keyword2"
-                        ],
                         "Questions": [
                             {
                                 "Question_Code": "Q1",
@@ -338,7 +410,6 @@
                         "Variable_Title": "VAR2 Title",
                         "Comparability_Comments": "VAR2 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
-                        "Geographic_Abbreviation": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Variable_Type": {
@@ -347,7 +418,6 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Keywords": [],
                         "Questions": []
                     },
                     "Topics": []
@@ -373,7 +443,6 @@
                         "Variable_Title": "VAR3 Title",
                         "Comparability_Comments": null,
                         "Uk_Comparison_Comments": null,
-                        "Geographic_Abbreviation": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Variable_Type": {
@@ -382,7 +451,90 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Keywords": [],
+                        "Questions": []
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            },
+            {
+                "name": "CLASS4",
+                "label": "CLASS4 Label Internal",
+                "description": "VAR1 Description (Welsh)",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "VAR1",
+                        "Variable_Mnemonic_2011": "VAR1 2011",
+                        "Version": "1",
+                        "Quality_Statement_Text": "VAR1 Quality Statement Text",
+                        "Quality_Summary_URL": "VAR1 Quality Statement URL",
+                        "Variable_Title": "VAR1 Title (Welsh)",
+                        "Comparability_Comments": "VAR1 Comparability Comments (Welsh)",
+                        "Uk_Comparison_Comments": "VAR1 UK Comparison Comments (Welsh)",
+                        "Geographic_Theme": null,
+                        "Geographic_Coverage": null,
+                        "Variable_Type": {
+                            "Variable_Type_Code": "DVO",
+                            "Variable_Type_Description": "Derived variable"
+                        },
+                        "Statistical_Unit": {
+                            "Statistical_Unit": "People",
+                            "Statistical_Unit_Description": "People Description (Welsh)"
+                        },
+                        "Topic": {
+                            "Topic_Mnemonic": "TOPIC1",
+                            "Topic_Description": "TOPIC1 Description (Welsh)",
+                            "Topic_Title": "TOPIC1 Title (Welsh)"
+                        },
+                        "Questions": [
+                            {
+                                "Question_Code": "Q1",
+                                "Question_First_Asked_In_Year": "2001",
+                                "Version": "1",
+                                "Question_Label": "Q1 Label (Welsh)",
+                                "Reason_For_Asking_Question": "Q1 Why asked (Welsh)"
+                            },
+                            {
+                                "Question_Code": "Q3",
+                                "Question_First_Asked_In_Year": null,
+                                "Version": "2",
+                                "Question_Label": "Q3 Label",
+                                "Reason_For_Asking_Question": "Q3 Why asked"
+                            }
+                        ]
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            },
+            {
+                "name": "CLASS5",
+                "label": "CLASS5 Label Internal",
+                "description": "VAR2 Description",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "VAR2",
+                        "Variable_Mnemonic_2011": null,
+                        "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
+                        "Variable_Title": "VAR2 Title",
+                        "Comparability_Comments": "VAR2 Comparability Comments",
+                        "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
+                        "Geographic_Theme": null,
+                        "Geographic_Coverage": null,
+                        "Variable_Type": {
+                            "Variable_Type_Code": "DVO",
+                            "Variable_Type_Description": "Derived variable"
+                        },
+                        "Statistical_Unit": null,
+                        "Topic": null,
                         "Questions": []
                     },
                     "Topics": []
@@ -406,7 +558,6 @@
                         "Variable_Title": "GEO1 Title (Welsh)",
                         "Comparability_Comments": "GEO1 Comparability Comments (Welsh)",
                         "Uk_Comparison_Comments": "GEO1 UK Comparison Comments (Welsh)",
-                        "Geographic_Abbreviation": "G1 (Welsh)",
                         "Geographic_Theme": "GEO1 Theme (Welsh)",
                         "Geographic_Coverage": "GEO1 Coverage (Welsh)",
                         "Variable_Type": {
@@ -422,9 +573,6 @@
                             "Topic_Description": "TOPIC1 Description (Welsh)",
                             "Topic_Title": "TOPIC1 Title (Welsh)"
                         },
-                        "Keywords": [
-                            "GEO1 Keyword1 (Welsh)"
-                        ],
                         "Questions": [
                             {
                                 "Question_Code": "Q2",
@@ -456,7 +604,6 @@
                         "Variable_Title": "GEO2 Title",
                         "Comparability_Comments": "GEO2 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments",
-                        "Geographic_Abbreviation": "G2",
                         "Geographic_Theme": "GEO1 Theme",
                         "Geographic_Coverage": "GEO2 Coverage",
                         "Variable_Type": {
@@ -465,7 +612,6 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Keywords": [],
                         "Questions": []
                     },
                     "Topics": []
@@ -511,7 +657,11 @@
                     "Contact_Website": "www.bob.com"
                 }
             },
-            "Lowest_Geog_Variable": "GEO1"
+            "Lowest_Geog_Variable": "GEO1",
+            "Database_Type": {
+                "Database_Type_Code": "MICRODATA",
+                "Database_Type_Description": "Microdata database"
+            }
         },
         "vars": null
     },
@@ -548,7 +698,11 @@
                     "Contact_Website": "www.bob.com"
                 }
             },
-            "Lowest_Geog_Variable": "GEO1"
+            "Lowest_Geog_Variable": "GEO1",
+            "Database_Type": {
+                "Database_Type_Code": "MICRODATA",
+                "Database_Type_Description": "Microdata database"
+            }
         },
         "vars": null
     },
@@ -579,7 +733,11 @@
                 "SDC_Statement": null,
                 "Contact": null
             },
-            "Lowest_Geog_Variable": "GEO2"
+            "Lowest_Geog_Variable": "GEO2",
+            "Database_Type": {
+                "Database_Type_Code": "MICRODATA",
+                "Database_Type_Description": "Microdata database"
+            }
         },
         "vars": null
     },
@@ -610,7 +768,11 @@
                 "SDC_Statement": null,
                 "Contact": null
             },
-            "Lowest_Geog_Variable": "GEO2"
+            "Lowest_Geog_Variable": "GEO2",
+            "Database_Type": {
+                "Database_Type_Code": "MICRODATA",
+                "Database_Type_Description": "Microdata database"
+            }
         },
         "vars": null
     },
@@ -641,7 +803,11 @@
                 "SDC_Statement": "SRC3",
                 "Contact": null
             },
-            "Lowest_Geog_Variable": null
+            "Lowest_Geog_Variable": null,
+            "Database_Type": {
+                "Database_Type_Code": "MICRODATA",
+                "Database_Type_Description": "Microdata database"
+            }
         },
         "vars": null
     },
@@ -672,7 +838,81 @@
                 "SDC_Statement": "SRC3",
                 "Contact": null
             },
-            "Lowest_Geog_Variable": null
+            "Lowest_Geog_Variable": null,
+            "Database_Type": {
+                "Database_Type_Code": "MICRODATA",
+                "Database_Type_Description": "Microdata database"
+            }
+        },
+        "vars": null
+    },
+    {
+        "name": "DB_TAB",
+        "incl": [
+            {
+                "name": "base",
+                "lang": "en"
+            }
+        ],
+        "label": "DB_TAB Title",
+        "description": "DB_TAB Description",
+        "lang": "en",
+        "meta": {
+            "Cantabular_DB_Flag": null,
+            "Version": "1",
+            "Source": {
+                "Source_Mnemonic": "SRC3",
+                "Copyright_Statement": null,
+                "Licence": null,
+                "Nationals_Statistic_Certified": null,
+                "Methodology_Link": null,
+                "SDC_Link": null,
+                "Version": "1",
+                "Source_Description": "SRC3 Description",
+                "Methodology_Statement": "SRC3 Methodology Statement",
+                "SDC_Statement": "SRC3",
+                "Contact": null
+            },
+            "Lowest_Geog_Variable": null,
+            "Database_Type": {
+                "Database_Type_Code": "AGGDATA",
+                "Database_Type_Description": "Tabular database"
+            }
+        },
+        "vars": null
+    },
+    {
+        "name": "DB_TAB",
+        "incl": [
+            {
+                "name": "base",
+                "lang": "cy"
+            }
+        ],
+        "label": "DB_TAB Title",
+        "description": "DB_TAB Description",
+        "lang": "cy",
+        "meta": {
+            "Cantabular_DB_Flag": null,
+            "Version": "1",
+            "Source": {
+                "Source_Mnemonic": "SRC3",
+                "Copyright_Statement": null,
+                "Licence": null,
+                "Nationals_Statistic_Certified": null,
+                "Methodology_Link": null,
+                "SDC_Link": null,
+                "Version": "1",
+                "Source_Description": "SRC3 Description",
+                "Methodology_Statement": "SRC3 Methodology Statement",
+                "SDC_Statement": "SRC3",
+                "Contact": null
+            },
+            "Lowest_Geog_Variable": null,
+            "Database_Type": {
+                "Database_Type_Code": "AGGDATA",
+                "Database_Type_Description": "Tabular database"
+            }
         },
         "vars": null
     }

@@ -18,6 +18,7 @@ type DatasetMetadata {
   Source: Source!
   Version: String!
   Lowest_Geog_Variable: String
+  Database_Type: Database_Type!
 }
 
 type VariableMetadata {
@@ -36,12 +37,10 @@ type ONS_Variable {
   Variable_Mnemonic_2011: String
   Comparability_Comments: String
   Uk_Comparison_Comments: String
-  Geographic_Abbreviation: String
   Geographic_Theme: String
   Geographic_Coverage: String
   Version: String!
   Statistical_Unit: Statistical_Unit
-  Keywords: [String]!
   Topic: Topic
   Questions: [Question]!
   Variable_Type: Variable_Type!
@@ -95,15 +94,14 @@ type TableMetadata {
   Geographic_Coverage: String!
   Dataset_Population: String!
   Last_Updated: String
-  Unique_Url: String
   Contact: Contact
   Version: String!
   Related_Datasets: [String]!
-  Keywords: [String]!
   Publications: [Publication]!
   Census_Releases: [Census_Release]!
   Statistical_Unit: Statistical_Unit!
   Alternate_Geographic_Variables: [String]!
+  Observation_Type: Observation_Type
 }
 
 type Publication {
@@ -123,4 +121,19 @@ type Statistical_Unit {
   Statistical_Unit: String!
   Statistical_Unit_Description: String!
 }
- 
+
+type Observation_Type {
+  Observation_Type_Code: String!
+  Observation_Type_Label: String!
+  Observation_Type_Description: String
+  Decimal_Places: String
+  Prefix: String
+  Suffix: String
+  FillTrailingSpaces: String
+  NegativeSign: String
+}
+
+type Database_Type {
+  Database_Type_Code: String!
+  Database_Type_Description: String!
+}

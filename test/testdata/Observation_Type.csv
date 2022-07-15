@@ -1,0 +1,2 @@
+Id,Observation_Type_Code,Observation_Type_Label,Observation_Type_Description,Decimal_Places,Prefix,Suffix,FillTrailingSpaces,NegativeSign
+1,AMT,Amount,A financial amount,2,£,GBP,Y,-

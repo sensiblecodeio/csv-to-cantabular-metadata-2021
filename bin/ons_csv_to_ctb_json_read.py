@@ -88,13 +88,15 @@ class Reader:
                 continue
 
             if column.unique:
-                if row[column.name] in self.unique_column_values[column.name]:
+                # Ensure values are case-insensitive unique
+                lower_case_name = row[column.name].lower()
+                if lower_case_name in self.unique_column_values[column.name]:
                     self.recoverable_error(f'Reading {self.filename}:{row_num} duplicate '
                                            f'value {row[column.name]} for {column.name}')
                     keep_row = False
                     continue
 
-                self.unique_column_values[column.name].add(row[column.name])
+                self.unique_column_values[column.name].add(lower_case_name)
 
             if row[column.name] and column.validate_fn and not \
                     column.validate_fn(row[column.name]):
