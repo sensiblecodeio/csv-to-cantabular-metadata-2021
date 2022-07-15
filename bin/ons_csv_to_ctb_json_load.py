@@ -286,7 +286,9 @@ class Loader:
                     f'Reading {self.full_filename(filename)}:{row_num} {dataset_mnemonic} '
                     f'has Source_Database_Mnemonic {source_database_mnemonic} which has invalid '
                     f'Database_Type_Code: {TABULAR_DATABASE_TYPE}')
-                drop_dataset = True
+                # The dataset should probably be dropped here but there are some ongoing
+                # discussions around database types.
+                # drop_dataset = True
 
             pre_built_database_mnemonic = dataset.pop('Pre_Built_Database_Mnemonic')
             if pre_built_database_mnemonic and \
@@ -320,7 +322,8 @@ class Loader:
                     f'has different observation type {observation_type_code} from other '
                     f'datasets in database {database_mnemonic}: '
                     f'{database_observation_type[database_mnemonic]}')
-                drop_dataset = True
+                # The dataset should probably be dropped here but the data isn't yet 100% correct
+                # drop_dataset = True
 
             dataset['Related_Datasets'] = dataset_to_related_datasets.get(dataset_mnemonic, [])
             dataset['Census_Releases'] = dataset_to_releases.get(dataset_mnemonic, [])

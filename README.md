@@ -183,12 +183,10 @@ t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Data
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:4 DS3 has no associated classifications or geographic variable
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:4 dropping record
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:5 DS4 has Source_Database_Mnemonic DB_TAB which has invalid Database_Type_Code: AGGDATA
-t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:5 dropping record
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:6 DS5 has Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:6 dropping record
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:7 DS6 has classification GEO1 that is not in pre built database DB_TAB
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:8 DS7 has different observation type AMT from other datasets in database DB_TAB: None
-t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:8 dropping record
 t=2022-07-14 22:50:38,938 lvl=INFO msg=Loaded metadata for 3 Cantabular tables
 t=2022-07-14 22:50:38,938 lvl=INFO msg=Loaded service metadata
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=24 errors were encountered during processing

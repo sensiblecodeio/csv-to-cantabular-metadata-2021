@@ -111,6 +111,59 @@
         ]
     },
     {
+        "name": "DS4",
+        "datasetName": "DB_TAB",
+        "vars": [
+            "CLASS1 (Codebook)"
+        ],
+        "ref": [
+            {
+                "lang": "en",
+                "label": "DS4 Title",
+                "description": "DS4 (has tabular database as source)",
+                "meta": {
+                    "Dataset_Mnemonic_2011": null,
+                    "Last_Updated": null,
+                    "Version": "1",
+                    "Geographic_Coverage": "Everywhere",
+                    "Dataset_Population": "Everyone",
+                    "Statistical_Unit": {
+                        "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Description": "House Description"
+                    },
+                    "Contact": null,
+                    "Observation_Type": null,
+                    "Related_Datasets": [],
+                    "Census_Releases": [],
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
+                }
+            },
+            {
+                "lang": "cy",
+                "label": "DS4 Title",
+                "description": "DS4 (has tabular database as source)",
+                "meta": {
+                    "Dataset_Mnemonic_2011": null,
+                    "Last_Updated": null,
+                    "Version": "1",
+                    "Geographic_Coverage": "Everywhere",
+                    "Dataset_Population": "Everyone",
+                    "Statistical_Unit": {
+                        "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Description": "House Description"
+                    },
+                    "Contact": null,
+                    "Observation_Type": null,
+                    "Related_Datasets": [],
+                    "Census_Releases": [],
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
+                }
+            }
+        ]
+    },
+    {
         "name": "DS6",
         "datasetName": "DB_TAB",
         "vars": [
@@ -155,6 +208,77 @@
                     },
                     "Contact": null,
                     "Observation_Type": null,
+                    "Related_Datasets": [],
+                    "Census_Releases": [],
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
+                }
+            }
+        ]
+    },
+    {
+        "name": "DS7",
+        "datasetName": "DB_TAB",
+        "vars": [
+            "CLASS1 (Codebook)"
+        ],
+        "ref": [
+            {
+                "lang": "en",
+                "label": "DS7 Title",
+                "description": "DS7 Different observation type",
+                "meta": {
+                    "Dataset_Mnemonic_2011": null,
+                    "Last_Updated": null,
+                    "Version": "1",
+                    "Geographic_Coverage": "Everywhere",
+                    "Dataset_Population": "Everyone",
+                    "Statistical_Unit": {
+                        "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Description": "House Description"
+                    },
+                    "Contact": null,
+                    "Observation_Type": {
+                        "Observation_Type_Code": "AMT",
+                        "Observation_Type_Label": "Amount",
+                        "Observation_Type_Description": null,
+                        "Decimal_Places": null,
+                        "Prefix": null,
+                        "Suffix": null,
+                        "FillTrailingSpaces": null,
+                        "NegativeSign": null
+                    },
+                    "Related_Datasets": [],
+                    "Census_Releases": [],
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
+                }
+            },
+            {
+                "lang": "cy",
+                "label": "DS7 Title",
+                "description": "DS7 Different observation type",
+                "meta": {
+                    "Dataset_Mnemonic_2011": null,
+                    "Last_Updated": null,
+                    "Version": "1",
+                    "Geographic_Coverage": "Everywhere",
+                    "Dataset_Population": "Everyone",
+                    "Statistical_Unit": {
+                        "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Description": "House Description"
+                    },
+                    "Contact": null,
+                    "Observation_Type": {
+                        "Observation_Type_Code": "AMT",
+                        "Observation_Type_Label": "Amount",
+                        "Observation_Type_Description": null,
+                        "Decimal_Places": null,
+                        "Prefix": null,
+                        "Suffix": null,
+                        "FillTrailingSpaces": null,
+                        "NegativeSign": null
+                    },
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
