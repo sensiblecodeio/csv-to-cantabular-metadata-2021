@@ -44,25 +44,26 @@ def main():
             with open(filename, newline='', encoding='utf-8-sig') as infile:
                 reader = csv.DictReader(infile)
                 fieldnames = reader.fieldnames.copy()
-                if basename == 'Source.csv':
+                if basename == 'Source.csv' and 'SOURCE_MNEMONIC' in fieldnames:
                     fieldnames.remove('SOURCE_MNEMONIC')
                     fieldnames.append('Source_Mnemonic')
-                elif basename == 'Observation_Type.csv':
+                elif basename == 'Observation_Type.csv' and 'OBSERVATION_TYPE_CODE' in fieldnames:
                     fieldnames.remove('OBSERVATION_TYPE_CODE')
                     fieldnames.append('Observation_Type_Code')
-                elif basename == 'Dataset.csv':
+                elif basename == 'Dataset.csv' and 'OBSERVATION_TYPE_CODE' in fieldnames:
                     fieldnames.remove('OBSERVATION_TYPE_CODE')
                     fieldnames.append('Observation_Type_Code')
 
                 writer = csv.DictWriter(outfile, fieldnames)
                 writer.writeheader()
                 for line in reader:
-                    if basename == 'Source.csv':
+                    if basename == 'Source.csv' and 'SOURCE_MNEMONIC' in line:
                         line['Source_Mnemonic'] = line.pop('SOURCE_MNEMONIC')
-                    elif basename == 'Observation_Type.csv':
+                    elif basename == 'Observation_Type.csv' and 'OBSERVATION_TYPE_CODE' in line:
                         line['Observation_Type_Code'] = line.pop('OBSERVATION_TYPE_CODE')
                     elif basename == 'Dataset.csv':
-                        line['Observation_Type_Code'] = line.pop('OBSERVATION_TYPE_CODE')
+                        if 'OBSERVATION_TYPE_CODE' in line:
+                            line['Observation_Type_Code'] = line.pop('OBSERVATION_TYPE_CODE')
                         if line['Source_Database_Mnemonic'] == 'Resident' or \
                                 line['Source_Database_Mnemonic'] == 'Households':
                             line['Source_Database_Mnemonic'] = \
