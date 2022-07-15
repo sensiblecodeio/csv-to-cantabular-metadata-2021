@@ -273,6 +273,8 @@ class Loader:
         dataset_to_releases = self.load_dataset_to_releases(dataset_mnemonics)
         dataset_to_variables = self.load_dataset_to_variables(dataset_mnemonics)
 
+        # All datasets in a database must have the same observation type
+        database_observation_type = dict()
         datasets = {}
         for dataset, row_num in dataset_rows:
             drop_dataset = False
@@ -297,6 +299,9 @@ class Loader:
                     f'{self.databases[pre_built_database_mnemonic].private["Database_Type_Code"]}')
                 drop_dataset = True
 
+            database_mnemonic = pre_built_database_mnemonic \
+                if pre_built_database_mnemonic else source_database_mnemonic
+
             dataset['Geographic_Coverage'] = Bilingual(dataset.pop('Geographic_Coverage'),
                                                        dataset.pop('Geographic_Coverage_Welsh'))
             dataset['Dataset_Population'] = Bilingual(dataset.pop('Dataset_Population'),
@@ -304,8 +309,18 @@ class Loader:
             dataset['Statistical_Unit'] = self.statistical_units.get(
                 dataset.pop('Statistical_Unit'), None)
             dataset['Contact'] = self.contacts.get(dataset.pop('Contact_Id'), None)
-            dataset['Observation_Type'] = self.observation_types.get(
-                dataset.pop('Observation_Type_Code'), None)
+            observation_type_code = dataset.pop('Observation_Type_Code')
+            dataset['Observation_Type'] = self.observation_types.get(observation_type_code, None)
+
+            if database_mnemonic not in database_observation_type:
+                database_observation_type[database_mnemonic] = observation_type_code
+            elif database_observation_type[database_mnemonic] != observation_type_code:
+                self.recoverable_error(
+                    f'Reading {self.full_filename(filename)}:{row_num} {dataset_mnemonic} '
+                    f'has different observation type {observation_type_code} from other '
+                    f'datasets in database {database_mnemonic}: '
+                    f'{database_observation_type[database_mnemonic]}')
+                drop_dataset = True
 
             dataset['Related_Datasets'] = dataset_to_related_datasets.get(dataset_mnemonic, [])
             dataset['Census_Releases'] = dataset_to_releases.get(dataset_mnemonic, [])
@@ -342,9 +357,9 @@ class Loader:
                             f'Reading {self.full_filename(filename)}:{row_num} '
                             f'{dataset_mnemonic} has classification {classification} '
                             f'that is not in source database {source_database_mnemonic}')
+                        # Do not set drop_dataset to True.
                         # Keeping the dataset in this scenario produces more useful data
                         # when operating in best effort mode.
-                        drop_dataset = False
 
                     if pre_built_database_mnemonic and classification not in \
                             self.databases[pre_built_database_mnemonic].private['Classifications']:
@@ -352,9 +367,9 @@ class Loader:
                             f'Reading {self.full_filename(filename)}:{row_num} '
                             f'{dataset_mnemonic} has classification {classification} '
                             f'that is not in pre built database {pre_built_database_mnemonic}')
+                        # Do not set drop_dataset to True.
                         # Keeping the dataset in this scenario produces more useful data
                         # when operating in best effort mode.
-                        drop_dataset = False
 
             if drop_dataset:
                 logging.warning(
@@ -375,8 +390,7 @@ class Loader:
                                                dataset.pop('Dataset_Title_Welsh')),
                     'Dataset_Description': Bilingual(dataset.pop('Dataset_Description'),
                                                      dataset.pop('Dataset_Description_Welsh')),
-                    'Database_Mnemonic': pre_built_database_mnemonic if \
-                    pre_built_database_mnemonic else source_database_mnemonic,
+                    'Database_Mnemonic': database_mnemonic,
                     'Codebook_Mnemonics': [self.classifications[c].private['Codebook_Mnemonic'] for
                                            c in dataset_variables.classifications],
                 })

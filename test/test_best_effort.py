@@ -84,7 +84,9 @@ class TestBestEffort(unittest.TestCase):
             r'Dataset.csv:6 DS5 has Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA',
             r'Dataset.csv:6 dropping record',
             r'Dataset.csv:7 DS6 has classification GEO1 that is not in pre built database DB_TAB',
-            r'23 errors were encountered during processing',
+            r'Dataset.csv:8 DS7 has different observation type AMT from other datasets in database DB_TAB: None',
+            r'Dataset.csv:8 dropping record',
+            r'24 errors were encountered during processing',
         ]
 
         self.assertEqual(len(warnings), len(cm.output))

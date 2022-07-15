@@ -147,53 +147,55 @@ This repository contains some test data that is full of errors. It can be used t
 of the `--best-effort` flag as shown below:
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/best_effort  -o ctb_metadata_files/ -m best-effort --best-effort
-t=2022-07-14 16:09:43,740 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.alpha
-t=2022-07-14 16:09:43,740 lvl=INFO msg=CSV source directory: test/testdata/best_effort
-t=2022-07-14 16:09:43,741 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:3 no value supplied for required field Variable_Mnemonic
-t=2022-07-14 16:09:43,741 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:3 dropping record
-t=2022-07-14 16:09:43,741 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:4 duplicate value CLASS1 for Classification_Mnemonic
-t=2022-07-14 16:09:43,741 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:4 dropping record
-t=2022-07-14 16:09:43,741 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:5 invalid value x for Number_Of_Category_Items
-t=2022-07-14 16:09:43,741 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:5 ignoring field Number_Of_Category_Items
-t=2022-07-14 16:09:43,741 lvl=WARNING msg=Reading test/testdata/best_effort/Category_Mapping.csv:3 different Codebook_Mnemonic values specified for classification CLASS1: CLASS1 (Codebook A) and CLASS1 (Codebook)
-t=2022-07-14 16:09:43,741 lvl=WARNING msg=Reading test/testdata/best_effort/Category_Mapping.csv:4 CLASS1 (Codebook) is Codebook_Mnemonic for both CLASS1 and CLASS3
-t=2022-07-14 16:09:43,741 lvl=WARNING msg=Reading test/testdata/best_effort/Category_Mapping.csv:4 ignoring field Codebook_Mnemonic
-t=2022-07-14 16:09:43,741 lvl=WARNING msg=Reading test/testdata/best_effort/Category_Mapping.csv:5 CLASS1 is an invalid Codebook_Mnemonic for classification CLASS4 as it is already the Classification_Mnemonic for another classification
-t=2022-07-14 16:09:43,741 lvl=WARNING msg=Reading test/testdata/best_effort/Category_Mapping.csv:5 ignoring field Codebook_Mnemonic
-t=2022-07-14 16:09:43,741 lvl=WARNING msg=Reading test/testdata/best_effort/Category.csv Unexpected number of categories for CLASS1: expected 4 but found 1
-t=2022-07-14 16:09:43,741 lvl=INFO msg=No geography file specified
-t=2022-07-14 16:09:43,741 lvl=INFO msg=Loaded metadata for 6 Cantabular variables
-t=2022-07-14 16:09:43,742 lvl=WARNING msg=Reading test/testdata/best_effort/Database_Variable.csv Lowest_Geog_Variable_Flag set on GEO3 and GEO1 for database DB1
-t=2022-07-14 16:09:43,742 lvl=WARNING msg=Reading test/testdata/best_effort/Database_Variable.csv GEO1 is unknown Classification_Mnemonic for Variable_Mnemonic VAR1
-t=2022-07-14 16:09:43,742 lvl=INFO msg=Loaded metadata for 2 Cantabular datasets
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:4 duplicate value combo DS1/VAR1 for Dataset_Mnemonic/Variable_Mnemonic
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:4 dropping record
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:2 Lowest_Geog_Variable_Flag set on non-geographic variable VAR1 for dataset DS1
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:2 Processing_Priority not specified for classification CLASS1 in dataset DS1
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:2 using 0 for Processing_Priority
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:3 Classification_Mnemonic must not be specified for geographic variable GEO1 in dataset DS1
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:3 Processing_Priority must not be specified for geographic variable GEO1 in dataset DS1
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:5 Lowest_Geog_Variable_Flag set on variable GEO2 and GEO1 for dataset DS1
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:7 Classification must be specified for non-geographic VAR2 in dataset DS1
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:7 dropping record
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:8 Invalid classification CLASS1 specified for variable VAR3 in dataset DS1
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:8 dropping record
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv Invalid processing_priorities [0] for dataset DS1
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:3 DS2 has classification CLASS3 that is not in source database DB1
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:4 DS3 has no associated classifications or geographic variable
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:4 dropping record
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:5 DS4 has Source_Database_Mnemonic DB_TAB which has invalid Database_Type_Code: AGGDATA
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:5 dropping record
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:6 DS5 has Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:6 dropping record
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:7 DS6 has classification GEO1 that is not in pre built database DB_TAB
-t=2022-07-14 16:09:43,743 lvl=INFO msg=Loaded metadata for 3 Cantabular tables
-t=2022-07-14 16:09:43,743 lvl=INFO msg=Loaded service metadata
-t=2022-07-14 16:09:43,743 lvl=WARNING msg=23 errors were encountered during processing
-t=2022-07-14 16:09:43,743 lvl=INFO msg=Output files will be written in Cantabular 10.1.0 format
-t=2022-07-14 16:09:43,744 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-1-0_best-effort_dataset-md_20220714-1.json
-t=2022-07-14 16:09:43,744 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-1-0_best-effort_tables-md_20220714-1.json
-t=2022-07-14 16:09:43,745 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-1-0_best-effort_service-md_20220714-1.json
+t=2022-07-14 22:50:38,931 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.alpha
+t=2022-07-14 22:50:38,932 lvl=INFO msg=CSV source directory: test/testdata/best_effort
+t=2022-07-14 22:50:38,934 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:3 no value supplied for required field Variable_Mnemonic
+t=2022-07-14 22:50:38,934 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:3 dropping record
+t=2022-07-14 22:50:38,934 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:4 duplicate value CLASS1 for Classification_Mnemonic
+t=2022-07-14 22:50:38,935 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:4 dropping record
+t=2022-07-14 22:50:38,935 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:5 invalid value x for Number_Of_Category_Items
+t=2022-07-14 22:50:38,935 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:5 ignoring field Number_Of_Category_Items
+t=2022-07-14 22:50:38,935 lvl=WARNING msg=Reading test/testdata/best_effort/Category_Mapping.csv:3 different Codebook_Mnemonic values specified for classification CLASS1: CLASS1 (Codebook A) and CLASS1 (Codebook)
+t=2022-07-14 22:50:38,935 lvl=WARNING msg=Reading test/testdata/best_effort/Category_Mapping.csv:4 CLASS1 (Codebook) is Codebook_Mnemonic for both CLASS1 and CLASS3
+t=2022-07-14 22:50:38,935 lvl=WARNING msg=Reading test/testdata/best_effort/Category_Mapping.csv:4 ignoring field Codebook_Mnemonic
+t=2022-07-14 22:50:38,935 lvl=WARNING msg=Reading test/testdata/best_effort/Category_Mapping.csv:5 CLASS1 is an invalid Codebook_Mnemonic for classification CLASS4 as it is already the Classification_Mnemonic for another classification
+t=2022-07-14 22:50:38,935 lvl=WARNING msg=Reading test/testdata/best_effort/Category_Mapping.csv:5 ignoring field Codebook_Mnemonic
+t=2022-07-14 22:50:38,935 lvl=WARNING msg=Reading test/testdata/best_effort/Category.csv Unexpected number of categories for CLASS1: expected 4 but found 1
+t=2022-07-14 22:50:38,935 lvl=INFO msg=No geography file specified
+t=2022-07-14 22:50:38,935 lvl=INFO msg=Loaded metadata for 6 Cantabular variables
+t=2022-07-14 22:50:38,936 lvl=WARNING msg=Reading test/testdata/best_effort/Database_Variable.csv Lowest_Geog_Variable_Flag set on GEO3 and GEO1 for database DB1
+t=2022-07-14 22:50:38,936 lvl=WARNING msg=Reading test/testdata/best_effort/Database_Variable.csv GEO1 is unknown Classification_Mnemonic for Variable_Mnemonic VAR1
+t=2022-07-14 22:50:38,936 lvl=INFO msg=Loaded metadata for 2 Cantabular datasets
+t=2022-07-14 22:50:38,937 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:4 duplicate value combo DS1/VAR1 for Dataset_Mnemonic/Variable_Mnemonic
+t=2022-07-14 22:50:38,937 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:4 dropping record
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:2 Lowest_Geog_Variable_Flag set on non-geographic variable VAR1 for dataset DS1
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:2 Processing_Priority not specified for classification CLASS1 in dataset DS1
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:2 using 0 for Processing_Priority
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:3 Classification_Mnemonic must not be specified for geographic variable GEO1 in dataset DS1
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:3 Processing_Priority must not be specified for geographic variable GEO1 in dataset DS1
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:5 Lowest_Geog_Variable_Flag set on variable GEO2 and GEO1 for dataset DS1
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:7 Classification must be specified for non-geographic VAR2 in dataset DS1
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:7 dropping record
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:8 Invalid classification CLASS1 specified for variable VAR3 in dataset DS1
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv:8 dropping record
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset_Variable.csv Invalid processing_priorities [0] for dataset DS1
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:3 DS2 has classification CLASS3 that is not in source database DB1
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:4 DS3 has no associated classifications or geographic variable
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:4 dropping record
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:5 DS4 has Source_Database_Mnemonic DB_TAB which has invalid Database_Type_Code: AGGDATA
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:5 dropping record
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:6 DS5 has Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:6 dropping record
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:7 DS6 has classification GEO1 that is not in pre built database DB_TAB
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:8 DS7 has different observation type AMT from other datasets in database DB_TAB: None
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:8 dropping record
+t=2022-07-14 22:50:38,938 lvl=INFO msg=Loaded metadata for 3 Cantabular tables
+t=2022-07-14 22:50:38,938 lvl=INFO msg=Loaded service metadata
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=24 errors were encountered during processing
+t=2022-07-14 22:50:38,938 lvl=INFO msg=Output files will be written in Cantabular 10.1.0 format
+t=2022-07-14 22:50:38,939 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-1-0_best-effort_dataset-md_20220714-1.json
+t=2022-07-14 22:50:38,940 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-1-0_best-effort_tables-md_20220714-1.json
+t=2022-07-14 22:50:38,940 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-1-0_best-effort_service-md_20220714-1.json
 ```
 
 Many lines contain strings such as `test/testdata/best_effort/Dataset.csv:4` this means that an error has been detected
