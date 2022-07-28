@@ -1,6 +1,12 @@
 Release Notes
 =============
 
+1.2.1-alpha
+-----------
+- Added utility `remove_empty_rows_and_columns.py` to remove any empty rows and
+  columns from all CSV files in a given directory and write the modified files
+  to a specified output directory.
+
 1.2.alpha
 ---------
 - Updated code to work with metadata schema version 1.2.
