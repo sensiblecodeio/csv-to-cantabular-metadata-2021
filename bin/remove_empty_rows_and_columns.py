@@ -6,6 +6,7 @@ removing any columns with an empty heading and any empty rows before
 writing them to an output directory.
 """
 
+import sys
 import glob
 import os
 import logging
@@ -18,14 +19,14 @@ VERSION = '1.2.1-alpha'
 def main():
     """Create a copy of CSV files in a directory with empty columns and rows removed."""
     parser = ArgumentParser(
-        description='Create a copy of CSV files in a directory with'
-        ' empty columns and rows removed.',
+        description='Create a copy of CSV files in a directory with '
+                    'empty columns and rows removed.',
         epilog=f'Version: {VERSION}')
 
     parser.add_argument('-i', '--input-dir',
                         type=str,
                         required=True,
-                        help='Input directory containing CSV files')
+                        help='Input directory containing CSV files to transform')
 
     parser.add_argument('-o', '--output-dir',
                         type=str,
@@ -49,49 +50,53 @@ def main():
             with open(filename, newline='', encoding='utf-8-sig') as infile:
                 reader = csv.reader(infile)
                 headings = next(reader)
-                removeColumnsAfterIndex = len(headings)
-                seenNonEmptyColumn = False
+                remove_columns_from_index = len(headings)
+                seen_non_empty_column = False
 
                 for i, col in enumerate(reversed(headings)):
                     if len(col.strip()) == 0:
-                        if seenNonEmptyColumn:
+                        if seen_non_empty_column:
                             logging.error(
-                                f'Empty cell amongst column headings: {filename},'
-                                f' cell {len(headings)-i}')
-                            exit(1)
-                        removeColumnsAfterIndex = removeColumnsAfterIndex - 1
+                                f'Empty cell amongst column headings: {filename}, '
+                                f'cell {len(headings)-i}')
+                            sys.exit(1)
+                        remove_columns_from_index = remove_columns_from_index - 1
                     else:
-                        seenNonEmptyColumn = True
+                        seen_non_empty_column = True
 
                 writer = csv.writer(outfile)
-                writer.writerow(headings[:removeColumnsAfterIndex])
+                writer.writerow(headings[:remove_columns_from_index])
+                lines_removed = 0
 
-                for lineNum, line in enumerate(reader):
-                    contentLength = 0
-                    trimmedLine = line[:removeColumnsAfterIndex]
-                    for cell in trimmedLine:
-                        contentLength = contentLength + len(cell.strip())
+                for data_line_index, line in enumerate(reader):
+                    line_num = data_line_index + 2
+                    content_length = 0
+                    trimmed_line = line[:remove_columns_from_index]
+                    for cell in trimmed_line:
+                        content_length = content_length + len(cell.strip())
 
                     # Keep this line.
-                    if contentLength > 0:
-                        writer.writerow(trimmedLine)
-                        if len(line) < removeColumnsAfterIndex:
+                    if content_length > 0:
+                        writer.writerow(trimmed_line)
+                        if len(line) < remove_columns_from_index:
                             logging.warning(
-                                f'{basename}:{lineNum+2} too few cells on row: expected'
-                                f' {removeColumnsAfterIndex} but found {len(line)}')
+                                f'{basename}:{line_num} too few cells on row: expected '
+                                f'{remove_columns_from_index} but found {len(line)}')
                     else:
-                        logging.info(
-                            f'{basename}:{lineNum+2} removed empty line')
+                        lines_removed = lines_removed + 1
 
                     # Warn if data has been lost from line.
-                    for i, cell in enumerate(line[removeColumnsAfterIndex:]):
+                    for i, cell in enumerate(line[remove_columns_from_index:]):
                         if len(cell.strip()) > 0:
-                            c = removeColumnsAfterIndex + i
+                            cell_number = remove_columns_from_index + i
                             logging.warning(
-                                f'{basename}:{lineNum+2} extra data in cell {c}: "{cell}"')
+                                f'{basename}:{line_num} extra data '
+                                f'in cell {cell_number}: "{cell}"')
 
         logging.info(
-            f'Read file from: {basename} and wrote modified file to: {out_filename}')
+            f'Read file from: {basename} and wrote modified file to: {out_filename}: '
+            f'removed {len(headings)-remove_columns_from_index} columns '
+            f'and {lines_removed} rows')
 
 
 if __name__ == '__main__':
