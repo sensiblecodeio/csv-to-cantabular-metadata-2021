@@ -19,7 +19,8 @@ class TestRemoveEmptyRowsAndColumns(unittest.TestCase):
         output_dir = os.path.join(file_dir, 'out')
 
         with self.assertLogs() as cm:
-            with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir]):
+            with unittest.mock.patch('sys.argv',
+                    ['test', '--force-overwrite', '-i', input_dir, '-o', output_dir]):
                 remove_empty_rows_and_columns.main()
                 with open(os.path.join(output_dir, FILENAME_TEST1)) as f:
                     fOut = f.read()

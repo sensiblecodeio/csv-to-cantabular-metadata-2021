@@ -10,6 +10,8 @@ sometimes contain additional empty cells where formatting has been applied
 in Excel but there is no content etc.
 
 Errors that cause transformation to stop:
+- If the output directory contains files, the program will stop, unless
+  the `--force-overwrite` flag is provided.
 - Empty headings must be at the end, if the CSV file has an empty heading
   amongst others this is considered to be an unrecoverable error
 
@@ -22,5 +24,7 @@ Warnings will be logged (but processing will continue) when a data row:
 python3 bin/remove_empty_rows_and_columns.py -i <PATH_TO_CSV_DIRECTORY> -o <PATH_TO_OUTPUT_DIRECTORY>
 ```
 
-`-i` specifies the input directory containing the CSV files.
-`-o` specifies the output directory.
+- `-i` specifies the input directory containing the CSV files.
+- `-o` specifies the output directory.
+- `-f` specifies that the output directory need not be empty and that existing
+       files in the output directory should be overwritten

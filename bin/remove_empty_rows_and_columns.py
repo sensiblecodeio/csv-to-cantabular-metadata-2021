@@ -33,15 +33,24 @@ def main():
                         required=True,
                         help='Output directory to write modified files')
 
+    parser.add_argument('-f', '--force-overwrite',
+                        action="store_true",
+                        required=False,
+                        default=False,
+                        help='Overwrite any existing files in directory')
+
     args = parser.parse_args()
 
     logging.basicConfig(
         format='t=%(asctime)s lvl=%(levelname)s msg=%(message)s', level='INFO')
 
     for directory in (args.input_dir, args.output_dir):
-        if not os.path.isdir(directory):
+        if not (os.path.isdir(directory) and os.path.exists(directory)):
             raise ValueError(
                 f'{directory} does not exist or is not a directory')
+
+    if not args.force_overwrite and len(os.listdir(args.output_dir)) > 0:
+        raise ValueError(f'{args.output_dir} must be an empty directory')
 
     for filename in glob.glob(os.path.join(args.input_dir, '*.csv')):
         basename = os.path.basename(filename)
