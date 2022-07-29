@@ -52,6 +52,9 @@ def main():
     if not args.force_overwrite and len(os.listdir(args.output_dir)) > 0:
         raise ValueError(f'{args.output_dir} must be an empty directory')
 
+    if os.path.normpath(args.input_dir) == os.path.normpath(args.output_dir):
+        raise ValueError(f'{args.output_dir} must different to path to input')
+
     for filename in glob.glob(os.path.join(args.input_dir, '*.csv')):
         basename = os.path.basename(filename)
         out_filename = os.path.join(args.output_dir, basename)
