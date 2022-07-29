@@ -32,7 +32,7 @@ jobs:
         pydocstyle bin/*.py
     - name: Run pylint
       run: |
-        pylint --max-locals=20 --max-public-methods=30 --max-branches=50 --max-statements=90 --min-similarity-lines=6 --max-module-lines=1250 --max-locals=24 --max-attributes=10 --disable=W1202 bin/*.py
+        pylint --max-locals=20 --max-public-methods=30 --max-branches=50 --max-statements=90 --min-similarity-lines=7 --max-module-lines=1250 --max-locals=24 --max-attributes=10 --disable=W1202 bin/*.py
     - name: Run tests
       run: |
         PYTHONPATH=test:bin python3 -m unittest -v
