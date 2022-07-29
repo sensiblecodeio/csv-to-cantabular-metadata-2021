@@ -47,13 +47,14 @@ def main():
     for directory in (args.input_dir, args.output_dir):
         if not (os.path.isdir(directory) and os.path.exists(directory)):
             raise ValueError(
-                f'"{directory}" does not exist or is not a directory')
+                f'{directory!a} does not exist or is not a directory')
 
     if not args.force_overwrite and len(os.listdir(args.output_dir)) > 0:
-        raise ValueError(f'output directory "{args.output_dir}" must be empty')
+        raise ValueError(f'output directory {args.output_dir!a} must be empty')
 
     if os.path.normpath(args.input_dir) == os.path.normpath(args.output_dir):
-        raise ValueError(f'output directory "{args.output_dir}" must be different path to input')
+        raise ValueError(
+            f'output directory {args.output_dir!a} must be different path to input directory')
 
     for filename in glob.glob(os.path.join(args.input_dir, '*.csv')):
         basename = os.path.basename(filename)
@@ -69,7 +70,7 @@ def main():
                     if len(col.strip()) == 0:
                         if seen_non_empty_column:
                             logging.error(
-                                f'Empty cell amongst column headings: {filename}, '
+                                f'Empty cell amongst column headings: {filename!a}, '
                                 f'cell {len(headings)-i}')
                             sys.exit(1)
                         remove_columns_from_index = remove_columns_from_index - 1
@@ -92,7 +93,7 @@ def main():
                         writer.writerow(trimmed_line)
                         if len(line) < remove_columns_from_index:
                             logging.warning(
-                                f'{basename}:{line_num} too few cells on row: expected '
+                                f'{basename!a}:{line_num} too few cells on row: expected '
                                 f'{remove_columns_from_index} but found {len(line)}')
                     else:
                         lines_removed = lines_removed + 1
@@ -102,11 +103,11 @@ def main():
                         if len(cell.strip()) > 0:
                             cell_number = remove_columns_from_index + i
                             logging.warning(
-                                f'{basename}:{line_num} extra data '
+                                f'{basename!a}:{line_num} extra data '
                                 f'in cell {cell_number}: "{cell}"')
 
         logging.info(
-            f'Read file from: {basename} and wrote modified file to: {out_filename}: '
+            f'Read file from: {basename!a} and wrote modified file to: {out_filename!a}: '
             f'removed {len(headings)-remove_columns_from_index} columns '
             f'and {lines_removed} rows')
 

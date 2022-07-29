@@ -38,18 +38,18 @@ class TestRemoveEmptyRowsAndColumns(unittest.TestCase):
 
         logs = [
 
-            r'empty_rows_and_columns_test2.csv: removed 0 columns and 0 rows',
-            r'empty_rows_and_columns_test1.csv:2 extra data in cell 3: "4"',
-            r'empty_rows_and_columns_test1.csv:2 extra data in cell 4: "5"',
-            r'empty_rows_and_columns_test1.csv:2 extra data in cell 5: "6"',
-            r'empty_rows_and_columns_test1.csv:6 too few cells on row: expected 3 but found 1',
-            r'empty_rows_and_columns_test1.csv:8 extra data in cell 3: "d"',
-            r'empty_rows_and_columns_test1.csv:8 extra data in cell 4: "e"',
-            r'empty_rows_and_columns_test1.csv:8 extra data in cell 5: "f"',
-            r'empty_rows_and_columns_test1.csv:11 extra data in cell 3: "D"',
-            r'empty_rows_and_columns_test1.csv:11 extra data in cell 4: "E"',
-            r'empty_rows_and_columns_test1.csv:11 extra data in cell 5: "F"',
-            r'empty_rows_and_columns_test1.csv: removed 3 columns and 6 rows'
+            r'empty_rows_and_columns_test2.csv\': removed 0 columns and 0 rows',
+            r'empty_rows_and_columns_test1.csv\':2 extra data in cell 3: "4"',
+            r'empty_rows_and_columns_test1.csv\':2 extra data in cell 4: "5"',
+            r'empty_rows_and_columns_test1.csv\':2 extra data in cell 5: "6"',
+            r'empty_rows_and_columns_test1.csv\':6 too few cells on row: expected 3 but found 1',
+            r'empty_rows_and_columns_test1.csv\':8 extra data in cell 3: "d"',
+            r'empty_rows_and_columns_test1.csv\':8 extra data in cell 4: "e"',
+            r'empty_rows_and_columns_test1.csv\':8 extra data in cell 5: "f"',
+            r'empty_rows_and_columns_test1.csv\':11 extra data in cell 3: "D"',
+            r'empty_rows_and_columns_test1.csv\':11 extra data in cell 4: "E"',
+            r'empty_rows_and_columns_test1.csv\':11 extra data in cell 5: "F"',
+            r'empty_rows_and_columns_test1.csv\': removed 3 columns and 6 rows'
         ]
 
         self.assertEqual(len(logs), len(cm.output))
