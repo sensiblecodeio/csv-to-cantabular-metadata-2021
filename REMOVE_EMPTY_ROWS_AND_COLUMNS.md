@@ -19,7 +19,7 @@ Warnings will be logged (but processing will continue) when a data row:
 
 ## Example usage
 ```
-python3 bin/remove_empty_rows_and_columns.py -i <PATH_TO_CSV_DIRECTORY> -o trimmed/
+python3 bin/remove_empty_rows_and_columns.py -i <PATH_TO_CSV_DIRECTORY> -o <PATH_TO_OUTPUT_DIRECTORY>
 ```
 
 `-i` specifies the input directory containing the CSV files.
