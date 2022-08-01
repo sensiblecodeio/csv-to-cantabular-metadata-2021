@@ -1,6 +1,11 @@
 Release Notes
 =============
 
+1.2.gamma
+-----------
+- Ensure input files to `remove_empty_rows_and_columns.py` are processed in a repeatable
+  order. This fixes an issue where unit tests might incorrectly fail on some systems.
+
 1.2.1-alpha
 -----------
 - Added utility `remove_empty_rows_and_columns.py` to remove any empty rows and
