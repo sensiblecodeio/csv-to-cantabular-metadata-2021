@@ -56,7 +56,7 @@ def main():
         raise ValueError(
             f'output directory {args.output_dir!a} must be different path to input directory')
 
-    for filename in glob.glob(os.path.join(args.input_dir, '*.csv')):
+    for filename in sorted(glob.glob(os.path.join(args.input_dir, '*.csv'))):
         basename = os.path.basename(filename)
         out_filename = os.path.join(args.output_dir, basename)
         with open(out_filename, 'w', encoding='utf-8-sig') as outfile:
