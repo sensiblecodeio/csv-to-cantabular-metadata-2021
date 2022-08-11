@@ -62,10 +62,11 @@ class Loader:
     Many of the fields in this class are cached properties, with the data loaded on first access.
     """
 
-    def __init__(self, input_directory, geography_file, best_effort=False):
+    def __init__(self, input_directory, geography_file, best_effort=False, topic_summary=False):
         """Initialise MetadataLoader object."""
         self.input_directory = input_directory
         self.geography_file = geography_file
+        self.topic_summary = topic_summary
         self._error_count = 0
 
         def raise_value_error(msg):
@@ -91,7 +92,8 @@ class Loader:
         and corresponding line number.
         """
         full_filename = self.full_filename(filename)
-        return Reader(full_filename, columns, self.recoverable_error, unique_combo_fields).read()
+        return Reader(full_filename, columns, self.recoverable_error, unique_combo_fields,
+                      self.topic_summary).read()
 
     def full_filename(self, filename):
         """Add the input_directory path to the filename."""

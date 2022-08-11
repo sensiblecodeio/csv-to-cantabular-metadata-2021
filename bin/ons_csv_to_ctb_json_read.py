@@ -22,7 +22,8 @@ Row = namedtuple('Row', 'data row_num')
 class Reader:
     """Reader is used to read a CSV file containing metadata."""
 
-    def __init__(self, filename, columns, recoverable_error, unique_combo_fields=None):
+    def __init__(self, filename, columns, recoverable_error, unique_combo_fields=None,
+                 topic_summary=False):
         """Initialise Reader object."""
         self.filename = filename
         self.columns = columns
@@ -32,6 +33,7 @@ class Reader:
         if unique_combo_fields:
             self.unique_combos = set()
         self.recoverable_error = recoverable_error
+        self.topic_summary = topic_summary
 
     def read(self):
         """
@@ -50,6 +52,8 @@ class Reader:
                 raise ValueError(f'Reading {self.filename}: missing expected columns: '
                                  f'{", ".join(sorted(missing_columns))}')
 
+            non_topic_summary = 0
+
             for row_num, row in enumerate(reader, 2):
                 if None in row:
                     raise ValueError(f'Reading {self.filename}: too many fields on row {row_num}')
@@ -63,6 +67,11 @@ class Reader:
                 if not [k for k in row if row[k]]:
                     continue
 
+                if self.topic_summary and 'Dataset_Mnemonic' in row and not \
+                        row['Dataset_Mnemonic'].startswith('TS'):
+                    non_topic_summary += 1
+                    continue
+
                 if not self.validate_row(row, row_num):
                     logging.warning(f'Reading {self.filename}:{row_num} dropping record')
                     continue
@@ -72,6 +81,10 @@ class Reader:
                         row[k] = None
 
                 data.append(Row(row, row_num))
+
+        if non_topic_summary:
+            logging.info(f'Reading {self.filename} dropped {non_topic_summary} records related '
+                         'to non Topic Summary datasets')
 
         return data
 

@@ -201,6 +201,34 @@ on row 4 of the `Dataset.csv` file. The header will be row 1.
 
 The `--best-effort` flag is for debug purposes only.
 
+Processing only Topic Summary datasets
+--------------------------------------
+
+The `--topic-summary` flag can be used to process only datasets related to **Topic Summaries**.
+All records that have a `Dataset_Mnemonic` field which does not begin with **TS** will be discarded.
+A log message will indicate when records have been discarded from a file.
+This option may be used in conjunction with other options.
+
+
+This functionality can be demonstrated using test data in `test/testdata/topic_summary`:
+
+```
+> python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/topic_summary/ -o ctb_metadata_files/ --topic-summary
+t=2022-08-18 12:39:07,181 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.gamma
+t=2022-08-18 12:39:07,181 lvl=INFO msg=CSV source directory: test/testdata/topic_summary/
+t=2022-08-18 12:39:07,182 lvl=INFO msg=No geography file specified
+t=2022-08-18 12:39:07,182 lvl=INFO msg=Loaded metadata for 1 Cantabular variables
+t=2022-08-18 12:39:07,182 lvl=INFO msg=Loaded metadata for 1 Cantabular datasets
+t=2022-08-18 12:39:07,182 lvl=INFO msg=Reading test/testdata/topic_summary/Dataset.csv dropped 1 records related to non Topic Summary datasets
+t=2022-08-18 12:39:07,183 lvl=INFO msg=Reading test/testdata/topic_summary/Dataset_Variable.csv dropped 1 records related to non Topic Summary datasets
+t=2022-08-18 12:39:07,183 lvl=INFO msg=Loaded metadata for 1 Cantabular tables
+t=2022-08-18 12:39:07,183 lvl=INFO msg=Loaded service metadata
+t=2022-08-18 12:39:07,183 lvl=INFO msg=Output files will be written in Cantabular 10.1.0 format
+t=2022-08-18 12:39:07,183 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_dataset-md_20220818-1.json
+t=2022-08-18 12:39:07,184 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_tables-md_20220818-1.json
+t=2022-08-18 12:39:07,184 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_service-md_20220818-1.json
+```
+
 Using 2011 census teaching file metadata
 ----------------------------------------
 

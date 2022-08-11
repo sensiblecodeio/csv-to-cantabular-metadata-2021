@@ -112,6 +112,12 @@ def main():
                         help='Discard invalid data instead of failing on the first error and '
                              'make a best effort attempt to produce valid output files.')
 
+    parser.add_argument('--topic-summary',
+                        action='store_true',
+                        help='Only process datasets that are part of topic summaries. All records '
+                             'that have a Dataset_Mnemonic field which does not begin with "TS" '
+                             'will be discarded.')
+
     args = parser.parse_args()
 
     logging.basicConfig(format='t=%(asctime)s lvl=%(levelname)s msg=%(message)s',
@@ -132,7 +138,8 @@ def main():
         args.build_number)
 
     # loader is used to load the metadata from CSV files and convert it to JSON.
-    loader = Loader(args.input_dir, args.geography_file, best_effort=args.best_effort)
+    loader = Loader(args.input_dir, args.geography_file, best_effort=args.best_effort,
+                    topic_summary=args.topic_summary)
 
     # Build Cantabular variable objects.
     # A Cantabular variable is equivalent to an ONS classification.
