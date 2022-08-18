@@ -23,7 +23,7 @@ class Reader:
     """Reader is used to read a CSV file containing metadata."""
 
     def __init__(self, filename, columns, recoverable_error, unique_combo_fields=None,
-                 topic_summary=False):
+                 dataset_filter=''):
         """Initialise Reader object."""
         self.filename = filename
         self.columns = columns
@@ -33,7 +33,9 @@ class Reader:
         if unique_combo_fields:
             self.unique_combos = set()
         self.recoverable_error = recoverable_error
-        self.topic_summary = topic_summary
+        # Split the dataset_filter string at this point to ensure consistent handling of empty
+        # values e.g. ", ,A".
+        self.dataset_filters = tuple(df.strip() for df in dataset_filter.split(',') if df.strip())
 
     def read(self):
         """
@@ -52,7 +54,7 @@ class Reader:
                 raise ValueError(f'Reading {self.filename}: missing expected columns: '
                                  f'{", ".join(sorted(missing_columns))}')
 
-            non_topic_summary = 0
+            dropped = 0
 
             for row_num, row in enumerate(reader, 2):
                 if None in row:
@@ -67,9 +69,9 @@ class Reader:
                 if not [k for k in row if row[k]]:
                     continue
 
-                if self.topic_summary and 'Dataset_Mnemonic' in row and not \
-                        row['Dataset_Mnemonic'].startswith('TS'):
-                    non_topic_summary += 1
+                if self.dataset_filters and 'Dataset_Mnemonic' in row and not \
+                        row['Dataset_Mnemonic'].startswith(self.dataset_filters):
+                    dropped += 1
                     continue
 
                 if not self.validate_row(row, row_num):
@@ -82,9 +84,10 @@ class Reader:
 
                 data.append(Row(row, row_num))
 
-        if non_topic_summary:
-            logging.info(f'Reading {self.filename} dropped {non_topic_summary} records related '
-                         'to non Topic Summary datasets')
+        if dropped:
+            logging.info(f'Reading {self.filename} dropped {dropped} records related '
+                         'to datasets with Dataset_Mnemonics that do not start with one of: '
+                         f'{list(self.dataset_filters)}')
 
         return data
 

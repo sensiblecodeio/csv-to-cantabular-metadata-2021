@@ -177,22 +177,24 @@ bob,1
 3,SS1
 4,TS2
 5,T
+6,TX1
 """)
-    def test_drop_non_topic_summary(self, m):
+    def test_dataset_filter(self, m):
         columns = [
             required('id'),
             required('Dataset_Mnemonic'),
             ]
 
         with self.assertLogs(level='INFO') as cm:
-            data = Reader('file.csv', columns, raise_error, topic_summary=True).read()
+            data = Reader('file.csv', columns, raise_error, dataset_filter='TS, ,TX ').read()
 
         self.assertEqual(data, [
             ({'Dataset_Mnemonic': 'TS1', 'id': '1'}, 2),
-            ({'Dataset_Mnemonic': 'TS2', 'id': '4'}, 5)])
+            ({'Dataset_Mnemonic': 'TS2', 'id': '4'}, 5),
+            ({'Dataset_Mnemonic': 'TX1', 'id': '6'}, 7)])
 
         self.assertEqual(1, len(cm.output))
-        self.assertRegex(cm.output[0], r'file.csv dropped 3 records related to non Topic Summary datasets')
+        self.assertRegex(cm.output[0], r"file.csv dropped 3 records related to datasets with Dataset_Mnemonics that do not start with one of: \['TS', 'TX']")
 
 
 if __name__ == '__main__':
