@@ -54,7 +54,7 @@ class Reader:
                 raise ValueError(f'Reading {self.filename}: missing expected columns: '
                                  f'{", ".join(sorted(missing_columns))}')
 
-            dropped = 0
+            dropped_by_dataset_filter = 0
 
             for row_num, row in enumerate(reader, 2):
                 if None in row:
@@ -71,7 +71,7 @@ class Reader:
 
                 if self.dataset_filters and 'Dataset_Mnemonic' in row and not \
                         row['Dataset_Mnemonic'].startswith(self.dataset_filters):
-                    dropped += 1
+                    dropped_by_dataset_filter += 1
                     continue
 
                 if not self.validate_row(row, row_num):
@@ -84,10 +84,10 @@ class Reader:
 
                 data.append(Row(row, row_num))
 
-        if dropped:
-            logging.info(f'Reading {self.filename} dropped {dropped} records related '
-                         'to datasets with Dataset_Mnemonics that do not start with one of: '
-                         f'{list(self.dataset_filters)}')
+        if dropped_by_dataset_filter:
+            logging.info(f'Reading {self.filename} dropped {dropped_by_dataset_filter} records '
+                         'related to datasets with Dataset_Mnemonics that do not start with one '
+                         f'of: {list(self.dataset_filters)}')
 
         return data
 
