@@ -80,7 +80,7 @@ class TestBestEffort(unittest.TestCase):
             r'Dataset.csv:4 DS3 has no associated classifications or geographic variable',
             r'Dataset.csv:4 dropping record',
             r'Dataset.csv:5 DS4 has Source_Database_Mnemonic DB_TAB which has invalid Database_Type_Code: AGGDATA',
-            r'Dataset.csv:6 DS5 has Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA',
+            r'Dataset.csv:6 DS5 has Destination_Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA',
             r'Dataset.csv:6 dropping record',
             r'Dataset.csv:8 DS7 has different observation type AMT from other datasets in database DB_TAB: None',
             r'23 errors were encountered during processing',

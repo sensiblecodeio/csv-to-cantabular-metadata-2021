@@ -264,7 +264,8 @@ class Loader:
             optional('Last_Updated'),
             optional('Contact_Id', validate_fn=isoneof(self.contacts.keys())),
             optional('Observation_Type_Code', validate_fn=isoneof(self.observation_types.keys())),
-            optional('Pre_Built_Database_Mnemonic', validate_fn=isoneof(self.databases.keys())),
+            optional('Destination_Pre_Built_Database_Mnemonic',
+                     validate_fn=isoneof(self.databases.keys())),
         ]
         dataset_rows = self.read_file(filename, columns)
 
@@ -292,19 +293,19 @@ class Loader:
                 # discussions around database types.
                 # drop_dataset = True
 
-            pre_built_database_mnemonic = dataset.pop('Pre_Built_Database_Mnemonic')
-            if pre_built_database_mnemonic and \
-                    self.databases[pre_built_database_mnemonic].private['Database_Type_Code'] != \
+            pre_built_database = dataset.pop('Destination_Pre_Built_Database_Mnemonic')
+            if pre_built_database and \
+                    self.databases[pre_built_database].private['Database_Type_Code'] != \
                     TABULAR_DATABASE_TYPE:
                 self.recoverable_error(
                     f'Reading {self.full_filename(filename)}:{row_num} {dataset_mnemonic} '
-                    f'has Pre_Built_Database_Mnemonic {pre_built_database_mnemonic} which has '
+                    f'has Destination_Pre_Built_Database_Mnemonic {pre_built_database} which has '
                     f'invalid Database_Type_Code: '
-                    f'{self.databases[pre_built_database_mnemonic].private["Database_Type_Code"]}')
+                    f'{self.databases[pre_built_database].private["Database_Type_Code"]}')
                 drop_dataset = True
 
-            database_mnemonic = pre_built_database_mnemonic \
-                if pre_built_database_mnemonic else source_database_mnemonic
+            database_mnemonic = pre_built_database \
+                if pre_built_database else source_database_mnemonic
 
             dataset['Geographic_Coverage'] = Bilingual(dataset.pop('Geographic_Coverage'),
                                                        dataset.pop('Geographic_Coverage_Welsh'))

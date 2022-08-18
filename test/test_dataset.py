@@ -10,7 +10,7 @@ HEADERS = ['Dataset_Mnemonic', 'Id', 'Dataset_Title', 'Dataset_Title_Welsh', 'Da
            'Geographic_Coverage', 'Geographic_Coverage_Welsh', 'Dataset_Population',
            'Dataset_Population_Welsh', 'Last_Updated',
            'Security_Mnemonic', 'Signed_Off_Flag', 'Source_Database_Mnemonic', 'Contact_Id',
-           'Version', 'Observation_Type_Code', 'Pre_Built_Database_Mnemonic']
+           'Version', 'Observation_Type_Code', 'Destination_Pre_Built_Database_Mnemonic']
 
 COMMON_FIELDS = {'Dataset_Title': 'title',
                  'Dataset_Description': 'description',
@@ -46,7 +46,7 @@ class TestDataset(unittest.TestCase):
 
     def test_invalid_values(self):
         for field in ['Security_Mnemonic', 'Source_Database_Mnemonic', 'Contact_Id', 'Statistical_Unit',
-                      'Signed_Off_Flag', 'Observation_Type_Code', 'Pre_Built_Database_Mnemonic']:
+                      'Signed_Off_Flag', 'Observation_Type_Code', 'Destination_Pre_Built_Database_Mnemonic']:
             with self.subTest(field=field):
                 row = REQUIRED_FIELDS.copy()
                 row[field] = 'X'
@@ -106,8 +106,8 @@ class TestDataset(unittest.TestCase):
              {'Dataset_Mnemonic': 'DS2', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS3', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS4', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
-             {'Dataset_Mnemonic': 'DS_TAB', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', 'Pre_Built_Database_Mnemonic': 'DB1', **COMMON_FIELDS}],
-            f'^Reading {FILENAME}:7 DS_TAB has Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA$')
+             {'Dataset_Mnemonic': 'DS_TAB', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', 'Destination_Pre_Built_Database_Mnemonic': 'DB1', **COMMON_FIELDS}],
+            f'^Reading {FILENAME}:7 DS_TAB has Destination_Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA$')
 
     def test_different_observation_type_code(self):
         self.run_test(
@@ -117,9 +117,9 @@ class TestDataset(unittest.TestCase):
              {'Dataset_Mnemonic': 'DS3', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS4', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS_TAB', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB',
-              'Pre_Built_Database_Mnemonic': 'DB_TAB', **COMMON_FIELDS},
+              'Destination_Pre_Built_Database_Mnemonic': 'DB_TAB', **COMMON_FIELDS},
              {'Dataset_Mnemonic': 'DS_TAB2', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB',
-              'Pre_Built_Database_Mnemonic': 'DB_TAB', 'Observation_Type_Code': 'AMT', **COMMON_FIELDS}],
+              'Destination_Pre_Built_Database_Mnemonic': 'DB_TAB', 'Observation_Type_Code': 'AMT', **COMMON_FIELDS}],
             f'^Reading {FILENAME}:8 DS_TAB2 has different observation type AMT from other datasets in database DB_TAB: None')
 
 if __name__ == '__main__':
