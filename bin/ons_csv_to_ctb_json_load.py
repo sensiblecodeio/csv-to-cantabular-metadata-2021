@@ -6,11 +6,10 @@ from functools import lru_cache
 from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 from ons_csv_to_ctb_json_read import Reader, required, optional
 from ons_csv_to_ctb_json_geo import read_geo_cats
-from ons_csv_to_ctb_json_ds_vars import DatasetVarsBuilder, DatasetVariables
+from ons_csv_to_ctb_json_ds_vars import DatasetVarsBuilder, DatasetVariables, TABULAR_DATABASE_TYPE
 
 PUBLIC_SECURITY_MNEMONIC = 'PUB'
 GEOGRAPHIC_VARIABLE_TYPE = 'GEOG'
-TABULAR_DATABASE_TYPE = 'AGGDATA'
 
 DatabaseClassifications = namedtuple('DatabaseClassifications',
                                      'classifications lowest_geog_variable')
@@ -246,7 +245,6 @@ class Loader:
         columns = [
             required('Dataset_Mnemonic', unique=True),
             required('Security_Mnemonic', validate_fn=isoneof(self.security_classifications)),
-            required('Source_Database_Mnemonic', validate_fn=isoneof(self.databases.keys())),
             required('Dataset_Title'),
             required('Id'),
             required('Geographic_Coverage'),
@@ -282,16 +280,6 @@ class Loader:
         for dataset, row_num in dataset_rows:
             drop_dataset = False
             dataset_mnemonic = dataset.pop('Dataset_Mnemonic')
-            source_database_mnemonic = dataset.pop('Source_Database_Mnemonic')
-            if self.databases[source_database_mnemonic].private['Database_Type_Code'] == \
-                    TABULAR_DATABASE_TYPE:
-                self.recoverable_error(
-                    f'Reading {self.full_filename(filename)}:{row_num} {dataset_mnemonic} '
-                    f'has Source_Database_Mnemonic {source_database_mnemonic} which has invalid '
-                    f'Database_Type_Code: {TABULAR_DATABASE_TYPE}')
-                # The dataset should probably be dropped here but there are some ongoing
-                # discussions around database types.
-                # drop_dataset = True
 
             pre_built_database = dataset.pop('Destination_Pre_Built_Database_Mnemonic')
             if pre_built_database and \
@@ -304,9 +292,6 @@ class Loader:
                     f'{self.databases[pre_built_database].private["Database_Type_Code"]}')
                 drop_dataset = True
 
-            database_mnemonic = pre_built_database \
-                if pre_built_database else source_database_mnemonic
-
             dataset['Geographic_Coverage'] = Bilingual(dataset.pop('Geographic_Coverage'),
                                                        dataset.pop('Geographic_Coverage_Welsh'))
             dataset['Dataset_Population'] = Bilingual(dataset.pop('Dataset_Population'),
@@ -317,22 +302,27 @@ class Loader:
             observation_type_code = dataset.pop('Observation_Type_Code')
             dataset['Observation_Type'] = self.observation_types.get(observation_type_code, None)
 
-            if database_mnemonic not in database_observation_type:
-                database_observation_type[database_mnemonic] = observation_type_code
-            elif database_observation_type[database_mnemonic] != observation_type_code:
-                self.recoverable_error(
-                    f'Reading {self.full_filename(filename)}:{row_num} {dataset_mnemonic} '
-                    f'has different observation type {observation_type_code} from other '
-                    f'datasets in database {database_mnemonic}: '
-                    f'{database_observation_type[database_mnemonic]}')
-                # The dataset should probably be dropped here but the data isn't yet 100% correct
-                # drop_dataset = True
+            dataset_variables = dataset_to_variables.get(
+                dataset_mnemonic, DatasetVariables([], [], []))
+
+            first_source_database = dataset_variables.databases[0] if \
+                dataset_variables.databases else None
+            database_mnemonic = pre_built_database \
+                if pre_built_database else first_source_database
+
+            if database_mnemonic:
+                if database_mnemonic not in database_observation_type:
+                    database_observation_type[database_mnemonic] = observation_type_code
+                elif database_observation_type[database_mnemonic] != observation_type_code:
+                    self.recoverable_error(
+                        f'Reading {self.full_filename(filename)}:{row_num} {dataset_mnemonic} '
+                        f'has different observation type {observation_type_code} from other '
+                        f'datasets in database {database_mnemonic}: '
+                        f'{database_observation_type[database_mnemonic]}')
 
             dataset['Related_Datasets'] = dataset_to_related_datasets.get(dataset_mnemonic, [])
             dataset['Census_Releases'] = dataset_to_releases.get(dataset_mnemonic, [])
             dataset['Publications'] = dataset_to_publications.get(dataset_mnemonic, [])
-            dataset_variables = dataset_to_variables.get(
-                dataset_mnemonic, DatasetVariables([], []))
 
             alternate_geog_variables = (dataset_variables.alternate_geog_variables if
                                         dataset_variables.alternate_geog_variables else [])
@@ -357,15 +347,12 @@ class Loader:
                             f'{classification}')
                         drop_dataset = True
 
-                    if classification not in \
-                            self.databases[source_database_mnemonic].private['Classifications']:
-                        self.recoverable_error(
-                            f'Reading {self.full_filename(filename)}:{row_num} '
-                            f'{dataset_mnemonic} has classification {classification} '
-                            f'that is not in source database {source_database_mnemonic}')
-                        # Do not set drop_dataset to True.
-                        # Keeping the dataset in this scenario produces more useful data
-                        # when operating in best effort mode.
+                if not pre_built_database and len(dataset_variables.databases) > 1:
+                    self.recoverable_error(
+                        f'Reading {self.full_filename(filename)}:{row_num} '
+                        f'{dataset_mnemonic} has an empty value for '
+                        'Destination_Pre_Built_Database_Mnemonic and has classifications '
+                        f'from multiple databases: {dataset_variables.databases}')
 
             if drop_dataset:
                 logging.warning(
@@ -1080,10 +1067,15 @@ class Loader:
         The geographic variable with Lowest_Geog_Variable_Flag set to Y (if present) is placed
         at the start of the classifications list. There will be a classification with the same
         mnemonic as each geographic variable.
+
+        A database is associated with each record. The Database_Mnemonic must be the same for all
+        variables/classifications relating to the same dataset unless the
+        Destination_Pre_Built_Database_Mnemonic field is populated in Dataset.csv.
         """
         filename = 'Dataset_Variable.csv'
         columns = [
             required('Dataset_Mnemonic', validate_fn=isoneof(dataset_mnemonics)),
+            required('Database_Mnemonic', validate_fn=isoneof(self.databases.keys())),
             required('Id'),
             required('Variable_Mnemonic', validate_fn=isoneof(self.variables.keys())),
 
@@ -1104,7 +1096,7 @@ class Loader:
             if dataset_mnemonic not in ds_to_vars_builder:
                 ds_to_vars_builder[dataset_mnemonic] = DatasetVarsBuilder(
                     dataset_mnemonic, self.full_filename(filename), self.classifications,
-                    self.recoverable_error)
+                    self.databases, self.recoverable_error)
             vars_builder = ds_to_vars_builder[dataset_mnemonic]
 
             if self.variables[variable_mnemonic].private['Is_Geographic']:

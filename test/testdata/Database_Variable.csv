@@ -7,3 +7,4 @@ Id,Database_Mnemonic,Variable_Mnemonic,Version,Lowest_Geog_Variable_Flag,Classif
 6,DB2,VAR3,1,,,,
 7,DB1,GEO2,1,,,,
 8,DB_TAB,VAR1,1,,,,
+9,DB1,VAR_PRIV,1,,CLASS_PRIV,,
