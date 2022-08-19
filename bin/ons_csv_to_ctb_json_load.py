@@ -62,10 +62,11 @@ class Loader:
     Many of the fields in this class are cached properties, with the data loaded on first access.
     """
 
-    def __init__(self, input_directory, geography_file, best_effort=False):
+    def __init__(self, input_directory, geography_file, best_effort=False, dataset_filter=''):
         """Initialise MetadataLoader object."""
         self.input_directory = input_directory
         self.geography_file = geography_file
+        self.dataset_filter = dataset_filter
         self._error_count = 0
 
         def raise_value_error(msg):
@@ -91,7 +92,8 @@ class Loader:
         and corresponding line number.
         """
         full_filename = self.full_filename(filename)
-        return Reader(full_filename, columns, self.recoverable_error, unique_combo_fields).read()
+        return Reader(full_filename, columns, self.recoverable_error, unique_combo_fields,
+                      self.dataset_filter).read()
 
     def full_filename(self, filename):
         """Add the input_directory path to the filename."""
@@ -360,16 +362,6 @@ class Loader:
                             f'Reading {self.full_filename(filename)}:{row_num} '
                             f'{dataset_mnemonic} has classification {classification} '
                             f'that is not in source database {source_database_mnemonic}')
-                        # Do not set drop_dataset to True.
-                        # Keeping the dataset in this scenario produces more useful data
-                        # when operating in best effort mode.
-
-                    if pre_built_database_mnemonic and classification not in \
-                            self.databases[pre_built_database_mnemonic].private['Classifications']:
-                        self.recoverable_error(
-                            f'Reading {self.full_filename(filename)}:{row_num} '
-                            f'{dataset_mnemonic} has classification {classification} '
-                            f'that is not in pre built database {pre_built_database_mnemonic}')
                         # Do not set drop_dataset to True.
                         # Keeping the dataset in this scenario produces more useful data
                         # when operating in best effort mode.

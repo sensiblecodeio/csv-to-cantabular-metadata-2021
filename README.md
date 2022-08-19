@@ -7,7 +7,7 @@ and converts them to hierarchical JSON that can be loaded into `cantabular-metad
 It is compatible with version `1.2` of the metadata schema and versions `10.1.0`/`10.0.0`/`9.3.0`/`9.2.0` of
 `cantabular-metadata`. `10.1.0` format is used by default and is identical to the `10.1.0` and `9.3.0` format.
 
-This is version `1.2.gamma` of the CSV to JSON processing software and is subject to change.
+This is version `1.2.delta` of the CSV to JSON processing software and is subject to change.
 
 The applications only use packages in the Python standard library.
 
@@ -35,7 +35,7 @@ Basic logging will be displayed by default, including the number of high-level C
 objects loaded and the name of the output files.
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/
-t=2022-07-14 16:07:50,859 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.gamma
+t=2022-07-14 16:07:50,859 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.delta
 t=2022-07-14 16:07:50,859 lvl=INFO msg=CSV source directory: test/testdata/
 t=2022-07-14 16:07:50,859 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
 t=2022-07-14 16:07:50,865 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
@@ -55,7 +55,7 @@ t=2022-07-14 16:07:50,869 lvl=INFO msg=Written service metadata file to: ctb_met
 More detailed information can be obtained by running with a `-l DEBUG` flag e.g.:
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -l DEBUG
-t=2022-07-14 16:08:32,792 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.gamma
+t=2022-07-14 16:08:32,792 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.delta
 t=2022-07-14 16:08:32,792 lvl=INFO msg=CSV source directory: test/testdata/
 t=2022-07-14 16:08:32,792 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
 t=2022-07-14 16:08:32,793 lvl=DEBUG msg=Creating classification for geographic variable: GEO1
@@ -118,7 +118,7 @@ arguments as described in the help text for `ons_csv_to_ctb_json_main.py`:
 For example:
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -p t -m test -b 42
-t=2022-07-14 16:09:09,794 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.gamma
+t=2022-07-14 16:09:09,794 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.delta
 t=2022-07-14 16:09:09,794 lvl=INFO msg=CSV source directory: test/testdata/
 t=2022-07-14 16:09:09,794 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
 t=2022-07-14 16:09:09,796 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
@@ -147,7 +147,7 @@ This repository contains some test data that is full of errors. It can be used t
 of the `--best-effort` flag as shown below:
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/best_effort  -o ctb_metadata_files/ -m best-effort --best-effort
-t=2022-07-14 22:50:38,931 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.gamma
+t=2022-07-14 22:50:38,931 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.delta
 t=2022-07-14 22:50:38,932 lvl=INFO msg=CSV source directory: test/testdata/best_effort
 t=2022-07-14 22:50:38,934 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:3 no value supplied for required field Variable_Mnemonic
 t=2022-07-14 22:50:38,934 lvl=WARNING msg=Reading test/testdata/best_effort/Classification.csv:3 dropping record
@@ -185,11 +185,10 @@ t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Data
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:5 DS4 has Source_Database_Mnemonic DB_TAB which has invalid Database_Type_Code: AGGDATA
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:6 DS5 has Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:6 dropping record
-t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:7 DS6 has classification GEO1 that is not in pre built database DB_TAB
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:8 DS7 has different observation type AMT from other datasets in database DB_TAB: None
 t=2022-07-14 22:50:38,938 lvl=INFO msg=Loaded metadata for 3 Cantabular tables
 t=2022-07-14 22:50:38,938 lvl=INFO msg=Loaded service metadata
-t=2022-07-14 22:50:38,938 lvl=WARNING msg=24 errors were encountered during processing
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=23 errors were encountered during processing
 t=2022-07-14 22:50:38,938 lvl=INFO msg=Output files will be written in Cantabular 10.1.0 format
 t=2022-07-14 22:50:38,939 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-1-0_best-effort_dataset-md_20220714-1.json
 t=2022-07-14 22:50:38,940 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-1-0_best-effort_tables-md_20220714-1.json
@@ -200,6 +199,37 @@ Many lines contain strings such as `test/testdata/best_effort/Dataset.csv:4` thi
 on row 4 of the `Dataset.csv` file. The header will be row 1.
 
 The `--best-effort` flag is for debug purposes only.
+
+Processing only specific datasets
+---------------------------------
+
+The `--dataset-filter` option can be used to filter the datasets which are processed and included
+in the output JSON. A comma separated list of `Dataset_Mnemonic` prefixes is provided.
+Only records that have a `Dataset_Mnemonic` which begin with one of these prefixes will be included.
+Records relating to all other datasets will be discarded.
+A log message will indicate when records have been discarded from a file.
+This option may be used in conjunction with other options.
+
+This functionality can be demonstrated using test data in `test/testdata/dataset_filter`, where only
+datasets with a `Dataset_Mnemonic` beginning with **TS** are processed.
+
+```
+> python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/dataset_filter/ -o ctb_metadata_files/ --dataset-filter TS
+t=2022-08-18 16:06:26,780 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.delta
+t=2022-08-18 16:06:26,780 lvl=INFO msg=CSV source directory: test/testdata/dataset_filter/
+t=2022-08-18 16:06:26,780 lvl=INFO msg=Dataset filter: TS
+t=2022-08-18 16:06:26,781 lvl=INFO msg=No geography file specified
+t=2022-08-18 16:06:26,782 lvl=INFO msg=Loaded metadata for 1 Cantabular variables
+t=2022-08-18 16:06:26,782 lvl=INFO msg=Loaded metadata for 1 Cantabular datasets
+t=2022-08-18 16:06:26,782 lvl=INFO msg=Reading test/testdata/dataset_filter/Dataset.csv dropped 1 records related to datasets with Dataset_Mnemonics that do not start with one of: ['TS']
+t=2022-08-18 16:06:26,782 lvl=INFO msg=Reading test/testdata/dataset_filter/Dataset_Variable.csv dropped 1 records related to datasets with Dataset_Mnemonics that do not start with one of: ['TS']
+t=2022-08-18 16:06:26,782 lvl=INFO msg=Loaded metadata for 1 Cantabular tables
+t=2022-08-18 16:06:26,782 lvl=INFO msg=Loaded service metadata
+t=2022-08-18 16:06:26,783 lvl=INFO msg=Output files will be written in Cantabular 10.1.0 format
+t=2022-08-18 16:06:26,783 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_dataset-md_20220818-1.json
+t=2022-08-18 16:06:26,783 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_tables-md_20220818-1.json
+t=2022-08-18 16:06:26,783 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_service-md_20220818-1.json
+```
 
 Using 2011 census teaching file metadata
 ----------------------------------------
@@ -214,7 +244,7 @@ can be found in the `sample_2011` directory.
 Use this command to convert the files to JSON (with debugging enabled):
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i sample_2011/ -g sample_2011/geography.csv -o ctb_metadata_files/ -m 2001-sample -l DEBUG
-t=2022-07-14 16:10:18,924 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.gamma
+t=2022-07-14 16:10:18,924 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.delta
 t=2022-07-14 16:10:18,924 lvl=INFO msg=CSV source directory: sample_2011/
 t=2022-07-14 16:10:18,924 lvl=INFO msg=Geography file: sample_2011/geography.csv
 t=2022-07-14 16:10:18,927 lvl=DEBUG msg=Creating classification for geographic variable: Region
@@ -299,7 +329,7 @@ will be reflected in the output filenames, but `10.1.0` format will be used.
 To generate version 9.2.0 compatible files from the test data use the following command:
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -v 9.2.0
-t=2022-07-14 16:14:01,895 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.gamma
+t=2022-07-14 16:14:01,895 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.delta
 t=2022-07-14 16:14:01,895 lvl=INFO msg=CSV source directory: test/testdata/
 t=2022-07-14 16:14:01,895 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
 t=2022-07-14 16:14:01,897 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER

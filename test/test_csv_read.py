@@ -171,6 +171,31 @@ bob,1
         with self.assertRaisesRegex(ValueError, 'Reading file.csv:6 duplicate value combo bob/1 for name/id'):
             Reader('file.csv', columns, raise_error, unique_combo_fields=['name', 'id']).read()
 
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""id,Dataset_Mnemonic
+1,TS1
+2,TT1
+3,SS1
+4,TS2
+5,T
+6,TX1
+""")
+    def test_dataset_filter(self, m):
+        columns = [
+            required('id'),
+            required('Dataset_Mnemonic'),
+            ]
+
+        with self.assertLogs(level='INFO') as cm:
+            data = Reader('file.csv', columns, raise_error, dataset_filter='TS, ,TX ').read()
+
+        self.assertEqual(data, [
+            ({'Dataset_Mnemonic': 'TS1', 'id': '1'}, 2),
+            ({'Dataset_Mnemonic': 'TS2', 'id': '4'}, 5),
+            ({'Dataset_Mnemonic': 'TX1', 'id': '6'}, 7)])
+
+        self.assertEqual(1, len(cm.output))
+        self.assertRegex(cm.output[0], r"file.csv dropped 3 records related to datasets with Dataset_Mnemonics that do not start with one of: \['TS', 'TX']")
+
 
 if __name__ == '__main__':
     unittest.main()
