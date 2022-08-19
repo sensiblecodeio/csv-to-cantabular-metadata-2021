@@ -112,6 +112,19 @@ def main():
                         help='Discard invalid data instead of failing on the first error and '
                              'make a best effort attempt to produce valid output files.')
 
+    parser.add_argument('--dataset-filter',
+                        type=str,
+                        default='',
+                        help='Comma separated list of Dataset_Mnemonic prefixes. Only datasets '
+                             'that have a Dataset_Mnemonic beginning with one of these values '
+                             'will be processed. Each element in the list will be stripped of '
+                             'leading and trailing whitespace. All records relating to other '
+                             'datasets will be discarded '
+                             'e.g. use "--dataset-filter TS" to only include datasets '
+                             'with a Dataset_Mnemonic beginning with TS, or '
+                             '"--dataset-filter TS,RM" to include datasets with a '
+                             'Dataset_Mnemonic beginning with either TS or RM.')
+
     args = parser.parse_args()
 
     logging.basicConfig(format='t=%(asctime)s lvl=%(levelname)s msg=%(message)s',
@@ -121,6 +134,8 @@ def main():
     logging.info(f'CSV source directory: {args.input_dir}')
     if args.geography_file:
         logging.info(f'Geography file: {args.geography_file}')
+    if args.dataset_filter:
+        logging.info(f'Dataset filter: {args.dataset_filter}')
 
     for directory in (args.input_dir, args.output_dir):
         if not os.path.isdir(directory):
@@ -132,7 +147,8 @@ def main():
         args.build_number)
 
     # loader is used to load the metadata from CSV files and convert it to JSON.
-    loader = Loader(args.input_dir, args.geography_file, best_effort=args.best_effort)
+    loader = Loader(args.input_dir, args.geography_file, best_effort=args.best_effort,
+                    dataset_filter=args.dataset_filter)
 
     # Build Cantabular variable objects.
     # A Cantabular variable is equivalent to an ONS classification.

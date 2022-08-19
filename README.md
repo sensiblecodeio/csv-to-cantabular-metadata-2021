@@ -201,6 +201,37 @@ on row 4 of the `Dataset.csv` file. The header will be row 1.
 
 The `--best-effort` flag is for debug purposes only.
 
+Processing only specific datasets
+---------------------------------
+
+The `--dataset-filter` option can be used to filter the datasets which are processed and included
+in the output JSON. A comma separated list of `Dataset_Mnemonic` prefixes is provided.
+Only records that have a `Dataset_Mnemonic` which begin with one of these prefixes will be included.
+Records relating to all other datasets will be discarded.
+A log message will indicate when records have been discarded from a file.
+This option may be used in conjunction with other options.
+
+This functionality can be demonstrated using test data in `test/testdata/dataset_filter`, where only
+datasets with a `Dataset_Mnemonic` beginning with **TS** are processed.
+
+```
+> python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/dataset_filter/ -o ctb_metadata_files/ --dataset-filter TS
+t=2022-08-18 16:06:26,780 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.2.gamma
+t=2022-08-18 16:06:26,780 lvl=INFO msg=CSV source directory: test/testdata/dataset_filter/
+t=2022-08-18 16:06:26,780 lvl=INFO msg=Dataset filter: TS
+t=2022-08-18 16:06:26,781 lvl=INFO msg=No geography file specified
+t=2022-08-18 16:06:26,782 lvl=INFO msg=Loaded metadata for 1 Cantabular variables
+t=2022-08-18 16:06:26,782 lvl=INFO msg=Loaded metadata for 1 Cantabular datasets
+t=2022-08-18 16:06:26,782 lvl=INFO msg=Reading test/testdata/dataset_filter/Dataset.csv dropped 1 records related to datasets with Dataset_Mnemonics that do not start with one of: ['TS']
+t=2022-08-18 16:06:26,782 lvl=INFO msg=Reading test/testdata/dataset_filter/Dataset_Variable.csv dropped 1 records related to datasets with Dataset_Mnemonics that do not start with one of: ['TS']
+t=2022-08-18 16:06:26,782 lvl=INFO msg=Loaded metadata for 1 Cantabular tables
+t=2022-08-18 16:06:26,782 lvl=INFO msg=Loaded service metadata
+t=2022-08-18 16:06:26,783 lvl=INFO msg=Output files will be written in Cantabular 10.1.0 format
+t=2022-08-18 16:06:26,783 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_dataset-md_20220818-1.json
+t=2022-08-18 16:06:26,783 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_tables-md_20220818-1.json
+t=2022-08-18 16:06:26,783 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_service-md_20220818-1.json
+```
+
 Using 2011 census teaching file metadata
 ----------------------------------------
 

@@ -1,0 +1,174 @@
+[
+    {
+        "name": "base",
+        "label": "Base dataset with metadata for all variables",
+        "lang": "en",
+        "description": "This is a base dataset containing metadata for all variables used across all other datasets. Other datasets include it to avoid duplicating metadata.",
+        "meta": {
+            "Source": {
+                "Source_Mnemonic": "Census2021",
+                "Source_Description": "The 2021 England and Wales Census",
+                "Version": "1"
+            },
+            "Version": "1",
+            "Database_Type": {
+                "Database_Type_Code": "BASE",
+                "Database_Type_Description": "Base dataset containing metadata for all variables used across all other datasets"
+            }
+        },
+        "vars": [
+            {
+                "name": "CLASS1",
+                "label": "CLASS1 Label Internal",
+                "description": "VAR1 Description",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "VAR1",
+                        "Variable_Mnemonic_2011": null,
+                        "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
+                        "Variable_Title": "VAR1 Title",
+                        "Comparability_Comments": "VAR1 Comparability Comments",
+                        "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
+                        "Geographic_Theme": null,
+                        "Geographic_Coverage": null,
+                        "Variable_Type": {
+                            "Variable_Type_Code": "DVO",
+                            "Variable_Type_Description": "Derived variable"
+                        },
+                        "Statistical_Unit": null,
+                        "Topic": null,
+                        "Questions": []
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            }
+        ]
+    },
+    {
+        "name": "base",
+        "label": "Base dataset with metadata for all variables in Welsh",
+        "lang": "cy",
+        "description": "This is the Welsh version of the base dataset containing metadata for all variables.",
+        "meta": {
+            "Source": {
+                "Source_Mnemonic": "Census2021",
+                "Source_Description": "The 2021 England and Wales Census",
+                "Version": "1"
+            },
+            "Version": "1",
+            "Database_Type": {
+                "Database_Type_Code": "BASE",
+                "Database_Type_Description": "Base dataset containing metadata for all variables used across all other datasets"
+            }
+        },
+        "vars": [
+            {
+                "name": "CLASS1",
+                "label": "CLASS1 Label Internal",
+                "description": "VAR1 Description",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "VAR1",
+                        "Variable_Mnemonic_2011": null,
+                        "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
+                        "Variable_Title": "VAR1 Title",
+                        "Comparability_Comments": "VAR1 Comparability Comments",
+                        "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
+                        "Geographic_Theme": null,
+                        "Geographic_Coverage": null,
+                        "Variable_Type": {
+                            "Variable_Type_Code": "DVO",
+                            "Variable_Type_Description": "Derived variable"
+                        },
+                        "Statistical_Unit": null,
+                        "Topic": null,
+                        "Questions": []
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            }
+        ]
+    },
+    {
+        "name": "DB1",
+        "incl": [
+            {
+                "name": "base",
+                "lang": "en"
+            }
+        ],
+        "label": "DB1 Title",
+        "description": "DB1 Description",
+        "lang": "en",
+        "meta": {
+            "Cantabular_DB_Flag": null,
+            "Version": "1",
+            "Source": {
+                "Source_Mnemonic": "SRC1",
+                "Copyright_Statement": null,
+                "Licence": null,
+                "Nationals_Statistic_Certified": null,
+                "Methodology_Link": null,
+                "SDC_Link": null,
+                "Version": "1",
+                "Source_Description": "SRC1 Description",
+                "Methodology_Statement": null,
+                "SDC_Statement": null,
+                "Contact": null
+            },
+            "Lowest_Geog_Variable": null,
+            "Database_Type": {
+                "Database_Type_Code": "MICRODATA",
+                "Database_Type_Description": "Microdata database"
+            }
+        },
+        "vars": null
+    },
+    {
+        "name": "DB1",
+        "incl": [
+            {
+                "name": "base",
+                "lang": "cy"
+            }
+        ],
+        "label": "DB1 Title",
+        "description": "DB1 Description",
+        "lang": "cy",
+        "meta": {
+            "Cantabular_DB_Flag": null,
+            "Version": "1",
+            "Source": {
+                "Source_Mnemonic": "SRC1",
+                "Copyright_Statement": null,
+                "Licence": null,
+                "Nationals_Statistic_Certified": null,
+                "Methodology_Link": null,
+                "SDC_Link": null,
+                "Version": "1",
+                "Source_Description": "SRC1 Description",
+                "Methodology_Statement": null,
+                "SDC_Statement": null,
+                "Contact": null
+            },
+            "Lowest_Geog_Variable": null,
+            "Database_Type": {
+                "Database_Type_Code": "MICRODATA",
+                "Database_Type_Description": "Microdata database"
+            }
+        },
+        "vars": null
+    }
+]
