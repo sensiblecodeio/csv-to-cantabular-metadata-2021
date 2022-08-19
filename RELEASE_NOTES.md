@@ -1,6 +1,11 @@
 Release Notes
 =============
 
+1.2.delta
+-----------
+- Added a new `--dataset-filter` option that is used to filter the datasets which are processed
+  and included in the output JSON.
+
 1.2.gamma
 -----------
 - Ensure input files to `remove_empty_rows_and_columns.py` are processed in a repeatable
