@@ -7,29 +7,29 @@ ColumnIndices = namedtuple('ColumnIndices', 'code name welsh_name')
 AreaName = namedtuple('AreaName', 'name welsh_name')
 
 
-CODE_SUFFIX = 'CD'
-NAME_SUFFIX = 'NM'
-WELSH_NAME_SUFFIX = 'NMW'
+CODE_SUFFIX = 'cd'
+NAME_SUFFIX = 'nm'
+WELSH_NAME_SUFFIX = 'nmw'
 
 
 def read_geo_cats(filename):
     """
     Read a lookup file containing variable category codes, labels and Welsh labels.
 
-    Each variable will have a CD (code) column. It may also have NM (name) and NMW (Welsh name)
+    Each variable will have a cd (code) column. It may also have nm (name) and nmw (Welsh name)
     columns. The column names are expected to have the format (as a regular expression):
         <variable name><2 numerical digits for year><column type>
     And to match the regular expression:
-        ^[a-zA-Z0-9_-]+[0-9][0-9](CD|NM|NMW)$
+        ^[a-zA-Z0-9_-]+[0-9][0-9](cd|nm|nmw)$
 
-    Category names are returned for all variables with a NM column. Welsh category names are
-    returned for all variables with a NMW column. The names are returned as a dict of dicts keyed
+    Category names are returned for all variables with a nm column. Welsh category names are
+    returned for all variables with a nmw column. The names are returned as a dict of dicts keyed
     on the variable name. Each sub-dict is keyed on the category code and each item is of type
     AreaName.
 
      - All fields have leading/trailing whitespace removed.
-     - There must not be entries for a single variable with different years e.g. LAD11CD
-       and LAD22CD.
+     - There must not be entries for a single variable with different years e.g. LAD11cd
+       and LAD22cd.
      - If multiple lines in the file refer to the same category then the names must be consistent
        on all lines.
 

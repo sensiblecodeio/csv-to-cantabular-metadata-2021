@@ -1,6 +1,11 @@
 Release Notes
 =============
 
+1.2.epsilon
+-----------
+- The code to process the geography lookup file expects lowercase file suffixes `cd`, `nm` and `nmw`.
+  Previously it expected uppercase suffixes.
+
 1.2.delta
 -----------
 - Added a new `--dataset-filter` option that is used to filter the datasets which are processed

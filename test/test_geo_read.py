@@ -9,7 +9,7 @@ def mock_open(*args, **kargs):
 
 
 class TestGeoRead(unittest.TestCase):
-    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""OA11CD,LAD22CD,LAD22NM,LAD22NMW,COUNTRY22CD,COUNTRY22NM
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""OA11cd,LAD22cd,LAD22nm,LAD22nmw,COUNTRY22cd,COUNTRY22nm
 OA1,LAD1,LAD1 Name,LAD1 Name (Welsh),COUNTRY1,COUNTRY1 Name
 OA2,LAD1,LAD1 Name,LAD1 Name (Welsh),COUNTRY1,COUNTRY1 Name
 OA3,LAD2,LAD2 Name,LAD2 Name (Welsh),COUNTRY1,COUNTRY1 Name
@@ -34,10 +34,10 @@ OA7,LAD5,LAD5 Name,LAD5 Name (Welsh),COUNTRY1,COUNTRY1 Name
                 },
             })
 
-    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data=""" LAD22CD , LAD22NM,LAD22NMW 
- LAD1 , LAD1 Name,LAD1 Name (Welsh) 
- LAD2 , LAD2 Name,LAD2 Name (Welsh) 
- LAD3 , LAD3 Name,LAD3 Name (Welsh) 
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data=""" LAD22cd , LAD22nm,LAD22nmw
+ LAD1 , LAD1 Name,LAD1 Name (Welsh)
+ LAD2 , LAD2 Name,LAD2 Name (Welsh)
+ LAD3 , LAD3 Name,LAD3 Name (Welsh)
 """)
     def test_whitespace_stripping(self, m):
         data = read_geo_cats('file.csv')
@@ -49,7 +49,7 @@ OA7,LAD5,LAD5 Name,LAD5 Name (Welsh),COUNTRY1,COUNTRY1 Name
                 }
             })
 
-    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""AbyZ_-422CD,AbyZ_-422NM,AbyZ_-422NMW
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""AbyZ_-422cd,AbyZ_-422nm,AbyZ_-422nmw
 1,Name,Name (Welsh)
 """)
     def test_valid_varname_characters(self, m):
@@ -60,21 +60,21 @@ OA7,LAD5,LAD5 Name,LAD5 Name (Welsh),COUNTRY1,COUNTRY1 Name
                 }
             })
 
-    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""OA11CD,LAD22CD,LAD22NM,LAD22NMW,COUNTRY22CD,COUNTRY22NM
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""OA11cd,LAD22cd,LAD22nm,LAD22nmw,COUNTRY22cd,COUNTRY22nm
 OA1,LAD1,LAD1 Name,LAD1 Name (Welsh),COUNTRY1,COUNTRY1 Name,extra
 """)
     def test_too_many_columns(self, m):
         with self.assertRaisesRegex(ValueError, 'Reading file.csv: too many fields on row 2'):
             read_geo_cats('file.csv')
 
-    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""OA11CD,LAD22CD,LAD22NM,LAD22NMW,COUNTRY22CD,COUNTRY22NM
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""OA11cd,LAD22cd,LAD22nm,LAD22nmw,COUNTRY22cd,COUNTRY22nm
 OA1,LAD1,LAD1 Name,LAD1 Name (Welsh),COUNTRY1
 """)
     def test_too_few_columns(self, m):
         with self.assertRaisesRegex(ValueError, 'Reading file.csv: too few fields on row 2'):
             read_geo_cats('file.csv')
 
-    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""LAD22CD,LAD22NM,LAD22NMW
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""LAD22cd,LAD22nm,LAD22nmw
 LAD1,LAD1 Name,LAD1 Name (Welsh)
 LAD2,LAD2 Name,LAD2 Name (Welsh)
 LAD2,LAD2 Name,LAD2 Name (Welsh)
@@ -85,7 +85,7 @@ LAD3,LAD3 Name,Other Name (Welsh)
         with self.assertRaisesRegex(ValueError, '^Reading file.csv: different Welsh name for code LAD3 of LAD: "Other Name \(Welsh\)" and "LAD3 Name \(Welsh\)"$'):
             read_geo_cats('file.csv')
 
-    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""LAD22CD,LAD22NM,LAD22NMW
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""LAD22cd,LAD22nm,LAD22nmw
 LAD1,LAD1 Name,LAD1 Name (Welsh)
 LAD2,LAD2 Name,LAD2 Name (Welsh)
 LAD2,Other Name,LAD2 Name (Welsh)
@@ -94,46 +94,46 @@ LAD2,Other Name,LAD2 Name (Welsh)
         with self.assertRaisesRegex(ValueError, '^Reading file.csv: different name for code LAD2 of LAD: "Other Name" and "LAD2 Name"$'):
             read_geo_cats('file.csv')
 
-    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""LAD22CD,LAD22NM,LAD22NMW,LAD22NM,LAD22NMW
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""LAD22cd,LAD22nm,LAD22nmw,LAD22nm,LAD22nmw
 """)
     def test_duplicate_column_names(self, m):
-        with self.assertRaisesRegex(ValueError, '^Reading file.csv: duplicate column names: LAD22NM, LAD22NMW$'):
+        with self.assertRaisesRegex(ValueError, '^Reading file.csv: duplicate column names: LAD22nm, LAD22nmw$'):
             read_geo_cats('file.csv')
 
-    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""LAD22CD,LAD22NM,LAD22NMW,LAD22NM,LAD22NMW
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""LAD22cd,LAD22nm,LAD22nmw,LAD22nm,LAD22nmw
 """)
     def test_duplicate_column_names(self, m):
-        with self.assertRaisesRegex(ValueError, '^Reading file.csv: duplicate column names: LAD22NM, LAD22NMW$'):
+        with self.assertRaisesRegex(ValueError, '^Reading file.csv: duplicate column names: LAD22nm, LAD22nmw$'):
             read_geo_cats('file.csv')
 
-    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""OA22CD,LA1DCD
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""OA22cd,LA1Dcd
 """)
     def test_invalid_varname_missing_year(self, m):
-        with self.assertRaisesRegex(ValueError, '^Reading file.csv: invalid code column name: LA1DCD$'):
+        with self.assertRaisesRegex(ValueError, '^Reading file.csv: invalid code column name: LA1Dcd$'):
             read_geo_cats('file.csv')
 
-    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""OA22CD,LA^22CD
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""OA22cd,LA^22cd
 """)
     def test_invalid_varname_character(self, m):
-        with self.assertRaisesRegex(ValueError, '^Reading file.csv: invalid code column name: LA\^22CD$'):
+        with self.assertRaisesRegex(ValueError, '^Reading file.csv: invalid code column name: LA\^22cd$'):
             read_geo_cats('file.csv')
 
-    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""OA22CD,LA1DCD
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""OA22cd,LA1Dcd
 """)
     def test_invalid_code_column_name(self, m):
-        with self.assertRaisesRegex(ValueError, '^Reading file.csv: invalid code column name: LA1DCD$'):
+        with self.assertRaisesRegex(ValueError, '^Reading file.csv: invalid code column name: LA1Dcd$'):
             read_geo_cats('file.csv')
 
-    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""LAD11CD,LAD22CD
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""LAD11cd,LAD22cd
 """)
     def test_multiple_code_columns(self, m):
-        with self.assertRaisesRegex(ValueError, '^Reading file.csv: multiple code columns found for LAD: LAD22CD and LAD11CD$'):
+        with self.assertRaisesRegex(ValueError, '^Reading file.csv: multiple code columns found for LAD: LAD22cd and LAD11cd$'):
             read_geo_cats('file.csv')
 
-    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""LAD11CD,LAD11NM,LAD11NMW,OA11NM,COUNTRY11NMW,DISTRICT22CD,DISTRICT22NMW
+    @unittest.mock.patch('builtins.open', new_callable=mock_open, read_data="""LAD11cd,LAD11nm,LAD11nmw,OA11nm,COUNTRY11nmw,DISTRICT22cd,DISTRICT22nmw
 """)
     def test_unexpected_fields(self, m):
-        with self.assertRaisesRegex(ValueError, '^Unexpected fieldnames: COUNTRY11NMW, DISTRICT22NMW, OA11NM'):
+        with self.assertRaisesRegex(ValueError, '^Unexpected fieldnames: COUNTRY11nmw, DISTRICT22nmw, OA11nm'):
             read_geo_cats('file.csv')
 
 
