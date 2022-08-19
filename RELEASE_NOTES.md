@@ -1,6 +1,10 @@
 Release Notes
 =============
 
+1.3.alpha
+---------
+- Updated code to work with metadata schema version 1.3.
+
 1.2.epsilon
 -----------
 - The code to process the geography lookup file expects lowercase file suffixes `cd`, `nm` and `nmw`.

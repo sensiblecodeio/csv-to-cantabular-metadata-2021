@@ -11,7 +11,7 @@ import logging
 import csv
 from argparse import ArgumentParser
 
-VERSION = '1.2.epsilon'
+VERSION = '1.3.alpha'
 
 
 def main():
