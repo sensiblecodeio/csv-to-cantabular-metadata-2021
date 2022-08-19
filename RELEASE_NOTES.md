@@ -4,7 +4,7 @@ Release Notes
 1.2.epsilon
 -----------
 - The code to process the geography lookup file expects lowercase file suffixes `cd`, `nm` and `nmw`.
-  Previously it expected uppercase prefixes.
+  Previously it expected uppercase suffixes.
 
 1.2.delta
 -----------
