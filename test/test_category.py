@@ -59,8 +59,8 @@ class TestCategory(unittest.TestCase):
         self.run_test([row], f'^Reading {FILENAME}:2 found category for geographic classification GEO1: all categories for geographic classifications must be in a separate lookup file$')
 
     def test_cats_for_non_geo_var(self):
-        read_data = """CLASS122CD,CLASS122NM,CLASS122NMW
-CD1,NM1,NMW1
+        read_data = """CLASS122cd,CLASS122nm,CLASS122nmw
+cd1,nm1,nmw1
 """
         expected_error = f'^Reading {GEO_FILENAME}: found Welsh labels for non geographic classification: CLASS1$'
         with unittest.mock.patch('builtins.open', conditional_mock_open('geography.csv', read_data = read_data)):
