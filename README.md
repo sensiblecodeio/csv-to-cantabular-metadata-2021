@@ -4,8 +4,8 @@ Introduction
 `bin/ons_csv_to_ctb_json_main.py` is an application that loads source metadata files in CSV format
 and converts them to hierarchical JSON that can be loaded into `cantabular-metadata`.
 
-It is compatible with version `1.3` of the metadata schema and versions `10.1.0`/`10.0.0`/`9.3.0`/`9.2.0` of
-`cantabular-metadata`. `10.1.0` format is used by default and is identical to the `10.1.0` and `9.3.0` format.
+It is compatible with version `1.3` of the metadata schema and versions `10.2.0`/`10.1.1`/`10.1.0`/`10.0.0`/`9.3.0`/`9.2.0` of
+`cantabular-metadata`. `10.2.0` format is used by default and is identical to all other supported versions except `9.2.0`.
 
 This is version `1.3.alpha` of the CSV to JSON processing software and is subject to change.
 
@@ -46,10 +46,10 @@ t=2022-08-19 11:14:27,127 lvl=INFO msg=Loaded metadata for 4 Cantabular datasets
 t=2022-08-19 11:14:27,128 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
 t=2022-08-19 11:14:27,128 lvl=INFO msg=Loaded metadata for 5 Cantabular tables
 t=2022-08-19 11:14:27,128 lvl=INFO msg=Loaded service metadata
-t=2022-08-19 11:14:27,128 lvl=INFO msg=Output files will be written in Cantabular 10.1.0 format
-t=2022-08-19 11:14:27,129 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_dataset-md_20220819-1.json
-t=2022-08-19 11:14:27,130 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_tables-md_20220819-1.json
-t=2022-08-19 11:14:27,130 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_service-md_20220819-1.json
+t=2022-08-19 11:14:27,128 lvl=INFO msg=Output files will be written in Cantabular 10.2.0 format
+t=2022-08-19 11:14:27,129 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-0_unknown-metadata-version_dataset-md_20220819-1.json
+t=2022-08-19 11:14:27,130 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-0_unknown-metadata-version_tables-md_20220819-1.json
+t=2022-08-19 11:14:27,130 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-0_unknown-metadata-version_service-md_20220819-1.json
 ```
 
 More detailed information can be obtained by running with a `-l DEBUG` flag e.g.:
@@ -86,10 +86,10 @@ t=2022-08-19 11:14:53,102 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS
 t=2022-08-19 11:14:53,102 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS_TAB
 t=2022-08-19 11:14:53,103 lvl=INFO msg=Loaded metadata for 5 Cantabular tables
 t=2022-08-19 11:14:53,103 lvl=INFO msg=Loaded service metadata
-t=2022-08-19 11:14:53,103 lvl=INFO msg=Output files will be written in Cantabular 10.1.0 format
-t=2022-08-19 11:14:53,104 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_dataset-md_20220819-1.json
-t=2022-08-19 11:14:53,105 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_tables-md_20220819-1.json
-t=2022-08-19 11:14:53,105 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_service-md_20220819-1.json
+t=2022-08-19 11:14:53,103 lvl=INFO msg=Output files will be written in Cantabular 10.2.0 format
+t=2022-08-19 11:14:53,104 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-0_unknown-metadata-version_dataset-md_20220819-1.json
+t=2022-08-19 11:14:53,105 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-0_unknown-metadata-version_tables-md_20220819-1.json
+t=2022-08-19 11:14:53,105 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-0_unknown-metadata-version_service-md_20220819-1.json
 ```
 
 Output file names
@@ -97,9 +97,9 @@ Output file names
 
 The output file names are formatted as follows:
 ```
-<prefix>cantabm_10-1-0_<metadata master version>_dataset-md_<date as yyyymmdd-><build number>.json
-<prefix>cantabm_10-1-0_<metadata master version>_service-md_<date as yyyymmdd-><build number>.json
-<prefix>cantabm_10-1-0_<metadata master version>_tables-md_<date as yyyymmdd-><build number>.json
+<prefix>cantabm_10-2-0_<metadata master version>_dataset-md_<date as yyyymmdd-><build number>.json
+<prefix>cantabm_10-2-0_<metadata master version>_service-md_<date as yyyymmdd-><build number>.json
+<prefix>cantabm_10-2-0_<metadata master version>_tables-md_<date as yyyymmdd-><build number>.json
 ```
 
 The `prefix`, `metadata master version` and `build number` can be specified using command line
@@ -130,10 +130,10 @@ t=2022-08-19 11:15:42,879 lvl=INFO msg=Loaded metadata for 4 Cantabular datasets
 t=2022-08-19 11:15:42,880 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
 t=2022-08-19 11:15:42,880 lvl=INFO msg=Loaded metadata for 5 Cantabular tables
 t=2022-08-19 11:15:42,880 lvl=INFO msg=Loaded service metadata
-t=2022-08-19 11:15:42,880 lvl=INFO msg=Output files will be written in Cantabular 10.1.0 format
-t=2022-08-19 11:15:42,881 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/t_cantabm_v10-1-0_test_dataset-md_20220819-42.json
-t=2022-08-19 11:15:42,882 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/t_cantabm_v10-1-0_test_tables-md_20220819-42.json
-t=2022-08-19 11:15:42,882 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/t_cantabm_v10-1-0_test_service-md_20220819-42.json
+t=2022-08-19 11:15:42,880 lvl=INFO msg=Output files will be written in Cantabular 10.2.0 format
+t=2022-08-19 11:15:42,881 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/t_cantabm_v10-2-0_test_dataset-md_20220819-42.json
+t=2022-08-19 11:15:42,882 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/t_cantabm_v10-2-0_test_tables-md_20220819-42.json
+t=2022-08-19 11:15:42,882 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/t_cantabm_v10-2-0_test_service-md_20220819-42.json
 ```
 
 Using data with errors
@@ -192,10 +192,10 @@ t=2022-08-19 11:16:16,541 lvl=WARNING msg=Reading test/testdata/best_effort/Data
 t=2022-08-19 11:16:16,541 lvl=INFO msg=Loaded metadata for 5 Cantabular tables
 t=2022-08-19 11:16:16,541 lvl=INFO msg=Loaded service metadata
 t=2022-08-19 11:16:16,541 lvl=WARNING msg=25 errors were encountered during processing
-t=2022-08-19 11:16:16,541 lvl=INFO msg=Output files will be written in Cantabular 10.1.0 format
-t=2022-08-19 11:16:16,542 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-1-0_best-effort_dataset-md_20220819-1.json
-t=2022-08-19 11:16:16,543 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-1-0_best-effort_tables-md_20220819-1.json
-t=2022-08-19 11:16:16,543 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-1-0_best-effort_service-md_20220819-1.json
+t=2022-08-19 11:16:16,541 lvl=INFO msg=Output files will be written in Cantabular 10.2.0 format
+t=2022-08-19 11:16:16,542 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-0_best-effort_dataset-md_20220819-1.json
+t=2022-08-19 11:16:16,543 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-0_best-effort_tables-md_20220819-1.json
+t=2022-08-19 11:16:16,543 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-0_best-effort_service-md_20220819-1.json
 ```
 
 Many lines contain strings such as `test/testdata/best_effort/Dataset.csv:4` this means that an error has been detected
@@ -228,10 +228,10 @@ t=2022-08-19 11:16:52,962 lvl=INFO msg=Reading test/testdata/dataset_filter/Data
 t=2022-08-19 11:16:52,963 lvl=INFO msg=Reading test/testdata/dataset_filter/Dataset_Variable.csv dropped 1 records related to datasets with Dataset_Mnemonics that do not start with one of: ['TS']
 t=2022-08-19 11:16:52,963 lvl=INFO msg=Loaded metadata for 1 Cantabular tables
 t=2022-08-19 11:16:52,963 lvl=INFO msg=Loaded service metadata
-t=2022-08-19 11:16:52,963 lvl=INFO msg=Output files will be written in Cantabular 10.1.0 format
-t=2022-08-19 11:16:52,963 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_dataset-md_20220819-1.json
-t=2022-08-19 11:16:52,963 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_tables-md_20220819-1.json
-t=2022-08-19 11:16:52,963 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-1-0_unknown-metadata-version_service-md_20220819-1.json
+t=2022-08-19 11:16:52,963 lvl=INFO msg=Output files will be written in Cantabular 10.2.0 format
+t=2022-08-19 11:16:52,963 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-0_unknown-metadata-version_dataset-md_20220819-1.json
+t=2022-08-19 11:16:52,963 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-0_unknown-metadata-version_tables-md_20220819-1.json
+t=2022-08-19 11:16:52,963 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-0_unknown-metadata-version_service-md_20220819-1.json
 ```
 
 Using 2011 census teaching file metadata
@@ -280,20 +280,20 @@ t=2022-08-19 11:17:17,612 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC
 t=2022-08-19 11:17:17,612 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC6112EW
 t=2022-08-19 11:17:17,612 lvl=INFO msg=Loaded metadata for 5 Cantabular tables
 t=2022-08-19 11:17:17,612 lvl=INFO msg=Loaded service metadata
-t=2022-08-19 11:17:17,612 lvl=INFO msg=Output files will be written in Cantabular 10.1.0 format
-t=2022-08-19 11:17:17,615 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-1-0_2001-sample_dataset-md_20220819-1.json
-t=2022-08-19 11:17:17,615 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-1-0_2001-sample_tables-md_20220819-1.json
-t=2022-08-19 11:17:17,615 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-1-0_2001-sample_service-md_20220819-1.json
+t=2022-08-19 11:17:17,612 lvl=INFO msg=Output files will be written in Cantabular 10.2.0 format
+t=2022-08-19 11:17:17,615 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-0_2001-sample_dataset-md_20220819-1.json
+t=2022-08-19 11:17:17,615 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-0_2001-sample_tables-md_20220819-1.json
+t=2022-08-19 11:17:17,615 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-0_2001-sample_service-md_20220819-1.json
 ```
 
 Load the JSON files with cantabular-metadata
 ============================================
 
-To load the generated JSON files into `cantabular-metadata` (version 10.1.0) run the following
+To load the generated JSON files into `cantabular-metadata` (version 10.2.0) run the following
 commands, substituting the file names and paths as appropriate:
 ```
 cd ctb_metadata_files
-CANTABULAR_METADATA_GRAPHQL_TYPES_FILE=metadata.graphql CANTABULAR_METADATA_SERVICE_FILE=cantabm_v10-1-0_unknown-metadata-version_service-md_20220819-1.json CANTABULAR_METADATA_DATASET_FILES=cantabm_v10-1-0_unknown-metadata-version_dataset-md_20220819-1.json CANTABULAR_METADATA_TABLE_FILES=cantabm_v10-1-0_unknown-metadata-version_tables-md_20220819-1.json <PATH_TO_BINARY>/cantabular-metadata
+CANTABULAR_METADATA_GRAPHQL_TYPES_FILE=metadata.graphql CANTABULAR_METADATA_SERVICE_FILE=cantabm_v10-2-0_unknown-metadata-version_service-md_20220819-1.json CANTABULAR_METADATA_DATASET_FILES=cantabm_v10-2-0_unknown-metadata-version_dataset-md_20220819-1.json CANTABULAR_METADATA_TABLE_FILES=cantabm_v10-2-0_unknown-metadata-version_tables-md_20220819-1.json <PATH_TO_BINARY>/cantabular-metadata
 ```
 
 The metadata can be queried via a GraphQL interface. By default this is accessible at:
@@ -326,8 +326,8 @@ Other Cantabular versions
 =========================
 
 The `-v` argument can be used to generate output files that are compatible with a different version of Cantabular.
-At present only 9.2.0, 9.3.0, 10.0.0 and 10.1.0 are supported. If any other version is specified then the specified version
-will be reflected in the output filenames, but `10.1.0` format will be used.
+At present only 9.2.0, 9.3.0, 10.0.0, 10.1.0, 10.1.1 and 10.2.0 are supported. If any other version is specified then the specified version
+will be reflected in the output filenames, but `10.2.0` format will be used.
 
 To generate version 9.2.0 compatible files from the test data use the following command:
 ```
