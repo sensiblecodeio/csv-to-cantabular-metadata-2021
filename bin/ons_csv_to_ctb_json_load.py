@@ -366,16 +366,6 @@ class Loader:
                         # Keeping the dataset in this scenario produces more useful data
                         # when operating in best effort mode.
 
-                    if pre_built_database_mnemonic and classification not in \
-                            self.databases[pre_built_database_mnemonic].private['Classifications']:
-                        self.recoverable_error(
-                            f'Reading {self.full_filename(filename)}:{row_num} '
-                            f'{dataset_mnemonic} has classification {classification} '
-                            f'that is not in pre built database {pre_built_database_mnemonic}')
-                        # Do not set drop_dataset to True.
-                        # Keeping the dataset in this scenario produces more useful data
-                        # when operating in best effort mode.
-
             if drop_dataset:
                 logging.warning(
                     f'Reading {self.full_filename(filename)}:{row_num} dropping record')

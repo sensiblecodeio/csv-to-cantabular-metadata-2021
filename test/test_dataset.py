@@ -78,17 +78,6 @@ class TestDataset(unittest.TestCase):
              {'Dataset_Mnemonic': 'DS_TAB', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
             f'^Reading {FILENAME}:2 DS1 has classification GEO1 that is not in source database DB2$')
 
-    def test_variable_not_in_pre_built_database(self):
-        self.run_test(
-            [{'Dataset_Mnemonic': 'DS1', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB',
-              'Pre_Built_Database_Mnemonic': 'DB_TAB', **COMMON_FIELDS},
-             {'Dataset_Mnemonic': 'DS_PRIV', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'CLASS', **COMMON_FIELDS},
-             {'Dataset_Mnemonic': 'DS2', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
-             {'Dataset_Mnemonic': 'DS3', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
-             {'Dataset_Mnemonic': 'DS4', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
-             {'Dataset_Mnemonic': 'DS_TAB', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
-            f'^Reading {FILENAME}:2 DS1 has classification GEO1 that is not in pre built database DB_TAB$')
-
     def test_no_variables(self):
         self.run_test(
             [{'Dataset_Mnemonic': 'DS1', 'Source_Database_Mnemonic': 'DB1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},

@@ -185,11 +185,10 @@ t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Data
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:5 DS4 has Source_Database_Mnemonic DB_TAB which has invalid Database_Type_Code: AGGDATA
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:6 DS5 has Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:6 dropping record
-t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:7 DS6 has classification GEO1 that is not in pre built database DB_TAB
 t=2022-07-14 22:50:38,938 lvl=WARNING msg=Reading test/testdata/best_effort/Dataset.csv:8 DS7 has different observation type AMT from other datasets in database DB_TAB: None
 t=2022-07-14 22:50:38,938 lvl=INFO msg=Loaded metadata for 3 Cantabular tables
 t=2022-07-14 22:50:38,938 lvl=INFO msg=Loaded service metadata
-t=2022-07-14 22:50:38,938 lvl=WARNING msg=24 errors were encountered during processing
+t=2022-07-14 22:50:38,938 lvl=WARNING msg=23 errors were encountered during processing
 t=2022-07-14 22:50:38,938 lvl=INFO msg=Output files will be written in Cantabular 10.1.0 format
 t=2022-07-14 22:50:38,939 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-1-0_best-effort_dataset-md_20220714-1.json
 t=2022-07-14 22:50:38,940 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-1-0_best-effort_tables-md_20220714-1.json
