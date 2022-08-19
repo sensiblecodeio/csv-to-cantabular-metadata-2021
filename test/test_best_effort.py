@@ -81,10 +81,11 @@ class TestBestEffort(unittest.TestCase):
             r'Dataset_Variable.csv Invalid processing_priorities \[0\] for dataset DS1',
             r'Dataset.csv:4 DS3 has no associated classifications or geographic variable',
             r'Dataset.csv:4 dropping record',
+            r"Dataset.csv:5 DS4 has an empty value for Destination_Pre_Built_Database_Mnemonic and has classifications from multiple databases: \['DB2', 'DB_TAB']",
             r'Dataset.csv:6 DS5 has Destination_Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA',
             r'Dataset.csv:6 dropping record',
             r'Dataset.csv:8 DS7 has different observation type AMT from other datasets in database DB_TAB: None',
-            r'23 errors were encountered during processing',
+            r'25 errors were encountered during processing',
         ]
 
         self.assertEqual(len(warnings), len(cm.output))

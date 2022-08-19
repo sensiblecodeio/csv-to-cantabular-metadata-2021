@@ -228,6 +228,37 @@
                 "catLabels": null
             },
             {
+                "name": "CLASS4A",
+                "label": "CLASS4A Label Internal",
+                "description": "VAR4 Description",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "VAR4",
+                        "Variable_Mnemonic_2011": null,
+                        "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
+                        "Variable_Title": "VAR4 Title",
+                        "Comparability_Comments": null,
+                        "Uk_Comparison_Comments": null,
+                        "Geographic_Theme": null,
+                        "Geographic_Coverage": null,
+                        "Variable_Type": {
+                            "Variable_Type_Code": "DVO",
+                            "Variable_Type_Description": "Derived variable"
+                        },
+                        "Statistical_Unit": null,
+                        "Topic": null,
+                        "Questions": []
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            },
+            {
                 "name": "GEO1",
                 "label": "GEO1 Title",
                 "description": "GEO1 Description",
@@ -527,6 +558,37 @@
                         "Variable_Title": "VAR2 Title",
                         "Comparability_Comments": "VAR2 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
+                        "Geographic_Theme": null,
+                        "Geographic_Coverage": null,
+                        "Variable_Type": {
+                            "Variable_Type_Code": "DVO",
+                            "Variable_Type_Description": "Derived variable"
+                        },
+                        "Statistical_Unit": null,
+                        "Topic": null,
+                        "Questions": []
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            },
+            {
+                "name": "CLASS4A",
+                "label": "CLASS4A Label Internal",
+                "description": "VAR4 Description",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "VAR4",
+                        "Variable_Mnemonic_2011": null,
+                        "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
+                        "Variable_Title": "VAR4 Title",
+                        "Comparability_Comments": null,
+                        "Uk_Comparison_Comments": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Variable_Type": {

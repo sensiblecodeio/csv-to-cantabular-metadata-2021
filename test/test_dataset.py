@@ -101,5 +101,17 @@ class TestDataset(unittest.TestCase):
               'Destination_Pre_Built_Database_Mnemonic': 'DB_TAB', 'Observation_Type_Code': 'AMT', **COMMON_FIELDS}],
             f'^Reading {FILENAME}:8 DS_TAB2 has different observation type AMT from other datasets in database DB_TAB: None')
 
+    def test_multiple_databases_not_pre_built(self):
+        self.run_test(
+            [{'Dataset_Mnemonic': 'DS1', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS_PRIV', 'Security_Mnemonic': 'CLASS', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS2', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS3', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS4', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS},
+             {'Dataset_Mnemonic': 'DS_TAB', 'Security_Mnemonic': 'PUB', **COMMON_FIELDS}],
+            f"^Reading {FILENAME}:7 DS_TAB has an empty value for Destination_Pre_Built_Database_Mnemonic and has classifications from multiple databases: \['DB1', 'DB2']$")
+
+
+
 if __name__ == '__main__':
     unittest.main()

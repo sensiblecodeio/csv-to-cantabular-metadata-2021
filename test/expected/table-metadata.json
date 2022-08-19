@@ -312,7 +312,8 @@
         "name": "DS_TAB",
         "datasetName": "DB_TAB",
         "vars": [
-            "CLASS1 (Codebook)"
+            "CLASS1 (Codebook)",
+            "CLASS4A"
         ],
         "ref": [
             {
