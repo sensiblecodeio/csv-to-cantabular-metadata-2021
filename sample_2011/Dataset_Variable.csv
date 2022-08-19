@@ -1,24 +1,24 @@
-Variable_Mnemonic,Classification_Mnemonic,Dataset_Mnemonic,Id,Processing_Priority,Lowest_Geog_Variable_Flag
-Ethnic Group,Ethnic Group,LC2101EW,1,1,
-Sex,Sex,LC2101EW,2,2,
-Age,Age,LC2101EW,3,3,
-Sex,Sex,LC1117EW,4,1,
-Age,Age,LC1117EW,5,2,
-Religion,Religion,LC2107EW,6,1,
-Sex,Sex,LC2107EW,7,2,
-Age,Age,LC2107EW,8,3,
-Economic Activity,Economic Activity,LC6107EW,13,1,
-Sex,Sex,LC6107EW,9,2,
-Age,Age,LC6107EW,10,3,
-Occupation,Occupation,LC6112EW,17,1,
-Age,Age,LC6112EW,11,2,
-Region,,LC2101EW,12,,Y
-Country,,LC2101EW,13,,N
-Region,,LC1117EW,14,,Y
-Country,,LC1117EW,15,,N
-Region,,LC2107EW,16,,Y
-Country,,LC2107EW,17,,N
-Region,,LC6107EW,18,,Y
-Country,,LC6107EW,19,,N
-Region,,LC6112EW,20,,Y
-Country,,LC6112EW,21,,N
+Variable_Mnemonic,Classification_Mnemonic,Dataset_Mnemonic,Id,Processing_Priority,Lowest_Geog_Variable_Flag,Database_Mnemonic
+Ethnic Group,Ethnic Group,LC2101EW,1,1,,Teaching-Dataset
+Sex,Sex,LC2101EW,2,2,,Teaching-Dataset
+Age,Age,LC2101EW,3,3,,Teaching-Dataset
+Sex,Sex,LC1117EW,4,1,,Teaching-Dataset
+Age,Age,LC1117EW,5,2,,Teaching-Dataset
+Religion,Religion,LC2107EW,6,1,,Teaching-Dataset
+Sex,Sex,LC2107EW,7,2,,Teaching-Dataset
+Age,Age,LC2107EW,8,3,,Teaching-Dataset
+Economic Activity,Economic Activity,LC6107EW,13,1,,Teaching-Dataset
+Sex,Sex,LC6107EW,9,2,,Teaching-Dataset
+Age,Age,LC6107EW,10,3,,Teaching-Dataset
+Occupation,Occupation,LC6112EW,17,1,,Teaching-Dataset
+Age,Age,LC6112EW,11,2,,Teaching-Dataset
+Region,,LC2101EW,12,,Y,Teaching-Dataset
+Country,,LC2101EW,13,,N,Teaching-Dataset
+Region,,LC1117EW,14,,Y,Teaching-Dataset
+Country,,LC1117EW,15,,N,Teaching-Dataset
+Region,,LC2107EW,16,,Y,Teaching-Dataset
+Country,,LC2107EW,17,,N,Teaching-Dataset
+Region,,LC6107EW,18,,Y,Teaching-Dataset
+Country,,LC6107EW,19,,N,Teaching-Dataset
+Region,,LC6112EW,20,,Y,Teaching-Dataset
+Country,,LC6112EW,21,,N,Teaching-Dataset
