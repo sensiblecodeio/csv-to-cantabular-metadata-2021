@@ -4,6 +4,7 @@ Release Notes
 1.3.alpha
 ---------
 - Updated code to work with metadata schema version 1.3.
+- Removed preprocessing scripts that are no longer necessary.
 
 1.2.epsilon
 -----------
