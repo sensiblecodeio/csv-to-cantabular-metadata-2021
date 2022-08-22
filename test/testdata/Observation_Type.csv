@@ -1,2 +1,3 @@
 Id,Observation_Type_Code,Observation_Type_Label,Observation_Type_Description,Decimal_Places,Prefix,Suffix,FillTrailingSpaces,NegativeSign
 1,AMT,Amount,A financial amount,2,£,GBP,Y,-
+2,PCT,Percentage,A percentage amount,2,,%,Y,-

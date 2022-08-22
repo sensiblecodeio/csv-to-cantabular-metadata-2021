@@ -305,21 +305,6 @@ class Loader:
             dataset_variables = dataset_to_variables.get(
                 dataset_mnemonic, DatasetVariables([], [], []))
 
-            first_source_database = dataset_variables.databases[0] if \
-                dataset_variables.databases else None
-            database_mnemonic = pre_built_database \
-                if pre_built_database else first_source_database
-
-            if database_mnemonic:
-                if database_mnemonic not in database_observation_type:
-                    database_observation_type[database_mnemonic] = observation_type_code
-                elif database_observation_type[database_mnemonic] != observation_type_code:
-                    self.recoverable_error(
-                        f'Reading {self.full_filename(filename)}:{row_num} {dataset_mnemonic} '
-                        f'has different observation type {observation_type_code} from other '
-                        f'datasets in database {database_mnemonic}: '
-                        f'{database_observation_type[database_mnemonic]}')
-
             dataset['Related_Datasets'] = dataset_to_related_datasets.get(dataset_mnemonic, [])
             dataset['Census_Releases'] = dataset_to_releases.get(dataset_mnemonic, [])
             dataset['Publications'] = dataset_to_publications.get(dataset_mnemonic, [])
@@ -329,23 +314,25 @@ class Loader:
             dataset['Alternate_Geographic_Variables'] = alternate_geog_variables
             all_classifications = dataset_variables.classifications + alternate_geog_variables
 
-            # If the dataset is public then ensure that there is at least one classification and
-            # that all the classifications are also public.
-            if dataset['Security_Mnemonic'] == PUBLIC_SECURITY_MNEMONIC:
-                if not dataset_variables.classifications:
+            if not dataset_variables.classifications:
+                self.recoverable_error(
+                    f'Reading {self.full_filename(filename)}:{row_num} {dataset_mnemonic} '
+                    'has no associated classifications or geographic variable')
+                drop_dataset = True
+            else:
+                # dataset_variables.databases will not be empty if
+                # dataset_variables.classifications is not empty
+                database_mnemonic = pre_built_database \
+                    if pre_built_database else dataset_variables.databases[0]
+
+                if database_mnemonic not in database_observation_type:
+                    database_observation_type[database_mnemonic] = observation_type_code
+                elif database_observation_type[database_mnemonic] != observation_type_code:
                     self.recoverable_error(
                         f'Reading {self.full_filename(filename)}:{row_num} {dataset_mnemonic} '
-                        'has no associated classifications or geographic variable')
-                    drop_dataset = True
-
-                for classification in all_classifications:
-                    if self.classifications[classification].private['Security_Mnemonic'] != \
-                            PUBLIC_SECURITY_MNEMONIC:
-                        self.recoverable_error(
-                            f'Reading {self.full_filename(filename)}:{row_num} Public ONS '
-                            f'dataset {dataset_mnemonic} has non-public classification '
-                            f'{classification}')
-                        drop_dataset = True
+                        f'has different observation type {observation_type_code} from other '
+                        f'datasets in database {database_mnemonic}: '
+                        f'{database_observation_type[database_mnemonic]}')
 
                 if not pre_built_database and len(dataset_variables.databases) > 1:
                     self.recoverable_error(
@@ -353,6 +340,17 @@ class Loader:
                         f'{dataset_mnemonic} has an empty value for '
                         'Destination_Pre_Built_Database_Mnemonic and has classifications '
                         f'from multiple databases: {dataset_variables.databases}')
+
+                # If the dataset is public then ensure that all the classifications are also public
+                if dataset['Security_Mnemonic'] == PUBLIC_SECURITY_MNEMONIC:
+                    for classification in all_classifications:
+                        if self.classifications[classification].private['Security_Mnemonic'] != \
+                                PUBLIC_SECURITY_MNEMONIC:
+                            self.recoverable_error(
+                                f'Reading {self.full_filename(filename)}:{row_num} Public ONS '
+                                f'dataset {dataset_mnemonic} has non-public classification '
+                                f'{classification}')
+                            drop_dataset = True
 
             if drop_dataset:
                 logging.warning(
