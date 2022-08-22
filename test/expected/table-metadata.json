@@ -312,7 +312,8 @@
         "name": "DS_TAB",
         "datasetName": "DB_TAB",
         "vars": [
-            "CLASS1 (Codebook)"
+            "CLASS1 (Codebook)",
+            "CLASS4A"
         ],
         "ref": [
             {
@@ -350,6 +351,77 @@
                 "lang": "cy",
                 "label": "DS_TAB Title",
                 "description": "DS_TAB Description",
+                "meta": {
+                    "Dataset_Mnemonic_2011": null,
+                    "Last_Updated": null,
+                    "Version": "1",
+                    "Geographic_Coverage": "Everywhere",
+                    "Dataset_Population": "Everyone",
+                    "Statistical_Unit": {
+                        "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Description": "House Description"
+                    },
+                    "Contact": null,
+                    "Observation_Type": {
+                        "Observation_Type_Code": "AMT",
+                        "Observation_Type_Label": "Amount",
+                        "Observation_Type_Description": "A financial amount",
+                        "Decimal_Places": "2",
+                        "Prefix": "\u00a3",
+                        "Suffix": "GBP",
+                        "FillTrailingSpaces": "Y",
+                        "NegativeSign": "-"
+                    },
+                    "Related_Datasets": [],
+                    "Census_Releases": [],
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
+                }
+            }
+        ]
+    },
+    {
+        "name": "DS_TAB2",
+        "datasetName": "DB_TAB",
+        "vars": [
+            "CLASS1 (Codebook)"
+        ],
+        "ref": [
+            {
+                "lang": "en",
+                "label": "DS_TAB2 Title",
+                "description": "DS_TAB2 Description",
+                "meta": {
+                    "Dataset_Mnemonic_2011": null,
+                    "Last_Updated": null,
+                    "Version": "1",
+                    "Geographic_Coverage": "Everywhere",
+                    "Dataset_Population": "Everyone",
+                    "Statistical_Unit": {
+                        "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Description": "House Description"
+                    },
+                    "Contact": null,
+                    "Observation_Type": {
+                        "Observation_Type_Code": "AMT",
+                        "Observation_Type_Label": "Amount",
+                        "Observation_Type_Description": "A financial amount",
+                        "Decimal_Places": "2",
+                        "Prefix": "\u00a3",
+                        "Suffix": "GBP",
+                        "FillTrailingSpaces": "Y",
+                        "NegativeSign": "-"
+                    },
+                    "Related_Datasets": [],
+                    "Census_Releases": [],
+                    "Publications": [],
+                    "Alternate_Geographic_Variables": []
+                }
+            },
+            {
+                "lang": "cy",
+                "label": "DS_TAB2 Title",
+                "description": "DS_TAB2 Description",
                 "meta": {
                     "Dataset_Mnemonic_2011": null,
                     "Last_Updated": null,

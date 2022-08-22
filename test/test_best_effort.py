@@ -8,9 +8,9 @@ from io import StringIO
 from datetime import date
 import ons_csv_to_ctb_json_main
 
-FILENAME_TABLES = 'cantabm_v10-1-0_best-effort_tables-md_19700101-1.json'
-FILENAME_DATASET = 'cantabm_v10-1-0_best-effort_dataset-md_19700101-1.json'
-FILENAME_SERVICE = 'cantabm_v10-1-0_best-effort_service-md_19700101-1.json'
+FILENAME_TABLES = 'cantabm_v10-2-0_best-effort_tables-md_19700101-1.json'
+FILENAME_DATASET = 'cantabm_v10-2-0_best-effort_dataset-md_19700101-1.json'
+FILENAME_SERVICE = 'cantabm_v10-2-0_best-effort_service-md_19700101-1.json'
 
 class TestBestEffort(unittest.TestCase):
     @unittest.mock.patch('ons_csv_to_ctb_json_main.date')
@@ -71,19 +71,21 @@ class TestBestEffort(unittest.TestCase):
             r'Dataset_Variable.csv:3 Classification_Mnemonic must not be specified for geographic variable GEO1 in dataset DS1',
             r'Dataset_Variable.csv:3 Processing_Priority must not be specified for geographic variable GEO1 in dataset DS1',
             r'Dataset_Variable.csv:5 Lowest_Geog_Variable_Flag set on variable GEO2 and GEO1 for dataset DS1',
+            r'Dataset_Variable.csv:5 DS1 has geographic variable GEO2 that is not in database DB1',
             r'Dataset_Variable.csv:7 Classification must be specified for non-geographic VAR2 in dataset DS1',
             r'Dataset_Variable.csv:7 dropping record',
             r'Dataset_Variable.csv:8 Invalid classification CLASS1 specified for variable VAR3 in dataset DS1',
             r'Dataset_Variable.csv:8 dropping record',
+            r'Dataset_Variable.csv:9 DS2 has classification CLASS3 that is not in database DB1',
+            r'Dataset_Variable.csv:10 DS4 has Database_Mnemonic DB_TAB which has invalid Database_Type_Code: AGGDATA',
             r'Dataset_Variable.csv Invalid processing_priorities \[0\] for dataset DS1',
-            r'Dataset.csv:3 DS2 has classification CLASS3 that is not in source database DB1',
             r'Dataset.csv:4 DS3 has no associated classifications or geographic variable',
             r'Dataset.csv:4 dropping record',
-            r'Dataset.csv:5 DS4 has Source_Database_Mnemonic DB_TAB which has invalid Database_Type_Code: AGGDATA',
-            r'Dataset.csv:6 DS5 has Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA',
+            r"Dataset.csv:5 DS4 has an empty value for Destination_Pre_Built_Database_Mnemonic and has classifications from multiple databases: \['DB2', 'DB_TAB']",
+            r'Dataset.csv:6 DS5 has Destination_Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA',
             r'Dataset.csv:6 dropping record',
             r'Dataset.csv:8 DS7 has different observation type AMT from other datasets in database DB_TAB: None',
-            r'23 errors were encountered during processing',
+            r'25 errors were encountered during processing',
         ]
 
         self.assertEqual(len(warnings), len(cm.output))

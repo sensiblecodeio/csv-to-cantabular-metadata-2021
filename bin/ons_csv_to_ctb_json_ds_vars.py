@@ -2,13 +2,17 @@
 import logging
 from collections import namedtuple
 
-DatasetVariables = namedtuple('DatasetVariables', 'classifications alternate_geog_variables')
+TABULAR_DATABASE_TYPE = 'AGGDATA'
+
+DatasetVariables = namedtuple('DatasetVariables',
+                              'classifications alternate_geog_variables databases')
 
 
 class DatasetVarsBuilder():
     """Utility class to validate and build dataset variables."""
 
-    def __init__(self, dataset_mnemonic, filename, all_classifications, recoverable_error):
+    def __init__(self, dataset_mnemonic, filename, all_classifications, all_databases,
+                 recoverable_error):
         """Initialise DatasetVarsBuilder object."""
         self.lowest_geog_variable = None
         self.alternate_geog_variables = []
@@ -17,7 +21,9 @@ class DatasetVarsBuilder():
         self.dataset_mnemonic = dataset_mnemonic
         self.filename = filename
         self.all_classifications = all_classifications
+        self.all_databases = all_databases
         self.recoverable_error = recoverable_error
+        self.databases = set()
 
     def add_geographic_variable(self, variable, row_num):
         """Add geographic variable ensuring data integrity."""
@@ -41,9 +47,19 @@ class DatasetVarsBuilder():
                                        f'{self.lowest_geog_variable} for dataset '
                                        f'{self.dataset_mnemonic}')
             else:
-                self.lowest_geog_variable = variable['Variable_Mnemonic']
+                self.lowest_geog_variable = variable_mnemonic
         else:
-            self.alternate_geog_variables.append(variable['Variable_Mnemonic'])
+            self.alternate_geog_variables.append(variable_mnemonic)
+
+        database_mnemonic = variable['Database_Mnemonic']
+        database = self.all_databases[database_mnemonic]
+        if variable_mnemonic not in database.private['Classifications']:
+            self.recoverable_error(
+                f'Reading {self.filename}:{row_num} '
+                f'{self.dataset_mnemonic} has geographic variable {variable_mnemonic} '
+                f'that is not in database {database_mnemonic}')
+
+        self._add_database(database_mnemonic, row_num)
 
     def add_non_geographic_variable(self, variable, row_num):
         """Add non-geographic variable ensuring data integrity."""
@@ -81,6 +97,25 @@ class DatasetVarsBuilder():
         self.classifications.append(variable['Classification_Mnemonic'])
         self.processing_priorities.append(int(variable['Processing_Priority']))
 
+        database_mnemonic = variable['Database_Mnemonic']
+        database = self.all_databases[database_mnemonic]
+        if classification_mnemonic not in database.private['Classifications']:
+            self.recoverable_error(
+                f'Reading {self.filename}:{row_num} '
+                f'{self.dataset_mnemonic} has classification {classification_mnemonic} '
+                f'that is not in database {database_mnemonic}')
+
+        self._add_database(database_mnemonic, row_num)
+
+    def _add_database(self, database_mnemonic, row_num):
+        database = self.all_databases[database_mnemonic]
+        if database.private['Database_Type_Code'] == TABULAR_DATABASE_TYPE:
+            self.recoverable_error(
+                f'Reading {self.filename}:{row_num} {self.dataset_mnemonic} '
+                f'has Database_Mnemonic {database_mnemonic} which has invalid '
+                f'Database_Type_Code: {TABULAR_DATABASE_TYPE}')
+        self.databases.add(database_mnemonic)
+
     def dataset_variables(self):
         """Return dataset classifications and alternate geographic variables for each dataset."""
         if self.alternate_geog_variables and not self.lowest_geog_variable:
@@ -102,4 +137,4 @@ class DatasetVarsBuilder():
 
         geo_vars = sorted(self.alternate_geog_variables) if self.alternate_geog_variables else None
 
-        return DatasetVariables(classifications, geo_vars)
+        return DatasetVariables(classifications, geo_vars, sorted(self.databases))

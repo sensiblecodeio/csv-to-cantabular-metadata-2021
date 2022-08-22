@@ -1,3 +1,3 @@
-Dataset_Mnemonic,Id,Dataset_Title,Dataset_Title_Welsh,Dataset_Description,Dataset_Description_Welsh,Statistical_Unit,Dataset_Mnemonic_2011,Geographic_Coverage,Geographic_Coverage_Welsh,Dataset_Population,Dataset_Population_Welsh,Last_Updated,Security_Mnemonic,Signed_Off_Flag,Source_Database_Mnemonic,Contact_Id,Version,Observation_Type_Code,Pre_Built_Database_Mnemonic
-TS1,1,TS1 Title,,TS1 Description,,Houses,,Everywhere,,Everyone,,,PUB,N,DB1,,1,AMT,
-DS1,1,DS1 Title,,DS1 Description,,Houses,,Everywhere,,Everyone,,,PUB,N,DB1,,1,PCT,
+Dataset_Mnemonic,Id,Dataset_Title,Dataset_Title_Welsh,Dataset_Description,Dataset_Description_Welsh,Statistical_Unit,Dataset_Mnemonic_2011,Geographic_Coverage,Geographic_Coverage_Welsh,Dataset_Population,Dataset_Population_Welsh,Last_Updated,Security_Mnemonic,Signed_Off_Flag,Contact_Id,Version,Observation_Type_Code,Destination_Pre_Built_Database_Mnemonic
+TS1,1,TS1 Title,,TS1 Description,,Houses,,Everywhere,,Everyone,,,PUB,N,,1,AMT,
+DS1,1,DS1 Title,,DS1 Description,,Houses,,Everywhere,,Everyone,,,PUB,N,,1,PCT,

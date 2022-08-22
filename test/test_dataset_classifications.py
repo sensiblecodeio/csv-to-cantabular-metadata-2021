@@ -6,11 +6,12 @@ from ons_csv_to_ctb_json_load import Loader
 from helper_funcs import conditional_mock_open, build_test_file
 
 HEADERS = ['Classification_Mnemonic', 'Dataset_Mnemonic', 'Id', 'Processing_Priority',
-           'Variable_Mnemonic', 'Lowest_Geog_Variable_Flag']
+           'Variable_Mnemonic', 'Lowest_Geog_Variable_Flag', 'Database_Mnemonic']
 
 REQUIRED_FIELDS = {'Dataset_Mnemonic': 'DS1',
                    'Variable_Mnemonic': 'VAR1',
-                   'Id': '1'}
+                   'Id': '1',
+                   'Database_Mnemonic': 'DB1'}
 
 INPUT_DIR = os.path.join(pathlib.Path(__file__).parent.resolve(), 'testdata')
 
@@ -32,7 +33,7 @@ class TestDatasetClassification(unittest.TestCase):
 
     def test_invalid_values(self):
         for field in ['Dataset_Mnemonic', 'Classification_Mnemonic', 'Processing_Priority',
-                      'Lowest_Geog_Variable_Flag']:
+                      'Lowest_Geog_Variable_Flag', 'Database_Mnemonic']:
             with self.subTest(field=field):
                 row = REQUIRED_FIELDS.copy()
                 row[field] = 'X'
@@ -45,70 +46,88 @@ class TestDatasetClassification(unittest.TestCase):
 
     def test_invalid_processing_priority_set1(self):
         self.run_test(
-            [{'Dataset_Mnemonic': 'DS1', 'Classification_Mnemonic': 'CLASS1',
+            [{'Dataset_Mnemonic': 'DS1', 'Classification_Mnemonic': 'CLASS1', 'Database_Mnemonic': 'DB1',
               'Processing_Priority': '1', 'Id': '1', 'Variable_Mnemonic': 'VAR1'},
-             {'Dataset_Mnemonic': 'DS1', 'Classification_Mnemonic': 'CLASS2',
+              {'Dataset_Mnemonic': 'DS1', 'Classification_Mnemonic': 'CLASS2', 'Database_Mnemonic': 'DB1',
               'Processing_Priority': '1', 'Id': '1', 'Variable_Mnemonic': 'VAR2'}],
             f'^Reading {FILENAME} Invalid processing_priorities \[1, 1\] for dataset DS1$')
 
     def test_invalid_processing_priority_set2(self):
         self.run_test(
-            [{'Dataset_Mnemonic': 'DS1', 'Classification_Mnemonic': 'CLASS1',
+            [{'Dataset_Mnemonic': 'DS1', 'Classification_Mnemonic': 'CLASS1', 'Database_Mnemonic': 'DB1',
               'Processing_Priority': '2', 'Id': '1', 'Variable_Mnemonic': 'VAR1'},
-             {'Dataset_Mnemonic': 'DS1', 'Classification_Mnemonic': 'CLASS2',
+              {'Dataset_Mnemonic': 'DS1', 'Classification_Mnemonic': 'CLASS2', 'Database_Mnemonic': 'DB1',
               'Processing_Priority': '3', 'Id': '1', 'Variable_Mnemonic': 'VAR2'}],
             f'^Reading {FILENAME} Invalid processing_priorities \[2, 3\] for dataset DS1$')
 
     def test_classification_on_geo_var(self):
         self.run_test(
-            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO1',
+            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO1', 'Database_Mnemonic': 'DB1',
               'Id': '1', 'Classification_Mnemonic': 'GEO1'}],
             f'^Reading {FILENAME}:2 Classification_Mnemonic must not be specified for geographic variable GEO1 in dataset DS1$')
 
     def test_processing_priority_on_geo_var(self):
         self.run_test(
-            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO1',
+            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO1', 'Database_Mnemonic': 'DB1',
               'Id': '1', 'Processing_Priority': '1'}],
             f'^Reading {FILENAME}:2 Processing_Priority must not be specified for geographic variable GEO1 in dataset DS1$')
 
     def test_no_classification_on_non_geo_var(self):
         self.run_test(
-            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'VAR1',
+            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'VAR1', 'Database_Mnemonic': 'DB1',
               'Id': '1', 'Processing_Priority': '1'}],
             f'^Reading {FILENAME}:2 Classification must be specified for non-geographic VAR1 in dataset DS1$')
 
     def test_no_processing_priority_on_non_geo_var(self):
         self.run_test(
-            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'VAR1',
+            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'VAR1', 'Database_Mnemonic': 'DB1',
               'Id': '1', 'Classification_Mnemonic': 'CLASS1'}],
             f'^Reading {FILENAME}:2 Processing_Priority not specified for classification CLASS1 in dataset DS1$')
 
     def test_lowest_geog_on_non_geo_var(self):
         self.run_test(
-            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'VAR1',
+            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'VAR1', 'Database_Mnemonic': 'DB1',
               'Id': '1', 'Classification_Mnemonic': 'CLASS1', 'Processing_Priority': '1',
               'Lowest_Geog_Variable_Flag': 'Y'}],
             f'^Reading {FILENAME}:2 Lowest_Geog_Variable_Flag set on non-geographic variable VAR1 for dataset DS1$')
 
     def test_invalid_classification_on_var(self):
         self.run_test(
-            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'VAR1',
+            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'VAR1', 'Database_Mnemonic': 'DB1',
               'Id': '1', 'Classification_Mnemonic': 'CLASS2', 'Processing_Priority': '1'}],
             f'^Reading {FILENAME}:2 Invalid classification CLASS2 specified for variable VAR1 in dataset DS1$')
 
     def test_no_lowest_geog_flag(self):
         self.run_test(
-            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO1',
+            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO1', 'Database_Mnemonic': 'DB1',
               'Id': '1'}],
             f'^Reading {FILENAME} Lowest_Geog_Variable_Flag not set on any geographic variables for dataset DS1$')
 
     def test_duplicate_lowest_geog_flag(self):
         self.run_test(
-            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO1',
+            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO1', 'Database_Mnemonic': 'DB1',
               'Id': '1', 'Lowest_Geog_Variable_Flag': 'Y'},
-             {'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO2',
+              {'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO2', 'Database_Mnemonic': 'DB1',
               'Id': '1', 'Lowest_Geog_Variable_Flag': 'Y'}],
             f'^Reading {FILENAME}:3 Lowest_Geog_Variable_Flag set on variable GEO2 and GEO1 for dataset DS1$')
+
+    def test_geo_var_not_in_database(self):
+        self.run_test(
+            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO1', 'Database_Mnemonic': 'DB2',
+              'Id': '1', 'Lowest_Geog_Variable_Flag': 'Y'}],
+            f'^Reading {FILENAME}:2 DS1 has geographic variable GEO1 that is not in database DB2$')
+
+    def test_classification_not_in_database(self):
+        self.run_test(
+            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'VAR1', 'Database_Mnemonic': 'DB2',
+              'Id': '1', 'Classification_Mnemonic': 'CLASS1', 'Processing_Priority': '1'}],
+            f'^Reading {FILENAME}:2 DS1 has classification CLASS1 that is not in database DB2$')
+
+    def test_classification_not_in_database(self):
+        self.run_test(
+            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'VAR1', 'Database_Mnemonic': 'DB_TAB',
+              'Id': '1', 'Classification_Mnemonic': 'CLASS1', 'Processing_Priority': '1'}],
+            f'^Reading {FILENAME}:2 DS1 has Database_Mnemonic DB_TAB which has invalid Database_Type_Code: AGGDATA$')
 
 
 if __name__ == '__main__':

@@ -1,6 +1,13 @@
 Release Notes
 =============
 
+1.3.alpha
+---------
+- Updated code to work with metadata schema version 1.3.
+- Removed preprocessing scripts that are no longer necessary.
+- Cantabular version 10.2.0 is now the default version. The file format for version 10.2.0 is
+  identical to all other supported versions except `9.2.0`.
+
 1.2.epsilon
 -----------
 - The code to process the geography lookup file expects lowercase file suffixes `cd`, `nm` and `nmw`.

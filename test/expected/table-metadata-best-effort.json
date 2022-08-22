@@ -112,9 +112,10 @@
     },
     {
         "name": "DS4",
-        "datasetName": "DB_TAB",
+        "datasetName": "DB2",
         "vars": [
-            "CLASS1 (Codebook)"
+            "CLASS1 (Codebook)",
+            "CLASS5"
         ],
         "ref": [
             {
