@@ -127,6 +127,14 @@ def main():
                              '"--dataset-filter TS,RM" to include datasets with a '
                              'Dataset_Mnemonic beginning with either TS or RM.')
 
+    parser.add_argument('--base-dataset-name',
+                        type=str,
+                        default='base',
+                        help='Name to use for base dataset which contains all variabless and '
+                             'which all other datasets include. The purpose of this dataset is '
+                             'to minimise the size of the dataset JSON file by avoiding '
+                             'duplication of variable data.')
+
     args = parser.parse_args()
 
     logging.basicConfig(format='t=%(asctime)s lvl=%(levelname)s msg=%(message)s',
@@ -158,7 +166,7 @@ def main():
 
     # Build Cantabular dataset objects.
     # A Cantabular dataset is equivalent to an ONS database.
-    ctb_datasets = build_ctb_datasets(loader.databases, ctb_variables)
+    ctb_datasets = build_ctb_datasets(loader.databases, ctb_variables, args.base_dataset_name)
 
     # Build Cantabular table objects.
     # A Cantabular table is equivalent to an ONS dataset.
@@ -276,7 +284,7 @@ def build_ctb_variables(classifications, cat_labels):
     return ctb_variables
 
 
-def build_ctb_datasets(databases, ctb_variables):
+def build_ctb_datasets(databases, ctb_variables, base_dataset_name):
     """
     Build Cantabular dataset objects.
 
@@ -288,7 +296,7 @@ def build_ctb_datasets(databases, ctb_variables):
     # Add all the variables to a base dataset. Other datasets include this to avoid duplicating
     # metadata.
     ctb_dataset = BilingualDict({
-        'name': 'base',
+        'name': base_dataset_name,
         'label': Bilingual(
             'Base dataset with metadata for all variables',
             'Base dataset with metadata for all variables in Welsh',
@@ -316,10 +324,14 @@ def build_ctb_datasets(databases, ctb_variables):
     })
     ctb_datasets.extend([ctb_dataset.english(), ctb_dataset.welsh()])
 
+    uc_base_dataset_name = base_dataset_name.upper()
     for database_mnemonic, database in databases.items():
+        if database_mnemonic.upper() == uc_base_dataset_name:
+            raise ValueError('Dataset has same case insensitive name as base dataset: '
+                             f'{base_dataset_name}')
         ctb_dataset = BilingualDict({
             'name': database_mnemonic,
-            'incl': [{'name': 'base', 'lang': Bilingual('en', 'cy')}],
+            'incl': [{'name': base_dataset_name, 'lang': Bilingual('en', 'cy')}],
             'label': database.private['Database_Title'],
             'description': database.private['Database_Description'],
             'lang': Bilingual('en', 'cy'),
