@@ -1,6 +1,6 @@
 [
     {
-        "name": "base",
+        "name": "dummy",
         "label": "Base dataset with metadata for all variables",
         "lang": "en",
         "description": "This is a base dataset containing metadata for all variables used across all other datasets. Other datasets include it to avoid duplicating metadata.",
@@ -338,7 +338,7 @@
         ]
     },
     {
-        "name": "base",
+        "name": "dummy",
         "label": "Base dataset with metadata for all variables in Welsh",
         "lang": "cy",
         "description": "This is the Welsh version of the base dataset containing metadata for all variables.",
@@ -686,7 +686,7 @@
         "name": "DB1",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "en"
             }
         ],
@@ -727,7 +727,7 @@
         "name": "DB1",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "cy"
             }
         ],
@@ -768,7 +768,7 @@
         "name": "DB2",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "en"
             }
         ],
@@ -803,7 +803,7 @@
         "name": "DB2",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "cy"
             }
         ],
@@ -838,7 +838,7 @@
         "name": "DB3",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "en"
             }
         ],
@@ -873,7 +873,7 @@
         "name": "DB3",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "cy"
             }
         ],
@@ -908,7 +908,7 @@
         "name": "DB_TAB",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "en"
             }
         ],
@@ -943,7 +943,7 @@
         "name": "DB_TAB",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "cy"
             }
         ],
