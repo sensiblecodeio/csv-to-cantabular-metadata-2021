@@ -130,10 +130,11 @@ def main():
     parser.add_argument('--base-dataset-name',
                         type=str,
                         default='base',
-                        help='Name to use for base dataset which contains all variabless and '
-                             'which all other datasets include. The purpose of this dataset is '
-                             'to minimise the size of the dataset JSON file by avoiding '
-                             'duplication of variable data.')
+                        help='Name to use for virtual base dataset which contains all variables '
+                             'and which all other datasets include. The purpose of this dataset '
+                             'is to minimise the size of the dataset JSON file by avoiding '
+                             'duplication of variable data- the base dataset does not have to '
+                             'exist as an actual Cantabular dataset.')
 
     args = parser.parse_args()
 
