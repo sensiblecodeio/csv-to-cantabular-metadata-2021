@@ -129,6 +129,14 @@ class TestDatasetClassification(unittest.TestCase):
               'Id': '1', 'Classification_Mnemonic': 'CLASS1', 'Processing_Priority': '1'}],
             f'^Reading {FILENAME}:2 DS1 has Database_Mnemonic DB_TAB which has invalid Database_Type_Code: AGGDATA$')
 
+    def test_invalid_lowest_geog_flag(self):
+        self.run_test(
+            [{'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO1', 'Database_Mnemonic': 'DB1',
+              'Id': '1', 'Lowest_Geog_Variable_Flag': 'N'},
+              {'Dataset_Mnemonic': 'DS1', 'Variable_Mnemonic': 'GEO2', 'Database_Mnemonic': 'DB1',
+              'Id': '1', 'Lowest_Geog_Variable_Flag': 'Y'}],
+            f'^Reading {FILENAME} Lowest_Geog_Variable_Flag set on GEO2 for dataset DS1 but GEO1 has a lower Geography_Hierarchy_Order$')
+
 
 if __name__ == '__main__':
     unittest.main()

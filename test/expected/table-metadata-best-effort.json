@@ -27,7 +27,8 @@
                     "Census_Releases": [],
                     "Publications": [],
                     "Alternate_Geographic_Variables": [
-                        "GEO3"
+                        "GEO3",
+                        "GEO4"
                     ]
                 }
             },
@@ -51,7 +52,8 @@
                     "Census_Releases": [],
                     "Publications": [],
                     "Alternate_Geographic_Variables": [
-                        "GEO3"
+                        "GEO3",
+                        "GEO4"
                     ]
                 }
             }

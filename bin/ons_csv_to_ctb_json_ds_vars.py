@@ -12,7 +12,7 @@ class DatasetVarsBuilder():
     """Utility class to validate and build dataset variables."""
 
     def __init__(self, dataset_mnemonic, filename, all_classifications, all_databases,
-                 recoverable_error):
+                 all_variables, recoverable_error):
         """Initialise DatasetVarsBuilder object."""
         self.lowest_geog_variable = None
         self.alternate_geog_variables = []
@@ -22,6 +22,7 @@ class DatasetVarsBuilder():
         self.filename = filename
         self.all_classifications = all_classifications
         self.all_databases = all_databases
+        self.all_variables = all_variables
         self.recoverable_error = recoverable_error
         self.databases = set()
 
@@ -123,6 +124,24 @@ class DatasetVarsBuilder():
                                    'Lowest_Geog_Variable_Flag not set on any geographic variables '
                                    f'for dataset {self.dataset_mnemonic}')
 
+        # Sort alternate_geog_variables based on order specified in Geography_Hierarchy_Order in
+        # descending order, so that the variable with the highest value of
+        # Geography_Hierarchy_Order comes first.
+        self.alternate_geog_variables = [
+            g for _, g in sorted(zip([self.all_variables[g].private['Geography_Hierarchy_Order']
+                                      for g in self.alternate_geog_variables],
+                                     self.alternate_geog_variables), reverse=True)]
+
+        if self.alternate_geog_variables:
+            lowest_geog_var = self.all_variables[self.lowest_geog_variable]
+            lowest_alt_geog_var = self.all_variables[self.alternate_geog_variables[-1]]
+            if lowest_alt_geog_var.private['Geography_Hierarchy_Order'] < \
+                    lowest_geog_var.private['Geography_Hierarchy_Order']:
+                self.recoverable_error(
+                    f'Reading {self.filename} Lowest_Geog_Variable_Flag set on '
+                    f'{self.lowest_geog_variable} for dataset {self.dataset_mnemonic} but '
+                    f'{self.alternate_geog_variables[-1]} has a lower Geography_Hierarchy_Order')
+
         if set(self.processing_priorities) != set(range(1, len(self.processing_priorities) + 1)):
             self.recoverable_error(f'Reading {self.filename} '
                                    'Invalid processing_priorities '
@@ -135,6 +154,6 @@ class DatasetVarsBuilder():
         if self.lowest_geog_variable:
             classifications.insert(0, self.lowest_geog_variable)
 
-        geo_vars = sorted(self.alternate_geog_variables) if self.alternate_geog_variables else None
+        geo_vars = self.alternate_geog_variables if self.alternate_geog_variables else None
 
         return DatasetVariables(classifications, geo_vars, sorted(self.databases))
