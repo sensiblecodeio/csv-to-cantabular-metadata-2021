@@ -658,14 +658,12 @@ class Loader:
                         self.recoverable_error(f'Reading {self.full_filename(filename)}:{row_num} '
                                                f'{geo_field} specified for non geographic '
                                                f'variable: {variable["Variable_Mnemonic"]}')
-
-            # These values are not yet populated in source files
-            # else:
-            #    for geo_field in en_geo_fields:
-            #        if not variable[geo_field]:
-            #            raise ValueError(f'Reading {self.full_filename(filename)}:{row_num} '
-            #                             f'no {geo_field} specified for geographic variable: '
-            #                             f'{variable["Variable_Mnemonic"]}')
+            else:
+                for geo_field in en_geo_fields:
+                    if not variable[geo_field]:
+                        self.recoverable_error(f'Reading {self.full_filename(filename)}:{row_num} '
+                                               f'no {geo_field} specified for geographic '
+                                               f'variable: {variable["Variable_Mnemonic"]}')
 
             variable_title = Bilingual(
                 variable.pop('Variable_Title'),

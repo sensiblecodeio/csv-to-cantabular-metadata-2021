@@ -60,11 +60,21 @@ class TestVariable(unittest.TestCase):
         for field in ['Geographic_Theme', 'Geographic_Theme_Welsh',
                       'Geographic_Coverage', 'Geographic_Coverage_Welsh']:
             with self.subTest(field=field):
-                rows = [{'Variable_Mnemonic': 'GEO1', 'Variable_Type_Code': 'GEOG', **COMMON_FIELDS},
+                rows = [{'Variable_Mnemonic': 'GEO1', 'Variable_Type_Code': 'GEOG',
+                         'Geographic_Theme': 'GEO1 Theme', 'Geographic_Coverage': 'GEO1 Coverage', **COMMON_FIELDS},
                         {'Variable_Mnemonic': 'VAR2', 'Variable_Type_Code': 'DVO', **COMMON_FIELDS},
                         {'Variable_Mnemonic': 'VAR1', 'Variable_Type_Code': 'DVO', **COMMON_FIELDS,
                          field: 'X'}]
                 self.run_test(rows, f'^Reading {FILENAME}:4 {field} specified for non geographic variable: VAR1$')
+
+    def test_geo_with_missing_fields(self):
+        for field in ['Geographic_Theme', 'Geographic_Coverage']:
+            with self.subTest(field=field):
+                rows = [{'Variable_Mnemonic': 'GEO1', 'Variable_Type_Code': 'GEOG',
+                         'Geographic_Theme': 'GEO1 Theme', 'Geographic_Coverage': 'GEO1 Coverage', **COMMON_FIELDS},
+                        {'Variable_Mnemonic': 'VAR1', 'Variable_Type_Code': 'DVO', **COMMON_FIELDS}]
+                rows[0].pop(field)
+                self.run_test(rows, f'^Reading {FILENAME}:2 no {field} specified for geographic variable: GEO1$')
 
 
 if __name__ == '__main__':

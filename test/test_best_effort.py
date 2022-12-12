@@ -48,7 +48,8 @@ class TestBestEffort(unittest.TestCase):
                                  msg=f'Comparing out/{FILENAME_TABLES} and expected/table-metadata-best-effort.json')
 
         warnings = [
-
+            r'Variable.csv:4 no Geographic_Theme specified for geographic variable: GEO2',
+            r'test/testdata/best_effort/Variable.csv:5 no Geographic_Coverage specified for geographic variable: GEO3',
             r'Classification.csv:3 no value supplied for required field Variable_Mnemonic',
             r'Classification.csv:3 dropping record',
             r'Classification.csv:4 duplicate value CLASS1 for Classification_Mnemonic',
@@ -85,7 +86,7 @@ class TestBestEffort(unittest.TestCase):
             r'Dataset.csv:6 DS5 has Destination_Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA',
             r'Dataset.csv:6 dropping record',
             r'Dataset.csv:8 DS7 has different observation type AMT from other datasets in database DB_TAB: None',
-            r'25 errors were encountered during processing',
+            r'27 errors were encountered during processing',
         ]
 
         self.assertEqual(len(warnings), len(cm.output))
