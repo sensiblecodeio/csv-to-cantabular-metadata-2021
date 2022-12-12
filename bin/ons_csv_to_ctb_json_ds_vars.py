@@ -49,8 +49,7 @@ class DatasetVarsBuilder():
                                        f'{self.dataset_mnemonic}')
             else:
                 self.lowest_geog_variable = variable_mnemonic
-        else:
-            self.alternate_geog_variables.append(variable_mnemonic)
+        self.alternate_geog_variables.append(variable_mnemonic)
 
         database_mnemonic = variable['Database_Mnemonic']
         database = self.all_databases[database_mnemonic]
@@ -132,15 +131,12 @@ class DatasetVarsBuilder():
                                       for g in self.alternate_geog_variables],
                                      self.alternate_geog_variables), reverse=True)]
 
-        if self.alternate_geog_variables:
-            lowest_geog_var = self.all_variables[self.lowest_geog_variable]
-            lowest_alt_geog_var = self.all_variables[self.alternate_geog_variables[-1]]
-            if lowest_alt_geog_var.private['Geography_Hierarchy_Order'] < \
-                    lowest_geog_var.private['Geography_Hierarchy_Order']:
-                self.recoverable_error(
-                    f'Reading {self.filename} Lowest_Geog_Variable_Flag set on '
-                    f'{self.lowest_geog_variable} for dataset {self.dataset_mnemonic} but '
-                    f'{self.alternate_geog_variables[-1]} has a lower Geography_Hierarchy_Order')
+        if self.alternate_geog_variables and self.all_variables[self.lowest_geog_variable] != \
+                self.all_variables[self.alternate_geog_variables[-1]]:
+            self.recoverable_error(
+                f'Reading {self.filename} Lowest_Geog_Variable_Flag set on '
+                f'{self.lowest_geog_variable} for dataset {self.dataset_mnemonic} but '
+                f'{self.alternate_geog_variables[-1]} has a lower Geography_Hierarchy_Order')
 
         if set(self.processing_priorities) != set(range(1, len(self.processing_priorities) + 1)):
             self.recoverable_error(f'Reading {self.filename} '
