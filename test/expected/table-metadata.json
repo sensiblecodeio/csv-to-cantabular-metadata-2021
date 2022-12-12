@@ -62,7 +62,10 @@
                         }
                     ],
                     "Alternate_Geographic_Variables": [
-                        "GEO2"
+                        "GEO3",
+                        "GEO4",
+                        "GEO2",
+                        "GEO1"
                     ]
                 }
             },
@@ -119,7 +122,10 @@
                         }
                     ],
                     "Alternate_Geographic_Variables": [
-                        "GEO2"
+                        "GEO3",
+                        "GEO4",
+                        "GEO2",
+                        "GEO1"
                     ]
                 }
             }
@@ -157,7 +163,9 @@
                         }
                     ],
                     "Publications": [],
-                    "Alternate_Geographic_Variables": []
+                    "Alternate_Geographic_Variables": [
+                        "GEO2"
+                    ]
                 }
             },
             {
@@ -185,7 +193,9 @@
                         }
                     ],
                     "Publications": [],
-                    "Alternate_Geographic_Variables": []
+                    "Alternate_Geographic_Variables": [
+                        "GEO2"
+                    ]
                 }
             }
         ]
@@ -222,7 +232,9 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
-                    "Alternate_Geographic_Variables": []
+                    "Alternate_Geographic_Variables": [
+                        "GEO2"
+                    ]
                 }
             },
             {
@@ -250,7 +262,9 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
-                    "Alternate_Geographic_Variables": []
+                    "Alternate_Geographic_Variables": [
+                        "GEO2"
+                    ]
                 }
             }
         ]

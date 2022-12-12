@@ -12,7 +12,8 @@ HEADERS = ['Variable_Mnemonic', 'Id', 'Variable_Title', 'Variable_Title_Welsh',
            'Uk_Comparison_Comments_Welsh', 'Security_Mnemonic', 'Signed_Off_Flag',
            'Number_Of_Classifications',
            'Geographic_Theme', 'Geographic_Theme_Welsh', 'Geographic_Coverage',
-           'Geographic_Coverage_Welsh', 'Version', 'Quality_Statement_Text', 'Quality_Summary_URL']
+           'Geographic_Coverage_Welsh', 'Version', 'Quality_Statement_Text', 'Quality_Summary_URL',
+           'Geography_Hierarchy_Order']
 
 COMMON_FIELDS = {'Security_Mnemonic': 'PUB',
                  'Variable_Title': 'title',
@@ -60,11 +61,29 @@ class TestVariable(unittest.TestCase):
         for field in ['Geographic_Theme', 'Geographic_Theme_Welsh',
                       'Geographic_Coverage', 'Geographic_Coverage_Welsh']:
             with self.subTest(field=field):
-                rows = [{'Variable_Mnemonic': 'GEO1', 'Variable_Type_Code': 'GEOG', **COMMON_FIELDS},
+                rows = [{'Variable_Mnemonic': 'GEO1', 'Variable_Type_Code': 'GEOG', 'Geography_Hierarchy_Order': '1',
+                         'Geographic_Theme': 'GEO1 Theme', 'Geographic_Coverage': 'GEO1 Coverage', **COMMON_FIELDS},
                         {'Variable_Mnemonic': 'VAR2', 'Variable_Type_Code': 'DVO', **COMMON_FIELDS},
                         {'Variable_Mnemonic': 'VAR1', 'Variable_Type_Code': 'DVO', **COMMON_FIELDS,
                          field: 'X'}]
                 self.run_test(rows, f'^Reading {FILENAME}:4 {field} specified for non geographic variable: VAR1$')
+
+    def test_geo_with_missing_fields(self):
+        for field in ['Geographic_Theme', 'Geographic_Coverage']:
+            with self.subTest(field=field):
+                rows = [{'Variable_Mnemonic': 'GEO1', 'Variable_Type_Code': 'GEOG', 'Geography_Hierarchy_Order': '1',
+                         'Geographic_Theme': 'GEO1 Theme', 'Geographic_Coverage': 'GEO1 Coverage', **COMMON_FIELDS},
+                        {'Variable_Mnemonic': 'VAR1', 'Variable_Type_Code': 'DVO', **COMMON_FIELDS}]
+                rows[0].pop(field)
+                self.run_test(rows, f'^Reading {FILENAME}:2 no {field} specified for geographic variable: GEO1$')
+
+    def test_duplicate_geo_hierarchy(self):
+        rows = [{'Variable_Mnemonic': 'GEO1', 'Variable_Type_Code': 'GEOG', 'Geography_Hierarchy_Order': '1',
+                 'Geographic_Theme': 'GEO1 Theme', 'Geographic_Coverage': 'GEO1 Coverage', **COMMON_FIELDS},
+                {'Variable_Mnemonic': 'GEO2', 'Variable_Type_Code': 'GEOG', 'Geography_Hierarchy_Order': '1',
+                 'Geographic_Theme': 'GEO2 Theme', 'Geographic_Coverage': 'GEO2 Coverage', **COMMON_FIELDS},
+                        {'Variable_Mnemonic': 'VAR1', 'Variable_Type_Code': 'DVO', **COMMON_FIELDS}]
+        self.run_test(rows, f'^Reading {FILENAME}:3 Geography_Hierarchy_Order value of 1 specified for both GEO2 and GEO1$')
 
 
 if __name__ == '__main__':

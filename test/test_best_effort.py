@@ -48,7 +48,11 @@ class TestBestEffort(unittest.TestCase):
                                  msg=f'Comparing out/{FILENAME_TABLES} and expected/table-metadata-best-effort.json')
 
         warnings = [
-
+            r'Variable.csv:4 Geography_Hierarchy_Order value of 10 specified for both GEO2 and GEO1',
+            r'Variable.csv:4 no Geographic_Theme specified for geographic variable: GEO2',
+            r'test/testdata/best_effort/Variable.csv:5 no Geographic_Coverage specified for geographic variable: GEO3',
+            r'Variable.csv:8 no Geography_Hierarchy_Order specified for geographic variable: GEO4',
+            r'Variable.csv:8 using 0 for Geography_Hierarchy_Order',
             r'Classification.csv:3 no value supplied for required field Variable_Mnemonic',
             r'Classification.csv:3 dropping record',
             r'Classification.csv:4 duplicate value CLASS1 for Classification_Mnemonic',
@@ -78,6 +82,7 @@ class TestBestEffort(unittest.TestCase):
             r'Dataset_Variable.csv:8 dropping record',
             r'Dataset_Variable.csv:9 DS2 has classification CLASS3 that is not in database DB1',
             r'Dataset_Variable.csv:10 DS4 has Database_Mnemonic DB_TAB which has invalid Database_Type_Code: AGGDATA',
+            r'Dataset_Variable.csv Lowest_Geog_Variable_Flag set on GEO1 for dataset DS1 but GEO4 has a lower Geography_Hierarchy_Order',
             r'Dataset_Variable.csv Invalid processing_priorities \[0\] for dataset DS1',
             r'Dataset.csv:4 DS3 has no associated classifications or geographic variable',
             r'Dataset.csv:4 dropping record',
@@ -85,7 +90,7 @@ class TestBestEffort(unittest.TestCase):
             r'Dataset.csv:6 DS5 has Destination_Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA',
             r'Dataset.csv:6 dropping record',
             r'Dataset.csv:8 DS7 has different observation type AMT from other datasets in database DB_TAB: None',
-            r'25 errors were encountered during processing',
+            r'30 errors were encountered during processing',
         ]
 
         self.assertEqual(len(warnings), len(cm.output))

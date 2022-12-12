@@ -189,7 +189,7 @@
                         "Variable_Title": "GEO2 Title",
                         "Comparability_Comments": "GEO2 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments",
-                        "Geographic_Theme": "GEO2 Theme",
+                        "Geographic_Theme": null,
                         "Geographic_Coverage": "GEO2 Coverage",
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
@@ -221,7 +221,38 @@
                         "Comparability_Comments": "GEO3 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO3 UK Comparison Comments",
                         "Geographic_Theme": "GEO3 Theme",
-                        "Geographic_Coverage": "GEO3 Coverage",
+                        "Geographic_Coverage": null,
+                        "Variable_Type": {
+                            "Variable_Type_Code": "GEOG",
+                            "Variable_Type_Description": "Geographic variable"
+                        },
+                        "Statistical_Unit": null,
+                        "Topic": null,
+                        "Questions": []
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            },
+            {
+                "name": "GEO4",
+                "label": "GEO4 Title",
+                "description": "GEO4 Description",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "GEO4",
+                        "Variable_Mnemonic_2011": "GEO4 2011",
+                        "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
+                        "Variable_Title": "GEO4 Title",
+                        "Comparability_Comments": "GEO4 Comparability Comments",
+                        "Uk_Comparison_Comments": "GEO4 UK Comparison Comments",
+                        "Geographic_Theme": "GEO4 Theme",
+                        "Geographic_Coverage": "GEO4 Coverage",
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable"
@@ -426,7 +457,7 @@
                         "Variable_Title": "GEO2 Title (Welsh)",
                         "Comparability_Comments": "GEO2 Comparability Comments (Welsh)",
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments (Welsh)",
-                        "Geographic_Theme": "GEO2 Theme (Welsh)",
+                        "Geographic_Theme": null,
                         "Geographic_Coverage": "GEO2 Coverage (Welsh)",
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
@@ -458,6 +489,37 @@
                         "Comparability_Comments": "GEO3 Comparability Comments (Welsh)",
                         "Uk_Comparison_Comments": "GEO3 UK Comparison Comments (Welsh)",
                         "Geographic_Theme": "GEO3 Theme (Welsh)",
+                        "Geographic_Coverage": "GEO3 Coverage (Welsh)",
+                        "Variable_Type": {
+                            "Variable_Type_Code": "GEOG",
+                            "Variable_Type_Description": "Geographic variable (Welsh)"
+                        },
+                        "Statistical_Unit": null,
+                        "Topic": null,
+                        "Questions": []
+                    },
+                    "Topics": []
+                },
+                "catLabels": null
+            },
+            {
+                "name": "GEO4",
+                "label": "GEO4 Title (Welsh)",
+                "description": "GEO4 Description (Welsh)",
+                "meta": {
+                    "Mnemonic_2011": null,
+                    "Default_Classification_Flag": null,
+                    "Version": "1",
+                    "ONS_Variable": {
+                        "Variable_Mnemonic": "GEO4",
+                        "Variable_Mnemonic_2011": "GEO4 2011",
+                        "Version": "1",
+                        "Quality_Statement_Text": null,
+                        "Quality_Summary_URL": null,
+                        "Variable_Title": "GEO4 Title (Welsh)",
+                        "Comparability_Comments": "GEO4 Comparability Comments (Welsh)",
+                        "Uk_Comparison_Comments": "GEO4 UK Comparison Comments (Welsh)",
+                        "Geographic_Theme": "GEO4 Theme (Welsh)",
                         "Geographic_Coverage": "GEO3 Coverage (Welsh)",
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
