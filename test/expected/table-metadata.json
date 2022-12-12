@@ -62,6 +62,8 @@
                         }
                     ],
                     "Alternate_Geographic_Variables": [
+                        "GEO3",
+                        "GEO4",
                         "GEO2"
                     ]
                 }
@@ -119,6 +121,8 @@
                         }
                     ],
                     "Alternate_Geographic_Variables": [
+                        "GEO3",
+                        "GEO4",
                         "GEO2"
                     ]
                 }

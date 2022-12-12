@@ -7,3 +7,5 @@ VAR_PRIV,5,VAR_PRIV Title,VAR_PRIV Title (Welsh),VAR_PRIV Description,VAR_PRIV D
 GEO2,6,GEO2 Title,,GEO2 Description,,GEOG,,,,GEO2 Comparability Comments,,GEO2 UK Comparison Comments,,PUB,Y,3,GEO1 Theme,,GEO2 Coverage,,1,,,2
 GEO_PRIV,7,GEO_PRIV Title,,GEO_PRIV Description,,GEOG,,,,GEO_PRIV Comparability Comments,,GEO_PRIV UK Comparison Comments,,CLASS,Y,3,GEO_PRIV Theme,,GEO_PRIV Coverage,,1,,,10
 VAR4,8,VAR4 Title,,VAR4 Description,,DVO,,,,,,,,PUB,N,,,,,,1,,,
+GEO3,9,GEO3 Title,,GEO3 Description,,GEOG,,,,GEO3 Comparability Comments,,GEO3 UK Comparison Comments,,PUB,Y,3,GEO3 Theme,,GEO3 Coverage,,1,,,4
+GEO4,10,GEO4 Title,,GEO4 Description,,GEOG,,,,GEO4 Comparability Comments,,GEO4 UK Comparison Comments,,PUB,Y,3,GEO4 Theme,,GEO4 Coverage,,1,,,3
