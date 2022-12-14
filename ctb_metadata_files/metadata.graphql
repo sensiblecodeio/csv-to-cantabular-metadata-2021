@@ -1,5 +1,13 @@
 type ServiceMetadata {
   description: String!
+  version: Version!
+}
+
+type Version {
+  data: String!
+  created: String!
+  schema: String!
+  script: String!
 }
 
 type DatasetMetadata {

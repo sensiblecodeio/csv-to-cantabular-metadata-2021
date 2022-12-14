@@ -5,7 +5,7 @@ import pathlib
 import os
 import logging
 from io import StringIO
-from datetime import date
+from datetime import datetime
 import ons_csv_to_ctb_json_main
 
 FILENAME_TABLES = 'cantabm_v10-2-2_best-effort_tables-md_19700101-1.json'
@@ -13,11 +13,11 @@ FILENAME_DATASET = 'cantabm_v10-2-2_best-effort_dataset-md_19700101-1.json'
 FILENAME_SERVICE = 'cantabm_v10-2-2_best-effort_service-md_19700101-1.json'
 
 class TestBestEffort(unittest.TestCase):
-    @unittest.mock.patch('ons_csv_to_ctb_json_main.date')
-    def test_generated_json_best_effort(self, mock_date):
+    @unittest.mock.patch('ons_csv_to_ctb_json_main.datetime')
+    def test_generated_json_best_effort(self, mock_datetime):
         """Generate JSON from source CSV and compare it with expected values."""
-        mock_date.today.return_value = date(1970, 1, 1)
-        mock_date.side_effect = lambda *args, **kw: date(*args, **kw)
+        mock_datetime.now.return_value = datetime(1970, 1, 1)
+        mock_datetime.side_effect = lambda *args, **kw: datetime(*args, **kw)
 
         file_dir = pathlib.Path(__file__).parent.resolve()
         input_dir = os.path.join(file_dir, 'testdata/best_effort')

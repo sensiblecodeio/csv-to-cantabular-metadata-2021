@@ -5,7 +5,7 @@ import pathlib
 import os
 import logging
 from io import StringIO
-from datetime import date
+from datetime import datetime
 import ons_csv_to_ctb_json_main
 
 FILENAME_TABLES = 'cantabm_v10-2-2_dataset-filter_tables-md_19700101-1.json'
@@ -13,11 +13,11 @@ FILENAME_DATASET = 'cantabm_v10-2-2_dataset-filter_dataset-md_19700101-1.json'
 FILENAME_SERVICE = 'cantabm_v10-2-2_dataset-filter_service-md_19700101-1.json'
 
 class TestTopicSummary(unittest.TestCase):
-    @unittest.mock.patch('ons_csv_to_ctb_json_main.date')
-    def test_generated_json_dataset_filter(self, mock_date):
+    @unittest.mock.patch('ons_csv_to_ctb_json_main.datetime')
+    def test_generated_json_dataset_filter(self, mock_datetime):
         """Generate JSON from source CSV and compare it with expected values."""
-        mock_date.today.return_value = date(1970, 1, 1)
-        mock_date.side_effect = lambda *args, **kw: date(*args, **kw)
+        mock_datetime.now.return_value = datetime(1970, 1, 1)
+        mock_datetime.side_effect = lambda *args, **kw: datetime(*args, **kw)
 
         file_dir = pathlib.Path(__file__).parent.resolve()
         input_dir = os.path.join(file_dir, 'testdata/dataset_filter')
@@ -47,16 +47,16 @@ class TestTopicSummary(unittest.TestCase):
                 self.assertEqual(table_metadata, expected_table_metadata,
                                  msg=f'Comparing out/{FILENAME_TABLES} and expected/table-metadata-dataset-filter.json')
 
-        self.assertEqual(14, len(cm.output))
+        self.assertEqual(15, len(cm.output))
         self.assertRegex(cm.output[2], r'Dataset filter: TS')
         self.assertRegex(cm.output[6], r"Dataset.csv dropped 1 records related to datasets with Dataset_Mnemonics that do not start with one of: \['TS']")
         self.assertRegex(cm.output[7], r"Dataset_Variable.csv dropped 1 records related to datasets with Dataset_Mnemonics that do not start with one of: \['TS']")
 
-    @unittest.mock.patch('ons_csv_to_ctb_json_main.date')
-    def test_errors_in_unfiltered_datasets(self, mock_date):
+    @unittest.mock.patch('ons_csv_to_ctb_json_main.datetime')
+    def test_errors_in_unfiltered_datasets(self, mock_datetime):
         """Ensure that errors are seen when --dataset-filter flag not set."""
-        mock_date.today.return_value = date(1970, 1, 1)
-        mock_date.side_effect = lambda *args, **kw: date(*args, **kw)
+        mock_datetime.now.return_value = datetime(1970, 1, 1)
+        mock_datetime.side_effect = lambda *args, **kw: datetime(*args, **kw)
 
         file_dir = pathlib.Path(__file__).parent.resolve()
         input_dir = os.path.join(file_dir, 'testdata/dataset_filter')
