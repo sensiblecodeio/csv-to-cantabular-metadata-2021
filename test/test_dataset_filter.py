@@ -8,9 +8,9 @@ from io import StringIO
 from datetime import date
 import ons_csv_to_ctb_json_main
 
-FILENAME_TABLES = 'cantabm_v10-2-0_dataset-filter_tables-md_19700101-1.json'
-FILENAME_DATASET = 'cantabm_v10-2-0_dataset-filter_dataset-md_19700101-1.json'
-FILENAME_SERVICE = 'cantabm_v10-2-0_dataset-filter_service-md_19700101-1.json'
+FILENAME_TABLES = 'cantabm_v10-2-2_dataset-filter_tables-md_19700101-1.json'
+FILENAME_DATASET = 'cantabm_v10-2-2_dataset-filter_dataset-md_19700101-1.json'
+FILENAME_SERVICE = 'cantabm_v10-2-2_dataset-filter_service-md_19700101-1.json'
 
 class TestTopicSummary(unittest.TestCase):
     @unittest.mock.patch('ons_csv_to_ctb_json_main.date')
