@@ -634,17 +634,24 @@ class Loader:
             optional('Number_Of_Classifications'),
             optional('Quality_Statement_Text'),
             optional('Quality_Summary_URL'),
+            optional('Geography_Hierarchy_Order', validate_fn=isnumeric),
         ]
         variable_rows = self.read_file(filename, columns)
 
         variable_mnemonics = [v.data['Variable_Mnemonic'] for v in variable_rows]
         variable_to_source_questions = self.load_variable_to_questions(variable_mnemonics)
 
-        en_geo_fields = {'Geographic_Theme', 'Geographic_Coverage'}
+        en_geo_fields = {'Geographic_Theme', 'Geographic_Coverage', 'Geography_Hierarchy_Order'}
         all_geo_fields = en_geo_fields | {'Geographic_Theme_Welsh',
                                           'Geographic_Coverage_Welsh'}
         variables = {}
+        all_geography_hierarchy_orders = {}
+
         for variable, row_num in variable_rows:
+            geography_hierarchy_order = variable.get('Geography_Hierarchy_Order', None)
+            geography_hierarchy_order = int(geography_hierarchy_order) if \
+                geography_hierarchy_order else None
+
             # Ensure that non-geographic variables do not have geographic values set.
             is_geographic = variable['Variable_Type_Code'] == GEOGRAPHIC_VARIABLE_TYPE
             if not is_geographic:
@@ -658,6 +665,26 @@ class Loader:
                         self.recoverable_error(f'Reading {self.full_filename(filename)}:{row_num} '
                                                f'{geo_field} specified for non geographic '
                                                f'variable: {variable["Variable_Mnemonic"]}')
+            else:
+                if geography_hierarchy_order is not None:
+                    if geography_hierarchy_order in all_geography_hierarchy_orders:
+                        self.recoverable_error(
+                            f'Reading {self.full_filename(filename)}:{row_num} '
+                            f'Geography_Hierarchy_Order value of {geography_hierarchy_order} '
+                            f'specified for both {variable["Variable_Mnemonic"]} and '
+                            f'{all_geography_hierarchy_orders[geography_hierarchy_order]}')
+                    else:
+                        all_geography_hierarchy_orders[geography_hierarchy_order] = \
+                            variable['Variable_Mnemonic']
+
+                if not variable['Geography_Hierarchy_Order']:
+                    self.recoverable_error(f'Reading {self.full_filename(filename)}:{row_num} '
+                                           'no Geography_Hierarchy_Order specified for geographic '
+                                           f'variable: {variable["Variable_Mnemonic"]}')
+
+                    logging.warning(f'Reading {self.full_filename(filename)}:{row_num} '
+                                    'using 0 for Geography_Hierarchy_Order')
+                    variable['Geography_Hierarchy_Order'] = '0'
 
             # These values are not yet populated in source files
             # else:
@@ -711,7 +738,8 @@ class Loader:
                          'Version': variable['Version'],
                          'Variable_Description': Bilingual(
                              variable.pop('Variable_Description'),
-                             variable.pop('Variable_Description_Welsh'))})
+                             variable.pop('Variable_Description_Welsh')),
+                         'Geography_Hierarchy_Order': variable['Geography_Hierarchy_Order']})
         return variables
 
     @property

@@ -33,6 +33,7 @@ type ONS_Variable {
   Variable_Type: Variable_Type!
   Quality_Statement_Text: String
   Quality_Summary_URL: String
+  Geography_Hierarchy_Order: String
 }
 
 type Variable_Type {
