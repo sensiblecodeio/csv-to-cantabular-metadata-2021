@@ -1,12 +1,19 @@
 Release Notes
 =============
 
+1.3.1
+-----
+- Expose `Variable.Geography_Hierarchy_Order` in variable metadata.
+- Base dataset name is now configurable.
+- Cantabular version 10.2.2 is now the default version. The file format for version 10.2.2 is
+  identical to all other supported versions except 9.2.0.
+
 1.3.alpha
 ---------
 - Updated code to work with metadata schema version 1.3.
 - Removed preprocessing scripts that are no longer necessary.
 - Cantabular version 10.2.0 is now the default version. The file format for version 10.2.0 is
-  identical to all other supported versions except `9.2.0`.
+  identical to all other supported versions except 9.2.0.
 
 1.2.epsilon
 -----------
