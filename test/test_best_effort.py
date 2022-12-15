@@ -8,9 +8,9 @@ from io import StringIO
 from datetime import date
 import ons_csv_to_ctb_json_main
 
-FILENAME_TABLES = 'cantabm_v10-2-0_best-effort_tables-md_19700101-1.json'
-FILENAME_DATASET = 'cantabm_v10-2-0_best-effort_dataset-md_19700101-1.json'
-FILENAME_SERVICE = 'cantabm_v10-2-0_best-effort_service-md_19700101-1.json'
+FILENAME_TABLES = 'cantabm_v10-2-2_best-effort_tables-md_19700101-1.json'
+FILENAME_DATASET = 'cantabm_v10-2-2_best-effort_dataset-md_19700101-1.json'
+FILENAME_SERVICE = 'cantabm_v10-2-2_best-effort_service-md_19700101-1.json'
 
 class TestBestEffort(unittest.TestCase):
     @unittest.mock.patch('ons_csv_to_ctb_json_main.date')
@@ -48,7 +48,9 @@ class TestBestEffort(unittest.TestCase):
                                  msg=f'Comparing out/{FILENAME_TABLES} and expected/table-metadata-best-effort.json')
 
         warnings = [
-
+            r'Variable.csv:4 Geography_Hierarchy_Order value of 10 specified for both GEO2 and GEO1',
+            r'Variable.csv:8 no Geography_Hierarchy_Order specified for geographic variable: GEO4',
+            r'Variable.csv:8 using 0 for Geography_Hierarchy_Order',
             r'Classification.csv:3 no value supplied for required field Variable_Mnemonic',
             r'Classification.csv:3 dropping record',
             r'Classification.csv:4 duplicate value CLASS1 for Classification_Mnemonic',
@@ -85,7 +87,7 @@ class TestBestEffort(unittest.TestCase):
             r'Dataset.csv:6 DS5 has Destination_Pre_Built_Database_Mnemonic DB1 which has invalid Database_Type_Code: MICRODATA',
             r'Dataset.csv:6 dropping record',
             r'Dataset.csv:8 DS7 has different observation type AMT from other datasets in database DB_TAB: None',
-            r'25 errors were encountered during processing',
+            r'27 errors were encountered during processing',
         ]
 
         self.assertEqual(len(warnings), len(cm.output))

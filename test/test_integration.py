@@ -6,13 +6,13 @@ import os
 from datetime import date
 import ons_csv_to_ctb_json_main
 
-FILENAME_TABLES = 'cantabm_v10-2-0_unknown-metadata-version_tables-md_19700101-1.json'
-FILENAME_DATASET = 'cantabm_v10-2-0_unknown-metadata-version_dataset-md_19700101-1.json'
-FILENAME_SERVICE = 'cantabm_v10-2-0_unknown-metadata-version_service-md_19700101-1.json'
+FILENAME_TABLES = 'cantabm_v10-2-2_unknown-metadata-version_tables-md_19700101-1.json'
+FILENAME_DATASET = 'cantabm_v10-2-2_unknown-metadata-version_dataset-md_19700101-1.json'
+FILENAME_SERVICE = 'cantabm_v10-2-2_unknown-metadata-version_service-md_19700101-1.json'
 
-FILENAME_TABLES_NO_GEO = 't_cantabm_v10-2-0_no-geo_tables-md_19700101-2.json'
-FILENAME_DATASET_NO_GEO = 't_cantabm_v10-2-0_no-geo_dataset-md_19700101-2.json'
-FILENAME_SERVICE_NO_GEO = 't_cantabm_v10-2-0_no-geo_service-md_19700101-2.json'
+FILENAME_TABLES_NO_GEO = 't_cantabm_v10-2-2_no-geo_tables-md_19700101-2.json'
+FILENAME_DATASET_NO_GEO = 't_cantabm_v10-2-2_no-geo_dataset-md_19700101-2.json'
+FILENAME_SERVICE_NO_GEO = 't_cantabm_v10-2-2_no-geo_service-md_19700101-2.json'
 
 class TestIntegration(unittest.TestCase):
     def test_directory_validity(self):
@@ -67,6 +67,24 @@ class TestIntegration(unittest.TestCase):
             with self.assertRaises(SystemExit):
                 ons_csv_to_ctb_json_main.main()
 
+    def test_clashing_base_dataset_name(self):
+        """Check that a sensible error is raised if the base dataset name clashes with another dataset."""
+        file_dir = pathlib.Path(__file__).parent.resolve()
+        input_dir = os.path.join(file_dir, 'testdata')
+        output_dir = os.path.join(file_dir, 'out')
+
+        expected_error = 'Dataset has same case insensitive name as base dataset: DB1'
+        with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir,
+                                              '--base-dataset-name', 'DB1']):
+            with self.assertRaisesRegex(ValueError, expected_error):
+                ons_csv_to_ctb_json_main.main()
+
+        expected_error = 'Dataset has same case insensitive name as base dataset: db1'
+        with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir,
+                                              '--base-dataset-name', 'db1']):
+            with self.assertRaisesRegex(ValueError, expected_error):
+                ons_csv_to_ctb_json_main.main()
+
     @unittest.mock.patch('ons_csv_to_ctb_json_main.date')
     def test_generated_json(self, mock_date):
         """Generate JSON from source CSV and compare it with expected values."""
@@ -110,7 +128,7 @@ class TestIntegration(unittest.TestCase):
         input_dir = os.path.join(file_dir, 'testdata')
         output_dir = os.path.join(file_dir, 'out')
         with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir,
-            '-m', 'no-geo', '-b', '2', '-p', 't']):
+            '-m', 'no-geo', '-b', '2', '-p', 't', '--base-dataset-name', 'dummy']):
             ons_csv_to_ctb_json_main.main()
             with open(os.path.join(output_dir, FILENAME_SERVICE_NO_GEO)) as f:
                 service_metadata = json.load(f)

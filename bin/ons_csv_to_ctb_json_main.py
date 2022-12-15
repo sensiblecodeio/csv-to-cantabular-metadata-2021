@@ -9,10 +9,14 @@ from datetime import date
 from ons_csv_to_ctb_json_load import Loader, PUBLIC_SECURITY_MNEMONIC
 from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 
-VERSION = '1.3.alpha'
+# The first two elements in VERSION refer to the metadata schema. The final element is the
+# iteration of the conversion code for that version of the schema.
+VERSION = '1.3.1'
 
 SYSTEM = 'cantabm'
-DEFAULT_CANTABULAR_VERSION = '10.2.0'
+DEFAULT_CANTABULAR_VERSION = '10.2.2'
+CANTABULAR_V10_2_1 = '10.2.1'
+CANTABULAR_V10_2_0 = '10.2.0'
 CANTABULAR_V10_1_1 = '10.1.1'
 CANTABULAR_V10_1_0 = '10.1.0'
 CANTABULAR_V10_0_0 = '10.0.0'
@@ -21,8 +25,9 @@ CANTABULAR_V9_2_0 = '9.2.0'
 FILE_CONTENT_TYPE_DATASET = 'dataset-md'
 FILE_CONTENT_TYPE_TABLES = 'tables-md'
 FILE_CONTENT_TYPE_SERVICE = 'service-md'
-KNOWN_CANTABULAR_VERSIONS = [DEFAULT_CANTABULAR_VERSION, CANTABULAR_V10_1_1, CANTABULAR_V10_1_0,
-                             CANTABULAR_V10_0_0, CANTABULAR_V9_3_0, CANTABULAR_V9_2_0]
+KNOWN_CANTABULAR_VERSIONS = [DEFAULT_CANTABULAR_VERSION, CANTABULAR_V10_2_1, CANTABULAR_V10_2_0,
+                             CANTABULAR_V10_1_1, CANTABULAR_V10_1_0, CANTABULAR_V10_0_0,
+                             CANTABULAR_V9_3_0, CANTABULAR_V9_2_0]
 
 
 def filename_segment(value):
@@ -127,6 +132,15 @@ def main():
                              '"--dataset-filter TS,RM" to include datasets with a '
                              'Dataset_Mnemonic beginning with either TS or RM.')
 
+    parser.add_argument('--base-dataset-name',
+                        type=str,
+                        default='base',
+                        help='Name to use for virtual base dataset which contains all variables '
+                             'and which all other datasets include. The purpose of this dataset '
+                             'is to minimise the size of the dataset JSON file by avoiding '
+                             'duplication of variable data- the base dataset does not have to '
+                             'exist as an actual Cantabular dataset.')
+
     args = parser.parse_args()
 
     logging.basicConfig(format='t=%(asctime)s lvl=%(levelname)s msg=%(message)s',
@@ -158,7 +172,7 @@ def main():
 
     # Build Cantabular dataset objects.
     # A Cantabular dataset is equivalent to an ONS database.
-    ctb_datasets = build_ctb_datasets(loader.databases, ctb_variables)
+    ctb_datasets = build_ctb_datasets(loader.databases, ctb_variables, args.base_dataset_name)
 
     # Build Cantabular table objects.
     # A Cantabular table is equivalent to an ONS dataset.
@@ -276,7 +290,7 @@ def build_ctb_variables(classifications, cat_labels):
     return ctb_variables
 
 
-def build_ctb_datasets(databases, ctb_variables):
+def build_ctb_datasets(databases, ctb_variables, base_dataset_name):
     """
     Build Cantabular dataset objects.
 
@@ -288,7 +302,7 @@ def build_ctb_datasets(databases, ctb_variables):
     # Add all the variables to a base dataset. Other datasets include this to avoid duplicating
     # metadata.
     ctb_dataset = BilingualDict({
-        'name': 'base',
+        'name': base_dataset_name,
         'label': Bilingual(
             'Base dataset with metadata for all variables',
             'Base dataset with metadata for all variables in Welsh',
@@ -316,10 +330,14 @@ def build_ctb_datasets(databases, ctb_variables):
     })
     ctb_datasets.extend([ctb_dataset.english(), ctb_dataset.welsh()])
 
+    uc_base_dataset_name = base_dataset_name.upper()
     for database_mnemonic, database in databases.items():
+        if database_mnemonic.upper() == uc_base_dataset_name:
+            raise ValueError('Dataset has same case insensitive name as base dataset: '
+                             f'{base_dataset_name}')
         ctb_dataset = BilingualDict({
             'name': database_mnemonic,
-            'incl': [{'name': 'base', 'lang': Bilingual('en', 'cy')}],
+            'incl': [{'name': base_dataset_name, 'lang': Bilingual('en', 'cy')}],
             'label': database.private['Database_Title'],
             'description': database.private['Database_Description'],
             'lang': Bilingual('en', 'cy'),

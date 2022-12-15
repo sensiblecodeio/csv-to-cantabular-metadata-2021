@@ -1,6 +1,6 @@
 [
     {
-        "name": "base",
+        "name": "dummy",
         "label": "Base dataset with metadata for all variables",
         "lang": "en",
         "description": "This is a base dataset containing metadata for all variables used across all other datasets. Other datasets include it to avoid duplicating metadata.",
@@ -31,6 +31,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": "VAR1 Quality Statement Text",
                         "Quality_Summary_URL": "VAR1 Quality Statement URL",
+                        "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR1 Title",
                         "Comparability_Comments": "VAR1 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
@@ -95,6 +96,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
+                        "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR2 Title",
                         "Comparability_Comments": "VAR2 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
@@ -126,6 +128,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
+                        "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR3 Title",
                         "Comparability_Comments": null,
                         "Uk_Comparison_Comments": null,
@@ -157,6 +160,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": "VAR1 Quality Statement Text",
                         "Quality_Summary_URL": "VAR1 Quality Statement URL",
+                        "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR1 Title",
                         "Comparability_Comments": "VAR1 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
@@ -210,6 +214,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
+                        "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR2 Title",
                         "Comparability_Comments": "VAR2 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
@@ -241,6 +246,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
+                        "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR4 Title",
                         "Comparability_Comments": null,
                         "Uk_Comparison_Comments": null,
@@ -272,6 +278,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
+                        "Geography_Hierarchy_Order": "1",
                         "Variable_Title": "GEO1 Title",
                         "Comparability_Comments": "GEO1 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO1 UK Comparison Comments",
@@ -318,6 +325,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
+                        "Geography_Hierarchy_Order": "2",
                         "Variable_Title": "GEO2 Title",
                         "Comparability_Comments": "GEO2 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments",
@@ -338,7 +346,7 @@
         ]
     },
     {
-        "name": "base",
+        "name": "dummy",
         "label": "Base dataset with metadata for all variables in Welsh",
         "lang": "cy",
         "description": "This is the Welsh version of the base dataset containing metadata for all variables.",
@@ -369,6 +377,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": "VAR1 Quality Statement Text",
                         "Quality_Summary_URL": "VAR1 Quality Statement URL",
+                        "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR1 Title (Welsh)",
                         "Comparability_Comments": "VAR1 Comparability Comments (Welsh)",
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments (Welsh)",
@@ -438,6 +447,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
+                        "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR2 Title",
                         "Comparability_Comments": "VAR2 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
@@ -471,6 +481,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
+                        "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR3 Title",
                         "Comparability_Comments": null,
                         "Uk_Comparison_Comments": null,
@@ -502,6 +513,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": "VAR1 Quality Statement Text",
                         "Quality_Summary_URL": "VAR1 Quality Statement URL",
+                        "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR1 Title (Welsh)",
                         "Comparability_Comments": "VAR1 Comparability Comments (Welsh)",
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments (Welsh)",
@@ -555,6 +567,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
+                        "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR2 Title",
                         "Comparability_Comments": "VAR2 Comparability Comments",
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
@@ -586,6 +599,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
+                        "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR4 Title",
                         "Comparability_Comments": null,
                         "Uk_Comparison_Comments": null,
@@ -617,6 +631,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
+                        "Geography_Hierarchy_Order": "1",
                         "Variable_Title": "GEO1 Title (Welsh)",
                         "Comparability_Comments": "GEO1 Comparability Comments (Welsh)",
                         "Uk_Comparison_Comments": "GEO1 UK Comparison Comments (Welsh)",
@@ -663,6 +678,7 @@
                         "Version": "1",
                         "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
+                        "Geography_Hierarchy_Order": "2",
                         "Variable_Title": "GEO2 Title",
                         "Comparability_Comments": "GEO2 Comparability Comments",
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments",
@@ -686,7 +702,7 @@
         "name": "DB1",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "en"
             }
         ],
@@ -727,7 +743,7 @@
         "name": "DB1",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "cy"
             }
         ],
@@ -768,7 +784,7 @@
         "name": "DB2",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "en"
             }
         ],
@@ -803,7 +819,7 @@
         "name": "DB2",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "cy"
             }
         ],
@@ -838,7 +854,7 @@
         "name": "DB3",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "en"
             }
         ],
@@ -873,7 +889,7 @@
         "name": "DB3",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "cy"
             }
         ],
@@ -908,7 +924,7 @@
         "name": "DB_TAB",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "en"
             }
         ],
@@ -943,7 +959,7 @@
         "name": "DB_TAB",
         "incl": [
             {
-                "name": "base",
+                "name": "dummy",
                 "lang": "cy"
             }
         ],
