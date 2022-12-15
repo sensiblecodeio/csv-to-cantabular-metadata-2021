@@ -307,7 +307,13 @@ def build_ctb_datasets(databases, ctb_variables, base_dataset_name):
         },
         'vars': ctb_variables,
     })
-    ctb_datasets.extend([ctb_dataset.english(), ctb_dataset.welsh()])
+
+    # Include the English dataset in the Welsh dataset. This ensures that the Welsh output from the
+    # metadata server will include English category labels that do not have Welsh values.
+    welsh_dataset = ctb_dataset.welsh()
+    welsh_dataset['incl'] = [{'name': base_dataset_name, 'lang': 'en'}]
+
+    ctb_datasets.extend([ctb_dataset.english(), welsh_dataset])
 
     uc_base_dataset_name = base_dataset_name.upper()
     for database_mnemonic, database in databases.items():

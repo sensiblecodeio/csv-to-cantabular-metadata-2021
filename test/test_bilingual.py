@@ -14,6 +14,14 @@ class TestBilingual(unittest.TestCase):
         self.assertEqual(data.english(), 'en')
         self.assertEqual(data.welsh(), 'en')
 
+        data = Bilingual('en', '', default_to_english=True)
+        self.assertEqual(data.english(), 'en')
+        self.assertEqual(data.welsh(), 'en')
+
+        data = Bilingual('en', '', default_to_english=False)
+        self.assertEqual(data.english(), 'en')
+        self.assertEqual(data.welsh(), None)
+
     def test_bilingual_dict(self):
         data = BilingualDict({
             'lang': Bilingual('english', 'welsh'),

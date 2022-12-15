@@ -231,17 +231,13 @@ Cantabular metadata.
 | `label` | `String` | `Classification.External_Classification_Label_English` or `Variable.Variable_Title` for geographic variables | `Classification.External_Classification_Label_Welsh` or `Variable.Variable_Title_Welsh` for geographic variables |
 | `description` | `String` | `Variable.Variable_Description` | `Variable.Variable_Description_Welsh`. |
 | `meta` | `VariableMetadata!` | User specific metadata from `Classification.csv` | |
-| `catLabels` | `LabelsMap` | `{}` | Map of `Category.Code` to `Category.External_Category_Label_Welsh` values (see note below) |
+| `catLabels` | `LabelsMap` | Map of  `Category.Code` to `Category.External_Category_Label_English` or (`Category.Internal_Category_Label_English` if external value not populated) values| Map of `Category.Code` to `Category.External_Category_Label_Welsh` values |
 | `digest` | `String!` | Automatically populated hash of values in metadata for the variable | |
 
 It is essential that the variable `name` matches the name of the variable in the Cantabular codebook. For
 non-geographic variables this will be `Category_Mapping.Codebook_Mnemonic` if the field is populated for
 the classification or else `Classification.Classification_Mnemonic`. For base classifications the `Codebook_Mnemonic` and `Classification_Mnemonic` are likely to be different, whereas for higher level
 classifications they will be the same. The `name` will be `Variable.Variable_Mnemonic` for geographic variables.
-
-The English version of `catLabels` is an empty map. The English labels can be sourced from the codebook. The Welsh
-version of `catLabels` is a map of category codes to Welsh labels. It only contains values for Welsh labels that are
-populated i.e. it is not necessarily an exhaustive list of variable categories.
 
 ## VariableMetadata
 
@@ -605,14 +601,28 @@ with metadata for the **Region** and **Sex** variables.
       "name": "Teaching-Dataset",
       "vars": [
         {
-          "catLabels": null,
+          "catLabels": {
+            "E12000001": "North East",
+            "E12000002": "North West",
+            "E12000003": "Yorkshire and the Humber",
+            "E12000004": "East Midlands",
+            "E12000005": "West Midlands",
+            "E12000006": "East of England",
+            "E12000007": "London",
+            "E12000008": "South East",
+            "E12000009": "South West",
+            "W92000004": "Wales"
+          },
           "description": "The geographic region in which a person lives, derived from the address of their household or communal establishment.",
           "meta": {
             "Topics": []
           }
         },
         {
-          "catLabels": null,
+          "catLabels": {
+            "1": "Male",
+            "2": "Female"
+          },
           "description": "The classification of a person as either male or female.",
           "meta": {
             "Topics": [

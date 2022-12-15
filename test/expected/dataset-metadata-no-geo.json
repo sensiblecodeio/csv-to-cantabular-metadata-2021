@@ -80,7 +80,14 @@
                         }
                     ]
                 },
-                "catLabels": null
+                "catLabels": {
+                    "CODE3": "LABEL3",
+                    "CODE5": "LABEL5 Internal",
+                    "CODE6": "LABEL6 Internal",
+                    "CODE2": "LABEL2 Internal",
+                    "CODE4": "LABEL4 Internal",
+                    "CODE1": "LABEL1"
+                }
             },
             {
                 "name": "CLASS2",
@@ -112,7 +119,9 @@
                     },
                     "Topics": []
                 },
-                "catLabels": null
+                "catLabels": {
+                    "CODE2-1": "LABEL2-1 Internal"
+                }
             },
             {
                 "name": "CLASS3",
@@ -695,6 +704,12 @@
                     "Topics": []
                 },
                 "catLabels": null
+            }
+        ],
+        "incl": [
+            {
+                "name": "dummy",
+                "lang": "en"
             }
         ]
     },

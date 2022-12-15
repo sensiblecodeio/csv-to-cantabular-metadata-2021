@@ -47,7 +47,9 @@
                     },
                     "Topics": []
                 },
-                "catLabels": null
+                "catLabels": {
+                    "CODE1": "LABEL1"
+                }
             },
             {
                 "name": "CLASS3",
@@ -548,6 +550,12 @@
                     "Topics": []
                 },
                 "catLabels": null
+            }
+        ],
+        "incl": [
+            {
+                "name": "base",
+                "lang": "en"
             }
         ]
     },
