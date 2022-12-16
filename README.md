@@ -50,6 +50,9 @@ t=2022-12-14 15:24:57,716 lvl=INFO msg=Output files will be written in Cantabula
 t=2022-12-14 15:24:57,717 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_dataset-md_20221214-1.json
 t=2022-12-14 15:24:57,718 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_tables-md_20221214-1.json
 t=2022-12-14 15:24:57,718 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_service-md_20221214-1.json
+```
+
+More detailed information can be obtained by running with a `-l DEBUG` flag e.g.:
 
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -l DEBUG
