@@ -7,7 +7,7 @@ and converts them to hierarchical JSON that can be loaded into `cantabular-metad
 It is compatible with version `1.3` of the metadata schema and versions `10.2.2`/`10.2.1`/`10.2.0`/`10.1.1`/`10.1.0`/`10.0.0`/`9.3.0`/`9.2.0` of
 `cantabular-metadata`. `10.2.2` format is used by default and is identical to all other supported versions except `9.2.0`.
 
-This is version `1.3.1` of the CSV to JSON processing software and is subject to change.
+This is version `1.3.2` of the CSV to JSON processing software and is subject to change.
 
 The applications only use packages in the Python standard library.
 
@@ -35,7 +35,7 @@ Basic logging will be displayed by default, including the number of high-level C
 objects loaded and the name of the output files.
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/
-t=2022-12-14 15:24:57,714 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.1
+t=2022-12-14 15:24:57,714 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.2
 t=2022-12-14 15:24:57,714 lvl=INFO msg=CSV source directory: test/testdata/
 t=2022-12-14 15:24:57,714 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
 t=2022-12-14 15:24:57,715 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
@@ -56,7 +56,7 @@ More detailed information can be obtained by running with a `-l DEBUG` flag e.g.
 
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -l DEBUG
-t=2022-12-14 15:25:47,524 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.1
+t=2022-12-14 15:25:47,524 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.2
 t=2022-12-14 15:25:47,525 lvl=INFO msg=CSV source directory: test/testdata/
 t=2022-12-14 15:25:47,525 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
 t=2022-12-14 15:25:47,525 lvl=DEBUG msg=Creating classification for geographic variable: GEO1
@@ -121,7 +121,7 @@ arguments as described in the help text for `ons_csv_to_ctb_json_main.py`:
 For example:
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -p t -m test -b 42
-t=2022-12-14 15:26:29,585 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.1
+t=2022-12-14 15:26:29,585 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.2
 t=2022-12-14 15:26:29,585 lvl=INFO msg=CSV source directory: test/testdata/
 t=2022-12-14 15:26:29,585 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
 t=2022-12-14 15:26:29,587 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
@@ -150,7 +150,7 @@ This repository contains some test data that is full of errors. It can be used t
 of the `--best-effort` flag as shown below:
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/best_effort  -o ctb_metadata_files/ -m best-effort --best-effort
-t=2022-12-14 15:27:14,776 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.1
+t=2022-12-14 15:27:14,776 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.2
 t=2022-12-14 15:27:14,776 lvl=INFO msg=CSV source directory: test/testdata/best_effort
 t=2022-12-14 15:27:14,777 lvl=WARNING msg=Reading test/testdata/best_effort/Variable.csv:4 Geography_Hierarchy_Order value of 10 specified for both GEO2 and GEO1
 t=2022-12-14 15:27:14,777 lvl=WARNING msg=Reading test/testdata/best_effort/Variable.csv:8 no Geography_Hierarchy_Order specified for geographic variable: GEO4
@@ -223,7 +223,7 @@ datasets with a `Dataset_Mnemonic` beginning with **TS** are processed.
 
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/dataset_filter/ -o ctb_metadata_files/ --dataset-filter TS
-t=2022-12-14 15:27:56,339 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.1
+t=2022-12-14 15:27:56,339 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.2
 t=2022-12-14 15:27:56,339 lvl=INFO msg=CSV source directory: test/testdata/dataset_filter/
 t=2022-12-14 15:27:56,339 lvl=INFO msg=Dataset filter: TS
 t=2022-12-14 15:27:56,340 lvl=INFO msg=No geography file specified
@@ -252,7 +252,7 @@ can be found in the `sample_2011` directory.
 Use this command to convert the files to JSON (with debugging enabled):
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i sample_2011/ -g sample_2011/geography.csv -o ctb_metadata_files/ -m 2001-sample -l DEBUG
-t=2022-12-14 15:28:35,123 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.1
+t=2022-12-14 15:28:35,123 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.2
 t=2022-12-14 15:28:35,124 lvl=INFO msg=CSV source directory: sample_2011/
 t=2022-12-14 15:28:35,124 lvl=INFO msg=Geography file: sample_2011/geography.csv
 t=2022-12-14 15:28:35,125 lvl=DEBUG msg=Creating classification for geographic variable: Region
@@ -337,7 +337,7 @@ will be reflected in the output filenames, but `10.2.2` format will be used.
 To generate version 9.2.0 compatible files from the test data use the following command:
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -v 9.2.0
-t=2022-12-14 15:38:00,213 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.1
+t=2022-12-14 15:38:00,213 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.2
 t=2022-12-14 15:38:00,213 lvl=INFO msg=CSV source directory: test/testdata/
 t=2022-12-14 15:38:00,213 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
 t=2022-12-14 15:38:00,214 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER

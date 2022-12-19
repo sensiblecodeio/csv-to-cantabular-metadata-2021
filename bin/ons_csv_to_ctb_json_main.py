@@ -11,7 +11,7 @@ from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 
 # The first two elements in VERSION refer to the metadata schema. The final element is the
 # iteration of the conversion code for that version of the schema.
-VERSION = '1.3.1'
+VERSION = '1.3.2'
 
 SYSTEM = 'cantabm'
 DEFAULT_CANTABULAR_VERSION = '10.2.2'
