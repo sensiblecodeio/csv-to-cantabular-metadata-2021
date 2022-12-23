@@ -99,19 +99,28 @@ message.
 | Field | GraphQL Type | Source (en) | Source (cy) |
 | --- | --- | --- | --- |
 | `description` | `String!` | "Census 2021 metadata" | "Census 2021 metadata in Welsh" |
-| `version` | `Version!` | Version information from various sources |  |
+| `build` | `Build!` | Build and version information from various sources |  |
 
-## Version
+## Build
 
-The data in `Version` is intended for debug purposes.
-It provides some information about the source of the metadata.
+The data in `Build` is intended for debug purposes.
+It provides some information about the build process, where the CSV files were converted to JSON.
+
+| Field | GraphQL Type | Source (en) | Source (cy) |
+| --- | --- | --- | --- |
+| `created` | `String!` | Time in ISO 8601 format that the Python CSV to JSON script was executed | |
+| `versions` | `Versions!` | Version information relating to build | |
+
+## Versions
+
+The data in `Versions` is intended for debug purposes.
+It provides the versions of the various components used to build the JSON files.
 The `data` value is the `Metadata_Version_Number` taken from the last line of the `Metadata_Version.csv` file,
 but all other fields in that file are ignored.
 
 | Field | GraphQL Type | Source (en) | Source (cy) |
 | --- | --- | --- | --- |
 | `data` | `String!` | `Metadata_Version.Metadata_Version_Number` | |
-| `created` | `String!` | Time in ISO 8601 format that the Python CSV to JSON script was executed | |
 | `script` | `String!` | Version of the script used to build the metadata | |
 | `schema` | `String!` | Version of the ONS metadata schema | |
 
@@ -409,11 +418,13 @@ This query gets the version information from the service metadata.
 {
   service {
     meta {
-      version {
-        data
-        schema
-        script
+      build {
         created
+        versions {
+          data
+          schema
+          script
+        }
       }
     }
   }
@@ -427,19 +438,19 @@ This query gets the version information from the service metadata.
   "data": {
     "service": {
       "meta": {
-        "version": {
-          "created": "2022-12-16T15:29:37.832942",
-          "data": "1",
-          "schema": "1.3",
-          "script": "1.3.2"
+        "build": {
+          "created": "2022-12-23T11:02:02.485521",
+          "versions": {
+            "data": "1",
+            "schema": "1.3",
+            "script": "1.3.2"
+          }
         }
       }
     }
   }
 }
 ```
-
-
 
 ### Get all tables
 
@@ -704,11 +715,13 @@ along with version information from the service metadata.
 {
   service {
     meta {
-      version {
+      build {
         created
-        data
-        schema
-        script
+        versions {
+          data
+          schema
+          script
+        }
       }
     }
     tables(names: "LC1117EW") {
@@ -782,11 +795,13 @@ along with version information from the service metadata.
     },
     "service": {
       "meta": {
-        "version": {
-          "created": "2022-12-16T15:29:37.832942",
-          "data": "1",
-          "schema": "1.3",
-          "script": "1.3.2"
+        "build": {
+          "created": "2022-12-23T11:02:02.485521",
+          "versions": {
+            "data": "1",
+            "schema": "1.3",
+            "script": "1.3.2"
+          }
         }
       },
       "tables": [

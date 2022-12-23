@@ -1,11 +1,15 @@
 type ServiceMetadata {
   description: String!
-  version: Version!
+  build: Build!
 }
 
-type Version {
-  data: String!
+type Build {
   created: String!
+  versions: Versions!
+}
+
+type Versions {
+  data: String!
   schema: String!
   script: String!
 }

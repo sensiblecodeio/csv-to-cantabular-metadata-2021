@@ -199,11 +199,11 @@ def main():
             f'{args.cantabular_version} is an unknown Cantabular version: files will be written '
             f'using {DEFAULT_CANTABULAR_VERSION} format')
 
-    logging.info('Version '
-                 f'data={loader.metadata_version_number} '
-                 f'schema={SCHEMA_VERSION} '
-                 f'script={SCRIPT_VERSION} '
-                 f'created={build_time}')
+    logging.info('Build '
+                 f'created={build_time} '
+                 f'versions_data={loader.metadata_version_number} '
+                 f'versions_schema={SCHEMA_VERSION} '
+                 f'versions_script={SCRIPT_VERSION}')
 
     filename = os.path.join(args.output_dir,
                             base_filename_template.format(FILE_CONTENT_TYPE_DATASET))
@@ -370,11 +370,13 @@ def build_ctb_service_metadata(metadata_version_number, build_time):
             'description': Bilingual(
                 'Census 2021 metadata',
                 'Census 2021 metadata in Welsh'),
-            'version': {
-                'data': metadata_version_number,
-                'schema': SCHEMA_VERSION,
-                'script': SCRIPT_VERSION,
+            'build': {
                 'created': build_time,
+                'versions': {
+                    'data': metadata_version_number,
+                    'schema': SCHEMA_VERSION,
+                    'script': SCRIPT_VERSION,
+                },
             },
         },
     })

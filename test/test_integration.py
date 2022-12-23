@@ -120,7 +120,7 @@ class TestIntegration(unittest.TestCase):
                                  f'Comparing out/{FILENAME_TABLES} and expected/table-metadata.json')
 
         self.assertEqual(16, len(cm.output))
-        self.assertRegex(cm.output[12], r'Version data=30 schema=1.3 script=1.3.2 created=1970-01-01T00:00:00$')
+        self.assertRegex(cm.output[12], r'Build created=1970-01-01T00:00:00 versions_data=30 versions_schema=1.3 versions_script=1.3.2$')
 
     @unittest.mock.patch('ons_csv_to_ctb_json_main.datetime')
     def test_no_geography_file(self, mock_datetime):
