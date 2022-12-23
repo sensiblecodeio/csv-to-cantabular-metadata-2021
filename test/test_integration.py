@@ -136,10 +136,10 @@ class TestIntegration(unittest.TestCase):
             ons_csv_to_ctb_json_main.main()
             with open(os.path.join(output_dir, FILENAME_SERVICE_NO_GEO)) as f:
                 service_metadata = json.load(f)
-            with open(os.path.join(file_dir, 'expected/service-metadata.json')) as f:
+            with open(os.path.join(file_dir, 'expected/service-metadata-no-geo.json')) as f:
                 expected_service_metadata = json.load(f)
             self.assertEqual(service_metadata, expected_service_metadata,
-                             f'Comparing out/{FILENAME_SERVICE_NO_GEO} and expected/service-metadata.json')
+                             f'Comparing out/{FILENAME_SERVICE_NO_GEO} and expected/service-metadata-no-geo.json')
 
             with open(os.path.join(output_dir, FILENAME_DATASET_NO_GEO)) as f:
                 dataset_metadata = json.load(f)

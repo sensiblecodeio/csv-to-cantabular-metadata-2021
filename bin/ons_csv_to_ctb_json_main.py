@@ -183,7 +183,8 @@ def main():
     ctb_tables = build_ctb_tables(loader.datasets)
 
     # Build Cantabular service metadata.
-    service_metadata = build_ctb_service_metadata(loader.metadata_version_number, build_time)
+    service_metadata = build_ctb_service_metadata(loader.metadata_version_number, build_time,
+                                                  args)
 
     error_count = loader.error_count()
     if error_count:
@@ -362,7 +363,7 @@ def build_ctb_tables(datasets):
     return ctb_tables
 
 
-def build_ctb_service_metadata(metadata_version_number, build_time):
+def build_ctb_service_metadata(metadata_version_number, build_time, args):
     """Build the service metadata."""
     service_metadata = BilingualDict({
         'lang': Bilingual('en', 'cy'),
@@ -372,6 +373,10 @@ def build_ctb_service_metadata(metadata_version_number, build_time):
                 'Census 2021 metadata in Welsh'),
             'build': {
                 'created': build_time,
+                'dataset_filter': args.dataset_filter if args.dataset_filter else None,
+                'best_effort': str(args.best_effort),
+                'geography_file':
+                    os.path.basename(args.geography_file) if args.geography_file else None,
                 'versions': {
                     'data': metadata_version_number,
                     'schema': SCHEMA_VERSION,

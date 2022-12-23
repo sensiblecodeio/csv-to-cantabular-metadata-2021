@@ -28,10 +28,10 @@ class TestBestEffort(unittest.TestCase):
                 ons_csv_to_ctb_json_main.main()
                 with open(os.path.join(output_dir, FILENAME_SERVICE)) as f:
                     service_metadata = json.load(f)
-                with open(os.path.join(file_dir, 'expected/service-metadata.json')) as f:
+                with open(os.path.join(file_dir, 'expected/service-metadata-best-effort.json')) as f:
                     expected_service_metadata = json.load(f)
                 self.assertEqual(service_metadata, expected_service_metadata,
-                                 msg=f'Comparing out/{FILENAME_SERVICE} and expected/service-metadata.json')
+                                 msg=f'Comparing out/{FILENAME_SERVICE} and expected/service-metadata-best-effort.json')
 
                 with open(os.path.join(output_dir, FILENAME_DATASET)) as f:
                     dataset_metadata = json.load(f)

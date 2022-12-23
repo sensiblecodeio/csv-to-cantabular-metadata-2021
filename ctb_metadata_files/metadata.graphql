@@ -5,6 +5,9 @@ type ServiceMetadata {
 
 type Build {
   created: String!
+  dataset_filter: String
+  best_effort: String!
+  geography_file: String
   versions: Versions!
 }
 

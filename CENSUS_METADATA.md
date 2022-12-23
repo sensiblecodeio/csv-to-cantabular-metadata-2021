@@ -109,6 +109,9 @@ It provides some information about the build process, where the CSV files were c
 | Field | GraphQL Type | Source (en) | Source (cy) |
 | --- | --- | --- | --- |
 | `created` | `String!` | Time in ISO 8601 format that the Python CSV to JSON script was executed | |
+| `best_effort` | `String!` | `"TRUE"` if the `--best-effort` flag was used when running the script, else `"FALSE"` | |
+| `dataset_filter` | `String` | Contains the values specified with the `--dataset-filter` command line parameter, if it was used when running the script | |
+| `geography_file` | `String` | Name of the geography file used to source category labels for geographic variables if supplied on the command line | |
 | `versions` | `Versions!` | Version information relating to build | |
 
 ## Versions
@@ -420,6 +423,9 @@ This query gets the version information from the service metadata.
     meta {
       build {
         created
+        geography_file
+        dataset_filter
+        best_effort
         versions {
           data
           schema
@@ -439,7 +445,10 @@ This query gets the version information from the service metadata.
     "service": {
       "meta": {
         "build": {
-          "created": "2022-12-23T11:02:02.485521",
+          "best_effort": "False",
+          "created": "2023-01-13T16:18:31.812816",
+          "dataset_filter": null,
+          "geography_file": "geography.csv",
           "versions": {
             "data": "1",
             "schema": "1.3",
@@ -717,6 +726,9 @@ along with version information from the service metadata.
     meta {
       build {
         created
+        geography_file
+        dataset_filter
+        best_effort
         versions {
           data
           schema
@@ -796,7 +808,10 @@ along with version information from the service metadata.
     "service": {
       "meta": {
         "build": {
-          "created": "2022-12-23T11:02:02.485521",
+          "best_effort": "False",
+          "created": "2023-01-13T16:18:31.812816",
+          "dataset_filter": null,
+          "geography_file": "geography.csv",
           "versions": {
             "data": "1",
             "schema": "1.3",
