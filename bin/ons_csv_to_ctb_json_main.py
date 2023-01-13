@@ -21,13 +21,12 @@ CANTABULAR_V10_1_1 = '10.1.1'
 CANTABULAR_V10_1_0 = '10.1.0'
 CANTABULAR_V10_0_0 = '10.0.0'
 CANTABULAR_V9_3_0 = '9.3.0'
-CANTABULAR_V9_2_0 = '9.2.0'
 FILE_CONTENT_TYPE_DATASET = 'dataset-md'
 FILE_CONTENT_TYPE_TABLES = 'tables-md'
 FILE_CONTENT_TYPE_SERVICE = 'service-md'
 KNOWN_CANTABULAR_VERSIONS = [DEFAULT_CANTABULAR_VERSION, CANTABULAR_V10_2_1, CANTABULAR_V10_2_0,
                              CANTABULAR_V10_1_1, CANTABULAR_V10_1_0, CANTABULAR_V10_0_0,
-                             CANTABULAR_V9_3_0, CANTABULAR_V9_2_0]
+                             CANTABULAR_V9_3_0]
 
 
 def filename_segment(value):
@@ -185,68 +184,33 @@ def main():
     if error_count:
         logging.warning(f'{error_count} errors were encountered during processing')
 
-    # There is not a separate tables file for v9.2.0. Use the output_file_types list
-    # to determine which file types will be written.
-    output_file_types = [FILE_CONTENT_TYPE_DATASET, FILE_CONTENT_TYPE_SERVICE,
-                         FILE_CONTENT_TYPE_TABLES]
-
-    if args.cantabular_version == DEFAULT_CANTABULAR_VERSION:
+    if args.cantabular_version in KNOWN_CANTABULAR_VERSIONS:
         logging.info(
-            f'Output files will be written in Cantabular {args.cantabular_version} format')
-
-    elif args.cantabular_version == CANTABULAR_V9_2_0:
-        output_file_types = [FILE_CONTENT_TYPE_DATASET, FILE_CONTENT_TYPE_SERVICE]
-        convert_json_to_ctb_v9_2_0(ctb_datasets, ctb_tables, service_metadata)
-        logging.info(
-            f'Output files will be written in Cantabular {args.cantabular_version} format')
-
+            f'Output files will be written in Cantabular {args.cantabular_version} format, '
+            f'which is compatible with all versions of Cantabular from {CANTABULAR_V9_3_0} '
+            f'to {DEFAULT_CANTABULAR_VERSION}')
     else:
         logging.info(
             f'{args.cantabular_version} is an unknown Cantabular version: files will be written '
             f'using {DEFAULT_CANTABULAR_VERSION} format')
 
-    if FILE_CONTENT_TYPE_DATASET in output_file_types:
-        filename = os.path.join(args.output_dir,
-                                base_filename_template.format(FILE_CONTENT_TYPE_DATASET))
-        with open(filename, 'w') as jsonfile:
-            json.dump(ctb_datasets, jsonfile, indent=4)
-        logging.info(f'Written dataset metadata file to: {filename}')
+    filename = os.path.join(args.output_dir,
+                            base_filename_template.format(FILE_CONTENT_TYPE_DATASET))
+    with open(filename, 'w') as jsonfile:
+        json.dump(ctb_datasets, jsonfile, indent=4)
+    logging.info(f'Written dataset metadata file to: {filename}')
 
-    if FILE_CONTENT_TYPE_TABLES in output_file_types:
-        filename = os.path.join(args.output_dir,
-                                base_filename_template.format(FILE_CONTENT_TYPE_TABLES))
-        with open(filename, 'w') as jsonfile:
-            json.dump(ctb_tables, jsonfile, indent=4)
-        logging.info(f'Written table metadata file to: {filename}')
+    filename = os.path.join(args.output_dir,
+                            base_filename_template.format(FILE_CONTENT_TYPE_TABLES))
+    with open(filename, 'w') as jsonfile:
+        json.dump(ctb_tables, jsonfile, indent=4)
+    logging.info(f'Written table metadata file to: {filename}')
 
-    if FILE_CONTENT_TYPE_SERVICE in output_file_types:
-        filename = os.path.join(args.output_dir,
-                                base_filename_template.format(FILE_CONTENT_TYPE_SERVICE))
-        with open(filename, 'w') as jsonfile:
-            json.dump(service_metadata, jsonfile, indent=4)
-        logging.info(f'Written service metadata file to: {filename}')
-
-
-def convert_json_to_ctb_v9_2_0(ctb_datasets, ctb_tables, service_metadata):
-    """Convert JSON to Cantabular v9.2.0 format."""
-    for dataset in ctb_datasets:
-        dataset['meta']['description'] = dataset.pop('description')
-        for variable in dataset['vars'] if dataset['vars'] else []:
-            variable['meta']['description'] = variable.pop('description')
-
-    service_metadata[0]['meta']['tables'] = []
-    service_metadata[1]['meta']['tables'] = []
-    for table in ctb_tables:
-        for idx in [0, 1]:
-            localized_table = {
-                'name': table['name'],
-                'label': table['ref'][idx]['label'],
-                'description': table['ref'][idx]['description'],
-                'datasetName': table['datasetName'],
-                'vars': table['vars'],
-                'meta': table['ref'][idx]['meta'],
-            }
-            service_metadata[idx]['meta']['tables'].append(localized_table)
+    filename = os.path.join(args.output_dir,
+                            base_filename_template.format(FILE_CONTENT_TYPE_SERVICE))
+    with open(filename, 'w') as jsonfile:
+        json.dump(service_metadata, jsonfile, indent=4)
+    logging.info(f'Written service metadata file to: {filename}')
 
 
 def output_filename_template(prefix, cantabular_version, metadata_master_version, todays_date,
