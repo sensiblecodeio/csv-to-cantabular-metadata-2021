@@ -446,7 +446,7 @@ This query gets the version information from the service metadata.
       "meta": {
         "build": {
           "best_effort": "False",
-          "created": "2023-01-13T16:18:31.812816",
+          "created": "2022-01-01T00:00:00.000000",
           "dataset_filter": null,
           "geography_file": "geography.csv",
           "versions": {
@@ -809,7 +809,7 @@ along with version information from the service metadata.
       "meta": {
         "build": {
           "best_effort": "False",
-          "created": "2023-01-13T16:18:31.812816",
+          "created": "2022-01-01T00:00:00.000000",
           "dataset_filter": null,
           "geography_file": "geography.csv",
           "versions": {
