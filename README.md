@@ -46,7 +46,7 @@ t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 4 Cantabular datasets
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 6 Cantabular tables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format, which is compatible with all versions of Cantabular from 9.3.0 to 10.2.2
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_dataset-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_tables-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_service-md_20220101-1.json
@@ -88,7 +88,7 @@ t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS
 t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS_TAB2
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 6 Cantabular tables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format, which is compatible with all versions of Cantabular from 9.3.0 to 10.2.2
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_dataset-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_tables-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_service-md_20220101-1.json
@@ -132,7 +132,7 @@ t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 4 Cantabular datasets
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 6 Cantabular tables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format, which is compatible with all versions of Cantabular from 9.3.0 to 10.2.2
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/t_cantabm_v10-2-2_test_dataset-md_20220101-42.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/t_cantabm_v10-2-2_test_tables-md_20220101-42.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/t_cantabm_v10-2-2_test_service-md_20220101-42.json
@@ -197,7 +197,7 @@ t=2022-01-01 00:00:00,000 lvl=WARNING msg=Reading test/testdata/best_effort/Data
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 5 Cantabular tables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
 t=2022-01-01 00:00:00,000 lvl=WARNING msg=27 errors were encountered during processing
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format, which is compatible with all versions of Cantabular from 9.3.0 to 10.2.2
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-2_best-effort_dataset-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-2_best-effort_tables-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-2_best-effort_service-md_20220101-1.json
@@ -233,7 +233,7 @@ t=2022-01-01 00:00:00,000 lvl=INFO msg=Reading test/testdata/dataset_filter/Data
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Reading test/testdata/dataset_filter/Dataset_Variable.csv dropped 1 records related to datasets with Dataset_Mnemonics that do not start with one of: ['TS']
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 1 Cantabular tables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format, which is compatible with all versions of Cantabular from 9.3.0 to 10.2.2
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_dataset-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_tables-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_service-md_20220101-1.json
@@ -285,7 +285,7 @@ t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC
 t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC6112EW
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 5 Cantabular tables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format, which is compatible with all versions of Cantabular from 9.3.0 to 10.2.2
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-2_2001-sample_dataset-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-2_2001-sample_tables-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-2_2001-sample_service-md_20220101-1.json
@@ -333,23 +333,3 @@ Other Cantabular versions
 The `-v` argument can be used to generate output files that are compatible with a different version of Cantabular.
 At present only 9.3.0, 10.0.0, 10.1.0, 10.1.1, 10.2.0, 10.2.1 and 10.2.2 are supported. If any other version is specified then the specified version
 will be reflected in the output filenames, but `10.2.2` format will be used.
-
-To generate JSON files from the test data with version `99.9.9` reflected in the filenames use the following command:
-```
-$ python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -v 99.9.9
-t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.2
-t=2022-01-01 00:00:00,000 lvl=INFO msg=CSV source directory: test/testdata/
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Dropped non public classification: CLASS_PRIV
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Dropped non public classification: GEO_PRIV
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 8 Cantabular variables
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 4 Cantabular datasets
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 6 Cantabular tables
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
-t=2022-01-01 00:00:00,000 lvl=INFO msg=99.9.9 is an unknown Cantabular version: files will be written using 10.2.2 format
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v99-9-9_unknown-metadata-version_dataset-md_20220101-1.json
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v99-9-9_unknown-metadata-version_tables-md_20220101-1.json
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v99-9-9_unknown-metadata-version_service-md_20220101-1.json
-```

@@ -186,8 +186,9 @@ def main():
 
     if args.cantabular_version in KNOWN_CANTABULAR_VERSIONS:
         logging.info(
-            f'Output files will be written in Cantabular {args.cantabular_version} format')
-
+            f'Output files will be written in Cantabular {args.cantabular_version} format, '
+            f'which is compatible with all versions of Cantabular from {CANTABULAR_V9_3_0} '
+            f'to {DEFAULT_CANTABULAR_VERSION}')
     else:
         logging.info(
             f'{args.cantabular_version} is an unknown Cantabular version: files will be written '
