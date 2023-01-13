@@ -120,7 +120,7 @@ class TestIntegration(unittest.TestCase):
                                  f'Comparing out/{FILENAME_TABLES} and expected/table-metadata.json')
 
         self.assertEqual(16, len(cm.output))
-        self.assertRegex(cm.output[12], r'Build created=1970-01-01T00:00:00 versions_data=30 versions_schema=1.3 versions_script=1.3.2$')
+        self.assertRegex(cm.output[12], r'Build created=1970-01-01T00:00:00 best_effort=False dataset_filter=None geography_file="geography.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.2$')
 
     @unittest.mock.patch('ons_csv_to_ctb_json_main.datetime')
     def test_no_geography_file(self, mock_datetime):
@@ -131,26 +131,30 @@ class TestIntegration(unittest.TestCase):
         file_dir = pathlib.Path(__file__).parent.resolve()
         input_dir = os.path.join(file_dir, 'testdata')
         output_dir = os.path.join(file_dir, 'out')
-        with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir,
-            '-m', 'no-geo', '-b', '2', '-p', 't', '--base-dataset-name', 'dummy']):
-            ons_csv_to_ctb_json_main.main()
-            with open(os.path.join(output_dir, FILENAME_SERVICE_NO_GEO)) as f:
-                service_metadata = json.load(f)
-            with open(os.path.join(file_dir, 'expected/service-metadata-no-geo.json')) as f:
-                expected_service_metadata = json.load(f)
-            self.assertEqual(service_metadata, expected_service_metadata,
-                             f'Comparing out/{FILENAME_SERVICE_NO_GEO} and expected/service-metadata-no-geo.json')
+        with self.assertLogs(level='INFO') as cm:
+            with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir,
+                '-m', 'no-geo', '-b', '2', '-p', 't', '--base-dataset-name', 'dummy']):
+                ons_csv_to_ctb_json_main.main()
+                with open(os.path.join(output_dir, FILENAME_SERVICE_NO_GEO)) as f:
+                    service_metadata = json.load(f)
+                with open(os.path.join(file_dir, 'expected/service-metadata-no-geo.json')) as f:
+                    expected_service_metadata = json.load(f)
+                self.assertEqual(service_metadata, expected_service_metadata,
+                                 f'Comparing out/{FILENAME_SERVICE_NO_GEO} and expected/service-metadata-no-geo.json')
 
-            with open(os.path.join(output_dir, FILENAME_DATASET_NO_GEO)) as f:
-                dataset_metadata = json.load(f)
-            with open(os.path.join(file_dir, 'expected/dataset-metadata-no-geo.json')) as f:
-                expected_dataset_metadata = json.load(f)
-            self.assertEqual(dataset_metadata, expected_dataset_metadata,
-                             f'Comparing out/{FILENAME_DATASET_NO_GEO} and expected/dataset-metadata-no-geo.json')
+                with open(os.path.join(output_dir, FILENAME_DATASET_NO_GEO)) as f:
+                    dataset_metadata = json.load(f)
+                with open(os.path.join(file_dir, 'expected/dataset-metadata-no-geo.json')) as f:
+                    expected_dataset_metadata = json.load(f)
+                self.assertEqual(dataset_metadata, expected_dataset_metadata,
+                                 f'Comparing out/{FILENAME_DATASET_NO_GEO} and expected/dataset-metadata-no-geo.json')
 
-            with open(os.path.join(output_dir, FILENAME_TABLES_NO_GEO)) as f:
-                table_metadata = json.load(f)
-            with open(os.path.join(file_dir, 'expected/table-metadata.json')) as f:
-                expected_table_metadata = json.load(f)
-            self.assertEqual(table_metadata, expected_table_metadata,
-                             f'Comparing out/{FILENAME_TABLES_NO_GEO} and expected/table-metadata.json')
+                with open(os.path.join(output_dir, FILENAME_TABLES_NO_GEO)) as f:
+                    table_metadata = json.load(f)
+                with open(os.path.join(file_dir, 'expected/table-metadata.json')) as f:
+                    expected_table_metadata = json.load(f)
+                self.assertEqual(table_metadata, expected_table_metadata,
+                                 f'Comparing out/{FILENAME_TABLES_NO_GEO} and expected/table-metadata.json')
+
+        self.assertEqual(15, len(cm.output))
+        self.assertRegex(cm.output[11], r'Build created=1970-01-01T00:00:00 best_effort=False dataset_filter=None geography_file=None versions_data=30 versions_schema=1.3 versions_script=1.3.2$')
