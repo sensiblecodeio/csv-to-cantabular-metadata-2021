@@ -903,6 +903,22 @@ class Loader:
 
         return database_types
 
+    @property
+    @lru_cache(maxsize=1)
+    def metadata_version_number(self):
+        """Load metadata version."""
+        columns = [
+            optional('Id'),
+            optional('Metadata_Version_Number'),
+        ]
+        metadata_version_rows = self.read_file('Metadata_Version.csv', columns)
+
+        if not metadata_version_rows:
+            return ""
+
+        # Return Metadata_Version_Number from last row in Metadata_Version.csv file.
+        return metadata_version_rows[-1].data['Metadata_Version_Number']
+
     def load_database_to_classifications(self, database_mnemonics):
         """
         Load the variables associated with each database.

@@ -60,8 +60,7 @@ output JSON because the English labels can be obtained from the codebook.
 
 The `Codebook_Mnemonic` for each classification is extracted from `Category_Mapping.csv` but the other fields are ignored.
 
-The data in `Specification.csv`, `Specification_Type.csv`, `Asset_Child_Reference.csv`, `Asset_Reference.csv`
-and `Metadata_Version.csv` are not processed.
+The data in `Specification.csv`, `Specification_Type.csv`, `Asset_Child_Reference.csv`, and `Asset_Reference.csv` are not processed.
 
 ## Geography lookup file
 
@@ -100,6 +99,33 @@ message.
 | Field | GraphQL Type | Source (en) | Source (cy) |
 | --- | --- | --- | --- |
 | `description` | `String!` | "Census 2021 metadata" | "Census 2021 metadata in Welsh" |
+| `build` | `Build!` | Build and version information from various sources |  |
+
+## Build
+
+The data in `Build` is intended for debug purposes.
+It provides some information about the build process, where the CSV files were converted to JSON.
+
+| Field | GraphQL Type | Source (en) | Source (cy) |
+| --- | --- | --- | --- |
+| `created` | `String!` | Time in ISO 8601 format that the Python CSV to JSON script was executed | |
+| `best_effort` | `String!` | `"TRUE"` if the `--best-effort` flag was used when running the script, else `"FALSE"` | |
+| `dataset_filter` | `String` | Contains the values specified with the `--dataset-filter` command line parameter, if it was used when running the script | |
+| `geography_file` | `String` | Name of the geography file used to source category labels for geographic variables if supplied on the command line | |
+| `versions` | `Versions!` | Version information relating to build | |
+
+## Versions
+
+The data in `Versions` is intended for debug purposes.
+It provides the versions of the various components used to build the JSON files.
+The `data` value is the `Metadata_Version_Number` taken from the last line of the `Metadata_Version.csv` file,
+but all other fields in that file are ignored.
+
+| Field | GraphQL Type | Source (en) | Source (cy) |
+| --- | --- | --- | --- |
+| `data` | `String!` | `Metadata_Version.Metadata_Version_Number` | |
+| `script` | `String!` | Version of the script used to build the metadata | |
+| `schema` | `String!` | Version of the ONS metadata schema | |
 
 ## Table
 
@@ -385,6 +411,56 @@ have also been provided.
 
 ## `cantabular-metadata` queries
 
+### Get version information
+
+This query gets the version information from the service metadata.
+
+#### Query
+
+```
+{
+  service {
+    meta {
+      build {
+        created
+        geography_file
+        dataset_filter
+        best_effort
+        versions {
+          data
+          schema
+          script
+        }
+      }
+    }
+  }
+}
+```
+
+#### Response
+
+```
+{
+  "data": {
+    "service": {
+      "meta": {
+        "build": {
+          "best_effort": "False",
+          "created": "2022-01-01T00:00:00.000000",
+          "dataset_filter": null,
+          "geography_file": "geography.csv",
+          "versions": {
+            "data": "1",
+            "schema": "1.3",
+            "script": "1.3.2"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
 ### Get all tables
 
 This query gets the `name` value for every table in the metadata.
@@ -639,13 +715,27 @@ This query requests the same information as requested in the previous query but 
 ### Perform tabulation and get metadata
 
 This query requests a tabulation of the **country** and **sex** variables in the **Teaching-Dataset**.
-It also requests some metadata for the dataset, variables and **LC1117EW** table.
+It also requests some metadata for the dataset, variables and **LC1117EW** table,
+along with version information from the service metadata.
 
 #### Query
 
 ```
 {
   service {
+    meta {
+      build {
+        created
+        geography_file
+        dataset_filter
+        best_effort
+        versions {
+          data
+          schema
+          script
+        }
+      }
+    }
     tables(names: "LC1117EW") {
       description
     }
@@ -716,6 +806,19 @@ It also requests some metadata for the dataset, variables and **LC1117EW** table
       }
     },
     "service": {
+      "meta": {
+        "build": {
+          "best_effort": "False",
+          "created": "2022-01-01T00:00:00.000000",
+          "dataset_filter": null,
+          "geography_file": "geography.csv",
+          "versions": {
+            "data": "1",
+            "schema": "1.3",
+            "script": "1.3.2"
+          }
+        }
+      },
       "tables": [
         {
           "description": "This dataset provides 2011 Census estimates that classify usual residents by sex, and by age (ages 0 to 15 grouped together, 10 year age groups up to 74 then 75 years and over grouped together). The estimates are as at census day, 27 March 2011."
