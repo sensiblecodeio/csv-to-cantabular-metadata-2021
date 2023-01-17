@@ -5,7 +5,7 @@
             "description": "Census 2021 metadata",
             "build": {
                 "created": "1970-01-01T00:00:00",
-                "dataset_filter": "TS",
+                "dataset_filter": "TS,\"BLAH\"",
                 "best_effort": "False",
                 "geography_file": null,
                 "versions": {
@@ -22,7 +22,7 @@
             "description": "Census 2021 metadata in Welsh",
             "build": {
                 "created": "1970-01-01T00:00:00",
-                "dataset_filter": "TS",
+                "dataset_filter": "TS,\"BLAH\"",
                 "best_effort": "False",
                 "geography_file": null,
                 "versions": {

@@ -203,8 +203,8 @@ def main():
     logging.info('Build '
                  f'created={build_time} '
                  f'best_effort={args.best_effort} '
-                 f'dataset_filter={quote(args.dataset_filter)} '
-                 f'geography_file={quote(geography_file(args))} '
+                 f'dataset_filter={json.dumps(args.dataset_filter)} '
+                 f'geography_file={json.dumps(geography_file(args))} '
                  f'versions_data={loader.metadata_version_number} '
                  f'versions_schema={SCHEMA_VERSION} '
                  f'versions_script={SCRIPT_VERSION}')
@@ -378,7 +378,7 @@ def build_ctb_service_metadata(metadata_version_number, build_time, args):
                 'created': build_time,
                 'dataset_filter': args.dataset_filter if args.dataset_filter else None,
                 'best_effort': str(args.best_effort),
-                'geography_file': geography_file(args),
+                'geography_file': geography_file(args) if args.geography_file else None,
                 'versions': {
                     'data': metadata_version_number,
                     'schema': SCHEMA_VERSION,
@@ -394,12 +394,7 @@ def build_ctb_service_metadata(metadata_version_number, build_time, args):
 
 def geography_file(args):
     """Return the basename of the geography file."""
-    return f'{os.path.basename(args.geography_file)}' if args.geography_file else None
-
-
-def quote(value):
-    """Wrap a value in quotes if value is truthy, else return None."""
-    return f'"{value}"' if value else None
+    return f'{os.path.basename(args.geography_file)}' if args.geography_file else ""
 
 
 if __name__ == '__main__':

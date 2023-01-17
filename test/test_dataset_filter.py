@@ -24,7 +24,7 @@ class TestTopicSummary(unittest.TestCase):
         output_dir = os.path.join(file_dir, 'out')
 
         with self.assertLogs(level='INFO') as cm:
-            with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir, '-m', 'dataset-filter', '--dataset-filter', 'TS']):
+            with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir, '-m', 'dataset-filter', '--dataset-filter', 'TS,"BLAH"']):
                 ons_csv_to_ctb_json_main.main()
                 with open(os.path.join(output_dir, FILENAME_SERVICE)) as f:
                     service_metadata = json.load(f)
@@ -48,10 +48,10 @@ class TestTopicSummary(unittest.TestCase):
                                  msg=f'Comparing out/{FILENAME_TABLES} and expected/table-metadata-dataset-filter.json')
 
         self.assertEqual(15, len(cm.output))
-        self.assertRegex(cm.output[2], r'Dataset filter: TS')
-        self.assertRegex(cm.output[6], r"Dataset.csv dropped 1 records related to datasets with Dataset_Mnemonics that do not start with one of: \['TS']")
-        self.assertRegex(cm.output[7], r"Dataset_Variable.csv dropped 1 records related to datasets with Dataset_Mnemonics that do not start with one of: \['TS']")
-        self.assertRegex(cm.output[11], r'Build created=1970-01-01T00:00:00 best_effort=False dataset_filter="TS" geography_file=None versions_data=30 versions_schema=1.3 versions_script=1.3.2')
+        self.assertRegex(cm.output[2], r'Dataset filter: TS,"BLAH"')
+        self.assertRegex(cm.output[6], r"Dataset.csv dropped 1 records related to datasets with Dataset_Mnemonics that do not start with one of: \['TS', '\"BLAH\"']")
+        self.assertRegex(cm.output[7], r"Dataset_Variable.csv dropped 1 records related to datasets with Dataset_Mnemonics that do not start with one of: \['TS', '\"BLAH\"']")
+        self.assertRegex(cm.output[11], r'Build created=1970-01-01T00:00:00 best_effort=False dataset_filter="TS,\\"BLAH\\"" geography_file="" versions_data=30 versions_schema=1.3 versions_script=1.3.2')
 
     @unittest.mock.patch('ons_csv_to_ctb_json_main.datetime')
     def test_errors_in_unfiltered_datasets(self, mock_datetime):
