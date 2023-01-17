@@ -1,5 +1,20 @@
 type ServiceMetadata {
   description: String!
+  build: Build!
+}
+
+type Build {
+  created: String!
+  dataset_filter: String
+  best_effort: String!
+  geography_file: String
+  versions: Versions!
+}
+
+type Versions {
+  data: String!
+  schema: String!
+  script: String!
 }
 
 type DatasetMetadata {

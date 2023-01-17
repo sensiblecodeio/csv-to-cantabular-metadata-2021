@@ -5,13 +5,15 @@ import logging
 import re
 from pathlib import Path
 from argparse import ArgumentParser
-from datetime import date
+from datetime import datetime
 from ons_csv_to_ctb_json_load import Loader, PUBLIC_SECURITY_MNEMONIC
 from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 
-# The first two elements in VERSION refer to the metadata schema. The final element is the
+SCHEMA_VERSION = '1.3'
+
+# The first two elements in SCRIPT_VERSION refer to the metadata schema. The final element is the
 # iteration of the conversion code for that version of the schema.
-VERSION = '1.3.2'
+SCRIPT_VERSION = SCHEMA_VERSION + '.2'
 
 SYSTEM = 'cantabm'
 DEFAULT_CANTABULAR_VERSION = '10.2.2'
@@ -62,7 +64,7 @@ def main():
     """
     parser = ArgumentParser(description='Program for converting metadata files in CSV format to '
                                         'JSON format that can be loaded into cantabular-metadata.',
-                            epilog=f'Version: {VERSION}')
+                            epilog=f'Version: {SCRIPT_VERSION}')
 
     parser.add_argument('-i', '--input-dir',
                         type=str,
@@ -145,7 +147,7 @@ def main():
     logging.basicConfig(format='t=%(asctime)s lvl=%(levelname)s msg=%(message)s',
                         level=args.log_level)
 
-    logging.info(f'{Path(__file__).name} version {VERSION}')
+    logging.info(f'{Path(__file__).name} version {SCRIPT_VERSION}')
     logging.info(f'CSV source directory: {args.input_dir}')
     if args.geography_file:
         logging.info(f'Geography file: {args.geography_file}')
@@ -156,7 +158,10 @@ def main():
         if not os.path.isdir(directory):
             raise ValueError(f'{directory} does not exist or is not a directory')
 
-    todays_date = date.today().strftime('%Y%m%d')
+    time_now = datetime.now()
+    todays_date = time_now.strftime('%Y%m%d')
+    build_time = time_now.isoformat()
+
     base_filename_template = output_filename_template(
         args.file_prefix, args.cantabular_version, args.metadata_master_version, todays_date,
         args.build_number)
@@ -178,7 +183,8 @@ def main():
     ctb_tables = build_ctb_tables(loader.datasets)
 
     # Build Cantabular service metadata.
-    service_metadata = build_ctb_service_metadata()
+    service_metadata = build_ctb_service_metadata(loader.metadata_version_number, build_time,
+                                                  args)
 
     error_count = loader.error_count()
     if error_count:
@@ -193,6 +199,15 @@ def main():
         logging.info(
             f'{args.cantabular_version} is an unknown Cantabular version: files will be written '
             f'using {DEFAULT_CANTABULAR_VERSION} format')
+
+    logging.info('Build '
+                 f'created={build_time} '
+                 f'best_effort={args.best_effort} '
+                 f'dataset_filter={json.dumps(args.dataset_filter)} '
+                 f'geography_file={json.dumps(geography_file(args))} '
+                 f'versions_data={loader.metadata_version_number} '
+                 f'versions_schema={SCHEMA_VERSION} '
+                 f'versions_script={SCRIPT_VERSION}')
 
     filename = os.path.join(args.output_dir,
                             base_filename_template.format(FILE_CONTENT_TYPE_DATASET))
@@ -351,7 +366,7 @@ def build_ctb_tables(datasets):
     return ctb_tables
 
 
-def build_ctb_service_metadata():
+def build_ctb_service_metadata(metadata_version_number, build_time, args):
     """Build the service metadata."""
     service_metadata = BilingualDict({
         'lang': Bilingual('en', 'cy'),
@@ -359,11 +374,27 @@ def build_ctb_service_metadata():
             'description': Bilingual(
                 'Census 2021 metadata',
                 'Census 2021 metadata in Welsh'),
+            'build': {
+                'created': build_time,
+                'dataset_filter': args.dataset_filter if args.dataset_filter else None,
+                'best_effort': str(args.best_effort),
+                'geography_file': geography_file(args) if args.geography_file else None,
+                'versions': {
+                    'data': metadata_version_number,
+                    'schema': SCHEMA_VERSION,
+                    'script': SCRIPT_VERSION,
+                },
+            },
         },
     })
     logging.info(f'Loaded service metadata')
 
     return [service_metadata.english(), service_metadata.welsh()]
+
+
+def geography_file(args):
+    """Return the basename of the geography file."""
+    return f'{os.path.basename(args.geography_file)}' if args.geography_file else ""
 
 
 if __name__ == '__main__':
