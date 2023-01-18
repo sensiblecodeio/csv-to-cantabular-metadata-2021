@@ -473,6 +473,12 @@ class Loader:
 
             append_to_list_in_dict(classification_to_cats, classification_mnemonic, cat)
 
+        # Choose which English label to use for a given category
+        def english_label(cat):
+            if cat['External_Category_Label_English']:
+                return cat['External_Category_Label_English']
+            return cat['Internal_Category_Label_English']
+
         categories = {}
         for classification_mnemonic, one_var_categories in classification_to_cats.items():
             num_cat_items = \
@@ -485,9 +491,14 @@ class Loader:
 
             welsh_cats = {cat['Category_Code']: cat['External_Category_Label_Welsh']
                           for cat in one_var_categories if cat['External_Category_Label_Welsh']}
+            english_cats = {cat['Category_Code']: english_label(cat) for cat in one_var_categories}
 
-            if welsh_cats:
-                categories[classification_mnemonic] = Bilingual(None, welsh_cats)
+            # If Welsh labels are not provided then do not substitute English labels in their
+            # place. The Welsh base dataset includes the base English dataset and the metadata
+            # server will perform the substitution automatically.
+            categories[classification_mnemonic] = Bilingual(english_cats,
+                                                            welsh_cats if welsh_cats else None,
+                                                            default_to_english=False)
 
         # Categories for geographic variables are supplied in a separate file.
         if not self.geography_file:
@@ -505,9 +516,15 @@ class Loader:
                                        f'non geographic classification: {class_name}')
                 continue
 
+            english_names = {cd: nm.name for cd, nm in geo_cats.items() if nm.name}
             welsh_names = {cd: nm.welsh_name for cd, nm in geo_cats.items() if nm.welsh_name}
-            if geo_cats:
-                categories[class_name] = Bilingual(None, welsh_names if welsh_names else None)
+
+            # If Welsh names are not provided then do not substitute English names in their place.
+            # The Welsh base dataset includes the base English dataset and the metadata server
+            # will perform the substitution automatically.
+            categories[class_name] = Bilingual(english_names,
+                                               welsh_names if welsh_names else None,
+                                               default_to_english=False)
 
         return categories
 
@@ -902,6 +919,22 @@ class Loader:
                              f'entry in {self.full_filename(filename)}')
 
         return database_types
+
+    @property
+    @lru_cache(maxsize=1)
+    def metadata_version_number(self):
+        """Load metadata version."""
+        columns = [
+            optional('Id'),
+            optional('Metadata_Version_Number'),
+        ]
+        metadata_version_rows = self.read_file('Metadata_Version.csv', columns)
+
+        if not metadata_version_rows:
+            return ""
+
+        # Return Metadata_Version_Number from last row in Metadata_Version.csv file.
+        return metadata_version_rows[-1].data['Metadata_Version_Number']
 
     def load_database_to_classifications(self, database_mnemonics):
         """

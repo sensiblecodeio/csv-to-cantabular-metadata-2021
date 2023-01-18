@@ -47,7 +47,9 @@
                     },
                     "Topics": []
                 },
-                "catLabels": null
+                "catLabels": {
+                    "CODE1": "LABEL1"
+                }
             }
         ]
     },
@@ -100,6 +102,12 @@
                     "Topics": []
                 },
                 "catLabels": null
+            }
+        ],
+        "incl": [
+            {
+                "name": "base",
+                "lang": "en"
             }
         ]
     },
