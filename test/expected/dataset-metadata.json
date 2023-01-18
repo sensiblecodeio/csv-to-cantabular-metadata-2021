@@ -80,7 +80,14 @@
                         }
                     ]
                 },
-                "catLabels": null
+                "catLabels": {
+                    "CODE3": "LABEL3",
+                    "CODE5": "LABEL5 Internal",
+                    "CODE6": "LABEL6 Internal",
+                    "CODE2": "LABEL2 Internal",
+                    "CODE4": "LABEL4 Internal",
+                    "CODE1": "LABEL1"
+                }
             },
             {
                 "name": "CLASS2",
@@ -112,7 +119,9 @@
                     },
                     "Topics": []
                 },
-                "catLabels": null
+                "catLabels": {
+                    "CODE2-1": "LABEL2-1 Internal"
+                }
             },
             {
                 "name": "CLASS3",
@@ -309,7 +318,10 @@
                     },
                     "Topics": []
                 },
-                "catLabels": null
+                "catLabels": {
+                    "G1 CD1": "G1 NM1",
+                    "G1 CD2": "G1 NM2"
+                }
             },
             {
                 "name": "GEO2",
@@ -341,7 +353,12 @@
                     },
                     "Topics": []
                 },
-                "catLabels": null
+                "catLabels": {
+                    "CD1": "NM1",
+                    "CD2": "NM2",
+                    "CD3": "NM3",
+                    "CD4": "NM4"
+                }
             }
         ]
     },
@@ -699,6 +716,12 @@
                     "CD2": "NM2 (Welsh)",
                     "CD4": "NM4 (Welsh)"
                 }
+            }
+        ],
+        "incl": [
+            {
+                "name": "base",
+                "lang": "en"
             }
         ]
     },

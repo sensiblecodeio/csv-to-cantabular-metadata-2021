@@ -4,13 +4,15 @@
 class Bilingual:
     """Bilingual has an English value and a Welsh value."""
 
-    def __init__(self, english, welsh):
+    def __init__(self, english, welsh, default_to_english=True):
         """Initialize Bilingual object."""
         self._english = english
         if welsh:
             self._welsh = welsh
-        else:
+        elif default_to_english:
             self._welsh = english
+        else:
+            self._welsh = None
 
     def english(self):
         """Return English version of value."""
