@@ -1,6 +1,15 @@
 Release Notes
 =============
 
+1.3.2
+-----
+
+- Include English category labels in variable metadata.
+  These labels will be used in placed of labels in the codebook when variable category labels
+  are obtained from the extended API.
+- Add build and version information to service metadata.
+- Dropped support for Cantabular version 9.2.0.
+
 1.3.1
 -----
 - Expose `Variable.Geography_Hierarchy_Order` in variable metadata.
