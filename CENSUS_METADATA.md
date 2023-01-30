@@ -448,7 +448,7 @@ This query gets the version information from the service metadata.
           "versions": {
             "data": "1",
             "schema": "1.3",
-            "script": "1.3.2"
+            "script": "1.3.3"
           }
         }
       }
@@ -825,7 +825,7 @@ along with version information from the service metadata.
           "versions": {
             "data": "1",
             "schema": "1.3",
-            "script": "1.3.2"
+            "script": "1.3.3"
           }
         }
       },
