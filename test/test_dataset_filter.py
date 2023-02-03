@@ -51,7 +51,7 @@ class TestTopicSummary(unittest.TestCase):
         self.assertRegex(cm.output[2], r'Dataset filter: TS,"BLAH"')
         self.assertRegex(cm.output[6], r"Dataset.csv dropped 1 records related to datasets with Dataset_Mnemonics that do not start with one of: \['TS', '\"BLAH\"']")
         self.assertRegex(cm.output[7], r"Dataset_Variable.csv dropped 1 records related to datasets with Dataset_Mnemonics that do not start with one of: \['TS', '\"BLAH\"']")
-        self.assertRegex(cm.output[11], r'Build created=1970-01-01T00:00:00 best_effort=False dataset_filter="TS,\\"BLAH\\"" geography_file="" versions_data=30 versions_schema=1.3 versions_script=1.3.2')
+        self.assertRegex(cm.output[11], r'Build created=1970-01-01T00:00:00 best_effort=False dataset_filter="TS,\\"BLAH\\"" geography_file="" versions_data=30 versions_schema=1.3 versions_script=1.3.3')
 
     @unittest.mock.patch('ons_csv_to_ctb_json_main.datetime')
     def test_errors_in_unfiltered_datasets(self, mock_datetime):

@@ -7,7 +7,7 @@ and converts them to hierarchical JSON that can be loaded into `cantabular-metad
 It is compatible with version `1.3` of the metadata schema and all versions between `9.3.0` and `10.2.2` of
 `cantabular-metadata`. `10.2.2` format is used by default and is identical to all other currently supported versions.
 
-This is version `1.3.2` of the CSV to JSON processing software and is subject to change.
+This is version `1.3.3` of the CSV to JSON processing software and is subject to change.
 
 The applications only use packages in the Python standard library.
 
@@ -35,7 +35,7 @@ Basic logging will be displayed by default, including the number of high-level C
 objects loaded and the name of the output files.
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/
-t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.2
+t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=CSV source directory: test/testdata/
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
@@ -47,7 +47,7 @@ t=2022-01-01 00:00:00,000 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 6 Cantabular tables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format, which is compatible with all versions of Cantabular from 9.3.0 to 10.2.2
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="" geography_file="geography.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.2
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="" geography_file="geography.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_dataset-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_tables-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_service-md_20220101-1.json
@@ -57,7 +57,7 @@ More detailed information can be obtained by running with a `-l DEBUG` flag e.g.
 
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -l DEBUG
-t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.2
+t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=CSV source directory: test/testdata/
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
 t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Creating classification for geographic variable: GEO1
@@ -90,7 +90,7 @@ t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 6 Cantabular tables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format, which is compatible with all versions of Cantabular from 9.3.0 to 10.2.2
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="" geography_file="geography.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.2
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="" geography_file="geography.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_dataset-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_tables-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_service-md_20220101-1.json
@@ -102,7 +102,7 @@ Version information
 One of the log lines contains build and version information such as this:
 
 ```
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="TS" geography_file="geography.csv" versions_data=1 versions_schema=1.3 versions_script=1.3.2t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 versions_data=30 versions_schema=1.3 versions_script=1.3.2
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="TS" geography_file="geography.csv" versions_data=1 versions_schema=1.3 versions_script=1.3.3
 ```
 
   - `created` is the time at which the script was executed.
@@ -146,7 +146,7 @@ arguments as described in the help text for `ons_csv_to_ctb_json_main.py`:
 For example:
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -p t -m test -b 42
-t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.2
+t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=CSV source directory: test/testdata/
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
@@ -158,7 +158,7 @@ t=2022-01-01 00:00:00,000 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 6 Cantabular tables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format, which is compatible with all versions of Cantabular from 9.3.0 to 10.2.2
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="" geography_file="geography.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.2
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="" geography_file="geography.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/t_cantabm_v10-2-2_test_dataset-md_20220101-42.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/t_cantabm_v10-2-2_test_tables-md_20220101-42.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/t_cantabm_v10-2-2_test_service-md_20220101-42.json
@@ -176,7 +176,7 @@ This repository contains some test data that is full of errors. It can be used t
 of the `--best-effort` flag as shown below:
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/best_effort  -o ctb_metadata_files/ -m best-effort --best-effort
-t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.2
+t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=CSV source directory: test/testdata/best_effort
 t=2022-01-01 00:00:00,000 lvl=WARNING msg=Reading test/testdata/best_effort/Variable.csv:4 Geography_Hierarchy_Order value of 10 specified for both GEO2 and GEO1
 t=2022-01-01 00:00:00,000 lvl=WARNING msg=Reading test/testdata/best_effort/Variable.csv:8 no Geography_Hierarchy_Order specified for geographic variable: GEO4
@@ -224,7 +224,7 @@ t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 5 Cantabular tables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
 t=2022-01-01 00:00:00,000 lvl=WARNING msg=27 errors were encountered during processing
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format, which is compatible with all versions of Cantabular from 9.3.0 to 10.2.2
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=True dataset_filter="" geography_file="" versions_data=30 versions_schema=1.3 versions_script=1.3.2
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=True dataset_filter="" geography_file="" versions_data=30 versions_schema=1.3 versions_script=1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-2_best-effort_dataset-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-2_best-effort_tables-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-2_best-effort_service-md_20220101-1.json
@@ -250,7 +250,7 @@ datasets with a `Dataset_Mnemonic` beginning with **TS** are processed.
 
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/dataset_filter/ -o ctb_metadata_files/ --dataset-filter TS
-t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.2
+t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=CSV source directory: test/testdata/dataset_filter/
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Dataset filter: TS
 t=2022-01-01 00:00:00,000 lvl=INFO msg=No geography file specified
@@ -261,7 +261,7 @@ t=2022-01-01 00:00:00,000 lvl=INFO msg=Reading test/testdata/dataset_filter/Data
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 1 Cantabular tables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format, which is compatible with all versions of Cantabular from 9.3.0 to 10.2.2
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="TS" geography_file="" versions_data=30 versions_schema=1.3 versions_script=1.3.2
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="TS" geography_file="" versions_data=30 versions_schema=1.3 versions_script=1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_dataset-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_tables-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_service-md_20220101-1.json
@@ -280,7 +280,7 @@ can be found in the `sample_2011` directory.
 Use this command to convert the files to JSON (with debugging enabled):
 ```
 > python3 bin/ons_csv_to_ctb_json_main.py -i sample_2011/ -g sample_2011/geography.csv -o ctb_metadata_files/ -m 2011-sample -l DEBUG
-t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.2
+t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=CSV source directory: sample_2011/
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Geography file: sample_2011/geography.csv
 t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Creating classification for geographic variable: Region
@@ -314,7 +314,7 @@ t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Loaded metadata for Cantabular table: LC
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 5 Cantabular tables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format, which is compatible with all versions of Cantabular from 9.3.0 to 10.2.2
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="" geography_file="geography.csv" versions_data=1 versions_schema=1.3 versions_script=1.3.2
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="" geography_file="geography.csv" versions_data=1 versions_schema=1.3 versions_script=1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-2_2011-sample_dataset-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-2_2011-sample_tables-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-2_2011-sample_service-md_20220101-1.json
