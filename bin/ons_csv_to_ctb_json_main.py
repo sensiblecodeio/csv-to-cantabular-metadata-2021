@@ -269,6 +269,15 @@ def build_ctb_variables(classifications, cat_labels):
     return ctb_variables
 
 
+def non_public_variable(classification_mnemonic):
+    """Create a dataset specific variable with Cantabular_Public_Flag set to N."""
+    return {
+        'name': classification_mnemonic,
+        'meta': {'Cantabular_Public_Flag': 'N'},
+        'catLabels': None,
+    }
+
+
 def build_ctb_datasets(databases, ctb_variables, base_dataset_name):
     """
     Build Cantabular dataset objects.
@@ -327,7 +336,10 @@ def build_ctb_datasets(databases, ctb_variables, base_dataset_name):
             'description': database.private['Database_Description'],
             'lang': Bilingual('en', 'cy'),
             'meta': database,
-            'vars': None,
+            'vars':
+                [non_public_variable(np) for np in
+                 database.private['Non_Public_Classifications']] if
+                database.private['Non_Public_Classifications'] else None,
         })
         ctb_datasets.extend([ctb_dataset.english(), ctb_dataset.welsh()])
         logging.debug(f'Loaded metadata for Cantabular dataset: {database_mnemonic}')

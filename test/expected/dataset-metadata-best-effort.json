@@ -45,7 +45,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": {
                     "CODE1": "LABEL1"
@@ -79,7 +80,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             },
@@ -111,7 +113,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             },
@@ -143,7 +146,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             },
@@ -153,6 +157,7 @@
                 "description": "GEO1 Description",
                 "meta": {
                     "Mnemonic_2011": null,
+                    "Cantabular_Public_Flag": "Y",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -185,6 +190,7 @@
                 "description": "GEO2 Description",
                 "meta": {
                     "Mnemonic_2011": null,
+                    "Cantabular_Public_Flag": "Y",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -217,6 +223,7 @@
                 "description": "GEO3 Description",
                 "meta": {
                     "Mnemonic_2011": null,
+                    "Cantabular_Public_Flag": "Y",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -249,6 +256,7 @@
                 "description": "GEO4 Description",
                 "meta": {
                     "Mnemonic_2011": null,
+                    "Cantabular_Public_Flag": "Y",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -323,7 +331,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             },
@@ -355,7 +364,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             },
@@ -387,7 +397,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             },
@@ -419,7 +430,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             },
@@ -429,6 +441,7 @@
                 "description": "GEO1 Description (Welsh)",
                 "meta": {
                     "Mnemonic_2011": null,
+                    "Cantabular_Public_Flag": "Y",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -461,6 +474,7 @@
                 "description": "GEO2 Description (Welsh)",
                 "meta": {
                     "Mnemonic_2011": null,
+                    "Cantabular_Public_Flag": "Y",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -493,6 +507,7 @@
                 "description": "GEO3 Description (Welsh)",
                 "meta": {
                     "Mnemonic_2011": null,
+                    "Cantabular_Public_Flag": "Y",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -525,6 +540,7 @@
                 "description": "GEO4 Description (Welsh)",
                 "meta": {
                     "Mnemonic_2011": null,
+                    "Cantabular_Public_Flag": "Y",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {

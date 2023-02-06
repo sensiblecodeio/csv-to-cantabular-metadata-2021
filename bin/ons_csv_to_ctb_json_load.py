@@ -12,7 +12,7 @@ PUBLIC_SECURITY_MNEMONIC = 'PUB'
 GEOGRAPHIC_VARIABLE_TYPE = 'GEOG'
 
 DatabaseClassifications = namedtuple('DatabaseClassifications',
-                                     'classifications lowest_geog_variable')
+                                     'classifications lowest_geog_variable non_public')
 
 
 def isnumeric(string):
@@ -411,8 +411,8 @@ class Loader:
 
             database_mnemonic = database.pop('Database_Mnemonic')
 
-            db_classifications = database_to_classifications.get(database_mnemonic,
-                                                                 DatabaseClassifications([], None))
+            db_classifications = database_to_classifications.get(
+                database_mnemonic, DatabaseClassifications([], None, []))
             database['Lowest_Geog_Variable'] = db_classifications.lowest_geog_variable
 
             database_type_code = database.pop('Database_Type_Code')
@@ -427,7 +427,8 @@ class Loader:
                              database.pop('Database_Description'),
                              database.pop('Database_Description_Welsh')),
                          'Classifications': db_classifications.classifications,
-                         'Database_Type_Code': database_type_code})
+                         'Database_Type_Code': database_type_code,
+                         'Non_Public_Classifications': db_classifications.non_public})
 
         return databases
 
@@ -827,6 +828,10 @@ class Loader:
             num_cat_items = classification.pop('Number_Of_Category_Items')
             num_cat_items = int(num_cat_items) if num_cat_items else 0
 
+            # The Cantabular_Public_Flag is set for each classification on a per database basis.
+            # The base version has the flag set to Y, and may be set to N for other databases.
+            classification['Cantabular_Public_Flag'] = 'Y'
+
             classifications[classification_mnemonic] = BilingualDict(
                 classification,
                 # The private fields and not included in the English/Welsh variants of datasets.
@@ -854,6 +859,7 @@ class Loader:
                 classifications[variable_mnemonic] = BilingualDict(
                     {
                         'Mnemonic_2011': None,
+                        'Cantabular_Public_Flag': 'Y',
                         'Default_Classification_Flag': None,
                         'Version': variable.private['Version'],
                         'ONS_Variable': variable,
@@ -979,6 +985,7 @@ class Loader:
         for database_mnemonic, db_vars in db_to_raw_vars.items():
             lowest_geog_var = None
             classifications = set()
+            non_public = set()
             contains_geo_vars = False
             for db_var in db_vars:
                 database_mnemonic = db_var['Database_Mnemonic']
@@ -1005,6 +1012,7 @@ class Loader:
 
                 # Add the specific classification to the database if Classification_Mnemonic is set
                 # else add all the classifications for the variable.
+                row_classifications = set()
                 if classification_mnemonic:
                     if classification_mnemonic not in \
                             variable_to_classifications.get(variable_mnemonic, set()):
@@ -1013,10 +1021,15 @@ class Loader:
                             f'{classification_mnemonic} is unknown Classification_Mnemonic for '
                             f'Variable_Mnemonic {variable_mnemonic}')
                     else:
+                        row_classifications = {classification_mnemonic}
                         classifications.add(classification_mnemonic)
                 else:
-                    classifications = classifications.union(variable_to_classifications.get(
-                        variable_mnemonic, set()))
+                    row_classifications = variable_to_classifications.get(
+                        variable_mnemonic, set())
+                    classifications = classifications.union(row_classifications)
+
+                if db_var['Cantabular_Public_Flag'] == 'N':
+                    non_public.update(row_classifications)
 
             if not lowest_geog_var and contains_geo_vars:
                 self.recoverable_error(f'Reading {self.full_filename(filename)} '
@@ -1024,7 +1037,8 @@ class Loader:
                                        f'variable for database {database_mnemonic}')
 
             database_to_classifications[database_mnemonic] = DatabaseClassifications(
-                classifications=classifications, lowest_geog_variable=lowest_geog_var)
+                classifications=classifications, lowest_geog_variable=lowest_geog_var,
+                non_public=sorted(list(non_public)))
 
         return database_to_classifications
 
