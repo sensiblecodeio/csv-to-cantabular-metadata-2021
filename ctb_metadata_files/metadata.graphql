@@ -27,6 +27,7 @@ type DatasetMetadata {
 
 type VariableMetadata {
   Mnemonic_2011: String
+  Cantabular_Public_Flag: String
   Default_Classification_Flag: String
   Version: String!
   ONS_Variable: ONS_Variable!

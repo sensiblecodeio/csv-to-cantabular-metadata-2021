@@ -254,6 +254,7 @@ The `Parent_Classification_Mnemonic`, `Signed_Off_Flag`, `Flat_Classification_Fl
 | `Version` | `String!` | `Classification.Version` or `Variable.Version` for geographic variables | |
 | `ONS_Variable` | `ONS_Variable!` | Keyed on `Classification.Variable_Mnemonic` or `Variable.Variable_Mnemonic` for geographic variables | |
 | `Topics` | `[Topic]!` | List of `Topic` values keyed on `Topic_Classification.Classification_Mnemonic`/`Topic_Mnemonic` or `[]` for geographic variables | |
+| `Cantabular_Public_Flag` | `String!` | `Database_Variable.Cantabular_Public_Flag`- will be `Y` or `N`. | |
 
 ## ONS_Variable
 
