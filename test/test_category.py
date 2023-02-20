@@ -62,10 +62,10 @@ class TestCategory(unittest.TestCase):
         read_data = """CLASS122cd,CLASS122nm,CLASS122nmw
 cd1,nm1,nmw1
 """
-        expected_error = f'^Reading {GEO_FILENAME}: found Welsh labels for non geographic classification: CLASS1$'
+        expected_error = f'^Reading {GEO_FILENAME}: found labels for non geographic classification: CLASS1$'
         with unittest.mock.patch('builtins.open', conditional_mock_open('geography.csv', read_data = read_data)):
             with self.assertRaisesRegex(ValueError, expected_error):
-                Loader(INPUT_DIR, GEO_FILENAME).categories
+                Loader(INPUT_DIR, [GEO_FILENAME]).categories
 
 
 if __name__ == '__main__':

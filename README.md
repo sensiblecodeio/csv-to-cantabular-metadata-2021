@@ -15,30 +15,33 @@ Converting CSV to JSON
 ======================
 
 Most of the source metadata are contained in a set of CSV files based on the metadata schema.
-However, category codes, names and Welsh names for geographic variables are supplied in a separate
-lookup file. The main CSV file set must not contain categories for geographic variables.
+However, category codes, names and Welsh names for geographic variables are supplied in separate
+lookup files. The main CSV file set must not contain categories for geographic variables.
 
 Using test data
 ---------------
 
 The `test/testdata` directory contains some sample CSV files that are used as part of continuous
 integration testing. They contain dummy data that are intended to exercise the capabilities of the
-software. Category information for geographic variables is supplied in `test/testdata/geography/geography.csv`.
+software. Category information for geographic variables is supplied in files found in the
+`test/testdata/geography` directory. Alternatively a comma separated list of individual geography
+lookup files may be specified using the `-g` option.
 The data can be used to verify the operation of `ons_csv_to_ctb_json_main.py`.
 
 To convert the source CSV files to JSON files in `ctb_metadata_files/` run:
 ```
-python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/
+python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -d test/testdata/geography -o ctb_metadata_files/
 ```
 
 Basic logging will be displayed by default, including the number of high-level Cantabular metadata
 objects loaded and the name of the output files.
 ```
-> python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/
+> python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -d test/testdata/geography -o ctb_metadata_files/
 t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=CSV source directory: test/testdata/
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Geography files: test/testdata/geography/geography1.csv,test/testdata/geography/geography2.csv
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Reading test/testdata/geography/geography1.csv: found labels for unknown geographic classification: other
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Labels supplied for these geographic classifications: ['GEO1', 'GEO2']
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Dropped non public classification: CLASS_PRIV
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Dropped non public classification: GEO_PRIV
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 8 Cantabular variables
@@ -47,7 +50,7 @@ t=2022-01-01 00:00:00,000 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 6 Cantabular tables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format, which is compatible with all versions of Cantabular from 9.3.0 to 10.2.2
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="" geography_file="geography.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.3
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="" geography_file="geography1.csv,geography2.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_dataset-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_tables-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_service-md_20220101-1.json
@@ -56,14 +59,15 @@ t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_met
 More detailed information can be obtained by running with a `-l DEBUG` flag e.g.:
 
 ```
-> python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -l DEBUG
+> python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -d test/testdata/geography -o ctb_metadata_files/ -l DEBUG
 t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=CSV source directory: test/testdata/
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Geography files: test/testdata/geography/geography1.csv,test/testdata/geography/geography2.csv
 t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Creating classification for geographic variable: GEO1
 t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Creating classification for geographic variable: GEO2
 t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Creating classification for geographic variable: GEO_PRIV
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Reading test/testdata/geography/geography1.csv: found labels for unknown geographic classification: other
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Labels supplied for these geographic classifications: ['GEO1', 'GEO2']
 t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Loaded metadata for Cantabular variable: CLASS1
 t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Loaded metadata for Cantabular variable: CLASS2
 t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Loaded metadata for Cantabular variable: CLASS3
@@ -90,7 +94,7 @@ t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Loaded metadata for Cantabular table: DS
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 6 Cantabular tables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format, which is compatible with all versions of Cantabular from 9.3.0 to 10.2.2
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="" geography_file="geography.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.3
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="" geography_file="geography1.csv,geography2.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_dataset-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_tables-md_20220101-1.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/cantabm_v10-2-2_unknown-metadata-version_service-md_20220101-1.json
@@ -102,14 +106,14 @@ Version information
 One of the log lines contains build and version information such as this:
 
 ```
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="TS" geography_file="geography.csv" versions_data=1 versions_schema=1.3 versions_script=1.3.3
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="" geography_file="geography1.csv,geography2.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.3
 ```
 
   - `created` is the time at which the script was executed.
   - `best_effort` is `True` if the `--best-effort` flag was set, else it is `False`.
   - `dataset_filter` is the JSON-quoted `--dataset-filter` value if that option was set, else it is an empty string.
-  - `geography_file` is the JSON-quoted basename of the geography file supplied with the `-g` flag if that option
-    was set, else it is an empty string.
+  - `geography_file` is the JSON-quoted list of basenames of the geography files supplied with the `-g` or `-d` flags if either of
+    those options was set, else it is an empty string.
   - `versions_data` is the metadata source version and is taken from the last record in `Metadata_Version.csv`.
   - `versions_schema` is the ONS metadata schema version.
   - `versions_script` is the version of the Python script.
@@ -145,11 +149,12 @@ arguments as described in the help text for `ons_csv_to_ctb_json_main.py`:
 
 For example:
 ```
-> python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -g test/testdata/geography/geography.csv -o ctb_metadata_files/ -p t -m test -b 42
+> python3 bin/ons_csv_to_ctb_json_main.py -i test/testdata/ -d test/testdata/geography -o ctb_metadata_files/ -p t -m test -b 42
 t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=CSV source directory: test/testdata/
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Geography file: test/testdata/geography/geography.csv
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Reading test/testdata/geography/geography.csv: found Welsh labels for unknown classification: OTHER
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Geography files: test/testdata/geography/geography1.csv,test/testdata/geography/geography2.csv
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Reading test/testdata/geography/geography1.csv: found labels for unknown geographic classification: other
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Labels supplied for these geographic classifications: ['GEO1', 'GEO2']
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Dropped non public classification: CLASS_PRIV
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Dropped non public classification: GEO_PRIV
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 8 Cantabular variables
@@ -158,7 +163,7 @@ t=2022-01-01 00:00:00,000 lvl=INFO msg=Dropped non public ONS Dataset: DS_PRIV
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 6 Cantabular tables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded service metadata
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Output files will be written in Cantabular 10.2.2 format, which is compatible with all versions of Cantabular from 9.3.0 to 10.2.2
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="" geography_file="geography.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.3
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Build created=2022-01-01T00:00:00.000000 best_effort=False dataset_filter="" geography_file="geography1.csv,geography2.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written dataset metadata file to: ctb_metadata_files/t_cantabm_v10-2-2_test_dataset-md_20220101-42.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written table metadata file to: ctb_metadata_files/t_cantabm_v10-2-2_test_tables-md_20220101-42.json
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Written service metadata file to: ctb_metadata_files/t_cantabm_v10-2-2_test_service-md_20220101-42.json
@@ -193,7 +198,7 @@ t=2022-01-01 00:00:00,000 lvl=WARNING msg=Reading test/testdata/best_effort/Cate
 t=2022-01-01 00:00:00,000 lvl=WARNING msg=Reading test/testdata/best_effort/Category_Mapping.csv:5 CLASS1 is an invalid Codebook_Mnemonic for classification CLASS4 as it is already the Classification_Mnemonic for another classification
 t=2022-01-01 00:00:00,000 lvl=WARNING msg=Reading test/testdata/best_effort/Category_Mapping.csv:5 ignoring field Codebook_Mnemonic
 t=2022-01-01 00:00:00,000 lvl=WARNING msg=Reading test/testdata/best_effort/Category.csv Unexpected number of categories for CLASS1: expected 4 but found 1
-t=2022-01-01 00:00:00,000 lvl=INFO msg=No geography file specified
+t=2022-01-01 00:00:00,000 lvl=INFO msg=No geography files specified
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 8 Cantabular variables
 t=2022-01-01 00:00:00,000 lvl=WARNING msg=Reading test/testdata/best_effort/Database_Variable.csv Lowest_Geog_Variable_Flag set on GEO3 and GEO1 for database DB1
 t=2022-01-01 00:00:00,000 lvl=WARNING msg=Reading test/testdata/best_effort/Database_Variable.csv GEO1 is unknown Classification_Mnemonic for Variable_Mnemonic VAR1
@@ -253,7 +258,7 @@ datasets with a `Dataset_Mnemonic` beginning with **TS** are processed.
 t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=CSV source directory: test/testdata/dataset_filter/
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Dataset filter: TS
-t=2022-01-01 00:00:00,000 lvl=INFO msg=No geography file specified
+t=2022-01-01 00:00:00,000 lvl=INFO msg=No geography files specified
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 1 Cantabular variables
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Loaded metadata for 1 Cantabular datasets
 t=2022-01-01 00:00:00,000 lvl=INFO msg=Reading test/testdata/dataset_filter/Dataset.csv dropped 1 records related to datasets with Dataset_Mnemonics that do not start with one of: ['TS']
@@ -282,9 +287,10 @@ Use this command to convert the files to JSON (with debugging enabled):
 > python3 bin/ons_csv_to_ctb_json_main.py -i sample_2011/ -g sample_2011/geography.csv -o ctb_metadata_files/ -m 2011-sample -l DEBUG
 t=2022-01-01 00:00:00,000 lvl=INFO msg=ons_csv_to_ctb_json_main.py version 1.3.3
 t=2022-01-01 00:00:00,000 lvl=INFO msg=CSV source directory: sample_2011/
-t=2022-01-01 00:00:00,000 lvl=INFO msg=Geography file: sample_2011/geography.csv
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Geography files: sample_2011/geography.csv
 t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Creating classification for geographic variable: Region
 t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Creating classification for geographic variable: Country
+t=2022-01-01 00:00:00,000 lvl=INFO msg=Labels supplied for these geographic classifications: ['Country', 'Region']
 t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Residence Type
 t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Family Composition
 t=2022-01-01 00:00:00,000 lvl=DEBUG msg=Loaded metadata for Cantabular variable: Population Base

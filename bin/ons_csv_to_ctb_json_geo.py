@@ -5,6 +5,7 @@ from collections import namedtuple
 
 ColumnIndices = namedtuple('ColumnIndices', 'code name welsh_name')
 AreaName = namedtuple('AreaName', 'name welsh_name')
+GeoCats = namedtuple('GeoCats', 'source_file code_to_label')
 
 
 CODE_SUFFIX = 'cd'
@@ -12,7 +13,21 @@ NAME_SUFFIX = 'nm'
 WELSH_NAME_SUFFIX = 'nmw'
 
 
-def read_geo_cats(filename):
+def read_geo_cats(filenames):
+    """Read a list of geography lookup files and return the combined categories from all files."""
+    data = {}
+    for filename in filenames:
+        for variable, geo_cats in read_file(filename).items():
+            if variable not in data:
+                data[variable] = geo_cats
+            elif data[variable].code_to_label != geo_cats.code_to_label:
+                raise ValueError(f'{data[variable].source_file} and {geo_cats.source_file} '
+                                 f'contain different sets of categories for {variable}')
+
+    return data
+
+
+def read_file(filename):
     """
     Read a lookup file containing variable category codes, labels and Welsh labels.
 
@@ -39,7 +54,8 @@ def read_geo_cats(filename):
         reader = csv.reader(csvfile)
         fieldnames = [v.strip() for v in next(reader)]
         var_to_columns = assign_columns_to_variables(filename, fieldnames)
-        data = {var_name: {} for var_name in var_to_columns}
+        data = {var_name: GeoCats(source_file=filename, code_to_label={})
+                for var_name in var_to_columns}
 
         for row_num, row in enumerate(reader, 2):
             if len(row) > len(fieldnames):
@@ -52,17 +68,17 @@ def read_geo_cats(filename):
                 name = row[columns.name].strip() if columns.name else ""
                 welsh_name = row[columns.welsh_name].strip() if columns.welsh_name else ""
 
-                if code not in data[geo]:
-                    data[geo][code] = AreaName(name=name, welsh_name=welsh_name)
+                if code not in data[geo].code_to_label:
+                    data[geo].code_to_label[code] = AreaName(name=name, welsh_name=welsh_name)
                     continue
-                if data[geo][code].name != name:
+                if data[geo].code_to_label[code].name != name:
                     raise ValueError(
                         f'Reading {filename}: different name for code {code} of '
-                        f'{geo}: "{name}" and "{data[geo][code].name}"')
-                if data[geo][code].welsh_name != welsh_name:
+                        f'{geo}: "{name}" and "{data[geo].code_to_label[code].name}"')
+                if data[geo].code_to_label[code].welsh_name != welsh_name:
                     raise ValueError(
                         f'Reading {filename}: different Welsh name for code {code} of '
-                        f'{geo}: "{welsh_name}" and "{data[geo][code].welsh_name}"')
+                        f'{geo}: "{welsh_name}" and "{data[geo].code_to_label[code].welsh_name}"')
 
     return data
 
@@ -122,7 +138,7 @@ def assign_columns_to_variables(filename, fieldnames):
             welsh_name=welsh_name)
 
     if fields_to_process:
-        raise ValueError('Unexpected fieldnames: '
+        raise ValueError(f'Reading {filename}: unexpected fieldnames: '
                          f'{", ".join(sorted([original_case(f) for f in fields_to_process]))}')
 
     return var_to_columns
