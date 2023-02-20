@@ -32,6 +32,7 @@ def read_geo_cats(filename):
        and LAD22cd.
      - If multiple lines in the file refer to the same category then the names must be consistent
        on all lines.
+     - The column names are handled in a cases insensitive manner.
 
     """
     with open(filename, newline='', encoding='utf-8-sig') as csvfile:
@@ -68,13 +69,18 @@ def read_geo_cats(filename):
 
 def assign_columns_to_variables(filename, fieldnames):
     """Identify columns associated with each variable."""
-    fieldnames_set = set(fieldnames)
+    lc_fieldnames = [fn.lower() for fn in fieldnames]
+
+    def original_case(fieldname):
+        return fieldnames[lc_fieldnames.index(fieldname)]
+
+    fieldnames_set = set(lc_fieldnames)
     if len(fieldnames_set) != len(fieldnames):
-        duplicates = {fn for fn in fieldnames if fieldnames.count(fn) > 1}
-        raise ValueError(f'Reading {filename}: duplicate column names: '
+        duplicates = {fn for fn in lc_fieldnames if lc_fieldnames.count(fn) > 1}
+        raise ValueError(f'Reading {filename}: duplicate case insensitive column names: '
                          f'{", ".join(sorted(duplicates))}')
 
-    code_fields = {fn for fn in fieldnames if fn.endswith(CODE_SUFFIX)}
+    code_fields = {fn for fn in lc_fieldnames if fn.endswith(CODE_SUFFIX)}
     fields_to_process = fieldnames_set - code_fields
     processed_code_fields = dict()
     code_regex = re.compile(f'([a-zA-Z0-9_-]+)([0-9][0-9]){CODE_SUFFIX}')
@@ -83,14 +89,16 @@ def assign_columns_to_variables(filename, fieldnames):
     for fieldname in sorted(code_fields):
         match = code_regex.fullmatch(fieldname)
         if not match:
-            raise ValueError(f'Reading {filename}: invalid code column name: {fieldname}')
+            raise ValueError(f'Reading {filename}: invalid code column name: '
+                             f'{original_case(fieldname)}')
 
         var_name = match.group(1)
         year = match.group(2)
 
         if var_name in processed_code_fields:
             raise ValueError(f'Reading {filename}: multiple code columns found for '
-                             f'{var_name}: {fieldname} and {processed_code_fields[var_name]}')
+                             f'{var_name}: {original_case(fieldname)} and '
+                             f'{original_case(processed_code_fields[var_name])}')
         processed_code_fields[var_name] = fieldname
 
         # Some geographic variables will not have a name fields e.g. OA. Some will not have a
@@ -100,20 +108,21 @@ def assign_columns_to_variables(filename, fieldnames):
         if name_field not in fields_to_process:
             continue
         fields_to_process.remove(name_field)
-        name = fieldnames.index(name_field)
+        name = lc_fieldnames.index(name_field)
 
         welsh_name = None
         welsh_name_field = var_name + year + WELSH_NAME_SUFFIX
         if welsh_name_field in fields_to_process:
             fields_to_process.remove(welsh_name_field)
-            welsh_name = fieldnames.index(welsh_name_field)
+            welsh_name = lc_fieldnames.index(welsh_name_field)
 
         var_to_columns[var_name] = ColumnIndices(
-            code=fieldnames.index(fieldname),
+            code=lc_fieldnames.index(fieldname),
             name=name,
             welsh_name=welsh_name)
 
     if fields_to_process:
-        raise ValueError(f'Unexpected fieldnames: {", ".join(sorted(fields_to_process))}')
+        raise ValueError('Unexpected fieldnames: '
+                         f'{", ".join(sorted([original_case(f) for f in fields_to_process]))}')
 
     return var_to_columns

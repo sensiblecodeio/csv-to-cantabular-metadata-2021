@@ -506,10 +506,16 @@ class Loader:
             logging.info('No geography file specified')
             return categories
 
-        for class_name, geo_cats in read_geo_cats(self.geography_file).items():
-            if class_name not in self.classifications:
+        # read_geo_cats returns a dictionary of lower case variable name to categories.
+        # This allows the reader to be case agnostic with regards to column headings.
+        for lc_name, geo_cats in read_geo_cats(self.geography_file).items():
+            for name in self.classifications:
+                if name.lower() == lc_name:
+                    class_name = name
+                    break
+            else:
                 logging.info(f'Reading {self.geography_file}: found Welsh labels for unknown '
-                             f'classification: {class_name}')
+                             f'classification: {lc_name}')
                 continue
 
             if not self.classifications[class_name].private['Is_Geographic']:
