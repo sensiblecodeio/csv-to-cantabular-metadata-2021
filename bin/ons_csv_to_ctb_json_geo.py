@@ -47,7 +47,7 @@ def read_file(filename):
        and LAD22cd.
      - If multiple lines in the file refer to the same category then the names must be consistent
        on all lines.
-     - The column names are handled in a cases insensitive manner.
+     - The column names are handled in a case-insensitive manner.
 
     """
     with open(filename, newline='', encoding='utf-8-sig') as csvfile:

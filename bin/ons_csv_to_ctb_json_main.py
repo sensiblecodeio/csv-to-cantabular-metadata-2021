@@ -85,7 +85,7 @@ def main():
                        type=str,
                        required=False,
                        help='Names of CSV files containing category codes and names for '
-                            'geographic variables, supplied as a comma separated list')
+                            'geographic variables, supplied as a comma-separated list')
 
     group.add_argument('-d', '--geography-dir',
                        type=str,
@@ -438,7 +438,7 @@ def build_ctb_service_metadata(metadata_version_number, build_time, geography_fi
 
 
 def basename_string(filenames):
-    """Return a comma separate list of basenames of a list of files."""
+    """Return a string containing a comma-separated list of basenames of a list of files."""
     return ','.join([os.path.basename(fn) for fn in filenames])
 
 
