@@ -111,7 +111,7 @@ It provides some information about the build process, where the CSV files were c
 | `created` | `String!` | Time in ISO 8601 format that the Python CSV to JSON script was executed | |
 | `best_effort` | `String!` | `"TRUE"` if the `--best-effort` flag was used when running the script, else `"FALSE"` | |
 | `dataset_filter` | `String` | Contains the values specified with the `--dataset-filter` command line parameter, if it was used when running the script | |
-| `geography_file` | `String` | Name of the geography file used to source category labels for geographic variables if supplied on the command line | |
+| `geography_file` | `String` | Comma-separated list of the names of geography files used to source category labels for geographic variables if supplied on the command line | |
 | `versions` | `Versions!` | Version information relating to build | |
 
 ## Versions

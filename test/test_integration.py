@@ -85,6 +85,33 @@ class TestIntegration(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, expected_error):
                 ons_csv_to_ctb_json_main.main()
 
+    def test_invalid_geo_args(self):
+        """Check that a sensible error is raised if geography args are invalid."""
+        file_dir = pathlib.Path(__file__).parent.resolve()
+        input_dir = os.path.join(file_dir, 'testdata')
+        output_dir = os.path.join(file_dir, 'out')
+        geo_dir = os.path.join(file_dir, 'geography')
+
+        geo1_file = os.path.join(geo_dir, 'geography1.csv')
+        dupe_geo_files = ','.join([geo1_file]*2)
+        expected_error = f"Some geography filenames are specified multiple times: \['{geo1_file}'\]"
+        with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir,
+                                              '-g', dupe_geo_files]):
+            with self.assertRaisesRegex(ValueError, expected_error):
+                ons_csv_to_ctb_json_main.main()
+
+        invalid_dir = os.path.join(file_dir, 'invalid')
+        expected_error = f'{invalid_dir} does not exist or is not a dir'
+        with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir,
+                                              '-d', invalid_dir]):
+            with self.assertRaisesRegex(ValueError, expected_error):
+                ons_csv_to_ctb_json_main.main()
+
+        with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir,
+                                              '-d', geo_dir, '-g', geo1_file]):
+            with self.assertRaises(SystemExit):
+                ons_csv_to_ctb_json_main.main()
+
     @unittest.mock.patch('ons_csv_to_ctb_json_main.datetime')
     def test_generated_json(self, mock_datetime):
         """Generate JSON from source CSV and compare it with expected values."""
@@ -94,33 +121,36 @@ class TestIntegration(unittest.TestCase):
         file_dir = pathlib.Path(__file__).parent.resolve()
         input_dir = os.path.join(file_dir, 'testdata')
         output_dir = os.path.join(file_dir, 'out')
-        geo_dir = os.path.join(input_dir, 'geography/geography.csv')
-        with self.assertLogs(level='INFO') as cm:
-            with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir, '-g', geo_dir]):
-                ons_csv_to_ctb_json_main.main()
-                with open(os.path.join(output_dir, FILENAME_SERVICE)) as f:
-                    service_metadata = json.load(f)
-                with open(os.path.join(file_dir, 'expected/service-metadata.json')) as f:
-                    expected_service_metadata = json.load(f)
-                self.assertEqual(service_metadata, expected_service_metadata,
-                                 msg=f'Comparing out/{FILENAME_SERVICE} and expected/service-metadata.json')
+        geo_files = f'{os.path.join(input_dir, "geography/geography1.csv")} , {os.path.join(input_dir, "geography/geography2.csv")}'
+        geo_dir = os.path.join(input_dir, 'geography')
+        for args in [['test', '-i', input_dir, '-o', output_dir, '-g', geo_files], ['test', '-i', input_dir, '-o', output_dir, '-d', geo_dir]]:
+            with self.assertLogs(level='INFO') as cm:
+                with unittest.mock.patch('sys.argv', args):
+                    ons_csv_to_ctb_json_main.main()
+                    with open(os.path.join(output_dir, FILENAME_SERVICE)) as f:
+                        service_metadata = json.load(f)
+                    with open(os.path.join(file_dir, 'expected/service-metadata.json')) as f:
+                        expected_service_metadata = json.load(f)
+                    self.assertEqual(service_metadata, expected_service_metadata,
+                                     msg=f'Comparing out/{FILENAME_SERVICE} and expected/service-metadata.json')
 
-                with open(os.path.join(output_dir, FILENAME_DATASET)) as f:
-                    dataset_metadata = json.load(f)
-                with open(os.path.join(file_dir, 'expected/dataset-metadata.json')) as f:
-                    expected_dataset_metadata = json.load(f)
-                self.assertEqual(dataset_metadata, expected_dataset_metadata,
-                                 msg=f'Comparing out/{FILENAME_DATASET} and expected/dataset-metadata.json')
+                    with open(os.path.join(output_dir, FILENAME_DATASET)) as f:
+                        dataset_metadata = json.load(f)
+                    with open(os.path.join(file_dir, 'expected/dataset-metadata.json')) as f:
+                        expected_dataset_metadata = json.load(f)
+                    self.assertEqual(dataset_metadata, expected_dataset_metadata,
+                                     msg=f'Comparing out/{FILENAME_DATASET} and expected/dataset-metadata.json')
 
-                with open(os.path.join(output_dir, FILENAME_TABLES)) as f:
-                    table_metadata = json.load(f)
-                with open(os.path.join(file_dir, 'expected/table-metadata.json')) as f:
-                    expected_table_metadata = json.load(f)
-                self.assertEqual(table_metadata, expected_table_metadata,
-                                 f'Comparing out/{FILENAME_TABLES} and expected/table-metadata.json')
+                    with open(os.path.join(output_dir, FILENAME_TABLES)) as f:
+                        table_metadata = json.load(f)
+                    with open(os.path.join(file_dir, 'expected/table-metadata.json')) as f:
+                        expected_table_metadata = json.load(f)
+                    self.assertEqual(table_metadata, expected_table_metadata,
+                                     f'Comparing out/{FILENAME_TABLES} and expected/table-metadata.json')
 
-        self.assertEqual(16, len(cm.output))
-        self.assertRegex(cm.output[12], r'Build created=1970-01-01T00:00:00 best_effort=False dataset_filter="" geography_file="geography.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.3$')
+            self.assertEqual(17, len(cm.output))
+            self.assertRegex(cm.output[4], r"Labels supplied for these geographic classifications: \['GEO1', 'GEO2'\]")
+            self.assertRegex(cm.output[13], r'Build created=1970-01-01T00:00:00 best_effort=False dataset_filter="" geography_file="geography1.csv,geography2.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.3$')
 
     @unittest.mock.patch('ons_csv_to_ctb_json_main.datetime')
     def test_no_geography_file(self, mock_datetime):

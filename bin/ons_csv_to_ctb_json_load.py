@@ -61,10 +61,10 @@ class Loader:
     Many of the fields in this class are cached properties, with the data loaded on first access.
     """
 
-    def __init__(self, input_directory, geography_file, best_effort=False, dataset_filter=''):
+    def __init__(self, input_directory, geography_files, best_effort=False, dataset_filter=''):
         """Initialise MetadataLoader object."""
         self.input_directory = input_directory
-        self.geography_file = geography_file
+        self.geography_files = geography_files
         self.dataset_filter = dataset_filter
         self._error_count = 0
 
@@ -502,23 +502,30 @@ class Loader:
                                                             default_to_english=False)
 
         # Categories for geographic variables are supplied in a separate file.
-        if not self.geography_file:
-            logging.info('No geography file specified')
+        if not self.geography_files:
+            logging.info('No geography files specified')
             return categories
 
-        for class_name, geo_cats in read_geo_cats(self.geography_file).items():
-            if class_name not in self.classifications:
-                logging.info(f'Reading {self.geography_file}: found Welsh labels for unknown '
-                             f'classification: {class_name}')
+        # read_geo_cats returns a dictionary of lower case variable name to categories.
+        # This allows the reader to be case agnostic with regards to column headings.
+        for lc_name, geo_cats in read_geo_cats(self.geography_files).items():
+            for name in self.classifications:
+                if name.lower() == lc_name:
+                    class_name = name
+                    break
+            else:
+                logging.info(f'Reading {geo_cats.source_file}: found labels for unknown '
+                             f'geographic classification: {lc_name}')
                 continue
 
             if not self.classifications[class_name].private['Is_Geographic']:
-                self.recoverable_error(f'Reading {self.geography_file}: found Welsh labels for '
+                self.recoverable_error(f'Reading {geo_cats.source_file}: found labels for '
                                        f'non geographic classification: {class_name}')
                 continue
 
-            english_names = {cd: nm.name for cd, nm in geo_cats.items() if nm.name}
-            welsh_names = {cd: nm.welsh_name for cd, nm in geo_cats.items() if nm.welsh_name}
+            english_names = {cd: nm.name for cd, nm in geo_cats.code_to_label.items() if nm.name}
+            welsh_names = {cd: nm.welsh_name for cd, nm in geo_cats.code_to_label.items()
+                           if nm.welsh_name}
 
             # If Welsh names are not provided then do not substitute English names in their place.
             # The Welsh base dataset includes the base English dataset and the metadata server
@@ -526,6 +533,14 @@ class Loader:
             categories[class_name] = Bilingual(english_names,
                                                welsh_names if welsh_names else None,
                                                default_to_english=False)
+
+        geos_with_labels = []
+        for class_name, classification in self.classifications.items():
+            if classification.private['Is_Geographic'] and class_name in categories:
+                geos_with_labels.append(class_name)
+        if geos_with_labels:
+            logging.info('Labels supplied for these geographic classifications: '
+                         f'{sorted(geos_with_labels)}')
 
         return categories
 
