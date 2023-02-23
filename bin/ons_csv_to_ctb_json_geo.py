@@ -1,6 +1,7 @@
 """Load geographic variable category labels from CSV file."""
 import csv
 import re
+import logging
 from collections import namedtuple
 
 ColumnIndices = namedtuple('ColumnIndices', 'code name welsh_name')
@@ -27,6 +28,75 @@ def read_geo_cats(filenames):
     return data
 
 
+HealthCols = namedtuple('HealthCols', 'sicblcd sicblnm sicblnmw icbcd')
+
+
+class Reader:
+    """
+    Reader wraps a csv.reader and potentially modifies rows related to health geographies.
+
+    Local Health Boards (lhb) are a Welsh only geography. However, in the geography lookup file
+    they are combined with the English only Sub Integrated Care Board Locations (sicbl).
+
+    This code separates lhb values from sicbl values at read time so that the processing code can
+    behave as if there are separate columns for lhb and sicbl.
+    """
+
+    def __init__(self, csvfile):
+        """Initialise Reader."""
+        self.reader = csv.reader(csvfile)
+        self.health_cols = None
+
+    def handle_health_headers(self, headers):
+        """
+        Add headers for lhb in the health realted geography lookup.
+
+        Only add the headers if there are headers for sicbl and icb (Integrated Care Boards), and
+        if there are no columns for lhb.
+        """
+        if not self.health_cols:
+            lc_headers = [h.lower() for h in headers]
+            if {'sicbl22cd', 'sicbl22nm', 'sicbl22nmw', 'icb22cd'}.issubset(set(lc_headers)) and \
+                    not [h for h in lc_headers if h.startswith('lhb')]:
+                headers.extend(['lhb22cd', 'lhb22nm', 'lhb22nmw'])
+                self.health_cols = HealthCols(
+                    sicblcd=lc_headers.index('sicbl22cd'),
+                    sicblnm=lc_headers.index('sicbl22nm'),
+                    sicblnmw=lc_headers.index('sicbl22nmw'),
+                    icbcd=lc_headers.index('icb22cd'),
+                )
+                logging.info('SICBL related columns in geographic lookup file will be '
+                             'used to populated SICBL and LHB category codes/labels')
+        return headers
+
+    def handle_health_values(self, values):
+        """
+        Separate values for sicbl and lhb.
+
+        In the geographic lookup file lhb values can be found in rows where the icb value is empty.
+        For such rows, the sicbl values are moved to equivalent lhb elements.
+        """
+        if self.health_cols:
+            if not values[self.health_cols.icbcd]:
+                values.extend([values[self.health_cols.sicblcd], values[self.health_cols.sicblnm],
+                               values[self.health_cols.sicblnmw]])
+                values[self.health_cols.sicblcd] = ''
+                values[self.health_cols.sicblnm] = ''
+                values[self.health_cols.sicblnmw] = ''
+            else:
+                values.extend([''] * 3)
+        return values
+
+    def __next__(self):
+        """Implement next functionality."""
+        return self.handle_health_headers(next(self.reader))
+
+    def __iter__(self):
+        """Implement iterator."""
+        for row in self.reader:
+            yield self.handle_health_values(row)
+
+
 def read_file(filename):
     """
     Read a lookup file containing variable category codes, labels and Welsh labels.
@@ -51,7 +121,7 @@ def read_file(filename):
 
     """
     with open(filename, newline='', encoding='utf-8-sig') as csvfile:
-        reader = csv.reader(csvfile)
+        reader = Reader(csvfile)
         fieldnames = [v.strip() for v in next(reader)]
         var_to_columns = assign_columns_to_variables(filename, fieldnames)
         data = {var_name: GeoCats(source_file=filename, code_to_label={})
@@ -59,25 +129,36 @@ def read_file(filename):
 
         for row_num, row in enumerate(reader, 2):
             if len(row) > len(fieldnames):
-                raise ValueError(f'Reading {filename}: too many fields on row {row_num}')
+                raise ValueError(f'Reading {filename}:{row_num} too many fields on row')
             if len(row) < len(fieldnames):
-                raise ValueError(f'Reading {filename}: too few fields on row {row_num}')
+                raise ValueError(f'Reading {filename}:{row_num} too few fields on row')
 
             for geo, columns in var_to_columns.items():
                 code = row[columns.code].strip()
                 name = row[columns.name].strip() if columns.name else ""
                 welsh_name = row[columns.welsh_name].strip() if columns.welsh_name else ""
 
+                if not code:
+                    if name:
+                        raise ValueError(
+                            f'Reading {filename}:{row_num} category name supplied for {geo} '
+                            f'but code is not supplied: "{name}"')
+                    if welsh_name:
+                        raise ValueError(
+                            f'Reading {filename}:{row_num} category Welsh name supplied for {geo} '
+                            f'but code is not supplied: "{welsh_name}"')
+                    continue
+
                 if code not in data[geo].code_to_label:
                     data[geo].code_to_label[code] = AreaName(name=name, welsh_name=welsh_name)
                     continue
                 if data[geo].code_to_label[code].name != name:
                     raise ValueError(
-                        f'Reading {filename}: different name for code {code} of '
+                        f'Reading {filename}:{row_num} different name for code {code} of '
                         f'{geo}: "{name}" and "{data[geo].code_to_label[code].name}"')
                 if data[geo].code_to_label[code].welsh_name != welsh_name:
                     raise ValueError(
-                        f'Reading {filename}: different Welsh name for code {code} of '
+                        f'Reading {filename}:{row_num} different Welsh name for code {code} of '
                         f'{geo}: "{welsh_name}" and "{data[geo].code_to_label[code].welsh_name}"')
 
     return data
