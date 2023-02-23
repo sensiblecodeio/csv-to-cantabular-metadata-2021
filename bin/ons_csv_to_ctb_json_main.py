@@ -81,11 +81,13 @@ def main():
     # geography file was supported. The list of files could be quite long, so also adding
     # the -d option.
     group = parser.add_mutually_exclusive_group(required=False)
-    group.add_argument('-g', '--geography-files',
+    group.add_argument('-g', '--geography-file',
                        type=str,
+                       action='append',
                        required=False,
-                       help='Names of CSV files containing category codes and names for '
-                            'geographic variables, supplied as a comma-separated list')
+                       help='Name of CSV file containing category codes and names for '
+                            'geographic variables. Multiple files can be specified using separate '
+                            '-g options.')
 
     group.add_argument('-d', '--geography-dir',
                        type=str,
@@ -161,8 +163,8 @@ def main():
     logging.info(f'{Path(__file__).name} version {SCRIPT_VERSION}')
     logging.info(f'CSV source directory: {args.input_dir}')
     geography_files = []
-    if args.geography_files:
-        geography_files = [fn.strip() for fn in args.geography_files.split(',')]
+    if args.geography_file:
+        geography_files = [fn.strip() for fn in args.geography_file]
         seen = set()
         dupes = [fn for fn in geography_files if fn in seen or seen.add(fn)]
         if dupes:

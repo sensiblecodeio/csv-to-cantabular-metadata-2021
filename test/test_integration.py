@@ -93,10 +93,9 @@ class TestIntegration(unittest.TestCase):
         geo_dir = os.path.join(file_dir, 'geography')
 
         geo1_file = os.path.join(geo_dir, 'geography1.csv')
-        dupe_geo_files = ','.join([geo1_file]*2)
         expected_error = f"Some geography filenames are specified multiple times: \['{geo1_file}'\]"
         with unittest.mock.patch('sys.argv', ['test', '-i', input_dir, '-o', output_dir,
-                                              '-g', dupe_geo_files]):
+                                              '-g', geo1_file, '-g', geo1_file]):
             with self.assertRaisesRegex(ValueError, expected_error):
                 ons_csv_to_ctb_json_main.main()
 
@@ -121,9 +120,10 @@ class TestIntegration(unittest.TestCase):
         file_dir = pathlib.Path(__file__).parent.resolve()
         input_dir = os.path.join(file_dir, 'testdata')
         output_dir = os.path.join(file_dir, 'out')
-        geo_files = f'{os.path.join(input_dir, "geography/geography1.csv")} , {os.path.join(input_dir, "geography/geography2.csv")}'
+        geo1_file = os.path.join(input_dir, 'geography/geography1.csv')
+        geo2_file = os.path.join(input_dir, 'geography/geography2.csv')
         geo_dir = os.path.join(input_dir, 'geography')
-        for args in [['test', '-i', input_dir, '-o', output_dir, '-g', geo_files], ['test', '-i', input_dir, '-o', output_dir, '-d', geo_dir]]:
+        for args in [['test', '-i', input_dir, '-o', output_dir, '-g', geo1_file, '-g', geo2_file], ['test', '-i', input_dir, '-o', output_dir, '-d', geo_dir]]:
             with self.assertLogs(level='INFO') as cm:
                 with unittest.mock.patch('sys.argv', args):
                     ons_csv_to_ctb_json_main.main()

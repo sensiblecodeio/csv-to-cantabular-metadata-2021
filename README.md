@@ -24,8 +24,8 @@ Using test data
 The `test/testdata` directory contains some sample CSV files that are used as part of continuous
 integration testing. They contain dummy data that are intended to exercise the capabilities of the
 software. Category information for geographic variables is supplied in files found in the
-`test/testdata/geography` directory. Alternatively a comma separated list of individual geography
-lookup files may be specified using the `-g` option.
+`test/testdata/geography` directory. Alternatively individual geography lookup files may be
+specified using the `-g` option e.g. `-g file1.csv -g file2.csv`.
 The data can be used to verify the operation of `ons_csv_to_ctb_json_main.py`.
 
 To convert the source CSV files to JSON files in `ctb_metadata_files/` run:
