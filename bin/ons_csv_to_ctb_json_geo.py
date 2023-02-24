@@ -59,25 +59,37 @@ def read_file(filename):
 
         for row_num, row in enumerate(reader, 2):
             if len(row) > len(fieldnames):
-                raise ValueError(f'Reading {filename}: too many fields on row {row_num}')
+                raise ValueError(f'Reading {filename}:{row_num} too many fields on row')
             if len(row) < len(fieldnames):
-                raise ValueError(f'Reading {filename}: too few fields on row {row_num}')
+                raise ValueError(f'Reading {filename}:{row_num} too few fields on row')
 
             for geo, columns in var_to_columns.items():
                 code = row[columns.code].strip()
                 name = row[columns.name].strip() if columns.name else ""
                 welsh_name = row[columns.welsh_name].strip() if columns.welsh_name else ""
 
+                if not code:
+                    if name:
+                        raise ValueError(
+                            f'Reading {filename}:{row_num} category name supplied for {geo} '
+                            f'but code is not supplied: "{name}"')
+                    if welsh_name:
+                        raise ValueError(
+                            f'Reading {filename}:{row_num} category Welsh name supplied for {geo} '
+                            f'but code is not supplied: "{welsh_name}"')
+                    # Ignore entries where all values are "" for a particular geography
+                    continue
+
                 if code not in data[geo].code_to_label:
                     data[geo].code_to_label[code] = AreaName(name=name, welsh_name=welsh_name)
                     continue
                 if data[geo].code_to_label[code].name != name:
                     raise ValueError(
-                        f'Reading {filename}: different name for code {code} of '
+                        f'Reading {filename}:{row_num} different name for code {code} of '
                         f'{geo}: "{name}" and "{data[geo].code_to_label[code].name}"')
                 if data[geo].code_to_label[code].welsh_name != welsh_name:
                     raise ValueError(
-                        f'Reading {filename}: different Welsh name for code {code} of '
+                        f'Reading {filename}:{row_num} different Welsh name for code {code} of '
                         f'{geo}: "{welsh_name}" and "{data[geo].code_to_label[code].welsh_name}"')
 
     return data
