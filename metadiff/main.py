@@ -1,12 +1,19 @@
 """
 Program to check how metadata served up by cantabular-metadata has changed from a previous run.
 
+THIS SCRIPT IS FOR DEBUG PURPOSES ONLY.
+
 The program identifies the set of datasets, tables and variables available in the metadata by
 parsing the relevant sourcs CSV files. It then runs queries against cantabular-metadata for every
 dataset, table and variable in each dataset. It compares the responses with a set of fixtures and
 reports on the differences.
 
-The fixtures can be generated using the -n flag.
+With cantabular-metadata running, run this script with the -n flag to generate the fixtures:
+  python3 main.py -m <METADATA_FOLDER> -u http://127.0.0.1:8493 -n
+
+Then run cantabular-metadata with a different version of the metadata and run this script without
+-n flag. Changes to the metadata will be highlighted.
+  python3 main.py -m <METADATA_FOLDER> -u http://127.0.0.1:8493
 """
 
 import os
@@ -34,7 +41,7 @@ def main():
     parser.add_argument('-f', '--fixtures-dir',
                         type=str,
                         required=False,
-                        default='metadiff/fixtures',
+                        default='fixtures',
                         help='Directory for JSON fixtures i.e. JSON files containing metadata '
                              'for datasets, variables and tables as read from the Cantabular '
                              'metadata service')

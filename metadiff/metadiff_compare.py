@@ -124,7 +124,6 @@ class MetadataComparer:
 
 def compare_json(old_json, new_json):
     """Compare the values in old and new and report any differences."""
-
     field_stack = []
 
     def log_difference(msg):
@@ -134,11 +133,10 @@ def compare_json(old_json, new_json):
     def abridged(value):
         if isinstance(value, list) and len(value) > 10:
             return f'{str(value[0:10])} plus {len(value)-10} items'
-        elif isinstance(value, dict) and len(value.keys()) > 10:
+        if isinstance(value, dict) and len(value.keys()) > 10:
             short_d = {k: value[k] for k in list(value.keys())[0:10]}
             return f'{str(short_d)} plus {len(value)-10} items'
-        else:
-            return value
+        return value
 
     def walk(old, new):
         if not isinstance(new, type(old)):
@@ -148,7 +146,10 @@ def compare_json(old_json, new_json):
             old_fields = set(old.keys())
             new_fields = set(new.keys())
             if new_fields - old_fields:
-                log_difference(f'  New fields added: {new_fields-old_fields}')
+                msg = f'  New fields added: {new_fields-old_fields}'
+                for field in new_fields - old_fields:
+                    msg += f'\n    {field}: {new[field]}'
+                log_difference(msg)
             if old_fields - new_fields:
                 log_difference(f'  Old fields deleted: {old_fields-new_fields}')
             for key in sorted(old):
