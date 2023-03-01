@@ -3,6 +3,7 @@ import json
 import os
 import logging
 import re
+import glob
 from pathlib import Path
 from argparse import ArgumentParser
 from datetime import datetime
@@ -13,7 +14,7 @@ SCHEMA_VERSION = '1.3'
 
 # The first two elements in SCRIPT_VERSION refer to the metadata schema. The final element is the
 # iteration of the conversion code for that version of the schema.
-SCRIPT_VERSION = SCHEMA_VERSION + '.2'
+SCRIPT_VERSION = SCHEMA_VERSION + '.3'
 
 SYSTEM = 'cantabm'
 DEFAULT_CANTABULAR_VERSION = '10.2.2'
@@ -76,11 +77,23 @@ def main():
                         required=True,
                         help='Output directory to write JSON files')
 
-    parser.add_argument('-g', '--geography-file',
-                        type=str,
-                        required=False,
-                        help='Name of CSV file containing category codes and names for geographic '
-                             'variables')
+    # Keeping the -g parameter maintains backwards compatibility to case where only a single
+    # geography file was supported. The list of files could be quite long, so also adding
+    # the -d option.
+    group = parser.add_mutually_exclusive_group(required=False)
+    group.add_argument('-g', '--geography-file',
+                       type=str,
+                       action='append',
+                       required=False,
+                       help='Name of CSV file containing category codes and names for '
+                            'geographic variables. Multiple files can be specified using separate '
+                            '-g options.')
+
+    group.add_argument('-d', '--geography-dir',
+                       type=str,
+                       required=False,
+                       help='Folder containing CSV files with category codes and names for '
+                            'geographic variables')
 
     parser.add_argument('-l', '--log_level',
                         type=str,
@@ -149,8 +162,20 @@ def main():
 
     logging.info(f'{Path(__file__).name} version {SCRIPT_VERSION}')
     logging.info(f'CSV source directory: {args.input_dir}')
+    geography_files = []
     if args.geography_file:
-        logging.info(f'Geography file: {args.geography_file}')
+        geography_files = [fn.strip() for fn in args.geography_file]
+        seen = set()
+        dupes = [fn for fn in geography_files if fn in seen or seen.add(fn)]
+        if dupes:
+            raise ValueError(f'Some geography filenames are specified multiple times: {dupes}')
+    elif args.geography_dir:
+        if not os.path.isdir(args.geography_dir):
+            raise ValueError(f'{args.geography_dir} does not exist or is not a directory')
+        geography_files = sorted(glob.glob(os.path.join(args.geography_dir, '*.csv')))
+
+    if geography_files:
+        logging.info(f'Geography files: {",".join(geography_files)}')
     if args.dataset_filter:
         logging.info(f'Dataset filter: {args.dataset_filter}')
 
@@ -167,7 +192,7 @@ def main():
         args.build_number)
 
     # loader is used to load the metadata from CSV files and convert it to JSON.
-    loader = Loader(args.input_dir, args.geography_file, best_effort=args.best_effort,
+    loader = Loader(args.input_dir, geography_files, best_effort=args.best_effort,
                     dataset_filter=args.dataset_filter)
 
     # Build Cantabular variable objects.
@@ -184,7 +209,7 @@ def main():
 
     # Build Cantabular service metadata.
     service_metadata = build_ctb_service_metadata(loader.metadata_version_number, build_time,
-                                                  args)
+                                                  geography_files, args)
 
     error_count = loader.error_count()
     if error_count:
@@ -204,7 +229,7 @@ def main():
                  f'created={build_time} '
                  f'best_effort={args.best_effort} '
                  f'dataset_filter={json.dumps(args.dataset_filter)} '
-                 f'geography_file={json.dumps(geography_file(args))} '
+                 f'geography_file={json.dumps(basename_string(geography_files))} '
                  f'versions_data={loader.metadata_version_number} '
                  f'versions_schema={SCHEMA_VERSION} '
                  f'versions_script={SCRIPT_VERSION}')
@@ -269,6 +294,15 @@ def build_ctb_variables(classifications, cat_labels):
     return ctb_variables
 
 
+def non_public_variable(classification_mnemonic):
+    """Create a dataset specific variable with Cantabular_Public_Flag set to N."""
+    return {
+        'name': classification_mnemonic,
+        'meta': {'Cantabular_Public_Flag': 'N'},
+        'catLabels': None,
+    }
+
+
 def build_ctb_datasets(databases, ctb_variables, base_dataset_name):
     """
     Build Cantabular dataset objects.
@@ -327,7 +361,10 @@ def build_ctb_datasets(databases, ctb_variables, base_dataset_name):
             'description': database.private['Database_Description'],
             'lang': Bilingual('en', 'cy'),
             'meta': database,
-            'vars': None,
+            'vars':
+                [non_public_variable(np) for np in
+                 database.private['Non_Public_Classifications']] if
+                database.private['Non_Public_Classifications'] else None,
         })
         ctb_datasets.extend([ctb_dataset.english(), ctb_dataset.welsh()])
         logging.debug(f'Loaded metadata for Cantabular dataset: {database_mnemonic}')
@@ -372,7 +409,7 @@ def build_ctb_tables(datasets):
     return ctb_tables
 
 
-def build_ctb_service_metadata(metadata_version_number, build_time, args):
+def build_ctb_service_metadata(metadata_version_number, build_time, geography_files, args):
     """Build the service metadata."""
     service_metadata = BilingualDict({
         'lang': Bilingual('en', 'cy'),
@@ -384,7 +421,11 @@ def build_ctb_service_metadata(metadata_version_number, build_time, args):
                 'created': build_time,
                 'dataset_filter': args.dataset_filter if args.dataset_filter else None,
                 'best_effort': str(args.best_effort),
-                'geography_file': geography_file(args) if args.geography_file else None,
+                # The geography files would be better as a list. However, that would involve an
+                # API change and could potentially requires updates to existing software using the
+                # metadata service. Sticking with a string as this field is for debug purposes
+                # only.
+                'geography_file': basename_string(geography_files) if geography_files else None,
                 'versions': {
                     'data': metadata_version_number,
                     'schema': SCHEMA_VERSION,
@@ -398,9 +439,9 @@ def build_ctb_service_metadata(metadata_version_number, build_time, args):
     return [service_metadata.english(), service_metadata.welsh()]
 
 
-def geography_file(args):
-    """Return the basename of the geography file."""
-    return f'{os.path.basename(args.geography_file)}' if args.geography_file else ""
+def basename_string(filenames):
+    """Return a string containing a comma-separated list of basenames of a list of files."""
+    return ','.join([os.path.basename(fn) for fn in filenames])
 
 
 if __name__ == '__main__':

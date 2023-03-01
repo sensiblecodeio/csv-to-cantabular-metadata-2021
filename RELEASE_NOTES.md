@@ -1,6 +1,13 @@
 Release Notes
 =============
 
+1.3.3
+-----
+
+- Support multiple geography lookup files. Files can be supplied using the `-g` option, with
+  one `-g` option per file. Alternatively a geography folder can be specifed using the new `-d` option.
+- Expose `Cantabular_Public_Flag` for each variable on a per-dataset basis.
+
 1.3.2
 -----
 

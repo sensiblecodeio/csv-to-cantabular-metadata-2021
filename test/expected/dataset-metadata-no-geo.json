@@ -78,7 +78,8 @@
                             "Topic_Description": "TOPIC1 Description",
                             "Topic_Title": "TOPIC1 Title"
                         }
-                    ]
+                    ],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": {
                     "CODE3": "LABEL3",
@@ -117,7 +118,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": {
                     "CODE2-1": "LABEL2-1 Internal"
@@ -151,7 +153,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             },
@@ -205,7 +208,8 @@
                             }
                         ]
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             },
@@ -237,7 +241,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             },
@@ -269,7 +274,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             },
@@ -279,6 +285,7 @@
                 "description": "GEO1 Description",
                 "meta": {
                     "Mnemonic_2011": null,
+                    "Cantabular_Public_Flag": "Y",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -326,6 +333,7 @@
                 "description": "GEO2 Description",
                 "meta": {
                     "Mnemonic_2011": null,
+                    "Cantabular_Public_Flag": "Y",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -433,7 +441,8 @@
                             "Topic_Description": "TOPIC1 Description",
                             "Topic_Title": "TOPIC1 Title"
                         }
-                    ]
+                    ],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": {
                     "CODE3": "LABEL3 (Welsh)",
@@ -470,7 +479,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": {
                     "CODE2-1": "LABEL2-1 (Welsh)"
@@ -504,7 +514,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             },
@@ -558,7 +569,8 @@
                             }
                         ]
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             },
@@ -590,7 +602,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             },
@@ -622,7 +635,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             },
@@ -632,6 +646,7 @@
                 "description": "GEO1 Description (Welsh)",
                 "meta": {
                     "Mnemonic_2011": null,
+                    "Cantabular_Public_Flag": "Y",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -679,6 +694,7 @@
                 "description": "GEO2 Description",
                 "meta": {
                     "Mnemonic_2011": null,
+                    "Cantabular_Public_Flag": "Y",
                     "Default_Classification_Flag": null,
                     "Version": "1",
                     "ONS_Variable": {
@@ -752,7 +768,22 @@
                 "Database_Type_Description": "Microdata database"
             }
         },
-        "vars": null
+        "vars": [
+            {
+                "name": "CLASS2",
+                "meta": {
+                    "Cantabular_Public_Flag": "N"
+                },
+                "catLabels": null
+            },
+            {
+                "name": "GEO2",
+                "meta": {
+                    "Cantabular_Public_Flag": "N"
+                },
+                "catLabels": null
+            }
+        ]
     },
     {
         "name": "DB1",
@@ -793,7 +824,22 @@
                 "Database_Type_Description": "Microdata database"
             }
         },
-        "vars": null
+        "vars": [
+            {
+                "name": "CLASS2",
+                "meta": {
+                    "Cantabular_Public_Flag": "N"
+                },
+                "catLabels": null
+            },
+            {
+                "name": "GEO2",
+                "meta": {
+                    "Cantabular_Public_Flag": "N"
+                },
+                "catLabels": null
+            }
+        ]
     },
     {
         "name": "DB2",

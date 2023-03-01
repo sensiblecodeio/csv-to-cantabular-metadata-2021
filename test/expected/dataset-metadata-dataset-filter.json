@@ -45,7 +45,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": {
                     "CODE1": "LABEL1"
@@ -99,7 +100,8 @@
                         "Topic": null,
                         "Questions": []
                     },
-                    "Topics": []
+                    "Topics": [],
+                    "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
             }
