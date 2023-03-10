@@ -6,7 +6,8 @@ from ons_csv_to_ctb_json_load import Loader
 from helper_funcs import conditional_mock_open, build_test_file
 
 HEADERS = ['Statistical_Unit', 'Id', 'Statistical_Unit_Description',
-           'Statistical_Unit_Description_Welsh']
+           'Statistical_Unit_Description_Welsh', 'Statistical_Unit_Label',
+           'Statistical_Unit_Label_Welsh']
 
 REQUIRED_FIELDS = {'Statistical_Unit': 'People',
                    'Statistical_Unit_Description': 'description',

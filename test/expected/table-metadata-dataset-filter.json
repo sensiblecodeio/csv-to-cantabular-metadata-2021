@@ -18,6 +18,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": null,
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -49,6 +50,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": null,
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,

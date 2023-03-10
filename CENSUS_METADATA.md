@@ -376,6 +376,7 @@ The data is sourced from `Statistical_Unit.csv`. The `Id` field in `Statistical_
 | Field | GraphQL Type | Source (en) | Source (cy) |
 | --- | --- | --- | --- |
 | `Statistical_Unit` | `String!` | `Statistical_Unit.Statistical_Unit` | |
+| `Statistical_Unit_Label` | `String` | `Statistical_Unit.Statistical_Unit_Label` | `Statistical_Unit_Label_Welsh` |
 | `Statistical_Unit_Description` | `String!` | `Statistical_Unit.Statistical_Unit_Description` | `Statistical_Unit.Statistical_Unit_Description_Welsh` |
 
 ## Observation_Type

@@ -44,6 +44,7 @@
                         },
                         "Statistical_Unit": {
                             "Statistical_Unit": "People",
+                            "Statistical_Unit_Label": "People Label",
                             "Statistical_Unit_Description": "People Description"
                         },
                         "Topic": {
@@ -191,6 +192,7 @@
                         },
                         "Statistical_Unit": {
                             "Statistical_Unit": "People",
+                            "Statistical_Unit_Label": "People Label",
                             "Statistical_Unit_Description": "People Description"
                         },
                         "Topic": {
@@ -319,6 +321,7 @@
                         },
                         "Statistical_Unit": {
                             "Statistical_Unit": "People",
+                            "Statistical_Unit_Label": "People Label",
                             "Statistical_Unit_Description": "People Description"
                         },
                         "Topic": {
@@ -421,6 +424,7 @@
                         },
                         "Statistical_Unit": {
                             "Statistical_Unit": "People",
+                            "Statistical_Unit_Label": "People Label (Welsh)",
                             "Statistical_Unit_Description": "People Description (Welsh)"
                         },
                         "Topic": {
@@ -566,6 +570,7 @@
                         },
                         "Statistical_Unit": {
                             "Statistical_Unit": "People",
+                            "Statistical_Unit_Label": "People Label (Welsh)",
                             "Statistical_Unit_Description": "People Description (Welsh)"
                         },
                         "Topic": {
@@ -694,6 +699,7 @@
                         },
                         "Statistical_Unit": {
                             "Statistical_Unit": "People",
+                            "Statistical_Unit_Label": "People Label (Welsh)",
                             "Statistical_Unit_Description": "People Description (Welsh)"
                         },
                         "Topic": {

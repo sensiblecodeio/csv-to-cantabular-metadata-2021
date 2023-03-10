@@ -126,6 +126,7 @@ type Census_Release {
 type Statistical_Unit {
   Statistical_Unit: String!
   Statistical_Unit_Description: String!
+  Statistical_Unit_Label: String
 }
 
 type Observation_Type {

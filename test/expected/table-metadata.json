@@ -21,6 +21,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "People",
+                        "Statistical_Unit_Label": "People Label",
                         "Statistical_Unit_Description": "People Description"
                     },
                     "Contact": {
@@ -78,6 +79,7 @@
                     "Dataset_Population": "Everyone (Welsh)",
                     "Statistical_Unit": {
                         "Statistical_Unit": "People",
+                        "Statistical_Unit_Label": "People Label (Welsh)",
                         "Statistical_Unit_Description": "People Description (Welsh)"
                     },
                     "Contact": {
@@ -144,6 +146,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -172,6 +175,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -209,6 +213,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "People",
+                        "Statistical_Unit_Label": "People Label",
                         "Statistical_Unit_Description": "People Description"
                     },
                     "Contact": {
@@ -237,6 +242,7 @@
                     "Dataset_Population": "Everyone (Welsh)",
                     "Statistical_Unit": {
                         "Statistical_Unit": "People",
+                        "Statistical_Unit_Label": "People Label (Welsh)",
                         "Statistical_Unit_Description": "People Description (Welsh)"
                     },
                     "Contact": {
@@ -274,6 +280,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -296,6 +303,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -328,6 +336,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -359,6 +368,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -399,6 +409,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -430,6 +441,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,

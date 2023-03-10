@@ -221,12 +221,17 @@ class Loader:
             required('Statistical_Unit_Description'),
             required('Id'),
 
+            optional('Statistical_Unit_Label'),
+            optional('Statistical_Unit_Label_Welsh'),
             optional('Statistical_Unit_Description_Welsh'),
         ]
         statistical_unit_rows = self.read_file('Statistical_Unit.csv', columns)
 
         statistical_units = {}
         for stat_unit, _ in statistical_unit_rows:
+            stat_unit['Statistical_Unit_Label'] = Bilingual(
+                stat_unit.pop('Statistical_Unit_Label'),
+                stat_unit.pop('Statistical_Unit_Label_Welsh'))
             stat_unit['Statistical_Unit_Description'] = Bilingual(
                 stat_unit.pop('Statistical_Unit_Description'),
                 stat_unit.pop('Statistical_Unit_Description_Welsh'))
