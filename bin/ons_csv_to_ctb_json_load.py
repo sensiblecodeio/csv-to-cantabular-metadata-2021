@@ -395,7 +395,6 @@ class Loader:
 
             optional('Database_Title_Welsh'),
             optional('Database_Description_Welsh'),
-            optional('IAR_Asset_Id'),
         ]
         database_rows = self.read_file('Database.csv', columns)
 
@@ -407,7 +406,6 @@ class Loader:
             database['Source'] = self.sources.get(database.pop('Source_Mnemonic'), None)
 
             del database['Id']
-            del database['IAR_Asset_Id']
 
             database_mnemonic = database.pop('Database_Mnemonic')
 

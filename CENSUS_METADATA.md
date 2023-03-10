@@ -60,7 +60,7 @@ output JSON because the English labels can be obtained from the codebook.
 
 The `Codebook_Mnemonic` for each classification is extracted from `Category_Mapping.csv` but the other fields are ignored.
 
-The data in `Specification.csv`, `Specification_Type.csv`, `Asset_Child_Reference.csv`, and `Asset_Reference.csv` are not processed.
+The data in `Specification.csv` and `Specification_Type.csv` are not processed.
 
 ## Geography lookup file
 
@@ -203,7 +203,7 @@ in the `Dataset` object.
 
 The `Lowest_Geog_Variable` value is identified from the relevant entries in `Database_Variable.csv`.
 
-The `Id` and `IAR_Asset_Id` fields in `Database.csv` are ignored.
+The `Id` field in `Database.csv` is ignored.
 
 | Field | GraphQL Type | Source (en) | Source (cy) |
 | --- | --- | --- | --- |
