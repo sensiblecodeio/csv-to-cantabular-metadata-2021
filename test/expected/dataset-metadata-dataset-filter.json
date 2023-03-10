@@ -29,7 +29,6 @@
                         "Variable_Mnemonic": "VAR1",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR1 Title",
@@ -37,6 +36,7 @@
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -84,7 +84,6 @@
                         "Variable_Mnemonic": "VAR1",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR1 Title",
@@ -92,6 +91,7 @@
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"

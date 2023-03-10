@@ -278,7 +278,7 @@ The `Id`, `Signed_Off_Flag` and `Number_Of_Classifications` fields in `Variable.
 | `Topic` | `Topic` | Keyed on `Variable.Topic_Mnemonic` | |
 | `Questions` | `[Question]!` | List of `Question` keyed on `Variable.Source_Question.Variable_Mnemonic`/`Source_Question_Code` | |
 | `Variable_Type` | `Variable_Type!` | `Variable.Variable_Type_Code` | |
-| `Quality_Statement_Text` | `String` | `Variable.Quality_Statement_Text` | |
+| `Quality_Statement_Text` | `String` | `Variable.Quality_Statement_Text` | `Variable.Quality_Statement_Text_Welsh` |
 | `Quality_Summary_URL` | `String` | `Variable.Quality_Summary_URL` | |
 | `Geography_Hierarchy_Order` | `String` | `Variable.Geography_Hierarchy_Order` | |
 

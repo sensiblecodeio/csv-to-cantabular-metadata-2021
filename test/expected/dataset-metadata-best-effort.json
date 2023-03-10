@@ -29,7 +29,6 @@
                         "Variable_Mnemonic": "VAR1",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR1 Title",
@@ -37,6 +36,7 @@
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -64,7 +64,6 @@
                         "Variable_Mnemonic": "VAR3",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR3 Title",
@@ -72,6 +71,7 @@
                         "Uk_Comparison_Comments": "VAR3 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -97,7 +97,6 @@
                         "Variable_Mnemonic": "VAR1",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR1 Title",
@@ -105,6 +104,7 @@
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -130,7 +130,6 @@
                         "Variable_Mnemonic": "VAR2",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR2 Title",
@@ -138,6 +137,7 @@
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -164,7 +164,6 @@
                         "Variable_Mnemonic": "GEO1",
                         "Variable_Mnemonic_2011": "GEO1 2011",
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": "10",
                         "Variable_Title": "GEO1 Title",
@@ -172,6 +171,7 @@
                         "Uk_Comparison_Comments": "GEO1 UK Comparison Comments",
                         "Geographic_Theme": "GEO1 Theme",
                         "Geographic_Coverage": "GEO1 Coverage",
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable"
@@ -197,7 +197,6 @@
                         "Variable_Mnemonic": "GEO2",
                         "Variable_Mnemonic_2011": "GEO2 2011",
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": "10",
                         "Variable_Title": "GEO2 Title",
@@ -205,6 +204,7 @@
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments",
                         "Geographic_Theme": "GEO2 Theme",
                         "Geographic_Coverage": "GEO2 Coverage",
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable"
@@ -230,7 +230,6 @@
                         "Variable_Mnemonic": "GEO3",
                         "Variable_Mnemonic_2011": "GEO3 2011",
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": "20",
                         "Variable_Title": "GEO3 Title",
@@ -238,6 +237,7 @@
                         "Uk_Comparison_Comments": "GEO3 UK Comparison Comments",
                         "Geographic_Theme": "GEO3 Theme",
                         "Geographic_Coverage": "GEO3 Coverage",
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable"
@@ -263,7 +263,6 @@
                         "Variable_Mnemonic": "GEO4",
                         "Variable_Mnemonic_2011": "GEO4 2011",
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": "0",
                         "Variable_Title": "GEO4 Title",
@@ -271,6 +270,7 @@
                         "Uk_Comparison_Comments": "GEO4 UK Comparison Comments",
                         "Geographic_Theme": "GEO4 Theme",
                         "Geographic_Coverage": "GEO4 Coverage",
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable"
@@ -315,7 +315,6 @@
                         "Variable_Mnemonic": "VAR1",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR1 Title",
@@ -323,6 +322,7 @@
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -348,7 +348,6 @@
                         "Variable_Mnemonic": "VAR3",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR3 Title",
@@ -356,6 +355,7 @@
                         "Uk_Comparison_Comments": "VAR3 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -381,7 +381,6 @@
                         "Variable_Mnemonic": "VAR1",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR1 Title",
@@ -389,6 +388,7 @@
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -414,7 +414,6 @@
                         "Variable_Mnemonic": "VAR2",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR2 Title",
@@ -422,6 +421,7 @@
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -448,7 +448,6 @@
                         "Variable_Mnemonic": "GEO1",
                         "Variable_Mnemonic_2011": "GEO1 2011",
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": "10",
                         "Variable_Title": "GEO1 Title (Welsh)",
@@ -456,6 +455,7 @@
                         "Uk_Comparison_Comments": "GEO1 UK Comparison Comments (Welsh)",
                         "Geographic_Theme": "GEO1 Theme (Welsh)",
                         "Geographic_Coverage": "GEO1 Coverage (Welsh)",
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable (Welsh)"
@@ -481,7 +481,6 @@
                         "Variable_Mnemonic": "GEO2",
                         "Variable_Mnemonic_2011": "GEO2 2011",
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": "10",
                         "Variable_Title": "GEO2 Title (Welsh)",
@@ -489,6 +488,7 @@
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments (Welsh)",
                         "Geographic_Theme": "GEO2 Theme (Welsh)",
                         "Geographic_Coverage": "GEO2 Coverage (Welsh)",
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable (Welsh)"
@@ -514,7 +514,6 @@
                         "Variable_Mnemonic": "GEO3",
                         "Variable_Mnemonic_2011": "GEO3 2011",
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": "20",
                         "Variable_Title": "GEO3 Title (Welsh)",
@@ -522,6 +521,7 @@
                         "Uk_Comparison_Comments": "GEO3 UK Comparison Comments (Welsh)",
                         "Geographic_Theme": "GEO3 Theme (Welsh)",
                         "Geographic_Coverage": "GEO3 Coverage (Welsh)",
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable (Welsh)"
@@ -547,7 +547,6 @@
                         "Variable_Mnemonic": "GEO4",
                         "Variable_Mnemonic_2011": "GEO4 2011",
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": "0",
                         "Variable_Title": "GEO4 Title (Welsh)",
@@ -555,6 +554,7 @@
                         "Uk_Comparison_Comments": "GEO4 UK Comparison Comments (Welsh)",
                         "Geographic_Theme": "GEO4 Theme (Welsh)",
                         "Geographic_Coverage": "GEO4 Coverage (Welsh)",
+                        "Quality_Statement_Text": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable (Welsh)"

@@ -664,6 +664,7 @@ class Loader:
             optional('Topic_Mnemonic', validate_fn=isoneof(self.topics.keys())),
             optional('Number_Of_Classifications'),
             optional('Quality_Statement_Text'),
+            optional('Quality_Statement_Text_Welsh'),
             optional('Quality_Summary_URL'),
             optional('Geography_Hierarchy_Order', validate_fn=isnumeric),
         ]
@@ -742,6 +743,9 @@ class Loader:
             variable['Geographic_Coverage'] = Bilingual(
                 variable.pop('Geographic_Coverage'),
                 variable.pop('Geographic_Coverage_Welsh'))
+            variable['Quality_Statement_Text'] = Bilingual(
+                variable.pop('Quality_Statement_Text'),
+                variable.pop('Quality_Statement_Text_Welsh'))
 
             variable['Variable_Type'] = self.variable_types.get(variable.pop('Variable_Type_Code'),
                                                                 None)
