@@ -10,11 +10,11 @@ from datetime import datetime
 from ons_csv_to_ctb_json_load import Loader, PUBLIC_SECURITY_MNEMONIC
 from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 
-SCHEMA_VERSION = '1.3'
+SCHEMA_VERSION = '1.4'
 
 # The first two elements in SCRIPT_VERSION refer to the metadata schema. The final element is the
 # iteration of the conversion code for that version of the schema.
-SCRIPT_VERSION = SCHEMA_VERSION + '.3'
+SCRIPT_VERSION = SCHEMA_VERSION + '.0'
 
 SYSTEM = 'cantabm'
 DEFAULT_CANTABULAR_VERSION = '10.2.2'

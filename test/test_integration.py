@@ -150,7 +150,7 @@ class TestIntegration(unittest.TestCase):
 
             self.assertEqual(17, len(cm.output))
             self.assertRegex(cm.output[4], r"Labels supplied for these geographic classifications: \['GEO1', 'GEO2'\]")
-            self.assertRegex(cm.output[13], r'Build created=1970-01-01T00:00:00 best_effort=False dataset_filter="" geography_file="geography1.csv,geography2.csv" versions_data=30 versions_schema=1.3 versions_script=1.3.3$')
+            self.assertRegex(cm.output[13], r'Build created=1970-01-01T00:00:00 best_effort=False dataset_filter="" geography_file="geography1.csv,geography2.csv" versions_data=30 versions_schema=1.4 versions_script=1.4.0$')
 
     @unittest.mock.patch('ons_csv_to_ctb_json_main.datetime')
     def test_no_geography_file(self, mock_datetime):
@@ -187,4 +187,4 @@ class TestIntegration(unittest.TestCase):
                                  f'Comparing out/{FILENAME_TABLES_NO_GEO} and expected/table-metadata.json')
 
         self.assertEqual(15, len(cm.output))
-        self.assertRegex(cm.output[11], r'Build created=1970-01-01T00:00:00 best_effort=False dataset_filter="" geography_file="" versions_data=30 versions_schema=1.3 versions_script=1.3.3$')
+        self.assertRegex(cm.output[11], r'Build created=1970-01-01T00:00:00 best_effort=False dataset_filter="" geography_file="" versions_data=30 versions_schema=1.4 versions_script=1.4.0$')
