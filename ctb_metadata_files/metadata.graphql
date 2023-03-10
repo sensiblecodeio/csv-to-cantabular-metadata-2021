@@ -52,6 +52,7 @@ type ONS_Variable {
   Quality_Summary_URL: String
   Geography_Hierarchy_Order: String
   Variable_Short_Description: String
+  Keywords: [String]!
 }
 
 type Variable_Type {
@@ -108,6 +109,7 @@ type TableMetadata {
   Statistical_Unit: Statistical_Unit!
   Alternate_Geographic_Variables: [String]!
   Observation_Type: Observation_Type
+  Keywords: [String]!
 }
 
 type Publication {

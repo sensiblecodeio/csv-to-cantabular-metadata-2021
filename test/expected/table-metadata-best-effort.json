@@ -27,6 +27,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": [
                         "GEO3",
                         "GEO4"
@@ -53,6 +54,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": [
                         "GEO3",
                         "GEO4"
@@ -88,6 +90,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -111,6 +114,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
@@ -144,6 +148,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -167,6 +172,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
@@ -199,6 +205,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -222,6 +229,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
@@ -263,6 +271,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -295,6 +304,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }

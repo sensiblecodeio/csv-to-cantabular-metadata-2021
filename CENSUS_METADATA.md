@@ -180,6 +180,7 @@ The `Minimum_Threshold_Person` and `Minimum_Threshold_HH` fields in `Dataset_Var
 | `Statistical_Unit` | `Statistical_Unit!` | Keyed on `Dataset.Statistical_Unit` | |
 | `Alternate_Geographic_Variables` | `[String!]` | List of alternate geographic variable names which are available for this table sourced from `Dataset_Variable.csv` keyed on `Dataset_Variable.Dataset_Mnemonic` | |
 | `Observation_Type` | `Observation_Type!` | Object of type `Observation_Type` keyed on `Dataset.Observation_Type_Code` | |
+| `Keywords` | `[String]!` | List of keywords from `Dataset_Keyword` keyed on `Dataset_Keyword.Dataset_Mnemonic` | |
 
 ## Dataset
 
@@ -285,6 +286,7 @@ The `Id`, `Signed_Off_Flag` and `Number_Of_Classifications` fields in `Variable.
 | `Quality_Summary_URL` | `String` | `Variable.Quality_Summary_URL` | |
 | `Geography_Hierarchy_Order` | `String` | `Variable.Geography_Hierarchy_Order` | |
 | `Variable_Short_Description` | `String` | `Variable.Variable_Short_Description` | `Variable.Variable_Short_Description_Welsh` |
+| `Keywords` | `[String]!` | List of keywords from `Variable_Keyword` keyed on `Variable_Keyword.Variable_Mnemonic` | |
 
 ## Variable_Type
 

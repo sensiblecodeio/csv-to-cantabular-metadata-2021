@@ -67,6 +67,11 @@
                                 "Question_Label": "Q3 Label",
                                 "Reason_For_Asking_Question": "Q3 Why asked"
                             }
+                        ],
+                        "Keywords": [
+                            "Keyword A",
+                            "Keyword B",
+                            "Keyword C"
                         ]
                     },
                     "Topics": [
@@ -120,7 +125,8 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
                     "Not_Applicable_Category_Description": null,
@@ -157,7 +163,8 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
                     "Not_Applicable_Category_Description": null,
@@ -215,6 +222,11 @@
                                 "Question_Label": "Q3 Label",
                                 "Reason_For_Asking_Question": "Q3 Why asked"
                             }
+                        ],
+                        "Keywords": [
+                            "Keyword A",
+                            "Keyword B",
+                            "Keyword C"
                         ]
                     },
                     "Topics": [],
@@ -250,7 +262,8 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
                     "Not_Applicable_Category_Description": null,
@@ -285,7 +298,8 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
                     "Not_Applicable_Category_Description": null,
@@ -337,6 +351,9 @@
                                 "Question_Label": "Q2 Label",
                                 "Reason_For_Asking_Question": null
                             }
+                        ],
+                        "Keywords": [
+                            "Keyword A"
                         ]
                     },
                     "Topics": []
@@ -374,7 +391,8 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": []
                 },
@@ -455,6 +473,11 @@
                                 "Question_Label": "Q3 Label",
                                 "Reason_For_Asking_Question": "Q3 Why asked"
                             }
+                        ],
+                        "Keywords": [
+                            "Keyword A",
+                            "Keyword B",
+                            "Keyword C"
                         ]
                     },
                     "Topics": [
@@ -506,7 +529,8 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
                     "Not_Applicable_Category_Description": null,
@@ -543,7 +567,8 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
                     "Not_Applicable_Category_Description": null,
@@ -601,6 +626,11 @@
                                 "Question_Label": "Q3 Label",
                                 "Reason_For_Asking_Question": "Q3 Why asked"
                             }
+                        ],
+                        "Keywords": [
+                            "Keyword A",
+                            "Keyword B",
+                            "Keyword C"
                         ]
                     },
                     "Topics": [],
@@ -636,7 +666,8 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
                     "Not_Applicable_Category_Description": null,
@@ -671,7 +702,8 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
                     "Not_Applicable_Category_Description": null,
@@ -723,6 +755,9 @@
                                 "Question_Label": "Q2 Label",
                                 "Reason_For_Asking_Question": null
                             }
+                        ],
+                        "Keywords": [
+                            "Keyword A"
                         ]
                     },
                     "Topics": []
@@ -757,7 +792,8 @@
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": []
                 },

@@ -278,6 +278,7 @@ class Loader:
         dataset_to_publications = self.load_dataset_to_publications(dataset_mnemonics)
         dataset_to_releases = self.load_dataset_to_releases(dataset_mnemonics)
         dataset_to_variables = self.load_dataset_to_variables(dataset_mnemonics)
+        dataset_to_keywords = self.load_dataset_keywords(dataset_mnemonics)
 
         # All datasets in a database must have the same observation type
         database_observation_type = dict()
@@ -313,6 +314,7 @@ class Loader:
             dataset['Related_Datasets'] = dataset_to_related_datasets.get(dataset_mnemonic, [])
             dataset['Census_Releases'] = dataset_to_releases.get(dataset_mnemonic, [])
             dataset['Publications'] = dataset_to_publications.get(dataset_mnemonic, [])
+            dataset['Keywords'] = dataset_to_keywords.get(dataset_mnemonic, [])
 
             alternate_geog_variables = (dataset_variables.alternate_geog_variables if
                                         dataset_variables.alternate_geog_variables else [])
@@ -679,6 +681,7 @@ class Loader:
 
         variable_mnemonics = [v.data['Variable_Mnemonic'] for v in variable_rows]
         variable_to_source_questions = self.load_variable_to_questions(variable_mnemonics)
+        variable_to_keywords = self.load_variable_keywords(variable_mnemonics)
 
         en_geo_fields = {'Geographic_Theme', 'Geographic_Coverage', 'Geography_Hierarchy_Order'}
         all_geo_fields = en_geo_fields | {'Geographic_Theme_Welsh',
@@ -764,6 +767,8 @@ class Loader:
             variable['Topic'] = self.topics.get(variable.pop('Topic_Mnemonic'), None)
 
             variable['Questions'] = variable_to_source_questions.get(
+                variable['Variable_Mnemonic'], [])
+            variable['Keywords'] = variable_to_keywords.get(
                 variable['Variable_Mnemonic'], [])
 
             del variable['Id']
@@ -974,6 +979,52 @@ class Loader:
 
         # Return Metadata_Version_Number from last row in Metadata_Version.csv file.
         return metadata_version_rows[-1].data['Metadata_Version_Number']
+
+    def load_dataset_keywords(self, dataset_mnemonics):
+        """Load dataset keywords."""
+        columns = [
+            required('Id'),
+            required('Dataset_Keyword'),
+            required('Dataset_Mnemonic', validate_fn=isoneof(dataset_mnemonics)),
+        ]
+        dataset_keyword_rows = self.read_file(
+            'Dataset_Keyword.csv', columns,
+            unique_combo_fields=['Dataset_Keyword', 'Dataset_Mnemonic'])
+
+        dataset_keywords = {}
+        for dataset_keyword, _ in dataset_keyword_rows:
+            dataset_mnemonic = dataset_keyword['Dataset_Mnemonic']
+            if dataset_mnemonic not in dataset_keywords:
+                dataset_keywords[dataset_mnemonic] = []
+            dataset_keywords[dataset_mnemonic].append(dataset_keyword['Dataset_Keyword'])
+
+        for dataset in dataset_keywords:
+            dataset_keywords[dataset].sort()
+
+        return dataset_keywords
+
+    def load_variable_keywords(self, variable_mnemonics):
+        """Load variable keywords."""
+        columns = [
+            required('Id'),
+            required('Variable_Keyword'),
+            required('Variable_Mnemonic', validate_fn=isoneof(variable_mnemonics)),
+        ]
+        variable_keyword_rows = self.read_file(
+            'Variable_Keyword.csv', columns,
+            unique_combo_fields=['Variable_Keyword', 'Variable_Mnemonic'])
+
+        variable_keywords = {}
+        for variable_keyword, _ in variable_keyword_rows:
+            variable_mnemonic = variable_keyword['Variable_Mnemonic']
+            if variable_mnemonic not in variable_keywords:
+                variable_keywords[variable_mnemonic] = []
+            variable_keywords[variable_mnemonic].append(variable_keyword['Variable_Keyword'])
+
+        for variable in variable_keywords:
+            variable_keywords[variable].sort()
+
+        return variable_keywords
 
     def load_database_to_classifications(self, database_mnemonics):
         """

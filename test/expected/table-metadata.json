@@ -62,6 +62,11 @@
                             "Publisher_Website": null
                         }
                     ],
+                    "Keywords": [
+                        "Keyword A",
+                        "Keyword B",
+                        "Keyword C"
+                    ],
                     "Alternate_Geographic_Variables": [
                         "GEO2"
                     ]
@@ -120,6 +125,11 @@
                             "Publisher_Website": null
                         }
                     ],
+                    "Keywords": [
+                        "Keyword A",
+                        "Keyword B",
+                        "Keyword C"
+                    ],
                     "Alternate_Geographic_Variables": [
                         "GEO2"
                     ]
@@ -160,6 +170,7 @@
                         }
                     ],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -189,6 +200,7 @@
                         }
                     ],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
@@ -227,6 +239,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -256,6 +269,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
@@ -288,6 +302,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -311,6 +326,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
@@ -353,6 +369,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -385,6 +402,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
@@ -426,6 +444,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -458,6 +477,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
