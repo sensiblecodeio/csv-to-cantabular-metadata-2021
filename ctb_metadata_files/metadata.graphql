@@ -32,6 +32,7 @@ type VariableMetadata {
   Version: String!
   ONS_Variable: ONS_Variable!
   Topics: [Topic]!
+  Not_Applicable_Category_Description: String
 }
 
 type ONS_Variable {

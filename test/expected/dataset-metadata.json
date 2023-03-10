@@ -79,6 +79,7 @@
                             "Topic_Title": "TOPIC1 Title"
                         }
                     ],
+                    "Not_Applicable_Category_Description": "CLASS1 NA Category Description",
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": {
@@ -119,6 +120,7 @@
                         "Questions": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": {
@@ -154,6 +156,7 @@
                         "Questions": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
@@ -209,6 +212,7 @@
                         ]
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
@@ -242,6 +246,7 @@
                         "Questions": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
@@ -275,6 +280,7 @@
                         "Questions": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
@@ -450,6 +456,7 @@
                             "Topic_Title": "TOPIC1 Title"
                         }
                     ],
+                    "Not_Applicable_Category_Description": "CLASS1 NA Category Description (Welsh)",
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": {
@@ -488,6 +495,7 @@
                         "Questions": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": {
@@ -523,6 +531,7 @@
                         "Questions": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
@@ -578,6 +587,7 @@
                         ]
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
@@ -611,6 +621,7 @@
                         "Questions": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
@@ -644,6 +655,7 @@
                         "Questions": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null

@@ -798,6 +798,8 @@ class Loader:
             optional('Parent_Classification_Mnemonic'),
             optional('Default_Classification_Flag'),
             optional('Flat_Classification_Flag'),
+            optional('Not_Applicable_Category_Description'),
+            optional('Not_Applicable_Category_Description_Welsh'),
         ]
         classification_rows = self.read_file(filename, columns)
 
@@ -833,6 +835,10 @@ class Loader:
 
             codebook_mnemonic = classification_to_codebook.get(classification_mnemonic,
                                                                classification_mnemonic)
+
+            classification['Not_Applicable_Category_Description'] = Bilingual(
+                classification.pop('Not_Applicable_Category_Description'),
+                classification.pop('Not_Applicable_Category_Description_Welsh'))
 
             # Discard the Parent_Classification_Mnemonic. It can be obtained via the codebook and
             # the value may be ambiguous since some classifications are renamed using the

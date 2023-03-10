@@ -46,6 +46,7 @@
                         "Questions": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": {
@@ -101,6 +102,7 @@
                         "Questions": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
