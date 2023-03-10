@@ -37,6 +37,7 @@
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -93,6 +94,7 @@
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"

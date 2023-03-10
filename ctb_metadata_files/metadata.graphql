@@ -51,6 +51,7 @@ type ONS_Variable {
   Quality_Statement_Text: String
   Quality_Summary_URL: String
   Geography_Hierarchy_Order: String
+  Variable_Short_Description: String
 }
 
 type Variable_Type {

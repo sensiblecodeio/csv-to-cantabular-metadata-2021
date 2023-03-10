@@ -667,6 +667,8 @@ class Loader:
             optional('Quality_Statement_Text_Welsh'),
             optional('Quality_Summary_URL'),
             optional('Geography_Hierarchy_Order', validate_fn=isnumeric),
+            optional('Variable_Short_Description'),
+            optional('Variable_Short_Description_Welsh'),
         ]
         variable_rows = self.read_file(filename, columns)
 
@@ -746,6 +748,9 @@ class Loader:
             variable['Quality_Statement_Text'] = Bilingual(
                 variable.pop('Quality_Statement_Text'),
                 variable.pop('Quality_Statement_Text_Welsh'))
+            variable['Variable_Short_Description'] = Bilingual(
+                variable.pop('Variable_Short_Description'),
+                variable.pop('Variable_Short_Description_Welsh'))
 
             variable['Variable_Type'] = self.variable_types.get(variable.pop('Variable_Type_Code'),
                                                                 None)

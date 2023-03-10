@@ -282,6 +282,7 @@ The `Id`, `Signed_Off_Flag` and `Number_Of_Classifications` fields in `Variable.
 | `Quality_Statement_Text` | `String` | `Variable.Quality_Statement_Text` | `Variable.Quality_Statement_Text_Welsh` |
 | `Quality_Summary_URL` | `String` | `Variable.Quality_Summary_URL` | |
 | `Geography_Hierarchy_Order` | `String` | `Variable.Geography_Hierarchy_Order` | |
+| `Variable_Short_Description` | `String` | `Variable.Variable_Short_Description` | `Variable.Variable_Short_Description_Welsh` |
 
 ## Variable_Type
 

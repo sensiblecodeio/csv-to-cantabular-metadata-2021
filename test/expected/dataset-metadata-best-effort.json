@@ -37,6 +37,7 @@
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -73,6 +74,7 @@
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -107,6 +109,7 @@
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -141,6 +144,7 @@
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -176,6 +180,7 @@
                         "Geographic_Theme": "GEO1 Theme",
                         "Geographic_Coverage": "GEO1 Coverage",
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable"
@@ -209,6 +214,7 @@
                         "Geographic_Theme": "GEO2 Theme",
                         "Geographic_Coverage": "GEO2 Coverage",
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable"
@@ -242,6 +248,7 @@
                         "Geographic_Theme": "GEO3 Theme",
                         "Geographic_Coverage": "GEO3 Coverage",
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable"
@@ -275,6 +282,7 @@
                         "Geographic_Theme": "GEO4 Theme",
                         "Geographic_Coverage": "GEO4 Coverage",
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable"
@@ -327,6 +335,7 @@
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -361,6 +370,7 @@
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -395,6 +405,7 @@
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -429,6 +440,7 @@
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
@@ -464,6 +476,7 @@
                         "Geographic_Theme": "GEO1 Theme (Welsh)",
                         "Geographic_Coverage": "GEO1 Coverage (Welsh)",
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable (Welsh)"
@@ -497,6 +510,7 @@
                         "Geographic_Theme": "GEO2 Theme (Welsh)",
                         "Geographic_Coverage": "GEO2 Coverage (Welsh)",
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable (Welsh)"
@@ -530,6 +544,7 @@
                         "Geographic_Theme": "GEO3 Theme (Welsh)",
                         "Geographic_Coverage": "GEO3 Coverage (Welsh)",
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable (Welsh)"
@@ -563,6 +578,7 @@
                         "Geographic_Theme": "GEO4 Theme (Welsh)",
                         "Geographic_Coverage": "GEO4 Coverage (Welsh)",
                         "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable (Welsh)"
