@@ -97,4 +97,4 @@ class TestBestEffort(unittest.TestCase):
 
         infos = [msg for msg in cm.output if msg.startswith('INFO')]
         self.assertEqual(12, len(infos))
-        self.assertRegex(infos[8], r'Build created=1970-01-01T00:00:00 best_effort=True dataset_filter="" geography_file="" versions_data=30 versions_schema=1.3 versions_script=1.3.3')
+        self.assertRegex(infos[8], r'Build created=1970-01-01T00:00:00 best_effort=True dataset_filter="" geography_file="" versions_data=30 versions_schema=1.4 versions_script=1.4.0')

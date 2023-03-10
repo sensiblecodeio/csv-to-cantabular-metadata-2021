@@ -448,8 +448,8 @@ This query gets the version information from the service metadata.
           "geography_file": "geography.csv",
           "versions": {
             "data": "1",
-            "schema": "1.3",
-            "script": "1.3.3"
+            "schema": "1.4",
+            "script": "1.4.0"
           }
         }
       }
@@ -825,8 +825,8 @@ along with version information from the service metadata.
           "geography_file": "geography.csv",
           "versions": {
             "data": "1",
-            "schema": "1.3",
-            "script": "1.3.3"
+            "schema": "1.4",
+            "script": "1.4.0"
           }
         }
       },
