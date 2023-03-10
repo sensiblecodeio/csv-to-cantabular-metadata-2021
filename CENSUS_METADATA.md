@@ -164,6 +164,8 @@ The object also contains data from `Related_Datasets.csv`, `Publication_Dataset.
 
 The `Signed_Off_Flag` and `Id` field in `Classification.csv` are ignored.
 
+The `Minimum_Threshold_Person` and `Minimum_Threshold_HH` fields in `Dataset_Variable.csv` are ignored.
+
 | Field | GraphQL Type | Source (en) | Source (cy) |
 | --- | --- | --- | --- |
 | `Dataset_Mnemonic_2011` | `String` | `Dataset.Dataset_Mnemonic_2011` | |

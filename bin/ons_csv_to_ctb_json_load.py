@@ -1188,6 +1188,8 @@ class Loader:
             optional('Classification_Mnemonic', validate_fn=isoneof(self.classifications.keys())),
             optional('Processing_Priority', validate_fn=isnumeric),
             optional('Lowest_Geog_Variable_Flag', validate_fn=isoneof({'Y', 'N'})),
+            optional('Minimum_Threshold_Person', validate_fn=isnumeric),
+            optional('Minimum_Threshold_HH', validate_fn=isnumeric),
         ]
         dataset_variable_rows = self.read_file(
             filename, columns,
@@ -1199,6 +1201,10 @@ class Loader:
         for ds_variable, row_num in dataset_variable_rows:
             dataset_mnemonic = ds_variable['Dataset_Mnemonic']
             variable_mnemonic = ds_variable['Variable_Mnemonic']
+
+            ds_variable.pop('Minimum_Threshold_Person')
+            ds_variable.pop('Minimum_Threshold_HH')
+
             if dataset_mnemonic not in ds_to_vars_builder:
                 ds_to_vars_builder[dataset_mnemonic] = DatasetVarsBuilder(
                     dataset_mnemonic, self.full_filename(filename), self.classifications,
