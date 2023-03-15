@@ -6,13 +6,13 @@ import os
 from datetime import datetime
 import ons_csv_to_ctb_json_main
 
-FILENAME_TABLES = 'cantabm_v10-2-2_unknown-metadata-version_tables-md_19700101-1.json'
-FILENAME_DATASET = 'cantabm_v10-2-2_unknown-metadata-version_dataset-md_19700101-1.json'
-FILENAME_SERVICE = 'cantabm_v10-2-2_unknown-metadata-version_service-md_19700101-1.json'
+FILENAME_TABLES = 'cantabm_v10-2-3_unknown-metadata-version_tables-md_19700101-1.json'
+FILENAME_DATASET = 'cantabm_v10-2-3_unknown-metadata-version_dataset-md_19700101-1.json'
+FILENAME_SERVICE = 'cantabm_v10-2-3_unknown-metadata-version_service-md_19700101-1.json'
 
-FILENAME_TABLES_NO_GEO = 't_cantabm_v10-2-2_no-geo_tables-md_19700101-2.json'
-FILENAME_DATASET_NO_GEO = 't_cantabm_v10-2-2_no-geo_dataset-md_19700101-2.json'
-FILENAME_SERVICE_NO_GEO = 't_cantabm_v10-2-2_no-geo_service-md_19700101-2.json'
+FILENAME_TABLES_NO_GEO = 't_cantabm_v10-2-3_no-geo_tables-md_19700101-2.json'
+FILENAME_DATASET_NO_GEO = 't_cantabm_v10-2-3_no-geo_dataset-md_19700101-2.json'
+FILENAME_SERVICE_NO_GEO = 't_cantabm_v10-2-3_no-geo_service-md_19700101-2.json'
 
 class TestIntegration(unittest.TestCase):
     def test_directory_validity(self):
