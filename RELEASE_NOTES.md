@@ -1,6 +1,24 @@
 Release Notes
 =============
 
+1.3.4
+-----
+
+- Update to metadata schema version 1.4.
+  - Expose new `Classification.Not_Applicable_Category_Description` and
+    `Classification.Not_Applicable_Category_Description_Welsh` fields.
+  - Removed references to `Database.IAR_Asset_Id`.
+  - `Dataset_Variable.Minimum_Threshold_Person` and `Dataset_Variable.Minimum_Threshold_HH`
+    are not exposed.
+  - Expose new `Statistical_Unit.Statistical_Unit_Label` and
+    `Statistical_Unit.Statistical_Unit_Label_Welsh` fields.
+  - Expose new `Variable.Variable_Short_Description` and
+    `Variable.Variable_Short_Description_Welsh` fields.
+  - Support new `Variable.Quality_Statement_Text_Welsh` field. 
+  - Expose dataset and variable keywords from `Dataset_Keyword` and `Variable_Keyword`.
+- Cantabular version 10.2.3 is now the default version. The file format for version 10.2.3 is
+  the same for all currently supported versions of Cantabular.
+
 1.3.3
 -----
 

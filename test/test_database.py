@@ -7,7 +7,7 @@ from helper_funcs import conditional_mock_open, build_test_file
 
 HEADERS = ['Database_Mnemonic', 'Id', 'Database_Title', 'Database_Title_Welsh',
            'Database_Description', 'Database_Description_Welsh', 'Cantabular_DB_Flag',
-           'IAR_Asset_Id', 'Source_Mnemonic', 'Version', 'Database_Type_Code']
+           'Source_Mnemonic', 'Version', 'Database_Type_Code']
 
 REQUIRED_FIELDS = {'Database_Mnemonic': 'DB1',
                    'Source_Mnemonic': 'SRC1',

@@ -8,9 +8,9 @@ from io import StringIO
 from datetime import datetime
 import ons_csv_to_ctb_json_main
 
-FILENAME_TABLES = 'cantabm_v10-2-2_best-effort_tables-md_19700101-1.json'
-FILENAME_DATASET = 'cantabm_v10-2-2_best-effort_dataset-md_19700101-1.json'
-FILENAME_SERVICE = 'cantabm_v10-2-2_best-effort_service-md_19700101-1.json'
+FILENAME_TABLES = 'cantabm_v10-2-3_best-effort_tables-md_19700101-1.json'
+FILENAME_DATASET = 'cantabm_v10-2-3_best-effort_dataset-md_19700101-1.json'
+FILENAME_SERVICE = 'cantabm_v10-2-3_best-effort_service-md_19700101-1.json'
 
 class TestBestEffort(unittest.TestCase):
     @unittest.mock.patch('ons_csv_to_ctb_json_main.datetime')

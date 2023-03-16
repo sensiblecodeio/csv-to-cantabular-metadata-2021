@@ -1,8 +1,8 @@
-Classification_Mnemonic,Variable_Mnemonic,Id,External_Classification_Label_English,External_Classification_Label_Welsh,Number_Of_Category_Items,Mnemonic_2011,Flat_Classification_Flag,Parent_Classification_Mnemonic,Security_Mnemonic,Signed_Off_Flag,Default_Classification_Flag,Version,Internal_Classification_Label_English
-CLASS1,VAR1,1,CLASS1 Label,CLASS1 Label Welsh,6,CLASS1 2011,N,CLASS1,PUB,Y,Y,1,CLASS1 Label Internal
-CLASS2,VAR2,2,,,,,,CLASS1,PUB,N,,1,CLASS2 Label Internal
-CLASS3,VAR3,3,,CLASS3 Label Welsh,,,,,PUB,N,N,1,CLASS3 Label Internal
-CLASS_PRIV,VAR_PRIV,5,CLASS_PRIV Label,CLASS_PRIV Label Welsh,0,CLASS_PRIV 2011,Y,CLASS_PRIV,CLASS,Y,Y,1,CLASS_PRIV Label Internal
-CLASS4,VAR1,6,,,,,,CLASS4,PUB,N,,1,CLASS4 Label Internal
-CLASS5,VAR2,7,,,,,,CLASS5,PUB,N,,1,CLASS5 Label Internal
-CLASS4A,VAR4,8,,,,,,,PUB,N,,1,CLASS4A Label Internal
+Classification_Mnemonic,Variable_Mnemonic,Id,External_Classification_Label_English,External_Classification_Label_Welsh,Number_Of_Category_Items,Mnemonic_2011,Flat_Classification_Flag,Parent_Classification_Mnemonic,Security_Mnemonic,Signed_Off_Flag,Default_Classification_Flag,Version,Internal_Classification_Label_English,Not_Applicable_Category_Description,Not_Applicable_Category_Description_Welsh
+CLASS1,VAR1,1,CLASS1 Label,CLASS1 Label Welsh,6,CLASS1 2011,N,CLASS1,PUB,Y,Y,1,CLASS1 Label Internal,CLASS1 NA Category Description,CLASS1 NA Category Description (Welsh)
+CLASS2,VAR2,2,,,,,,CLASS1,PUB,N,,1,CLASS2 Label Internal,,
+CLASS3,VAR3,3,,CLASS3 Label Welsh,,,,,PUB,N,N,1,CLASS3 Label Internal,,
+CLASS_PRIV,VAR_PRIV,5,CLASS_PRIV Label,CLASS_PRIV Label Welsh,0,CLASS_PRIV 2011,Y,CLASS_PRIV,CLASS,Y,Y,1,CLASS_PRIV Label Internal,,
+CLASS4,VAR1,6,,,,,,CLASS4,PUB,N,,1,CLASS4 Label Internal,,
+CLASS5,VAR2,7,,,,,,CLASS5,PUB,N,,1,CLASS5 Label Internal,,
+CLASS4A,VAR4,8,,,,,,,PUB,N,,1,CLASS4A Label Internal,,

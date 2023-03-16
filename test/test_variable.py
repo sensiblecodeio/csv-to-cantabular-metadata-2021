@@ -12,7 +12,9 @@ HEADERS = ['Variable_Mnemonic', 'Id', 'Variable_Title', 'Variable_Title_Welsh',
            'Uk_Comparison_Comments_Welsh', 'Security_Mnemonic', 'Signed_Off_Flag',
            'Number_Of_Classifications', 'Geography_Hierarchy_Order',
            'Geographic_Theme', 'Geographic_Theme_Welsh', 'Geographic_Coverage',
-           'Geographic_Coverage_Welsh', 'Version', 'Quality_Statement_Text', 'Quality_Summary_URL']
+           'Geographic_Coverage_Welsh', 'Version', 'Quality_Statement_Text', 
+           'Quality_Statement_Text_Welsh', 'Quality_Summary_URL',
+           'Variable_Short_Description', 'Variable_Short_Description_Welsh']
 
 COMMON_FIELDS = {'Security_Mnemonic': 'PUB',
                  'Variable_Title': 'title',

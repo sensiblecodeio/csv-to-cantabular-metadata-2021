@@ -1,3 +1,3 @@
-Classification_Mnemonic,Dataset_Mnemonic,Id,Processing_Priority,Variable_Mnemonic,Lowest_Geog_Variable_Flag,Database_Mnemonic
-CLASS1,DS1,1,1,VAR1,Y,DB1
-CLASS1,TS1,1,1,VAR1,N,DB1
+Classification_Mnemonic,Dataset_Mnemonic,Id,Processing_Priority,Variable_Mnemonic,Lowest_Geog_Variable_Flag,Database_Mnemonic,Minimum_Threshold_Person,Minimum_Threshold_HH
+CLASS1,DS1,1,1,VAR1,Y,DB1,,
+CLASS1,TS1,1,1,VAR1,N,DB1,,

@@ -21,6 +21,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "People",
+                        "Statistical_Unit_Label": "People Label",
                         "Statistical_Unit_Description": "People Description"
                     },
                     "Contact": {
@@ -61,6 +62,11 @@
                             "Publisher_Website": null
                         }
                     ],
+                    "Keywords": [
+                        "Keyword A",
+                        "Keyword B",
+                        "Keyword C"
+                    ],
                     "Alternate_Geographic_Variables": [
                         "GEO2"
                     ]
@@ -78,6 +84,7 @@
                     "Dataset_Population": "Everyone (Welsh)",
                     "Statistical_Unit": {
                         "Statistical_Unit": "People",
+                        "Statistical_Unit_Label": "People Label (Welsh)",
                         "Statistical_Unit_Description": "People Description (Welsh)"
                     },
                     "Contact": {
@@ -117,6 +124,11 @@
                             "Publisher_Name": null,
                             "Publisher_Website": null
                         }
+                    ],
+                    "Keywords": [
+                        "Keyword A",
+                        "Keyword B",
+                        "Keyword C"
                     ],
                     "Alternate_Geographic_Variables": [
                         "GEO2"
@@ -144,6 +156,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -157,6 +170,7 @@
                         }
                     ],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -172,6 +186,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -185,6 +200,7 @@
                         }
                     ],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
@@ -209,6 +225,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "People",
+                        "Statistical_Unit_Label": "People Label",
                         "Statistical_Unit_Description": "People Description"
                     },
                     "Contact": {
@@ -222,6 +239,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -237,6 +255,7 @@
                     "Dataset_Population": "Everyone (Welsh)",
                     "Statistical_Unit": {
                         "Statistical_Unit": "People",
+                        "Statistical_Unit_Label": "People Label (Welsh)",
                         "Statistical_Unit_Description": "People Description (Welsh)"
                     },
                     "Contact": {
@@ -250,6 +269,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
@@ -274,6 +294,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -281,6 +302,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -296,6 +318,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -303,6 +326,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
@@ -328,6 +352,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -344,6 +369,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -359,6 +385,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -375,6 +402,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
@@ -399,6 +427,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -415,6 +444,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -430,6 +460,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": "Houses Label",
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -446,6 +477,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }

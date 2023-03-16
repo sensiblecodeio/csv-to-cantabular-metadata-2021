@@ -60,7 +60,7 @@ output JSON because the English labels can be obtained from the codebook.
 
 The `Codebook_Mnemonic` for each classification is extracted from `Category_Mapping.csv` but the other fields are ignored.
 
-The data in `Specification.csv`, `Specification_Type.csv`, `Asset_Child_Reference.csv`, and `Asset_Reference.csv` are not processed.
+The data in `Specification.csv` and `Specification_Type.csv` are not processed.
 
 ## Geography lookup file
 
@@ -164,6 +164,8 @@ The object also contains data from `Related_Datasets.csv`, `Publication_Dataset.
 
 The `Signed_Off_Flag` and `Id` field in `Classification.csv` are ignored.
 
+The `Minimum_Threshold_Person` and `Minimum_Threshold_HH` fields in `Dataset_Variable.csv` are ignored.
+
 | Field | GraphQL Type | Source (en) | Source (cy) |
 | --- | --- | --- | --- |
 | `Dataset_Mnemonic_2011` | `String` | `Dataset.Dataset_Mnemonic_2011` | |
@@ -178,6 +180,7 @@ The `Signed_Off_Flag` and `Id` field in `Classification.csv` are ignored.
 | `Statistical_Unit` | `Statistical_Unit!` | Keyed on `Dataset.Statistical_Unit` | |
 | `Alternate_Geographic_Variables` | `[String!]` | List of alternate geographic variable names which are available for this table sourced from `Dataset_Variable.csv` keyed on `Dataset_Variable.Dataset_Mnemonic` | |
 | `Observation_Type` | `Observation_Type!` | Object of type `Observation_Type` keyed on `Dataset.Observation_Type_Code` | |
+| `Keywords` | `[String]!` | List of keywords from `Dataset_Keyword` keyed on `Dataset_Keyword.Dataset_Mnemonic` | |
 
 ## Dataset
 
@@ -203,7 +206,7 @@ in the `Dataset` object.
 
 The `Lowest_Geog_Variable` value is identified from the relevant entries in `Database_Variable.csv`.
 
-The `Id` and `IAR_Asset_Id` fields in `Database.csv` are ignored.
+The `Id` field in `Database.csv` is ignored.
 
 | Field | GraphQL Type | Source (en) | Source (cy) |
 | --- | --- | --- | --- |
@@ -255,6 +258,7 @@ The `Parent_Classification_Mnemonic`, `Signed_Off_Flag`, `Flat_Classification_Fl
 | `ONS_Variable` | `ONS_Variable!` | Keyed on `Classification.Variable_Mnemonic` or `Variable.Variable_Mnemonic` for geographic variables | |
 | `Topics` | `[Topic]!` | List of `Topic` values keyed on `Topic_Classification.Classification_Mnemonic`/`Topic_Mnemonic` or `[]` for geographic variables | |
 | `Cantabular_Public_Flag` | `String!` | `Database_Variable.Cantabular_Public_Flag`- will be `Y` or `N`. | |
+| `Not_Applicable_Category_Description` | `String!` | `Classification.Not_Applicable_Category_Description` | `Classification.Not_Applicable_Category_Description_Welsh` |
 
 ## ONS_Variable
 
@@ -278,9 +282,11 @@ The `Id`, `Signed_Off_Flag` and `Number_Of_Classifications` fields in `Variable.
 | `Topic` | `Topic` | Keyed on `Variable.Topic_Mnemonic` | |
 | `Questions` | `[Question]!` | List of `Question` keyed on `Variable.Source_Question.Variable_Mnemonic`/`Source_Question_Code` | |
 | `Variable_Type` | `Variable_Type!` | `Variable.Variable_Type_Code` | |
-| `Quality_Statement_Text` | `String` | `Variable.Quality_Statement_Text` | |
+| `Quality_Statement_Text` | `String` | `Variable.Quality_Statement_Text` | `Variable.Quality_Statement_Text_Welsh` |
 | `Quality_Summary_URL` | `String` | `Variable.Quality_Summary_URL` | |
 | `Geography_Hierarchy_Order` | `String` | `Variable.Geography_Hierarchy_Order` | |
+| `Variable_Short_Description` | `String` | `Variable.Variable_Short_Description` | `Variable.Variable_Short_Description_Welsh` |
+| `Keywords` | `[String]!` | List of keywords from `Variable_Keyword` keyed on `Variable_Keyword.Variable_Mnemonic` | |
 
 ## Variable_Type
 
@@ -374,6 +380,7 @@ The data is sourced from `Statistical_Unit.csv`. The `Id` field in `Statistical_
 | Field | GraphQL Type | Source (en) | Source (cy) |
 | --- | --- | --- | --- |
 | `Statistical_Unit` | `String!` | `Statistical_Unit.Statistical_Unit` | |
+| `Statistical_Unit_Label` | `String` | `Statistical_Unit.Statistical_Unit_Label` | `Statistical_Unit_Label_Welsh` |
 | `Statistical_Unit_Description` | `String!` | `Statistical_Unit.Statistical_Unit_Description` | `Statistical_Unit.Statistical_Unit_Description_Welsh` |
 
 ## Observation_Type

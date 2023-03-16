@@ -221,12 +221,17 @@ class Loader:
             required('Statistical_Unit_Description'),
             required('Id'),
 
+            optional('Statistical_Unit_Label'),
+            optional('Statistical_Unit_Label_Welsh'),
             optional('Statistical_Unit_Description_Welsh'),
         ]
         statistical_unit_rows = self.read_file('Statistical_Unit.csv', columns)
 
         statistical_units = {}
         for stat_unit, _ in statistical_unit_rows:
+            stat_unit['Statistical_Unit_Label'] = Bilingual(
+                stat_unit.pop('Statistical_Unit_Label'),
+                stat_unit.pop('Statistical_Unit_Label_Welsh'))
             stat_unit['Statistical_Unit_Description'] = Bilingual(
                 stat_unit.pop('Statistical_Unit_Description'),
                 stat_unit.pop('Statistical_Unit_Description_Welsh'))
@@ -273,6 +278,7 @@ class Loader:
         dataset_to_publications = self.load_dataset_to_publications(dataset_mnemonics)
         dataset_to_releases = self.load_dataset_to_releases(dataset_mnemonics)
         dataset_to_variables = self.load_dataset_to_variables(dataset_mnemonics)
+        dataset_to_keywords = self.load_dataset_keywords(dataset_mnemonics)
 
         # All datasets in a database must have the same observation type
         database_observation_type = dict()
@@ -308,6 +314,7 @@ class Loader:
             dataset['Related_Datasets'] = dataset_to_related_datasets.get(dataset_mnemonic, [])
             dataset['Census_Releases'] = dataset_to_releases.get(dataset_mnemonic, [])
             dataset['Publications'] = dataset_to_publications.get(dataset_mnemonic, [])
+            dataset['Keywords'] = dataset_to_keywords.get(dataset_mnemonic, [])
 
             alternate_geog_variables = (dataset_variables.alternate_geog_variables if
                                         dataset_variables.alternate_geog_variables else [])
@@ -395,7 +402,6 @@ class Loader:
 
             optional('Database_Title_Welsh'),
             optional('Database_Description_Welsh'),
-            optional('IAR_Asset_Id'),
         ]
         database_rows = self.read_file('Database.csv', columns)
 
@@ -407,7 +413,6 @@ class Loader:
             database['Source'] = self.sources.get(database.pop('Source_Mnemonic'), None)
 
             del database['Id']
-            del database['IAR_Asset_Id']
 
             database_mnemonic = database.pop('Database_Mnemonic')
 
@@ -666,13 +671,17 @@ class Loader:
             optional('Topic_Mnemonic', validate_fn=isoneof(self.topics.keys())),
             optional('Number_Of_Classifications'),
             optional('Quality_Statement_Text'),
+            optional('Quality_Statement_Text_Welsh'),
             optional('Quality_Summary_URL'),
             optional('Geography_Hierarchy_Order', validate_fn=isnumeric),
+            optional('Variable_Short_Description'),
+            optional('Variable_Short_Description_Welsh'),
         ]
         variable_rows = self.read_file(filename, columns)
 
         variable_mnemonics = [v.data['Variable_Mnemonic'] for v in variable_rows]
         variable_to_source_questions = self.load_variable_to_questions(variable_mnemonics)
+        variable_to_keywords = self.load_variable_keywords(variable_mnemonics)
 
         en_geo_fields = {'Geographic_Theme', 'Geographic_Coverage', 'Geography_Hierarchy_Order'}
         all_geo_fields = en_geo_fields | {'Geographic_Theme_Welsh',
@@ -744,6 +753,12 @@ class Loader:
             variable['Geographic_Coverage'] = Bilingual(
                 variable.pop('Geographic_Coverage'),
                 variable.pop('Geographic_Coverage_Welsh'))
+            variable['Quality_Statement_Text'] = Bilingual(
+                variable.pop('Quality_Statement_Text'),
+                variable.pop('Quality_Statement_Text_Welsh'))
+            variable['Variable_Short_Description'] = Bilingual(
+                variable.pop('Variable_Short_Description'),
+                variable.pop('Variable_Short_Description_Welsh'))
 
             variable['Variable_Type'] = self.variable_types.get(variable.pop('Variable_Type_Code'),
                                                                 None)
@@ -752,6 +767,8 @@ class Loader:
             variable['Topic'] = self.topics.get(variable.pop('Topic_Mnemonic'), None)
 
             variable['Questions'] = variable_to_source_questions.get(
+                variable['Variable_Mnemonic'], [])
+            variable['Keywords'] = variable_to_keywords.get(
                 variable['Variable_Mnemonic'], [])
 
             del variable['Id']
@@ -796,6 +813,8 @@ class Loader:
             optional('Parent_Classification_Mnemonic'),
             optional('Default_Classification_Flag'),
             optional('Flat_Classification_Flag'),
+            optional('Not_Applicable_Category_Description'),
+            optional('Not_Applicable_Category_Description_Welsh'),
         ]
         classification_rows = self.read_file(filename, columns)
 
@@ -831,6 +850,10 @@ class Loader:
 
             codebook_mnemonic = classification_to_codebook.get(classification_mnemonic,
                                                                classification_mnemonic)
+
+            classification['Not_Applicable_Category_Description'] = Bilingual(
+                classification.pop('Not_Applicable_Category_Description'),
+                classification.pop('Not_Applicable_Category_Description_Welsh'))
 
             # Discard the Parent_Classification_Mnemonic. It can be obtained via the codebook and
             # the value may be ambiguous since some classifications are renamed using the
@@ -956,6 +979,52 @@ class Loader:
 
         # Return Metadata_Version_Number from last row in Metadata_Version.csv file.
         return metadata_version_rows[-1].data['Metadata_Version_Number']
+
+    def load_dataset_keywords(self, dataset_mnemonics):
+        """Load dataset keywords."""
+        columns = [
+            required('Id'),
+            required('Dataset_Keyword'),
+            required('Dataset_Mnemonic', validate_fn=isoneof(dataset_mnemonics)),
+        ]
+        dataset_keyword_rows = self.read_file(
+            'Dataset_Keyword.csv', columns,
+            unique_combo_fields=['Dataset_Keyword', 'Dataset_Mnemonic'])
+
+        dataset_keywords = {}
+        for dataset_keyword, _ in dataset_keyword_rows:
+            dataset_mnemonic = dataset_keyword['Dataset_Mnemonic']
+            if dataset_mnemonic not in dataset_keywords:
+                dataset_keywords[dataset_mnemonic] = []
+            dataset_keywords[dataset_mnemonic].append(dataset_keyword['Dataset_Keyword'])
+
+        for dataset in dataset_keywords:
+            dataset_keywords[dataset].sort()
+
+        return dataset_keywords
+
+    def load_variable_keywords(self, variable_mnemonics):
+        """Load variable keywords."""
+        columns = [
+            required('Id'),
+            required('Variable_Keyword'),
+            required('Variable_Mnemonic', validate_fn=isoneof(variable_mnemonics)),
+        ]
+        variable_keyword_rows = self.read_file(
+            'Variable_Keyword.csv', columns,
+            unique_combo_fields=['Variable_Keyword', 'Variable_Mnemonic'])
+
+        variable_keywords = {}
+        for variable_keyword, _ in variable_keyword_rows:
+            variable_mnemonic = variable_keyword['Variable_Mnemonic']
+            if variable_mnemonic not in variable_keywords:
+                variable_keywords[variable_mnemonic] = []
+            variable_keywords[variable_mnemonic].append(variable_keyword['Variable_Keyword'])
+
+        for variable in variable_keywords:
+            variable_keywords[variable].sort()
+
+        return variable_keywords
 
     def load_database_to_classifications(self, database_mnemonics):
         """
@@ -1170,6 +1239,8 @@ class Loader:
             optional('Classification_Mnemonic', validate_fn=isoneof(self.classifications.keys())),
             optional('Processing_Priority', validate_fn=isnumeric),
             optional('Lowest_Geog_Variable_Flag', validate_fn=isoneof({'Y', 'N'})),
+            optional('Minimum_Threshold_Person', validate_fn=isnumeric),
+            optional('Minimum_Threshold_HH', validate_fn=isnumeric),
         ]
         dataset_variable_rows = self.read_file(
             filename, columns,
@@ -1181,6 +1252,10 @@ class Loader:
         for ds_variable, row_num in dataset_variable_rows:
             dataset_mnemonic = ds_variable['Dataset_Mnemonic']
             variable_mnemonic = ds_variable['Variable_Mnemonic']
+
+            ds_variable.pop('Minimum_Threshold_Person')
+            ds_variable.pop('Minimum_Threshold_HH')
+
             if dataset_mnemonic not in ds_to_vars_builder:
                 ds_to_vars_builder[dataset_mnemonic] = DatasetVarsBuilder(
                     dataset_mnemonic, self.full_filename(filename), self.classifications,
