@@ -32,6 +32,7 @@ type VariableMetadata {
   Version: String!
   ONS_Variable: ONS_Variable!
   Topics: [Topic]!
+  Not_Applicable_Category_Description: String
 }
 
 type ONS_Variable {
@@ -50,6 +51,8 @@ type ONS_Variable {
   Quality_Statement_Text: String
   Quality_Summary_URL: String
   Geography_Hierarchy_Order: String
+  Variable_Short_Description: String
+  Keywords: [String]!
 }
 
 type Variable_Type {
@@ -106,6 +109,7 @@ type TableMetadata {
   Statistical_Unit: Statistical_Unit!
   Alternate_Geographic_Variables: [String]!
   Observation_Type: Observation_Type
+  Keywords: [String]!
 }
 
 type Publication {
@@ -124,6 +128,7 @@ type Census_Release {
 type Statistical_Unit {
   Statistical_Unit: String!
   Statistical_Unit_Description: String!
+  Statistical_Unit_Label: String
 }
 
 type Observation_Type {

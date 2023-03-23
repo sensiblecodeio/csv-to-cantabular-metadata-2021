@@ -29,7 +29,6 @@
                         "Variable_Mnemonic": "VAR1",
                         "Variable_Mnemonic_2011": "VAR1 2011",
                         "Version": "1",
-                        "Quality_Statement_Text": "VAR1 Quality Statement Text",
                         "Quality_Summary_URL": "VAR1 Quality Statement URL",
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR1 Title",
@@ -37,12 +36,15 @@
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": "VAR1 Quality Statement Text",
+                        "Variable_Short_Description": "VAR1 Short Description",
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
                         },
                         "Statistical_Unit": {
                             "Statistical_Unit": "People",
+                            "Statistical_Unit_Label": "People Label",
                             "Statistical_Unit_Description": "People Description"
                         },
                         "Topic": {
@@ -65,6 +67,11 @@
                                 "Question_Label": "Q3 Label",
                                 "Reason_For_Asking_Question": "Q3 Why asked"
                             }
+                        ],
+                        "Keywords": [
+                            "Keyword A",
+                            "Keyword B",
+                            "Keyword C"
                         ]
                     },
                     "Topics": [
@@ -79,6 +86,7 @@
                             "Topic_Title": "TOPIC1 Title"
                         }
                     ],
+                    "Not_Applicable_Category_Description": "CLASS1 NA Category Description",
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": {
@@ -102,7 +110,6 @@
                         "Variable_Mnemonic": "VAR2",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR2 Title",
@@ -110,15 +117,19 @@
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": {
@@ -137,7 +148,6 @@
                         "Variable_Mnemonic": "VAR3",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR3 Title",
@@ -145,15 +155,19 @@
                         "Uk_Comparison_Comments": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
@@ -170,7 +184,6 @@
                         "Variable_Mnemonic": "VAR1",
                         "Variable_Mnemonic_2011": "VAR1 2011",
                         "Version": "1",
-                        "Quality_Statement_Text": "VAR1 Quality Statement Text",
                         "Quality_Summary_URL": "VAR1 Quality Statement URL",
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR1 Title",
@@ -178,12 +191,15 @@
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": "VAR1 Quality Statement Text",
+                        "Variable_Short_Description": "VAR1 Short Description",
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
                         },
                         "Statistical_Unit": {
                             "Statistical_Unit": "People",
+                            "Statistical_Unit_Label": "People Label",
                             "Statistical_Unit_Description": "People Description"
                         },
                         "Topic": {
@@ -206,9 +222,15 @@
                                 "Question_Label": "Q3 Label",
                                 "Reason_For_Asking_Question": "Q3 Why asked"
                             }
+                        ],
+                        "Keywords": [
+                            "Keyword A",
+                            "Keyword B",
+                            "Keyword C"
                         ]
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
@@ -225,7 +247,6 @@
                         "Variable_Mnemonic": "VAR2",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR2 Title",
@@ -233,15 +254,19 @@
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
@@ -258,7 +283,6 @@
                         "Variable_Mnemonic": "VAR4",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR4 Title",
@@ -266,15 +290,19 @@
                         "Uk_Comparison_Comments": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
@@ -292,7 +320,6 @@
                         "Variable_Mnemonic": "GEO1",
                         "Variable_Mnemonic_2011": "GEO1 2011",
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": "1",
                         "Variable_Title": "GEO1 Title",
@@ -300,12 +327,15 @@
                         "Uk_Comparison_Comments": "GEO1 UK Comparison Comments",
                         "Geographic_Theme": "GEO1 Theme",
                         "Geographic_Coverage": "GEO1 Coverage",
+                        "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable"
                         },
                         "Statistical_Unit": {
                             "Statistical_Unit": "People",
+                            "Statistical_Unit_Label": "People Label",
                             "Statistical_Unit_Description": "People Description"
                         },
                         "Topic": {
@@ -321,6 +351,9 @@
                                 "Question_Label": "Q2 Label",
                                 "Reason_For_Asking_Question": null
                             }
+                        ],
+                        "Keywords": [
+                            "Keyword A"
                         ]
                     },
                     "Topics": []
@@ -340,7 +373,6 @@
                         "Variable_Mnemonic": "GEO2",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": "2",
                         "Variable_Title": "GEO2 Title",
@@ -348,13 +380,16 @@
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments",
                         "Geographic_Theme": "GEO1 Theme",
                         "Geographic_Coverage": "GEO2 Coverage",
+                        "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable"
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": []
                 },
@@ -392,7 +427,6 @@
                         "Variable_Mnemonic": "VAR1",
                         "Variable_Mnemonic_2011": "VAR1 2011",
                         "Version": "1",
-                        "Quality_Statement_Text": "VAR1 Quality Statement Text",
                         "Quality_Summary_URL": "VAR1 Quality Statement URL",
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR1 Title (Welsh)",
@@ -400,12 +434,15 @@
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments (Welsh)",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": "VAR1 Quality Statement Text (Welsh)",
+                        "Variable_Short_Description": "VAR1 Short Description (Welsh)",
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
                         },
                         "Statistical_Unit": {
                             "Statistical_Unit": "People",
+                            "Statistical_Unit_Label": "People Label (Welsh)",
                             "Statistical_Unit_Description": "People Description (Welsh)"
                         },
                         "Topic": {
@@ -428,6 +465,11 @@
                                 "Question_Label": "Q3 Label",
                                 "Reason_For_Asking_Question": "Q3 Why asked"
                             }
+                        ],
+                        "Keywords": [
+                            "Keyword A",
+                            "Keyword B",
+                            "Keyword C"
                         ]
                     },
                     "Topics": [
@@ -442,6 +484,7 @@
                             "Topic_Title": "TOPIC1 Title"
                         }
                     ],
+                    "Not_Applicable_Category_Description": "CLASS1 NA Category Description (Welsh)",
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": {
@@ -463,7 +506,6 @@
                         "Variable_Mnemonic": "VAR2",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR2 Title",
@@ -471,15 +513,19 @@
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": {
@@ -498,7 +544,6 @@
                         "Variable_Mnemonic": "VAR3",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR3 Title",
@@ -506,15 +551,19 @@
                         "Uk_Comparison_Comments": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
@@ -531,7 +580,6 @@
                         "Variable_Mnemonic": "VAR1",
                         "Variable_Mnemonic_2011": "VAR1 2011",
                         "Version": "1",
-                        "Quality_Statement_Text": "VAR1 Quality Statement Text",
                         "Quality_Summary_URL": "VAR1 Quality Statement URL",
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR1 Title (Welsh)",
@@ -539,12 +587,15 @@
                         "Uk_Comparison_Comments": "VAR1 UK Comparison Comments (Welsh)",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": "VAR1 Quality Statement Text (Welsh)",
+                        "Variable_Short_Description": "VAR1 Short Description (Welsh)",
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
                         },
                         "Statistical_Unit": {
                             "Statistical_Unit": "People",
+                            "Statistical_Unit_Label": "People Label (Welsh)",
                             "Statistical_Unit_Description": "People Description (Welsh)"
                         },
                         "Topic": {
@@ -567,9 +618,15 @@
                                 "Question_Label": "Q3 Label",
                                 "Reason_For_Asking_Question": "Q3 Why asked"
                             }
+                        ],
+                        "Keywords": [
+                            "Keyword A",
+                            "Keyword B",
+                            "Keyword C"
                         ]
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
@@ -586,7 +643,6 @@
                         "Variable_Mnemonic": "VAR2",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR2 Title",
@@ -594,15 +650,19 @@
                         "Uk_Comparison_Comments": "VAR2 UK Comparison Comments",
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
@@ -619,7 +679,6 @@
                         "Variable_Mnemonic": "VAR4",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": null,
                         "Variable_Title": "VAR4 Title",
@@ -627,15 +686,19 @@
                         "Uk_Comparison_Comments": null,
                         "Geographic_Theme": null,
                         "Geographic_Coverage": null,
+                        "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "DVO",
                             "Variable_Type_Description": "Derived variable"
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": [],
+                    "Not_Applicable_Category_Description": null,
                     "Cantabular_Public_Flag": "Y"
                 },
                 "catLabels": null
@@ -653,7 +716,6 @@
                         "Variable_Mnemonic": "GEO1",
                         "Variable_Mnemonic_2011": "GEO1 2011",
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": "1",
                         "Variable_Title": "GEO1 Title (Welsh)",
@@ -661,12 +723,15 @@
                         "Uk_Comparison_Comments": "GEO1 UK Comparison Comments (Welsh)",
                         "Geographic_Theme": "GEO1 Theme (Welsh)",
                         "Geographic_Coverage": "GEO1 Coverage (Welsh)",
+                        "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable (Welsh)"
                         },
                         "Statistical_Unit": {
                             "Statistical_Unit": "People",
+                            "Statistical_Unit_Label": "People Label (Welsh)",
                             "Statistical_Unit_Description": "People Description (Welsh)"
                         },
                         "Topic": {
@@ -682,6 +747,9 @@
                                 "Question_Label": "Q2 Label",
                                 "Reason_For_Asking_Question": null
                             }
+                        ],
+                        "Keywords": [
+                            "Keyword A"
                         ]
                     },
                     "Topics": []
@@ -701,7 +769,6 @@
                         "Variable_Mnemonic": "GEO2",
                         "Variable_Mnemonic_2011": null,
                         "Version": "1",
-                        "Quality_Statement_Text": null,
                         "Quality_Summary_URL": null,
                         "Geography_Hierarchy_Order": "2",
                         "Variable_Title": "GEO2 Title",
@@ -709,13 +776,16 @@
                         "Uk_Comparison_Comments": "GEO2 UK Comparison Comments",
                         "Geographic_Theme": "GEO1 Theme",
                         "Geographic_Coverage": "GEO2 Coverage",
+                        "Quality_Statement_Text": null,
+                        "Variable_Short_Description": null,
                         "Variable_Type": {
                             "Variable_Type_Code": "GEOG",
                             "Variable_Type_Description": "Geographic variable (Welsh)"
                         },
                         "Statistical_Unit": null,
                         "Topic": null,
-                        "Questions": []
+                        "Questions": [],
+                        "Keywords": []
                     },
                     "Topics": []
                 },

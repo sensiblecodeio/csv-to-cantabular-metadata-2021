@@ -6,7 +6,8 @@ from ons_csv_to_ctb_json_load import Loader
 from helper_funcs import conditional_mock_open, build_test_file
 
 HEADERS = ['Classification_Mnemonic', 'Dataset_Mnemonic', 'Id', 'Processing_Priority',
-           'Variable_Mnemonic', 'Lowest_Geog_Variable_Flag', 'Database_Mnemonic']
+           'Variable_Mnemonic', 'Lowest_Geog_Variable_Flag', 'Database_Mnemonic',
+           'Minimum_Threshold_Person', 'Minimum_Threshold_HH']
 
 REQUIRED_FIELDS = {'Dataset_Mnemonic': 'DS1',
                    'Variable_Mnemonic': 'VAR1',
@@ -33,7 +34,8 @@ class TestDatasetClassification(unittest.TestCase):
 
     def test_invalid_values(self):
         for field in ['Dataset_Mnemonic', 'Classification_Mnemonic', 'Processing_Priority',
-                      'Lowest_Geog_Variable_Flag', 'Database_Mnemonic']:
+                      'Lowest_Geog_Variable_Flag', 'Database_Mnemonic',
+                      'Minimum_Threshold_Person', 'Minimum_Threshold_HH']:
             with self.subTest(field=field):
                 row = REQUIRED_FIELDS.copy()
                 row[field] = 'X'

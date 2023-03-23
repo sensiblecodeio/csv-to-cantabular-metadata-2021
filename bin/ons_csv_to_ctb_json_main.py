@@ -10,14 +10,15 @@ from datetime import datetime
 from ons_csv_to_ctb_json_load import Loader, PUBLIC_SECURITY_MNEMONIC
 from ons_csv_to_ctb_json_bilingual import BilingualDict, Bilingual
 
-SCHEMA_VERSION = '1.3'
+SCHEMA_VERSION = '1.4'
 
 # The first two elements in SCRIPT_VERSION refer to the metadata schema. The final element is the
 # iteration of the conversion code for that version of the schema.
-SCRIPT_VERSION = SCHEMA_VERSION + '.3'
+SCRIPT_VERSION = SCHEMA_VERSION + '.0'
 
 SYSTEM = 'cantabm'
-DEFAULT_CANTABULAR_VERSION = '10.2.2'
+DEFAULT_CANTABULAR_VERSION = '10.2.3'
+CANTABULAR_V10_2_2 = '10.2.3'
 CANTABULAR_V10_2_1 = '10.2.1'
 CANTABULAR_V10_2_0 = '10.2.0'
 CANTABULAR_V10_1_1 = '10.1.1'
@@ -27,9 +28,9 @@ CANTABULAR_V9_3_0 = '9.3.0'
 FILE_CONTENT_TYPE_DATASET = 'dataset-md'
 FILE_CONTENT_TYPE_TABLES = 'tables-md'
 FILE_CONTENT_TYPE_SERVICE = 'service-md'
-KNOWN_CANTABULAR_VERSIONS = [DEFAULT_CANTABULAR_VERSION, CANTABULAR_V10_2_1, CANTABULAR_V10_2_0,
-                             CANTABULAR_V10_1_1, CANTABULAR_V10_1_0, CANTABULAR_V10_0_0,
-                             CANTABULAR_V9_3_0]
+KNOWN_CANTABULAR_VERSIONS = [DEFAULT_CANTABULAR_VERSION, CANTABULAR_V10_2_2, CANTABULAR_V10_2_1,
+                             CANTABULAR_V10_2_0, CANTABULAR_V10_1_1, CANTABULAR_V10_1_0,
+                             CANTABULAR_V10_0_0, CANTABULAR_V9_3_0]
 
 
 def filename_segment(value):

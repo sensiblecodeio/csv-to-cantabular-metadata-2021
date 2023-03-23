@@ -8,9 +8,9 @@ from io import StringIO
 from datetime import datetime
 import ons_csv_to_ctb_json_main
 
-FILENAME_TABLES = 'cantabm_v10-2-2_best-effort_tables-md_19700101-1.json'
-FILENAME_DATASET = 'cantabm_v10-2-2_best-effort_dataset-md_19700101-1.json'
-FILENAME_SERVICE = 'cantabm_v10-2-2_best-effort_service-md_19700101-1.json'
+FILENAME_TABLES = 'cantabm_v10-2-3_best-effort_tables-md_19700101-1.json'
+FILENAME_DATASET = 'cantabm_v10-2-3_best-effort_dataset-md_19700101-1.json'
+FILENAME_SERVICE = 'cantabm_v10-2-3_best-effort_service-md_19700101-1.json'
 
 class TestBestEffort(unittest.TestCase):
     @unittest.mock.patch('ons_csv_to_ctb_json_main.datetime')
@@ -97,4 +97,4 @@ class TestBestEffort(unittest.TestCase):
 
         infos = [msg for msg in cm.output if msg.startswith('INFO')]
         self.assertEqual(12, len(infos))
-        self.assertRegex(infos[8], r'Build created=1970-01-01T00:00:00 best_effort=True dataset_filter="" geography_file="" versions_data=30 versions_schema=1.3 versions_script=1.3.3')
+        self.assertRegex(infos[8], r'Build created=1970-01-01T00:00:00 best_effort=True dataset_filter="" geography_file="" versions_data=30 versions_schema=1.4 versions_script=1.4.0')

@@ -19,6 +19,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": null,
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -26,6 +27,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": [
                         "GEO3",
                         "GEO4"
@@ -44,6 +46,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": null,
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -51,6 +54,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": [
                         "GEO3",
                         "GEO4"
@@ -78,6 +82,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": null,
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -85,6 +90,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -100,6 +106,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": null,
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -107,6 +114,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
@@ -132,6 +140,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": null,
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -139,6 +148,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -154,6 +164,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": null,
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -161,6 +172,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
@@ -185,6 +197,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": null,
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -192,6 +205,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -207,6 +221,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": null,
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -214,6 +229,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
@@ -238,6 +254,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": null,
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -254,6 +271,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             },
@@ -269,6 +287,7 @@
                     "Dataset_Population": "Everyone",
                     "Statistical_Unit": {
                         "Statistical_Unit": "Houses",
+                        "Statistical_Unit_Label": null,
                         "Statistical_Unit_Description": "House Description"
                     },
                     "Contact": null,
@@ -285,6 +304,7 @@
                     "Related_Datasets": [],
                     "Census_Releases": [],
                     "Publications": [],
+                    "Keywords": [],
                     "Alternate_Geographic_Variables": []
                 }
             }
