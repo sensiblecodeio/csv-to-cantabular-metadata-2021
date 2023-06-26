@@ -944,15 +944,7 @@
                 "Database_Type_Description": "Microdata database"
             }
         },
-        "vars": [
-            {
-                "name": "CLASS_PRIV",
-                "meta": {
-                    "Cantabular_Public_Flag": "N"
-                },
-                "catLabels": null
-            }
-        ]
+        "vars": null
     },
     {
         "name": "DB2",
@@ -987,15 +979,7 @@
                 "Database_Type_Description": "Microdata database"
             }
         },
-        "vars": [
-            {
-                "name": "CLASS_PRIV",
-                "meta": {
-                    "Cantabular_Public_Flag": "N"
-                },
-                "catLabels": null
-            }
-        ]
+        "vars": null
     },
     {
         "name": "DB3",

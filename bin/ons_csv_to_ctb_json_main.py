@@ -355,6 +355,19 @@ def build_ctb_datasets(databases, ctb_variables, base_dataset_name):
         if database_mnemonic.upper() == uc_base_dataset_name:
             raise ValueError('Dataset has same case insensitive name as base dataset: '
                              f'{base_dataset_name}')
+
+        # Some variables should have the Cantabular_Public_Flag flag set to N in certain
+        # datasets. They inherit other values from the base dataset. Only include variables
+        # that are contained in the ctb_variables list- otherwise there will be no base variable.
+        # This might happen if the Security_Classification is not PUB.
+        base_vars = [v['name'] for v in ctb_variables]
+        non_public_vars = [
+            non_public_variable(np) for np in
+            database.private['Non_Public_Classifications'] if np in base_vars] if \
+            database.private['Non_Public_Classifications'] else None
+        if not non_public_vars:
+            non_public_vars = None
+
         ctb_dataset = BilingualDict({
             'name': database_mnemonic,
             'incl': [{'name': base_dataset_name, 'lang': Bilingual('en', 'cy')}],
@@ -362,10 +375,7 @@ def build_ctb_datasets(databases, ctb_variables, base_dataset_name):
             'description': database.private['Database_Description'],
             'lang': Bilingual('en', 'cy'),
             'meta': database,
-            'vars':
-                [non_public_variable(np) for np in
-                 database.private['Non_Public_Classifications']] if
-                database.private['Non_Public_Classifications'] else None,
+            'vars': non_public_vars,
         })
         ctb_datasets.extend([ctb_dataset.english(), ctb_dataset.welsh()])
         logging.debug(f'Loaded metadata for Cantabular dataset: {database_mnemonic}')
